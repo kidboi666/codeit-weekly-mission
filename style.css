@@ -9,9 +9,11 @@
   --gray4-color: #e7effb;
   --gray5-color: #f0f6ff;
 }
+
 html {
   font-size: 10px;
 }
+
 body {
   position: relative;
 }
@@ -85,10 +87,10 @@ main .main_header {
   align-items: center;
   width: 100%;
   padding-top: 7rem;
+  text-align: center;
 }
 
 main h1 {
-  text-align: center;
   font-size: 6.4rem;
   font-weight: 500;
 }
@@ -106,30 +108,35 @@ main .main_header a.link_add:active {
 
 /* main section */
 
-main section {
-  box-shadow: 0 -15px 40px 20px var(--gray4-color);
-  padding: 70px 0;
-}
-
 main .info_gradient {
   background: linear-gradient(270deg, #ff9f9f, var(--primary-color));
 }
+
 main .link_gradient {
   background: linear-gradient(270deg, #a4ceff, #fe8a8a);
 }
+
 main .folder_gradient {
   background: linear-gradient(270deg, #a4ceff, #ffd88b);
 }
+
 main .share_gradient {
   background: linear-gradient(270deg, #a4ceff, #528885);
 }
+
 main .sns_gradient {
   background: linear-gradient(270deg, #a4ceff, #76dbf0);
 }
+
 main .text_gradient {
   font-size: 6.4rem;
   color: transparent;
   background-clip: text;
+}
+
+main section {
+  box-shadow: 0 -15px 40px 20px var(--gray4-color);
+  padding: 70px 0;
 }
 
 section .card {
@@ -140,9 +147,11 @@ section .card {
 
 section .card .card_item {
   width: 998px;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   justify-content: space-between;
   align-items: center;
+  gap: 2.5rem;
 }
 
 section .card .card_item figure {

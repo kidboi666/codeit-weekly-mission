@@ -1,28 +1,20 @@
-@media screen and (min-width: 1610px) {
-}
+/* pc */
 
-@media screen and (max-width: 1609px) {
+@media screen and (min-width: 1200px) {
   header {
     padding: 2rem 10rem;
   }
 }
 
-@media screen and (max-width: 1280px) {
-  header {
-    padding: 2rem 10rem;
-  }
-}
+/* tablet */
 
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: 1199px) {
   header {
-    padding: 2rem 8rem;
+    padding: 2rem 3.2rem;
   }
   main .main_header figure h1,
   main .main_header figure span {
     font-size: 4.4rem;
-  }
-  main .main_header img {
-    width: 100%;
   }
   main h1 {
     text-align: center;
@@ -65,10 +57,8 @@
   }
 }
 
-@media screen and (max-width: 699px) {
-  header {
-    padding: 2rem 2rem;
-  }
+/* mobile */
+@media screen and (max-width: 767px) {
   main .main_header figure h1,
   main .main_header figure span {
     font-size: 3.8rem;
