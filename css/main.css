@@ -1,4 +1,4 @@
-@import url('./color.css');
+@import url('./colors.css');
 
 html {
   font-size: 10px;
@@ -144,15 +144,15 @@ main span {
 
 section .card .card_item {
   width: 998px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 15.7rem;
 }
 
-section .card .card_item figure {
-  flex-shrink: 0;
+section .card .card_item .figcaption_wrap {
+  display: flex;
+  flex-direction: column;
 }
 
 section .image_description {
@@ -160,11 +160,8 @@ section .image_description {
   line-height: 25px;
 }
 
-section .section_folder img {
-  order: -1;
-}
-
-section .section_sns img {
+section .section_folder .figure_image,
+section .section_sns .figure_image {
   order: -1;
 }
 
@@ -221,10 +218,14 @@ footer .sns_fill_wrap {
     width: 100%;
   }
   section .card .card_item {
+    width: 698px;
+    gap: 5rem;
+  }
+  section .card .card_item .figcaption_wrap {
+    flex-shrink: 0;
+  }
+  section .card .card_item .figure_image img {
     width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
   }
   footer .footer_wrap {
     padding: 3.2rem 10.4rem 10.8rem;
@@ -247,7 +248,17 @@ footer .sns_fill_wrap {
   main .main_header span {
     font-size: 3.2rem;
   }
-
+  main h1,
+  main span {
+    font-size: 2.4rem;
+    font-weight: 500;
+  }
+  section .figure_image {
+    order: -1;
+  }
+  section h1.text_wrap {
+    display: inline;
+  }
   main .main_header a.link_add {
     margin: 2.4rem;
   }
