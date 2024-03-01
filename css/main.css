@@ -8,10 +8,6 @@ body {
   position: relative;
 }
 
-h1 {
-  margin-bottom: 1.5rem;
-}
-
 p,
 a,
 span {
@@ -203,12 +199,7 @@ footer .sns_fill_wrap {
 
 /* mediaquary */
 
-@media screen and (min-width: 1200px) {
-  header {
-    padding: 2rem 10rem;
-  }
-}
-/* pc */
+/* tablet */
 
 @media screen and (max-width: 1199px) {
   header {
@@ -221,8 +212,8 @@ footer .sns_fill_wrap {
     width: 698px;
     gap: 5rem;
   }
-  section .card .card_item .figcaption_wrap {
-    flex-shrink: 0;
+  section .card .card_item .figure_image {
+    width: 100%;
   }
   section .card .card_item .figure_image img {
     width: 100%;
@@ -241,7 +232,7 @@ footer .sns_fill_wrap {
   }
 }
 
-/* tablet */
+/* mobile */
 
 @media screen and (max-width: 767px) {
   main .main_header h1,
@@ -254,16 +245,23 @@ footer .sns_fill_wrap {
     font-weight: 500;
   }
   section .figure_image {
-    order: -1;
+    width: 100%;
   }
-  section h1.text_wrap {
-    display: inline;
+  section .section_folder .figure_image,
+  section .section_sns .figure_image {
+    order: 0;
+  }
+  section .figcaption_wrap {
+    align-self: flex-start;
   }
   main .main_header a.link_add {
     margin: 2.4rem;
   }
   section .card .card_item {
+    width: 100%;
+    /* position: relative; */
     flex-direction: column;
+    gap: 2rem;
   }
   section .card {
     padding: 4rem 3.2rem;
@@ -271,6 +269,8 @@ footer .sns_fill_wrap {
   section .card .card_item img {
     width: 100%;
   }
+  /* section .image_description {
+    position: absolute;
+    bottom: 20px;
+  } */
 }
-
-/* mobile */
