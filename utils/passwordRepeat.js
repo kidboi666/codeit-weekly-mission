@@ -2,7 +2,7 @@ import { $password, $passwordRe } from './eyesOnOff.js'; // 패스워드 인풋�
 const $wrongMessage = document.getElementById('wrong_message'); // 비밀번호가 틀렸습니다 메세지 div
 // const $signUpButton = document.querySelector('.signup_button');
 
-const valueWrong = (e) => {
+const validatePassword = (e) => {
   e.preventDefault();
   if ($passwordRe.value) {
     if ($passwordRe.value !== $password.value) {
@@ -17,4 +17,4 @@ const valueWrong = (e) => {
 
 // const ifWrongValue = () => {};
 
-export default valueWrong;
+export default validatePassword;

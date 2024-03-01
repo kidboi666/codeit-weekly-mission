@@ -1,11 +1,11 @@
-const scrollNavShadow = () => {
+const handleNavShadow = () => {
   const $nav = document.querySelector('.header_nav');
   if (window.scrollY > 30) {
     $nav.classList.add('nav_shadow');
-  } else if (window.scrollY < 30) {
-    $nav.classList.remove('nav_shadow');
+    return;
   }
+  $nav.classList.remove('nav_shadow');
 };
 
-window.addEventListener('scroll', scrollNavShadow);
+window.addEventListener('scroll', handleNavShadow);
 // export default scrollNavShadow;
