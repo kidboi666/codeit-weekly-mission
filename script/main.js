@@ -23,6 +23,7 @@ const handleNavShadow = () => {
   }
   $nav.classList.remove('nav_shadow');
 };
+
 handleDescription();
 window.addEventListener('resize', handleDescription);
 window.addEventListener('scroll', handleNavShadow);

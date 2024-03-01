@@ -47,6 +47,7 @@ header a.signin_button::active {
 section .signup_form {
   display: flex;
   flex-direction: column;
+  padding: 0 32px;
 }
 
 section .toggle_wrap {
@@ -104,6 +105,10 @@ section button {
 }
 
 footer {
+  padding: 0 32px;
+}
+
+footer .footer_wrap {
   margin-top: 32px;
   color: #373740;
   padding: 12px 24px;
@@ -126,4 +131,12 @@ footer p {
 
 .hidden {
   display: none;
+}
+
+@media screen and (max-width: 1199px) {
+}
+@media screen and (max-width: 767px) {
+  main {
+    width: 100%;
+  }
 }
