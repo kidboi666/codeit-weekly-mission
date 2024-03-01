@@ -8,4 +8,3 @@ const handleNavShadow = () => {
 };
 
 window.addEventListener('scroll', handleNavShadow);
-// export default scrollNavShadow;

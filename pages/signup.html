@@ -3,15 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../reset.css" />
-    <link rel="stylesheet" href="./signup.css" />
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/signup.css" />
     <title>SignUp</title>
   </head>
   <body>
     <main>
       <header>
-        <a href="../index.html" class="logo"><img src="../asset/logo.svg" alt="Linkbrary" /></a>
-        <p>이미 회원이신가요? <a href="../signin/" class="signin_button">로그인 하기</a></p>
+        <a href="../index.html" class="logo">
+          <img src="../images/icon_svg/logo.svg" alt="Linkbrary" />
+        </a>
+        <p>
+          이미 회원이신가요?
+          <a href="./signin.html" class="signin_button">로그인 하기</a>
+        </p>
       </header>
       <section>
         <form class="signup_form" action="">
@@ -27,7 +32,7 @@
               type="password"
               placeholder="******"
             />
-            <img src="../asset/eye-on.svg" alt="" class="password_eyes" />
+            <img src="../images/icon_svg/eye-on.svg" alt="" class="password_eyes" />
           </div>
           <div class="toggle_wrap">
             <label for="passwordToggleRepeat" class="toggle_block"> 비밀번호 확인</label>
@@ -46,13 +51,15 @@
       <footer>
         <p>다른 방식으로 가입하기</p>
         <div class="sns_wrap">
-          <a href="https://www.google.com/"><img src="../asset/google_icon.svg" alt="google" /></a>
-          <a href="https://www.kakaocorp.com/page/"
-            ><img src="../asset/kakao_icon.svg" alt="kakao"
-          /></a>
+          <a href="https://www.google.com/">
+            <img src="../images/icon_svg/google_icon.svg" alt="google" />
+          </a>
+          <a href="https://www.kakaocorp.com/page/">
+            <img src="../images/icon_svg/kakao_icon.svg" alt="kakao" />
+          </a>
         </div>
       </footer>
     </main>
-    <script type="module" src="../main.js"></script>
+    <script type="module" src="../script/signup.js"></script>
   </body>
 </html>
