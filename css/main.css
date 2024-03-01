@@ -151,6 +151,7 @@ section .card .card_item .figcaption_wrap {
 }
 
 section .image_description {
+  font-size: 1.6rem;
   margin-top: 10px;
   line-height: 25px;
 }

@@ -1,9 +1,17 @@
 const $textBox = document.querySelectorAll('.image_description');
+const $figcaption = document.querySelectorAll('.figcaption_wrap');
 const $imageBox = document.querySelectorAll('.figure_image');
 
 const handleDescription = () => {
-  for (let i = 0; i < $imageBox.length; i++) {
-    $imageBox[i].append($textBox[i]);
+  if (window.innerWidth <= 767) {
+    for (let i = 0; i < $imageBox.length; i++) {
+      $imageBox[i].append($textBox[i]);
+    }
+  } else if (window.innerWidth > 767) {
+    console.log(window.innerWidth);
+    for (let j = 0; j < $figcaption.length; j++) {
+      $figcaption[j].append($textBox[j]);
+    }
   }
 };
 
@@ -15,6 +23,6 @@ const handleNavShadow = () => {
   }
   $nav.classList.remove('nav_shadow');
 };
-
 handleDescription();
+window.addEventListener('resize', handleDescription);
 window.addEventListener('scroll', handleNavShadow);
