@@ -259,7 +259,6 @@ footer .sns_fill_wrap {
   }
   section .card .card_item {
     width: 100%;
-    /* position: relative; */
     flex-direction: column;
     gap: 2rem;
   }
@@ -269,8 +268,4 @@ footer .sns_fill_wrap {
   section .card .card_item img {
     width: 100%;
   }
-  /* section .image_description {
-    position: absolute;
-    bottom: 20px;
-  } */
 }
