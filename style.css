@@ -71,7 +71,7 @@ header .login a:active {
   text-decoration: none;
 }
 
-/* main */
+/* main intro */
 
 main {
   background-color: #fff;
@@ -79,6 +79,8 @@ main {
 
 main .main_header_wrap {
   background-color: var(--gray5-color);
+  padding-top: 2.8rem;
+  padding: 0 3.2rem;
 }
 
 main .main_header {
@@ -90,9 +92,9 @@ main .main_header {
   text-align: center;
 }
 
-main h1 {
+main .intro_wrap h1,
+main .intro_wrap span {
   font-size: 6.4rem;
-  font-weight: 500;
 }
 
 main .main_header a.link_add,
@@ -106,7 +108,7 @@ main .main_header a.link_add:active {
   margin-bottom: 90px;
 }
 
-/* main section */
+/* section */
 
 main .info_gradient {
   background: linear-gradient(270deg, #ff9f9f, var(--primary-color));
@@ -129,7 +131,6 @@ main .sns_gradient {
 }
 
 main .text_gradient {
-  font-size: 6.4rem;
   color: transparent;
   background-clip: text;
 }
@@ -145,13 +146,19 @@ section .card {
   justify-content: center;
 }
 
+main h1,
+main span {
+  font-size: 4.8rem;
+  font-weight: 500;
+}
+
 section .card .card_item {
   width: 998px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   justify-content: space-between;
   align-items: center;
-  gap: 2.5rem;
+  gap: 15.7rem;
 }
 
 section .card .card_item figure {

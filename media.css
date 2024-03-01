@@ -1,47 +1,24 @@
-/* pc */
-
 @media screen and (min-width: 1200px) {
   header {
     padding: 2rem 10rem;
   }
 }
-
-/* tablet */
+/* pc */
 
 @media screen and (max-width: 1199px) {
   header {
     padding: 2rem 3.2rem;
   }
-  main .main_header figure h1,
-  main .main_header figure span {
-    font-size: 4.4rem;
-  }
-  main h1 {
-    text-align: center;
-    font-size: 5.4rem;
-    font-weight: 500;
-  }
-  main p {
-    text-align: center;
-  }
-  main section {
-    padding: 70px 70px;
-  }
-  section .card .card_item {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    gap: 7rem;
-  }
-  section .card .card_item img {
-    order: -1;
-  }
-  section .card .card_item img {
+  main .main_header img {
     width: 100%;
   }
-  section .card .image_description {
-    margin-top: 7rem;
+  section .card {
+  }
+  section .card .card_item {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   footer .footer_wrap {
     padding: 3.2rem 10.4rem 10.8rem;
@@ -57,23 +34,26 @@
   }
 }
 
-/* mobile */
+/* tablet */
+
 @media screen and (max-width: 767px) {
-  main .main_header figure h1,
-  main .main_header figure span {
-    font-size: 3.8rem;
+  main .main_header h1,
+  main .main_header span {
+    font-size: 3.2rem;
   }
+
   main .main_header a.link_add {
-    margin-top: 10rem;
-    margin-bottom: 10rem;
-  }
-  main section {
-    padding: 7rem 0;
-  }
-  section .card {
-    padding: 10rem 0;
+    margin: 2.4rem;
   }
   section .card .card_item {
-    gap: 20rem;
+    flex-direction: column;
+  }
+  section .card {
+    padding: 4rem 3.2rem;
+  }
+  section .card .card_item img {
+    width: 100%;
   }
 }
+
+/* mobile */
