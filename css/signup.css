@@ -1,21 +1,11 @@
-:root {
-  --primary-color: #6d6afe;
-  --red-color: #ff5b56;
-  --black-color: #111322;
-  --white-color: #ffffff;
-  --gray1-color: #3e3e43;
-  --gray2-color: #9fa6b2;
-  --gray3-color: #ccd5e3;
-  --gray4-color: #e7effb;
-  --gray5-color: #f0f6ff;
-}
+@import url('../css/colors.css');
 
 html {
   font-size: 10px;
 }
 
 body {
-  background-color: var(--gray5-color);
+  background-color: #f0f6ff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,8 +19,8 @@ main {
   width: 400px;
 }
 
-p,
 a,
+p,
 span {
   font-size: 1.6rem;
 }
@@ -46,17 +36,18 @@ header a.logo {
   margin-bottom: 16px;
 }
 
-header a.signup_button {
+header a.signin_button {
   color: var(--primary-color);
 }
 
-header a.signup_button::active {
+header a.signin_button::active {
   color: var(--primary-color);
 }
 
-section .signin_form {
+section .signup_form {
   display: flex;
   flex-direction: column;
+  padding: 0 32px;
 }
 
 section .toggle_wrap {
@@ -65,7 +56,7 @@ section .toggle_wrap {
   flex-direction: column;
 }
 
-section .signin_form img.password_eyes {
+section .signup_form img.password_eyes {
   width: 20px;
   position: absolute;
   right: 15px;
@@ -73,7 +64,7 @@ section .signin_form img.password_eyes {
   cursor: pointer;
 }
 
-section .signin_form img.password_eyes.eyes_offset {
+section .signup_form img.password_eyes.eyes_offset {
   bottom: 39px;
 }
 
@@ -90,6 +81,19 @@ section input {
   margin-bottom: 24px;
 }
 
+section input.wrong_password {
+  border: 1px solid rgb(255, 96, 96);
+  position: relative;
+}
+
+section #wrong_message {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 1.4rem;
+  color: rgb(255, 96, 96);
+}
+
 section button {
   padding: 16px 0;
   border-radius: 8px;
@@ -101,7 +105,10 @@ section button {
 }
 
 footer {
-  font-size: 1.4rem;
+  padding: 0 32px;
+}
+
+footer .footer_wrap {
   margin-top: 32px;
   color: #373740;
   padding: 12px 24px;
@@ -120,4 +127,16 @@ footer .sns_wrap {
 
 footer p {
   font-size: 1.4rem;
+}
+
+.hidden {
+  display: none;
+}
+
+@media screen and (max-width: 1199px) {
+}
+@media screen and (max-width: 767px) {
+  main {
+    width: 100%;
+  }
 }

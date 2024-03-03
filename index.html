@@ -3,9 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./reset.css" />
-    <link rel="stylesheet" href="./style.css" />
-    <link rel="stylesheet" href="./media.css" />
+    <meta property="og:image" content="" />
+    <meta property="og:title" content="Linkbrary" />
+    <meta property="og:description" content="세상의 모든 정보를 쉽게 저장하고 관리해보세요" />
+    <meta property="og:url" content="https://earnest-smakager-f9a03c.netlify.app/" />
+    <meta property="twitter:image" content="" />
+    <meta property="twitter:title" content="Linkbrary" />
+    <meta property="twitter:description" content="세상의 모든 정보를 쉽게 저장하고 관리해보세요" />
+    <meta property="twitter:url" content="https://earnest-smakager-f9a03c.netlify.app/" />
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/main.css" />
     <title>Linkbrary</title>
   </head>
   <body>
@@ -13,75 +20,85 @@
       <ul class="header_wrap">
         <li class="logo">
           <a href="#">
-            <img src="./asset/logo.svg" alt="Linkbrary" />
+            <img src="./images/icon_svg/logo.svg" alt="Linkbrary" />
           </a>
         </li>
         <li class="login">
-          <a href="./signin/">로그인</a>
+          <a href="./pages/signin.html">로그인</a>
         </li>
       </ul>
     </header>
     <main>
       <div class="main_header_wrap">
         <div class="main_header">
-          <figure>
+          <div class="intro_wrap">
             <h1><span class="text_gradient info_gradient">세상의 모든 정보</span>를<br /></h1>
             <h1>쉽게 저장하고 관리해 보세요</h1>
-          </figure>
-          <a href="./signup/" class="link_add">링크 추가하기</a>
-          <img src="./asset/main_header.png" alt="" />
+          </div>
+          <a href="./pages/signup.html" class="link_add">링크 추가하기</a>
+          <img src="./images/main_header.png" alt="" />
         </div>
       </div>
       <section>
         <div class="card">
           <div class="card_item section_link">
-            <figure>
-              <h1><span class="text_gradient link_gradient">원하는 링크</span>를</h1>
-              <h1>저장하세요</h1>
+            <div class="figcaption_wrap">
+              <h1><span class="text_gradient link_gradient">원하는 링크</span>를 저장하세요</h1>
               <p class="image_description">
-                나중에 읽고 싶은 글, 다시 보고 싶은 영상,<br />
-                사고 싶은 옷, 기억하고 싶은 모든 것을<br />
-                한 공간에 저장하세요.
+                나중에 읽고 싶은 글, 다시 보고 싶은 영상, 사고 싶은 옷, 기억하고 싶은 모든 것을 한
+                공간에 저장하세요.
               </p>
-            </figure>
-            <img src="./asset/main_link.png" alt="" />
+            </div>
+            <div class="figure_image">
+              <img src="./images/main_link.png" alt="" />
+            </div>
           </div>
         </div>
         <div class="card">
           <div class="card_item section_folder">
-            <figure>
-              <h1>링크를 폴더로</h1>
-              <h1><span class="text_gradient folder_gradient">관리</span>하세요</h1>
+            <div class="figcaption_wrap">
+              <h1>
+                링크를 폴더로
+                <span class="text_gradient folder_gradient">관리</span>하세요
+              </h1>
               <p class="image_description">
-                나만의 폴더를 무제한으로 만들고<br />
-                다양하게 활용할 수 있습니다.
+                나만의 폴더를 무제한으로 만들고 다양하게 활용할 수 있습니다.
               </p>
-            </figure>
-            <img src="./asset/main_folder.png" alt="" />
+            </div>
+            <div class="figure_image">
+              <img src="./images/main_folder.png" alt="" />
+            </div>
           </div>
         </div>
         <div class="card">
           <div class="card_item section_share">
-            <figure>
-              <h1>저장한 링크를</h1>
-              <h1><span class="text_gradient share_gradient">공유</span>해 보세요.</h1>
+            <div class="figcaption_wrap">
+              <h1>
+                저장한 링크를
+                <span class="text_gradient share_gradient">공유</span>해 보세요.
+              </h1>
               <p class="image_description">
-                여러 링크를 폴더에 담고 공유할 수 있습니다.<br />
-                가족, 친구, 동료들에게 쉽고 빠르게 링크를<br />
-                공유해 보세요.
+                여러 링크를 폴더에 담고 공유할 수 있습니다. 가족, 친구, 동료들에게 쉽고 빠르게
+                링크를 공유해 보세요.
               </p>
-            </figure>
-            <img src="./asset/main_share.png" alt="" />
+            </div>
+            <div class="figure_image">
+              <img src="./images/main_share.png" alt="" />
+            </div>
           </div>
         </div>
         <div class="card">
           <div class="card_item section_sns">
-            <figure>
-              <h1>저장한 링크를</h1>
-              <h1><span class="text_gradient sns_gradient">검색</span>해 보세요</h1>
+            <div class="figcaption_wrap">
+              <h1>
+                저장한 링크를
+                <span class="text_gradient sns_gradient">검색</span>해 보세요
+              </h1>
               <p class="image_description">중요한 정보들을 검색으로 쉽게 찾아보세요.</p>
-            </figure>
-            <img src="./asset/main_sns.png" alt="" />
+            </div>
+            <div class="figure_image">
+              <img src="./images/main_sns.png" alt="" />
+            </div>
           </div>
         </div>
       </section>
@@ -97,21 +114,20 @@
         </div>
         <div class="sns_fill_wrap">
           <a href="https://www.facebook.com/" target="_blank">
-            <img src="./asset/fill_facebook_icon.svg" alt="facebook" />
+            <img src="./images/icon_svg/fill_facebook_icon.svg" alt="facebook" />
           </a>
           <a href="https://twitter.com/?lang=ko" target="_blank">
-            <img src="./asset/fill_twitter_icon.svg" alt="twitter" />
+            <img src="./images/icon_svg/fill_twitter_icon.svg" alt="twitter" />
           </a>
           <a href="https://www.youtube.com/?gl=KR&hl=ko" target="_blank">
-            <img src="./asset/fill_youtube_icon.svg" alt="youtube" />
+            <img src="./images/icon_svg/fill_youtube_icon.svg" alt="youtube" />
           </a>
           <a href="https://www.instagram.com/" target="_blank">
-            <img src="./asset/fill_instagram_icon.svg" alt="instagram" />
+            <img src="./images/icon_svg/fill_instagram_icon.svg" alt="instagram" />
           </a>
         </div>
       </div>
     </footer>
-    <script type="module" src="./main.js"></script>
-    <script src="./scrollNavShadow.js"></script>
+    <script type="module" src="./script/main.js"></script>
   </body>
 </html>
