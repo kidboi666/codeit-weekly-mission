@@ -10,20 +10,19 @@
   <body>
     <main>
       <header>
-        <a href="../index.html" class="logo"
-          ><img src="../images/icon_svg/logo.svg" alt="Linkbrary"
-        /></a>
+        <a href="../index.html" class="logo"><img src="../images/icon_svg/logo.svg" alt="Linkbrary" /></a>
         <p>회원이 아니신가요? <a href="./signup.html" class="signup_button">회원 가입하기</a></p>
       </header>
       <section>
         <form class="signin_form">
-          <label for="email">이메일</label>
-          <input id="email" name="email" type="email" placeholder="codeit@codeit.kr" />
-          <div class="toggle_wrap">
-            <!-- 비번 표시 토글 버튼 기능을 위한 div-->
-            <label for="passwordToggle" class="toggle_block">비밀번호</label>
-            <input id="passwordToggle" name="password" type="password" placeholder="******" />
+          <div class="email_wrap">
+            <label for="email">이메일</label>
+            <input id="email" name="email" type="email" placeholder="codeit@codeit.kr" />
+          </div>
+          <div class="password_wrap">
+            <label for="password" class="toggle_block">비밀번호</label>
             <img src="../images/icon_svg/eye-on.svg" alt="" class="password_eyes" />
+            <input id="password" name="password" type="password" placeholder="******" />
           </div>
           <button type="submit" class="signin_button">로그인</button>
         </form>

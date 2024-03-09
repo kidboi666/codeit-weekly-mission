@@ -1,4 +1,5 @@
 @import url('../css/colors.css');
+@import url('../css/message.css');
 
 html {
   font-size: 10px;
@@ -50,7 +51,8 @@ section .signin_form {
   padding: 0 32px;
 }
 
-section .toggle_wrap {
+section .password_wrap,
+section .email_wrap {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -60,12 +62,13 @@ section .signin_form img.password_eyes {
   width: 20px;
   position: absolute;
   right: 15px;
-  bottom: 40px;
+  top: 43px;
   cursor: pointer;
+  z-index: 10;
 }
 
 section .signin_form img.password_eyes.eyes_offset {
-  bottom: 39px;
+  top: 44px;
 }
 
 section label {
