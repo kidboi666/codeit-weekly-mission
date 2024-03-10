@@ -1,0 +1,11 @@
+@import url('./colors.css');
+
+.wrong_input_message {
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+  color: var(--red-color);
+}
+.wrong_input_border {
+  border: 1px solid var(--red-color);
+  position: relative;
+}

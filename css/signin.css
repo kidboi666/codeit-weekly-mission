@@ -1,4 +1,6 @@
-@import url('../css/colors.css');
+@import url('./utils/colors.css');
+@import url('./utils/message.css');
+@import url('./utils/mediaquary.css');
 
 html {
   font-size: 10px;
@@ -50,7 +52,8 @@ section .signin_form {
   padding: 0 32px;
 }
 
-section .toggle_wrap {
+section .password_wrap,
+section .email_wrap {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -60,12 +63,13 @@ section .signin_form img.password_eyes {
   width: 20px;
   position: absolute;
   right: 15px;
-  bottom: 40px;
+  top: 43px;
   cursor: pointer;
+  z-index: 10;
 }
 
 section .signin_form img.password_eyes.eyes_offset {
-  bottom: 39px;
+  top: 44px;
 }
 
 section label {
@@ -115,8 +119,7 @@ footer p {
   font-size: 1.4rem;
 }
 
-@media screen and (max-width: 1199px) {
-}
+/* mobile */
 @media screen and (max-width: 767px) {
   main {
     width: 100%;
