@@ -1,5 +1,6 @@
-@import url('../css/colors.css');
-@import url('../css/message.css');
+@import url('./utils/colors.css');
+@import url('./utils/message.css');
+@import url('./utils/mediaquary.css');
 
 html {
   font-size: 10px;
@@ -118,8 +119,7 @@ footer p {
   font-size: 1.4rem;
 }
 
-@media screen and (max-width: 1199px) {
-}
+/* mobile */
 @media screen and (max-width: 767px) {
   main {
     width: 100%;
