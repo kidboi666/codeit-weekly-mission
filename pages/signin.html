@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,19 +10,21 @@
   <body>
     <main>
       <header>
-        <a href="./index.html" class="logo"><img src="../images/icon_svg/logo.svg" alt="Linkbrary" /></a>
+        <a href="../index.html" class="logo"><img src="../images/icon_svg/logo.svg" alt="Linkbrary" /></a>
         <p>회원이 아니신가요? <a href="./signup.html" class="signup_button">회원 가입하기</a></p>
       </header>
       <section>
-        <form class="signin_form">
+        <form id="form">
           <div class="email_wrap">
             <label for="email">이메일</label>
             <input id="email" name="email" type="email" placeholder="codeit@codeit.kr" />
+            <div id="wrong_email_message"></div>
           </div>
           <div class="password_wrap">
-            <label for="password" class="toggle_block">비밀번호</label>
-            <img src="../images/icon_svg/eye-on.svg" alt="" class="password_eyes" />
+            <label for="password">비밀번호</label>
             <input id="password" name="password" type="password" placeholder="******" />
+            <img src="../images/icon_svg/eye-off.svg" alt="비밀번호 표시 아이콘" id="password_eyes" />
+            <div id="wrong_password_message"></div>
           </div>
           <button type="submit" class="signin_button">로그인</button>
         </form>
@@ -41,6 +43,7 @@
         </div>
       </footer>
     </main>
+    <script type="module" src="../script/utils/auth.js"></script>
     <script type="module" src="../script/signin.js"></script>
   </body>
 </html>

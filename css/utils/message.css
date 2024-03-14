@@ -1,6 +1,8 @@
 @import url('./colors.css');
 
-.wrong_input_message {
+#wrong_email_message,
+#wrong_password_message,
+#wrong_password_repeat_message {
   margin-bottom: 20px;
   font-size: 1.4rem;
   color: var(--red-color);

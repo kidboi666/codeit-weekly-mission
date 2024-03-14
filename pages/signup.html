@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,7 +10,7 @@
   <body>
     <main>
       <header>
-        <a href="./index.html" class="logo">
+        <a href="../index.html" class="logo">
           <img src="../images/icon_svg/logo.svg" alt="Linkbrary" />
         </a>
         <p>
@@ -19,25 +19,26 @@
         </p>
       </header>
       <section>
-        <form class="signup_form" action="">
-          <label for="email">이메일</label>
-          <input id="email" name="email" type="email" placeholder="codeit@codeit.kr" />
-          <div class="toggle_wrap">
-            <!-- 비번 표시 토글 버튼 기능을 위한 div-->
-            <label for="passwordToggle" class="toggle_block">비밀번호</label>
-            <input id="passwordToggle" class="password_input" name="password" type="password" placeholder="******" />
-            <img src="../images/icon_svg/eye-on.svg" alt="" class="password_eyes" />
+        <form id="form">
+          <div class="email_wrap">
+            <label for="email">이메일</label>
+            <input id="email" name="email" type="email" placeholder="codeit@codeit.kr" />
+            <div id="wrong_email_message"></div>
           </div>
-          <div class="toggle_wrap">
-            <label for="passwordToggleRepeat" class="toggle_block"> 비밀번호 확인</label>
+          <div class="password_wrap">
+            <label for="password">비밀번호</label>
+            <input id="password" class="password_toggle" name="password" type="password" placeholder="******" />
+            <img src="../images/icon_svg/eye-off.svg" alt="비밀번호 표시 아이콘" id="password_eyes" />
+            <div id="wrong_password_message"></div>
+            <label for="password_repeat"> 비밀번호 확인</label>
             <input
-              id="passwordToggleRepeat"
-              class="password_repeat_input"
+              id="password_repeat"
+              class="password_toggle"
               name="password_repeat"
               type="password"
               placeholder="******"
             />
-            <div id="wrong_message" class="hidden">비밀번호가 틀렸습니다.</div>
+            <div id="wrong_password_repeat_message"></div>
           </div>
           <button type="submit" class="signup_button">회원가입</button>
         </form>
@@ -56,6 +57,7 @@
         </div>
       </footer>
     </main>
+    <script type="module" src="../script/utils/auth.js"></script>
     <script type="module" src="../script/signup.js"></script>
   </body>
 </html>
