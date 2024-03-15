@@ -71,6 +71,7 @@ const submitEvent = (e) => {
 
 $emailInput.addEventListener('focusout', validateEmailValue);
 $pwInput.addEventListener('focusout', validatePwValue);
+$emailInput.addEventListener('focusout', checkDuplicateAccount);
 $pwInput.addEventListener('focusout', checkPwForm);
 $pwVerifyInput.addEventListener('focusout', comparePw);
 $form.addEventListener('submit', submitEvent);
