@@ -6,30 +6,23 @@ import {
   $pwAlertDiv,
   $emailAlertDiv,
   validateEmailValue,
-  validatePasswordValue,
-  handlePasswordSight,
-  mockUserInformation,
+  validatePwValue,
+  handlePwSight,
+  mockUserInfo,
   drawAlert,
   message,
 } from './utils/auth.js';
 /* 테스트 계정과 입력값 일치 여부 검증 함수 */
+
 const submitEvent = (event) => {
-  const { value: emailValue } = $emailInput;
-  const { value: passwordValue } = $pwInput;
-  if (emailValue === mockUserInformation.email && passwordValue === mockUserInformation.password) {
-    location.href = '../pages/folder.html';
-  } else if (emailValue === mockUserInformation.email && passwordValue !== mockUserInformation.password) {
-    drawAlert($pwAlertDiv, $pwInput, message.wrongPassword);
-  } else if (emailValue !== mockUserInformation.email && passwordValue === mockUserInformation.password) {
-    drawAlert($emailAlertDiv, $emailInput, message.wrongEmail);
-  } else {
-    drawAlert($pwAlertDiv, $pwInput, message.wrongPassword);
-    drawAlert($emailAlertDiv, $emailInput, message.wrongEmail);
-  }
   event.preventDefault();
+  if ($emailInput.value === mockUserInfo.email && $pwInput.value === mockUserInfo.pw)
+    return (location.href = '../pages/folder.html');
+  if ($pwInput.value !== mockUserInfo.pw) drawAlert($pwAlertDiv, $pwInput, message.wrongPw);
+  if ($emailInput.value !== mockUserInfo.email) drawAlert($emailAlertDiv, $emailInput, message.wrongEmail);
 };
 
 $emailInput.addEventListener('focusout', validateEmailValue);
-$pwInput.addEventListener('focusout', validatePasswordValue);
+$pwInput.addEventListener('focusout', validatePwValue);
 $form.addEventListener('submit', submitEvent);
-$eyes.addEventListener('click', handlePasswordSight);
+$eyes.addEventListener('click', handlePwSight);

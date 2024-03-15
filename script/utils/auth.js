@@ -8,20 +8,26 @@ export const $pwAlertDiv = document.querySelector('#wrong_password_message');
 export const $pwVerifyAlertDiv = document.querySelector('#wrong_password_repeat_message');
 export const $form = document.querySelector('#form');
 
-export const mockUserInformation = {
+export const mockUserInfo = {
   email: 'test@codeit.kr',
-  password: 'codeit101',
+  pw: 'codeit101',
+};
+
+export const signupPageStatus = {
+  duplicateAccountState: false,
+  pwFormState: false,
+  comparePwState: false,
 };
 
 export const message = {
   inputEmail: '이메일을 입력해주세요.',
-  inputPassword: '비밀번호를 입력해주세요.',
-  wrongEmailForm: '올바른 이메일 주소가 아닙니다.',
+  inputPw: '비밀번호를 입력해주세요.',
   wrongEmail: '이메일을 확인해주세요.',
-  wrongPassword: '비밀번호를 확인해주세요.',
+  wrongPw: '비밀번호를 확인해주세요.',
+  wrongPwForm: '비밀번호는 영문, 숫자 조합 8자 이상 입력해 주세요.',
+  wrongEmailForm: '올바른 이메일 주소가 아닙니다.',
   duplicateEmail: '이미 사용 중인 이메일입니다.',
-  wrongPasswordForm: '비밀번호는 영문, 숫자 조합 8자 이상 입력해 주세요.',
-  diffrentPassword: '비밀번호가 일치하지 않아요.',
+  diffrentPw: '비밀번호가 일치하지 않아요.',
 };
 
 export const drawAlert = (messageBox, border, chosenMessage) => {
@@ -34,41 +40,25 @@ export const eraseAlert = (messageBox, border) => {
   border.classList.remove('wrong_input_border');
 };
 
-export const handlePasswordSight = () => {
+export const handlePwSight = () => {
   const eyeOff = '../images/icon_svg/eye-off.svg';
   const eyeOn = '../images/icon_svg/eye-on.svg';
-  if ($pwInput.type === 'password') {
-    $pwInput.type = 'text';
-    $eyes.src = eyeOn;
-    $eyes.classList.add('eyes_offset');
-    $pwVerifyInput.type = 'text';
-  } else if ($pwInput.type === 'text') {
-    $pwInput.type = 'password';
-    $eyes.src = eyeOff;
-    $eyes.classList.remove('eyes_offset');
-    $pwVerifyInput.type = 'password';
-  }
-  // $passwordInput.type === 'password' ? ($passwordInput.type = 'text') : ($passwordInput.type = 'password');
-  // $passwordInput.type === 'password' ? ($eyes.src = eyeOff) : ($eyes.src = eyeOn);
-  // $eyes.classList.toggle('eyes_offset');
+  $eyes.classList.toggle('eyes_offset');
+  $pwInput.type === 'password' ? ($eyes.src = eyeOn) : ($eyes.src = eyeOff);
+  $pwInput.type === 'password'
+    ? (($pwInput.type = 'text'), ($pwVerifyInput.type = 'text'))
+    : (($pwInput.type = 'password'), ($pwVerifyInput.type = 'password'));
 };
 
-export const validateEmailValue = (event) => {
-  const { value } = event.target;
-  if (!value) {
-    drawAlert($emailAlertDiv, $emailInput, message.inputEmail);
-  } else if (value && !emailPattern.test(value)) {
-    drawAlert($emailAlertDiv, $emailInput, message.wrongEmailForm);
-  } else if (value && emailPattern.test(value)) {
-    eraseAlert($emailAlertDiv, $emailInput);
-  }
+export const validateEmailValue = () => {
+  if (!$emailInput.value) drawAlert($emailAlertDiv, $emailInput, message.inputEmail);
+  if ($emailInput.value)
+    !emailPattern.test($emailInput.value)
+      ? drawAlert($emailAlertDiv, $emailInput, message.wrongEmailForm)
+      : eraseAlert($emailAlertDiv, $emailInput);
 };
 
-export const validatePasswordValue = (event) => {
+export const validatePwValue = (event) => {
   const { value } = event.target;
-  if (!value) {
-    drawAlert($pwAlertDiv, $pwInput, message.inputPassword);
-  } else if (value) {
-    eraseAlert($pwAlertDiv, $pwInput);
-  }
+  !value ? drawAlert($pwAlertDiv, $pwInput, message.inputPw) : eraseAlert($pwAlertDiv, $pwInput);
 };
