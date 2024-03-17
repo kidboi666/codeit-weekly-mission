@@ -1,4 +1,5 @@
 @import url('./utils/colors.css');
+@import url('./utils/message.css');
 @import url('./utils/mediaquary.css');
 
 html {
@@ -45,28 +46,30 @@ header a.signin_button::active {
   color: var(--primary-color);
 }
 
-section .signup_form {
+section #form {
   display: flex;
   flex-direction: column;
   padding: 0 32px;
 }
 
-section .toggle_wrap {
+section .email_wrap,
+section .password_wrap {
   position: relative;
   display: flex;
   flex-direction: column;
 }
 
-section .signup_form img.password_eyes {
+section #form img#password_eyes {
   width: 20px;
   position: absolute;
   right: 15px;
-  bottom: 40px;
+  top: 43px;
   cursor: pointer;
+  z-index: 10;
 }
 
-section .signup_form img.password_eyes.eyes_offset {
-  bottom: 39px;
+section #form img#password_eyes.eyes_offset {
+  top: 42px;
 }
 
 section label {
@@ -80,19 +83,6 @@ section input {
   border-radius: 8px;
   padding: 18px 15px;
   margin-bottom: 24px;
-}
-
-section input.wrong_password {
-  border: 1px solid rgb(255, 96, 96);
-  position: relative;
-}
-
-section #wrong_message {
-  position: absolute;
-  top: 0;
-  right: 0;
-  font-size: 1.4rem;
-  color: rgb(255, 96, 96);
 }
 
 section button {
