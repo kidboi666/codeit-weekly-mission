@@ -1,10 +1,7 @@
 import { useEffect, useState } from 'react';
-import Footer from './components/Footer/Footer';
-import Header from './components/Header/Header';
-import Main from './components/Main/Main';
-import { getMockUser, getMockFolder } from './api';
+import { getMockUser, getMockFolder } from '../api/api';
 
-function App() {
+function User() {
   const [profile, setProfile] = useState([]);
   const [folder, setFolder] = useState([]);
   const [star, setStar] = useState('');
@@ -40,12 +37,11 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <>
       <Header profile={profile} star={star} />
-      <Main folder={folder} />
-      <Footer />
-    </div>
+      <Main />
+    </>
   );
 }
 
-export default App;
+export default User;

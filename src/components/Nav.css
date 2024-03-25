@@ -1,4 +1,4 @@
-@import url('../../styles/colors.css');
+@import url('../styles/colors.css');
 
 .header_wrap {
   display: flex;
@@ -47,29 +47,6 @@
   border-radius: 8px;
   color: var(--white-color);
   text-decoration: none;
-}
-
-.owner_wrap {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 20px 0 60px 0;
-  gap: 10px;
-  background-color: var(--gray5-color);
-}
-
-.owner_img {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-}
-.owner_name {
-  margin-top: 12px;
-}
-.star {
-  margin-top: 20px;
-  font-size: 40px;
 }
 
 @media screen and (max-width: 1124px) {
