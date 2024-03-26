@@ -4,7 +4,7 @@ import useAsync from '../hooks/useAsync';
 import './FolderOwner.css';
 
 function FolderOwner() {
-  const [, loadingError, getOwnerInfo] = useAsync(getMockFolder);
+  const [, , getOwnerInfo] = useAsync(getMockFolder);
   const [owner, setOwner] = useState([]);
   const [star, setStar] = useState('');
 

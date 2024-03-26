@@ -4,15 +4,16 @@ import { useEffect } from 'react';
 import IsUserLoggedIn from '../utils/IsUserLoggedIn';
 
 function Nav() {
+  const handleNavShadow = () => {
+    const $nav = document.querySelector('.header_wrap');
+    if (window.scrollY > 30) {
+      $nav.classList.add('nav_shadow');
+    } else {
+      $nav.classList.remove('nav_shadow');
+    }
+  };
+
   useEffect(() => {
-    const handleNavShadow = () => {
-      const $nav = document.querySelector('.header_wrap');
-      if (window.scrollY > 30) {
-        $nav.classList.add('nav_shadow');
-      } else {
-        $nav.classList.remove('nav_shadow');
-      }
-    };
     window.addEventListener('scroll', handleNavShadow);
     return () => {
       window.removeEventListener('scroll', handleNavShadow);
@@ -20,12 +21,12 @@ function Nav() {
   }, []);
 
   return (
-    <ul className="header_wrap">
-      <li className="logo">
+    <header className="header_wrap">
+      <div className="logo">
         <img src={logo} alt="Linkbrary" />
-      </li>
+      </div>
       <IsUserLoggedIn />
-    </ul>
+    </header>
   );
 }
 

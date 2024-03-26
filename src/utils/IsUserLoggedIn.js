@@ -4,7 +4,7 @@ import useAsync from '../hooks/useAsync';
 import account from '../assets/icons/account.svg';
 
 function IsUserLoggedIn() {
-  const [, loadingError, getUserProfile] = useAsync(getMockUser);
+  const [, , getUserProfile] = useAsync(getMockUser);
   const [profile, setProfile] = useState({
     name: '',
     email: '',
@@ -24,7 +24,7 @@ function IsUserLoggedIn() {
   }, []);
 
   return (
-    <li className="login">
+    <div className="login">
       {profile.email ? (
         <>
           <img src={account} className="profile_img" />
@@ -37,7 +37,7 @@ function IsUserLoggedIn() {
           로그인
         </a>
       )}
-    </li>
+    </div>
   );
 }
 
