@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getMockFolder } from '../api/api';
+import { getMockFolder } from '../api';
 import useAsync from '../hooks/useAsync';
 import './FolderOwner.css';
 

@@ -7,19 +7,16 @@ export const getMockUser = async () => {
   if (!response.ok) {
     throw new Error('샘플 유저 프로필 가져오기 실패');
   }
-  const body = await response.json();
-  return body;
+
+  return response.json();
 };
 
 export const getMockFolder = async () => {
-  const response = await fetch(`${CODEIT_URL}/sample/folder`, {
-    method: 'GET',
-  });
+  const response = await fetch(`${CODEIT_URL}/sample/folder`);
   if (!response.ok) {
     throw new Error('샘플 유저 폴더 가져오기 실패');
   }
-  const body = await response.json();
-  return body;
+  return response.json();
 };
 
 export const createFolder = async (value) => {
@@ -33,6 +30,5 @@ export const createFolder = async (value) => {
   if (!response.ok) {
     throw new Error('폴더 생성 실패');
   }
-  const body = await response.json();
-  return body;
+  return response.json();
 };

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getMockUser } from '../api/api';
+import { getMockUser } from '../api';
 import useAsync from '../hooks/useAsync';
 import account from '../assets/icons/account.svg';
 

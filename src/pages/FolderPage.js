@@ -3,7 +3,7 @@ import Search from '../components/Search';
 import Card from '../components/Card';
 import FolderOwner from '../components/FolderOwner';
 import { useEffect, useState } from 'react';
-import { getMockFolder } from '../api/api';
+import { getMockFolder } from '../api';
 import useAsync from '../hooks/useAsync';
 
 function FolderPage() {
