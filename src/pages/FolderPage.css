@@ -1,0 +1,36 @@
+@import '../styles/colors.css';
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+.main_wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.folder {
+  margin: 40px 0 100px 0;
+  display: grid;
+  grid-template-columns: repeat(3, 340px);
+  gap: 25px 20px;
+}
+
+@media screen and (max-width: 1124px) {
+  .folder {
+    grid-template-columns: repeat(2, 340px);
+    gap: 25px 24px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .folder {
+    margin-bottom: 60px;
+    padding: 0 32.5px;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+  }
+}

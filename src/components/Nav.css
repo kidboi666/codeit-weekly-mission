@@ -1,0 +1,62 @@
+@import url('../styles/colors.css');
+
+.header_wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  padding: 20px 200px;
+  background-color: var(--gray5-color);
+  transition: box-shadow 0.5s;
+  z-index: 10;
+}
+
+.nav_shadow {
+  box-shadow: 0 10px 30px rgba(188, 188, 188, 0.2);
+  background: linear-gradient();
+  transition: box-shadow 0.5s;
+  border-bottom: 1px solid #e2ebfa;
+}
+
+.login {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  flex-shrink: 0;
+}
+
+.logo img {
+  width: 133px;
+  height: 24px;
+}
+
+.profile_img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+
+.login_btn {
+  padding: 15px 40px;
+  background-image: linear-gradient(270deg, #6ae3fe, var(--primary-color));
+  border-radius: 8px;
+  color: var(--white-color);
+  text-decoration: none;
+}
+
+@media screen and (max-width: 1124px) {
+  .header_wrap {
+    padding: 20px 32px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .user_profile {
+    display: none;
+  }
+}
