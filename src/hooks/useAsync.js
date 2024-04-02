@@ -4,7 +4,7 @@ function useAsync(asyncFunction) {
   const [pending, setPending] = useState(false);
   const [error, setError] = useState(null);
 
-  const wrappedFunction = async (...args) => {
+  const requestFunction = async (...args) => {
     try {
       setError(null);
       setPending(true);
@@ -17,7 +17,7 @@ function useAsync(asyncFunction) {
     }
   };
 
-  return [pending, error, wrappedFunction];
+  return [pending, error, requestFunction];
 }
 
 export default useAsync;

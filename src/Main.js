@@ -8,7 +8,6 @@ function Main() {
       <App>
         <Routes>
           <Route path="/" element={<FolderPage />} />
-          {/* <Route path="/" element={<LandingPage />} /> */}
         </Routes>
       </App>
     </BrowserRouter>

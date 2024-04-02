@@ -1,7 +1,7 @@
 import './Nav.css';
 import logo from '../assets/icons/logo.svg';
 import { useEffect } from 'react';
-import IsUserLoggedIn from '../utils/IsUserLoggedIn';
+import UserLoggedIn from './UserLoggedIn';
 
 function Nav() {
   const handleNavShadow = () => {
@@ -25,7 +25,7 @@ function Nav() {
       <div className="logo">
         <img src={logo} alt="Linkbrary" />
       </div>
-      <IsUserLoggedIn />
+      <UserLoggedIn />
     </header>
   );
 }

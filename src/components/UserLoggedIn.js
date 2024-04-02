@@ -3,7 +3,7 @@ import { getMockUser } from '../api';
 import useAsync from '../hooks/useAsync';
 import account from '../assets/icons/account.svg';
 
-function IsUserLoggedIn() {
+function UserLoggedIn() {
   const [, , getUserProfile] = useAsync(getMockUser);
   const [profile, setProfile] = useState({
     name: '',
@@ -27,7 +27,7 @@ function IsUserLoggedIn() {
     <div className="login">
       {profile.email ? (
         <>
-          <img src={account} className="profile_img" />
+          <img src={account} className="profile_img" alt="프로필 이미지" />
           <a href="#" className="user_profile">
             {profile.email}
           </a>
@@ -41,4 +41,4 @@ function IsUserLoggedIn() {
   );
 }
 
-export default IsUserLoggedIn;
+export default UserLoggedIn;

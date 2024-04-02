@@ -45,6 +45,7 @@ footer {
     gap: 20px;
     color: #676767;
   }
+
   .sns_fill_wrap {
     justify-self: center;
   }
@@ -58,13 +59,16 @@ footer {
     gap: 60px 0;
     padding: 32px;
   }
+
   .privacy_fnq_wrap {
     justify-self: start;
     gap: 30px;
   }
+
   .sns_fill_wrap {
     justify-self: end;
   }
+
   .copyright {
     grid-row: 2 / -1;
   }

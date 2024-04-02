@@ -12,10 +12,10 @@ function Footer() {
           <p>©codeit-2023</p>
         </div>
         <div className="privacy_fnq_wrap">
-          <a href="/privacy/" target="_blank">
+          <a href="/privacy/" target="_blank" rel="noreferrer">
             Privacy Policy
           </a>
-          <a href="/faq/" target="_blank">
+          <a href="/faq/" target="_blank" rel="noreferrer">
             FAQ
           </a>
         </div>

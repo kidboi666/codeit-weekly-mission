@@ -30,9 +30,8 @@ function FolderPage() {
       <Search />
       <ul className="folder">
         {folder.map((item) => {
-          const { createdAt, url, title, description, imageSource } = item;
-          const initialValue = { createdAt, url, title, description, imageSource };
-          return <Card key={item.id} initialValue={initialValue} preview={imageSource} />;
+          const { imageSource } = item;
+          return <Card key={item.id} initialValue={item} preview={imageSource} />;
         })}
       </ul>
     </main>

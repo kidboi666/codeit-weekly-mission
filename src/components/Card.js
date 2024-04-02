@@ -1,10 +1,12 @@
 import { useState } from 'react';
-import { CalculatorTime, FormatDate } from '../utils/CalculatorTime';
+import { calculatorTime, formatDate } from '../utils/CalculatorTime';
 import blankLogo from '../assets/icons/blank_logo.svg';
 import './Card.css';
 
 function Card({ initialValue, preview }) {
   const [item, setItem] = useState(initialValue);
+  const timeDelta = formatDate(item.createdAt);
+  const createdDate = calculatorTime(item.createdAt);
   return (
     <li className="card_wrap">
       <a className="card" href={item.url} target="_blank" rel="noreferrer">
@@ -18,13 +20,9 @@ function Card({ initialValue, preview }) {
           )}
         </div>
         <div className="card_description_wrap">
-          <p className="card_title">
-            <CalculatorTime value={item.createdAt} />
-          </p>
+          <p className="card_title">{createdDate}</p>
           <p className="card_description">{item.description}</p>
-          <p className="card_date">
-            <FormatDate value={item.createdAt} />
-          </p>
+          <p className="card_date">{timeDelta}</p>
         </div>
       </a>
     </li>
