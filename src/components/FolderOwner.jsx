@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getMockFolder } from '../api';
 import useAsync from '../hooks/useAsync';
-import './FolderOwner.css';
+import * as S from './FolderOwner.style';
 
 function FolderOwner() {
   const [, , getUserFolder] = useAsync(getMockFolder);
@@ -24,15 +24,17 @@ function FolderOwner() {
   }, []);
 
   return (
-    <ul className="owner_wrap">
-      <li className="owner_img_wrap">
-        <img src={owner.profileImageSource} className="owner_img" alt="프로필 이미지" />
+    <S.OwnerBox>
+      <li>
+        <S.OwnerImg src={owner.profileImageSource} alt="프로필 이미지" />
       </li>
-      <li className="owner_name">
-        <p>{owner.name}</p>
+      <li>
+        <S.OwnerName>{owner.name}</S.OwnerName>
       </li>
-      <li className="star">{star}</li>
-    </ul>
+      <li>
+        <S.Star>{star}</S.Star>
+      </li>
+    </S.OwnerBox>
   );
 }
 

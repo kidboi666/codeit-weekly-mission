@@ -16,7 +16,7 @@ a {
 }
 
 .folder {
-  margin: 40px 0 100px 0;
+  margin-bottom: 100px;
   display: grid;
   grid-template-columns: repeat(3, 340px);
   gap: 25px 20px;

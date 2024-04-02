@@ -1,6 +1,6 @@
 import starTrue from '../assets/icons/star_true.svg';
 import starFalse from '../assets/icons/star_false.svg';
-import './Star.css';
+import * as S from './Star.style';
 import useToggle from '../hooks/useToggle';
 
 function Star() {
@@ -12,9 +12,9 @@ function Star() {
   };
 
   return (
-    <div className="star_wrap" onClick={onClickStarButton}>
-      <img src={value ? starTrue : starFalse} className="star_icon" alt="즐겨찾기 아이콘" />
-    </div>
+    <S.StarBox onClick={onClickStarButton}>
+      <img src={value ? starTrue : starFalse} alt="즐겨찾기 아이콘" />
+    </S.StarBox>
   );
 }
 

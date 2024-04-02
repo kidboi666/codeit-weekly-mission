@@ -1,4 +1,5 @@
-import './Footer.css';
+// import './Footer.css';
+import * as S from './Footer.style';
 import facebook from '../assets/icons/fill_facebook_icon.svg';
 import twitter from '../assets/icons/fill_twitter_icon.svg';
 import youtube from '../assets/icons/fill_youtube_icon.svg';
@@ -6,20 +7,20 @@ import instagram from '../assets/icons/fill_instagram_icon.svg';
 
 function Footer() {
   return (
-    <footer>
-      <div className="footer_wrap">
-        <div className="copyright">
+    <S.Footer>
+      <S.FooterBox>
+        <S.Copyright>
           <p>©codeit-2023</p>
-        </div>
-        <div className="privacy_fnq_wrap">
+        </S.Copyright>
+        <S.Privacy>
           <a href="/privacy/" target="_blank" rel="noreferrer">
             Privacy Policy
           </a>
           <a href="/faq/" target="_blank" rel="noreferrer">
             FAQ
           </a>
-        </div>
-        <div className="sns_fill_wrap">
+        </S.Privacy>
+        <S.Sns>
           <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">
             <img src={facebook} alt="facebook" />
           </a>
@@ -32,9 +33,9 @@ function Footer() {
           <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
             <img src={instagram} alt="instagram" />
           </a>
-        </div>
-      </div>
-    </footer>
+        </S.Sns>
+      </S.FooterBox>
+    </S.Footer>
   );
 }
 

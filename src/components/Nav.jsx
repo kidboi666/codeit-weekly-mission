@@ -1,4 +1,5 @@
-import './Nav.css';
+// import './Nav.css';
+import * as S from './Nav.style';
 import logo from '../assets/icons/logo.svg';
 import { useEffect } from 'react';
 import UserLoggedIn from './UserLoggedIn';
@@ -7,9 +8,9 @@ function Nav() {
   const handleNavShadow = () => {
     const $nav = document.querySelector('.header_wrap');
     if (window.scrollY > 30) {
-      $nav.classList.add('nav_shadow');
+      $nav.classList.add('shadow');
     } else {
-      $nav.classList.remove('nav_shadow');
+      $nav.classList.remove('shadow');
     }
   };
 
@@ -21,12 +22,12 @@ function Nav() {
   }, []);
 
   return (
-    <header className="header_wrap">
-      <div className="logo">
+    <S.Header className="header_wrap">
+      <S.Logo>
         <img src={logo} alt="Linkbrary" />
-      </div>
+      </S.Logo>
       <UserLoggedIn />
-    </header>
+    </S.Header>
   );
 }
 

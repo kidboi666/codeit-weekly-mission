@@ -1,4 +1,4 @@
-import './Card.css';
+import * as S from './Card.style';
 import blankLogo from '../assets/icons/blank_logo.svg';
 import { calculatorTime, formatDate } from '../utils/CalculatorTime';
 import Star from './Star';
@@ -9,26 +9,26 @@ function Card({ link, preview }) {
   const createdDate = calculatorTime(link.createdAt);
 
   return (
-    <li className="card_wrap">
-      <a className="card" href={link.url} target="_blank" rel="noreferrer">
-        <div className="card_img_wrap">
+    <S.Li>
+      <S.CardLink href={link.url} target="_blank" rel="noreferrer">
+        <S.CardImgBox>
           <Star />
           {preview ? (
-            <img src={preview} className="card_img" alt={link.title} />
+            <S.CardImg src={preview} alt={link.title} />
           ) : (
-            <div className="blank_img_wrap">
-              <img src={blankLogo} className="card_img" alt={link.title} />
-            </div>
+            <S.BlankImgHelper>
+              <S.CardImg src={blankLogo} alt={link.title} />
+            </S.BlankImgHelper>
           )}
-        </div>
-        <div className="card_description_wrap">
+        </S.CardImgBox>
+        <S.CardDescription>
           <Kebob />
-          <p className="card_title">{createdDate}</p>
-          <p className="card_description">{link.title}</p>
-          <p className="card_date">{timeDelta}</p>
-        </div>
-      </a>
-    </li>
+          <S.CreatedDate>{createdDate}</S.CreatedDate>
+          <S.Title>{link.title}</S.Title>
+          <S.TimeStamp>{timeDelta}</S.TimeStamp>
+        </S.CardDescription>
+      </S.CardLink>
+    </S.Li>
   );
 }
 

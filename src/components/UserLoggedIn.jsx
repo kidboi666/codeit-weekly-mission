@@ -1,3 +1,4 @@
+import * as S from './UserLoggedIn.style';
 import { useState, useEffect } from 'react';
 import { getMockUser } from '../api';
 import useAsync from '../hooks/useAsync';
@@ -24,20 +25,16 @@ function UserLoggedIn() {
   }, []);
 
   return (
-    <div className="login">
+    <S.Login>
       {profile.email ? (
         <>
-          <img src={account} className="profile_img" alt="프로필 이미지" />
-          <a href="#" className="user_profile">
-            {profile.email}
-          </a>
+          <img src={account} alt="프로필 이미지" />
+          <S.UserProfile href="#">{profile.email}</S.UserProfile>
         </>
       ) : (
-        <a href="#" className="login_btn">
-          로그인
-        </a>
+        <S.LoginButton href="#">로그인</S.LoginButton>
       )}
-    </div>
+    </S.Login>
   );
 }
 
