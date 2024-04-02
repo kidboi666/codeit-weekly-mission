@@ -1,14 +1,17 @@
 import { useState } from 'react';
 import { calculatorTime, formatDate } from '../utils/CalculatorTime';
 import blankLogo from '../assets/icons/blank_logo.svg';
+import Star from './Star';
 import './Card.css';
 
 function Card({ initialValue, preview }) {
   const [item, setItem] = useState(initialValue);
   const timeDelta = formatDate(item.createdAt);
   const createdDate = calculatorTime(item.createdAt);
+
   return (
     <li className="card_wrap">
+      <Star />
       <a className="card" href={item.url} target="_blank" rel="noreferrer">
         <div className="card_img_wrap">
           {preview ? (
