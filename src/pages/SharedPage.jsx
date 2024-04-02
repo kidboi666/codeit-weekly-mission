@@ -1,12 +1,12 @@
-import './FolderPage.css';
+import './SharedPage.css';
 import Search from '../components/Search';
 import Card from '../components/Card';
+import FolderOwner from '../components/FolderOwner';
 import { useEffect, useState } from 'react';
 import { getMockFolder } from '../api';
 import useAsync from '../hooks/useAsync';
-import AddLink from '../components/AddLink';
 
-function FolderPage() {
+const SharedPage = () => {
   const [, , getUserFolder] = useAsync(getMockFolder);
   const [folder, setFolder] = useState([]);
 
@@ -27,7 +27,7 @@ function FolderPage() {
   return (
     <main className="main_wrap">
       <div className="main_header">
-        <AddLink />
+        <FolderOwner />
       </div>
       <Search />
       <ul className="folder">
@@ -38,6 +38,6 @@ function FolderPage() {
       </ul>
     </main>
   );
-}
+};
 
-export default FolderPage;
+export default SharedPage;

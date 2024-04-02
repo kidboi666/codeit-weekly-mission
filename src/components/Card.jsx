@@ -17,14 +17,14 @@ function Card({ link, preview }) {
             <img src={preview} className="card_img" alt={link.title} />
           ) : (
             <div className="blank_img_wrap">
-              <img src={blankLogo} className="none_img" alt={link.title} />
+              <img src={blankLogo} className="card_img" alt={link.title} />
             </div>
           )}
         </div>
         <div className="card_description_wrap">
           <Kebob />
           <p className="card_title">{createdDate}</p>
-          <p className="card_description">{link.description}</p>
+          <p className="card_description">{link.title}</p>
           <p className="card_date">{timeDelta}</p>
         </div>
       </a>

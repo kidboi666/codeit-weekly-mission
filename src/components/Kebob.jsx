@@ -22,6 +22,7 @@ function Kebob() {
     e.preventDefault();
     toggle();
   };
+
   return (
     <div className="kebob" onClick={onClickKebobButton}>
       <img src={kebobIcon} className="kebob_icon" alt="케밥 버튼 아이콘" />

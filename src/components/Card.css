@@ -5,11 +5,7 @@
   border-radius: 20px;
   box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.08);
   overflow: hidden;
-  transition: transform 0.5s;
-}
-
-.card_wrap:hover {
-  transform: translateY(-10px);
+  transition: transform 0.3s;
 }
 
 .card_wrap:hover .card_img {
