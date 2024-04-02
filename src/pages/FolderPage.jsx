@@ -31,7 +31,7 @@ function FolderPage() {
       <ul className="folder">
         {folder.map((item) => {
           const { imageSource } = item;
-          return <Card key={item.id} initialValue={item} preview={imageSource} />;
+          return <Card key={item.id} link={item} preview={imageSource} />;
         })}
       </ul>
     </main>
