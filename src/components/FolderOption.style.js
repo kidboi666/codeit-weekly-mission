@@ -25,7 +25,7 @@ export const OptionTitle = styled.h1`
 `;
 
 export const Wrap = styled.div`
-  margin: 24px 0;
+  margin-bottom: 24px;
   width: 1060px;
   display: flex;
   justify-content: space-between;

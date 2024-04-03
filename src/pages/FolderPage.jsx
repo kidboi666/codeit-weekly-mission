@@ -33,13 +33,15 @@ function FolderPage() {
       <S.FolderSection>
         <Folder folders={folders} setLinks={setLinks} />
       </S.FolderSection>
-      <S.Links>
-        {links.length === 0
-          ? '저장된 링크가 없습니다.'
-          : links.map((item) => {
-              return <Card key={item.id} link={item} />;
-            })}
-      </S.Links>
+      {links.length === 0 ? (
+        <S.Links noneLinks>저장된 링크가 없습니다.</S.Links>
+      ) : (
+        <S.Links>
+          {links.map((item) => {
+            return <Card key={item.id} link={item} />;
+          })}
+        </S.Links>
+      )}
     </S.MainWrap>
   );
 }

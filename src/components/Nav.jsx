@@ -1,17 +1,18 @@
-// import './Nav.css';
-import * as S from './Nav.style';
-import logo from '../assets/icons/logo.svg';
-import { useEffect } from 'react';
-import UserLoggedIn from './UserLoggedIn';
+import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import * as S from './Nav.style';
+import UserLoggedIn from './UserLoggedIn';
+import logo from '../assets/icons/logo.svg';
 
 function Nav() {
+  const navRef = useRef();
+
   const handleNavShadow = () => {
-    const $nav = document.querySelector('.header_wrap');
+    const navNode = navRef.current;
     if (window.scrollY > 30) {
-      $nav.classList.add('shadow');
+      navNode.classList.add('shadow');
     } else {
-      $nav.classList.remove('shadow');
+      navNode.classList.remove('shadow');
     }
   };
 
@@ -23,7 +24,7 @@ function Nav() {
   }, []);
 
   return (
-    <S.Header className="header_wrap">
+    <S.Header className="header_wrap" ref={navRef}>
       <S.Logo>
         <Link to="/">
           <img src={logo} alt="Linkbrary" />

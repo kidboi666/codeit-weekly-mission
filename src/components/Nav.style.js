@@ -11,8 +11,8 @@ export const Header = styled.div`
   transition: box-shadow 0.5s;
   z-index: 100;
 
-  .shadow {
-    box-shadow: 0 10px 30px rgba(188, 188, 188, 0.2);
+  &.shadow {
+    box-shadow: 0 10px 30px rgba(188, 188, 188, 0.3);
     background: linear-gradient();
     transition: box-shadow 0.5s;
     border-bottom: 1px solid #e2ebfa;
@@ -24,8 +24,6 @@ export const Header = styled.div`
 `;
 
 export const Logo = styled.div`
-  flex-shrink: 0;
-
   > img {
     width: 133px;
     height: 24px;

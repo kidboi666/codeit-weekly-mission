@@ -17,6 +17,7 @@ export const Modal = styled.div`
   box-shadow: 0px 2px 8px 0px rgba(51, 50, 54, 0.1);
 
   > button {
+    cursor: pointer;
     border: none;
     background-color: white;
     width: 100px;

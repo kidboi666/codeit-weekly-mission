@@ -7,20 +7,22 @@ const FolderOption = ({ folderTitle }) => {
   return (
     <S.Wrap>
       <S.OptionTitle>{folderTitle}</S.OptionTitle>
-      <S.OptionWrap>
-        <S.Div>
-          <S.OptionIcon src={shareIcon} />
-          공유
-        </S.Div>
-        <S.Div>
-          <S.OptionIcon src={penIcon} />
-          이름 변경
-        </S.Div>
-        <S.Div>
-          <S.OptionIcon src={deleteIcon} />
-          삭제
-        </S.Div>
-      </S.OptionWrap>
+      {folderTitle === '전체' ? null : (
+        <S.OptionWrap>
+          <S.Div>
+            <S.OptionIcon src={shareIcon} />
+            공유
+          </S.Div>
+          <S.Div>
+            <S.OptionIcon src={penIcon} />
+            이름 변경
+          </S.Div>
+          <S.Div>
+            <S.OptionIcon src={deleteIcon} />
+            삭제
+          </S.Div>
+        </S.OptionWrap>
+      )}
     </S.Wrap>
   );
 };

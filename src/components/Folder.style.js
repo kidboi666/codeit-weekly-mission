@@ -7,14 +7,15 @@ export const SortDiv = styled.div`
 `;
 
 export const AddButton = styled.button`
+  width: 75px;
   color: var(--primary-color);
   border: none;
   background-color: var(--white-color);
   cursor: pointer;
 
   @media (max-width: 767px) {
-    position: fixed;
     width: 127px;
+    position: fixed;
     padding: 8px 24px;
     bottom: 101px;
     left: 50%;
@@ -32,6 +33,7 @@ export const SortWrap = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 24px;
 
   @media (max-width: 1124px) {
     width: 700px;
