@@ -15,6 +15,9 @@ export const Login = styled.div`
 `;
 
 export const UserProfile = styled.a`
+  text-decoration: none;
+  color: #000;
+
   @media (max-width: 767px) {
     display: none;
   }

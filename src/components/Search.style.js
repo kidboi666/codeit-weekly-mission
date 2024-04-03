@@ -2,10 +2,7 @@ import styled from 'styled-components';
 
 export const FormBox = styled.div`
   margin: 40px 0;
-
-  @media (max-width: 767px) {
-    padding: 0 32.5px;
-  }
+  padding: 0 32.5px;
 `;
 
 export const Form = styled.form`
@@ -39,7 +36,7 @@ export const Form = styled.form`
   }
 `;
 
-export const HelperBox = styled.div`
+export const Helper = styled.div`
   @media (max-width: 767px) {
     width: 100%;
   }

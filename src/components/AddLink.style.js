@@ -2,10 +2,20 @@ import Button from './Button.style';
 import Input from './Input.style';
 import styled from 'styled-components';
 
-export const Div = styled.div`
+export const Helper = styled.div`
+  @media (max-width: 1124px) {
+    width: 100%;
+  }
+`;
+
+export const FormBox = styled.div`
   display: flex;
   justify-content: center;
-  padding: 60px 0 90px 0;
+  padding: 60px 32.5px 90px 32.5px;
+
+  @media (max-width: 767px) {
+    display: block;
+  }
 `;
 
 export const Form = styled.form`
@@ -34,4 +44,12 @@ export const StyledInput = styled(Input)`
   height: 69px;
   border: 1px solid var(--primary-color);
   outline: none;
+
+  @media (max-width: 1124px) {
+    width: 700px;
+  }
+
+  @media (max-width: 767px) {
+    width: 100%;
+  }
 `;

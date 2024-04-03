@@ -19,3 +19,23 @@ export const Div = styled.div`
   gap: 4px;
   cursor: pointer;
 `;
+
+export const OptionTitle = styled.h1`
+  font-size: 24px;
+  font-weight: 400;
+`;
+
+export const Wrap = styled.div`
+  width: 1060px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @media (max-width: 1124px) {
+    width: 700px;
+  }
+
+  @media (max-width: 767px) {
+    width: 100%;
+  }
+`;

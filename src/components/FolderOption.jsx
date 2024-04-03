@@ -5,7 +5,8 @@ import * as S from './FolderOption.style';
 
 const FolderOption = () => {
   return (
-    <>
+    <S.Wrap>
+      <S.OptionTitle>유용한 글</S.OptionTitle>
       <S.OptionWrap>
         <S.Div>
           <S.OptionIcon src={shareIcon} />
@@ -20,7 +21,7 @@ const FolderOption = () => {
           삭제
         </S.Div>
       </S.OptionWrap>
-    </>
+    </S.Wrap>
   );
 };
 

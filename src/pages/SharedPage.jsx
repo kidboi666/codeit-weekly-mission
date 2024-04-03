@@ -1,10 +1,10 @@
-import './SharedPage.css';
+import { useEffect, useState } from 'react';
+import useAsync from '../hooks/useAsync';
+import { getMockFolder } from '../api';
 import Search from '../components/Search';
 import Card from '../components/Card';
 import FolderOwner from '../components/FolderOwner';
-import { useEffect, useState } from 'react';
-import { getMockFolder } from '../api';
-import useAsync from '../hooks/useAsync';
+import * as S from './SharedPage.style';
 
 const SharedPage = () => {
   const [, , getUserFolder] = useAsync(getMockFolder);
@@ -25,18 +25,18 @@ const SharedPage = () => {
   }, []);
 
   return (
-    <main className="main_wrap">
-      <div className="main_header">
+    <S.MainWrap>
+      <S.Header>
         <FolderOwner />
-      </div>
+      </S.Header>
       <Search />
-      <ul className="folder">
+      <S.Folder>
         {folder.map((item) => {
           const { imageSource } = item;
           return <Card key={item.id} link={item} preview={imageSource} />;
         })}
-      </ul>
-    </main>
+      </S.Folder>
+    </S.MainWrap>
   );
 };
 

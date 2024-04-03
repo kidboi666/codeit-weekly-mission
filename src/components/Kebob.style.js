@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const KebobBox = styled.div`
   position: absolute;
+  height: 20px;
   top: 15px;
   right: 20px;
   z-index: 20;
@@ -23,7 +24,7 @@ export const Modal = styled.div`
 
     &:hover {
       background-color: var(--gray4-color);
-      color: #ffffff;
+      color: var(--primary-color);
     }
   }
 `;

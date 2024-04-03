@@ -3,7 +3,7 @@ import searchIcon from '../assets/icons/search.svg';
 
 function Search() {
   return (
-    <S.HelperBox>
+    <S.Helper>
       <S.FormBox>
         <S.Form>
           <button>
@@ -12,7 +12,7 @@ function Search() {
           <input id="search" placeholder="링크를 검색해 보세요." />
         </S.Form>
       </S.FormBox>
-    </S.HelperBox>
+    </S.Helper>
   );
 }
 
