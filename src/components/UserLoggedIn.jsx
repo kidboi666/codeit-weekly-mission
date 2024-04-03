@@ -1,8 +1,7 @@
 import * as S from './UserLoggedIn.style';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { getUserRequest } from '../api';
 import useAsync from '../hooks/useAsync';
-import account from '../assets/icons/account.svg';
 
 function UserLoggedIn() {
   const [, , getUserProfile] = useAsync(getUserRequest);
@@ -12,18 +11,17 @@ function UserLoggedIn() {
     image_source: null,
   });
 
-  const getUser = async () => {
+  const getUser = useCallback(async () => {
     const result = await getUserProfile();
     if (!result) return;
 
     const { data } = result;
     setProfile(data[0]);
-    console.log(data[0]);
-  };
+  }, [getUserProfile]);
 
   useEffect(() => {
     getUser();
-  }, []);
+  }, [getUser]);
 
   return (
     <S.Login>

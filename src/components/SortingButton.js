@@ -8,7 +8,8 @@ const SortingButton = styled.button`
   background-color: var(--white-color);
   cursor: pointer;
 
-  &:hover {
+  &:hover,
+  &:active {
     background-color: var(--primary-color);
     color: var(--white-color);
   }

@@ -12,7 +12,7 @@ export const Header = styled.div`
   background-color: var(--gray5-color);
 `;
 
-export const Folder = styled.ul`
+export const Links = styled.ul`
   display: grid;
   grid-template-columns: repeat(3, 340px);
   gap: 25px 20px;
@@ -31,23 +31,7 @@ export const Folder = styled.ul`
   }
 `;
 
-export const SortSection = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-
-  @media (max-width: 767px) {
-    display: block;
-  }
-
-  > div {
-    @media (max-width: 767px) {
-      padding: 0 32.5px;
-    }
-  }
-`;
-
-export const OptionSection = styled.div`
+export const FolderSection = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;

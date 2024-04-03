@@ -4,9 +4,11 @@ import { calculatorTime, formatDate } from '../utils/CalculatorTime';
 import Star from './Star';
 import Kebob from './Kebob';
 
-function Card({ link, preview }) {
-  const timeDelta = formatDate(link.createdAt);
-  const createdDate = calculatorTime(link.createdAt);
+function Card({ link }) {
+  console.log(link);
+  const timeDelta = formatDate(link.createdAt ?? link.created_at);
+  const createdDate = calculatorTime(link.createdAt ?? link.created_at);
+  const preview = link.imageSource ?? link.image_source;
 
   return (
     <S.Li>

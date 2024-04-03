@@ -5,7 +5,6 @@ export const OptionWrap = styled.div`
   gap: 12px;
   color: var(--gray2-color);
   font-size: 14px;
-  margin: 24px 0;
 `;
 
 export const OptionIcon = styled.img`
@@ -26,6 +25,7 @@ export const OptionTitle = styled.h1`
 `;
 
 export const Wrap = styled.div`
+  margin: 24px 0;
   width: 1060px;
   display: flex;
   justify-content: space-between;

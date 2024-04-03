@@ -3,10 +3,10 @@ import penIcon from '../assets/icons/pen.svg';
 import deleteIcon from '../assets/icons/delete.svg';
 import * as S from './FolderOption.style';
 
-const FolderOption = () => {
+const FolderOption = ({ folderTitle }) => {
   return (
     <S.Wrap>
-      <S.OptionTitle>유용한 글</S.OptionTitle>
+      <S.OptionTitle>{folderTitle}</S.OptionTitle>
       <S.OptionWrap>
         <S.Div>
           <S.OptionIcon src={shareIcon} />

@@ -27,7 +27,7 @@ export const AddButton = styled.button`
   }
 `;
 
-export const Wrap = styled.div`
+export const SortWrap = styled.div`
   width: 1060px;
   display: flex;
   justify-content: space-between;
@@ -41,4 +41,9 @@ export const Wrap = styled.div`
     width: 100%;
     justify-content: flex-start;
   }
+`;
+
+export const Wrap = styled.div`
+  display: flex;
+  flex-direction: column;
 `;

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import useAsync from '../hooks/useAsync';
 import { getMockFolderRequest } from '../api';
 import Search from '../components/Search';
@@ -10,7 +10,7 @@ const SharedPage = () => {
   const [, , getUserFolder] = useAsync(getMockFolderRequest);
   const [folder, setFolder] = useState([]);
 
-  const getFolder = async () => {
+  const getFolder = useCallback(async () => {
     const result = await getUserFolder();
     if (!result) return;
 
@@ -18,11 +18,11 @@ const SharedPage = () => {
       folder: { links },
     } = result;
     setFolder(links);
-  };
+  }, [getUserFolder]);
 
   useEffect(() => {
     getFolder();
-  }, []);
+  }, [getFolder]);
 
   return (
     <S.MainWrap>

@@ -1,29 +1,28 @@
 import { useCallback, useEffect, useState } from 'react';
 import { getFolderRequest } from '../api';
+import * as S from './FolderPage.style';
 import useAsync from '../hooks/useAsync';
 import Search from '../components/Search';
 import AddLink from '../components/AddLink';
-import FolderOption from '../components/FolderOption';
-import * as S from './FolderPage.style';
 import Folder from '../components/Folder';
+import Card from '../components/Card';
 
 function FolderPage() {
   const [, , getUserFolder] = useAsync(getFolderRequest);
-  const [folder, setFolder] = useState([]);
-  const [card, setCard] = useState(null);
+  const [folders, setFolders] = useState([]);
+  const [links, setLinks] = useState([]);
 
-  const getFolder = useCallback(async () => {
+  const getFolders = useCallback(async () => {
     const result = await getUserFolder();
     if (!result) return;
 
     const { data } = result;
-    setFolder(data);
-    console.log(data);
+    setFolders(data);
   }, [getUserFolder]);
 
   useEffect(() => {
-    getFolder();
-  }, [getFolder]);
+    getFolders();
+  }, [getFolders]);
 
   return (
     <S.MainWrap>
@@ -31,19 +30,16 @@ function FolderPage() {
         <AddLink />
       </S.Header>
       <Search />
-      <S.SortSection>
-        <Folder folder={folder} />
-      </S.SortSection>
-      <S.OptionSection>
-        <div>
-          <FolderOption />
-        </div>
-      </S.OptionSection>
-      <S.Folder>
-        {/* {folder.map((item) => {
-          return <Folder key={item.id} data={item} />;
-        })} */}
-      </S.Folder>
+      <S.FolderSection>
+        <Folder folders={folders} setLinks={setLinks} />
+      </S.FolderSection>
+      <S.Links>
+        {links.length === 0
+          ? '저장된 링크가 없습니다.'
+          : links.map((item) => {
+              return <Card key={item.id} link={item} />;
+            })}
+      </S.Links>
     </S.MainWrap>
   );
 }
