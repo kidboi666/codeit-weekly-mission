@@ -1,30 +1,29 @@
-import { useEffect, useState } from 'react';
-import { getMockFolder } from '../api';
+import { useCallback, useEffect, useState } from 'react';
+import { getFolderRequest } from '../api';
 import useAsync from '../hooks/useAsync';
 import Search from '../components/Search';
-import Card from '../components/Card';
 import AddLink from '../components/AddLink';
-import SortSelector from '../components/SortSelector';
 import FolderOption from '../components/FolderOption';
 import * as S from './FolderPage.style';
+import Folder from '../components/Folder';
 
 function FolderPage() {
-  const [, , getUserFolder] = useAsync(getMockFolder);
+  const [, , getUserFolder] = useAsync(getFolderRequest);
   const [folder, setFolder] = useState([]);
+  const [card, setCard] = useState(null);
 
-  const getFolder = async () => {
+  const getFolder = useCallback(async () => {
     const result = await getUserFolder();
     if (!result) return;
 
-    const {
-      folder: { links },
-    } = result;
-    setFolder(links);
-  };
+    const { data } = result;
+    setFolder(data);
+    console.log(data);
+  }, [getUserFolder]);
 
   useEffect(() => {
     getFolder();
-  }, []);
+  }, [getFolder]);
 
   return (
     <S.MainWrap>
@@ -33,9 +32,7 @@ function FolderPage() {
       </S.Header>
       <Search />
       <S.SortSection>
-        <div>
-          <SortSelector />
-        </div>
+        <Folder folder={folder} />
       </S.SortSection>
       <S.OptionSection>
         <div>
@@ -43,10 +40,9 @@ function FolderPage() {
         </div>
       </S.OptionSection>
       <S.Folder>
-        {folder.map((item) => {
-          const { imageSource } = item;
-          return <Card key={item.id} link={item} preview={imageSource} />;
-        })}
+        {/* {folder.map((item) => {
+          return <Folder key={item.id} data={item} />;
+        })} */}
       </S.Folder>
     </S.MainWrap>
   );

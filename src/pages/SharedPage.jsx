@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import useAsync from '../hooks/useAsync';
-import { getMockFolder } from '../api';
+import { getMockFolderRequest } from '../api';
 import Search from '../components/Search';
 import Card from '../components/Card';
 import FolderOwner from '../components/FolderOwner';
 import * as S from './SharedPage.style';
 
 const SharedPage = () => {
-  const [, , getUserFolder] = useAsync(getMockFolder);
+  const [, , getUserFolder] = useAsync(getMockFolderRequest);
   const [folder, setFolder] = useState([]);
 
   const getFolder = async () => {

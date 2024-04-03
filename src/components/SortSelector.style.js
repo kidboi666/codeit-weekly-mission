@@ -10,6 +10,7 @@ export const AddButton = styled.button`
   color: var(--primary-color);
   border: none;
   background-color: var(--white-color);
+  cursor: pointer;
 
   @media (max-width: 767px) {
     position: fixed;
@@ -23,7 +24,6 @@ export const AddButton = styled.button`
     z-index: 50;
     background-color: var(--primary-color);
     color: var(--white-color);
-    cursor: pointer;
   }
 `;
 

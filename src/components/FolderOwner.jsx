@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { getMockFolder } from '../api';
+import { getMockFolderRequest } from '../api';
 import useAsync from '../hooks/useAsync';
 import * as S from './FolderOwner.style';
 
 function FolderOwner() {
-  const [, , getUserFolder] = useAsync(getMockFolder);
+  const [, , getUserFolder] = useAsync(getMockFolderRequest);
   const [owner, setOwner] = useState([]);
   const [star, setStar] = useState('');
 

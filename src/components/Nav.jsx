@@ -3,6 +3,7 @@ import * as S from './Nav.style';
 import logo from '../assets/icons/logo.svg';
 import { useEffect } from 'react';
 import UserLoggedIn from './UserLoggedIn';
+import { Link } from 'react-router-dom';
 
 function Nav() {
   const handleNavShadow = () => {
@@ -24,7 +25,9 @@ function Nav() {
   return (
     <S.Header className="header_wrap">
       <S.Logo>
-        <img src={logo} alt="Linkbrary" />
+        <Link to="/">
+          <img src={logo} alt="Linkbrary" />
+        </Link>
       </S.Logo>
       <UserLoggedIn />
     </S.Header>

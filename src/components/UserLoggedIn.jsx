@@ -1,23 +1,24 @@
 import * as S from './UserLoggedIn.style';
 import { useState, useEffect } from 'react';
-import { getMockUser } from '../api';
+import { getUserRequest } from '../api';
 import useAsync from '../hooks/useAsync';
 import account from '../assets/icons/account.svg';
 
 function UserLoggedIn() {
-  const [, , getUserProfile] = useAsync(getMockUser);
+  const [, , getUserProfile] = useAsync(getUserRequest);
   const [profile, setProfile] = useState({
     name: '',
     email: '',
-    profileImageSource: null,
+    image_source: null,
   });
 
-  // 샘플 유저 api 리퀘스트
   const getUser = async () => {
     const result = await getUserProfile();
     if (!result) return;
 
-    setProfile(result);
+    const { data } = result;
+    setProfile(data[0]);
+    console.log(data[0]);
   };
 
   useEffect(() => {
@@ -28,7 +29,7 @@ function UserLoggedIn() {
     <S.Login>
       {profile.email ? (
         <>
-          <img src={account} alt="프로필 이미지" />
+          <img src={profile['image_source']} alt="프로필 이미지" />
           <S.UserProfile href="#">{profile.email}</S.UserProfile>
         </>
       ) : (
