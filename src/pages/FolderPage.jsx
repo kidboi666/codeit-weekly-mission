@@ -34,7 +34,7 @@ function FolderPage() {
         <Folder folders={folders} setLinks={setLinks} />
       </S.FolderSection>
       {links.length === 0 ? (
-        <S.Links noneLinks>저장된 링크가 없습니다.</S.Links>
+        <S.Links $noneLinks>저장된 링크가 없습니다.</S.Links>
       ) : (
         <S.Links>
           {links.map((item) => {
