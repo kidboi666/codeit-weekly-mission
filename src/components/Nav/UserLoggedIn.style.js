@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import Button from './Button.style';
+import Button from '../Button/Button.style';
 
-export const Login = styled.div`
+export const LoginLayout = styled.div`
   flex-shrink: 0;
   display: flex;
   align-items: center;

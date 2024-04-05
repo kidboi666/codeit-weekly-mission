@@ -1,5 +1,5 @@
-import Button from './Button.style';
-import Input from './Input.style';
+import Button from '../Button/Button.style';
+import Input from '../Input/Input.style';
 import styled from 'styled-components';
 
 export const Helper = styled.div`

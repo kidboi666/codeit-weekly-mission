@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { getMockFolderRequest } from '../api';
-import useAsync from '../hooks/useAsync';
+import { getMockFolderRequest } from '../../api';
+import useAsync from '../../hooks/useAsync';
 import * as S from './FolderOwner.style';
 
 function FolderOwner() {
-  const [, , getUserFolder] = useAsync(getMockFolderRequest);
+  const { requestFunction: getUserFolder } = useAsync(getMockFolderRequest);
   const [owner, setOwner] = useState([]);
   const [star, setStar] = useState('');
 
@@ -24,7 +24,7 @@ function FolderOwner() {
   }, []);
 
   return (
-    <S.OwnerBox>
+    <S.OwnerLayoutList>
       <li>
         <S.OwnerImg src={owner.profileImageSource} alt="프로필 이미지" />
       </li>
@@ -34,7 +34,7 @@ function FolderOwner() {
       <li>
         <S.Star>{star}</S.Star>
       </li>
-    </S.OwnerBox>
+    </S.OwnerLayoutList>
   );
 }
 

@@ -2,13 +2,13 @@ import { useCallback, useEffect, useState } from 'react';
 import { getFolderRequest } from '../api';
 import * as S from './FolderPage.style';
 import useAsync from '../hooks/useAsync';
-import Search from '../components/Search';
-import AddLink from '../components/AddLink';
-import Folder from '../components/Folder';
-import Card from '../components/Card';
+import Search from '../components/Search/Search';
+import AddLink from '../components/AddLink/AddLink';
+import Folder from '../components/Folder/Folder';
+import Card from '../components/Card/Card';
 
 function FolderPage() {
-  const [, , getUserFolder] = useAsync(getFolderRequest);
+  const { requestFunction: getUserFolder } = useAsync(getFolderRequest);
   const [folders, setFolders] = useState([]);
   const [links, setLinks] = useState([]);
 

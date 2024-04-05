@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const KebobBox = styled.div`
+export const KebobLayout = styled.div`
   position: absolute;
   height: 20px;
   top: 15px;
@@ -8,7 +8,7 @@ export const KebobBox = styled.div`
   z-index: 20;
 `;
 
-export const Modal = styled.div`
+export const ModalLayout = styled.div`
   position: absolute;
   z-index: 30;
   right: 0;

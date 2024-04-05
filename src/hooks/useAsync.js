@@ -20,7 +20,7 @@ function useAsync(asyncFunction) {
     [asyncFunction]
   );
 
-  return [pending, error, requestFunction];
+  return { pending, error, requestFunction };
 }
 
 export default useAsync;

@@ -1,9 +1,9 @@
 import * as S from './Search.style';
-import searchIcon from '../assets/icons/search.svg';
+import searchIcon from '../../assets/icons/search.svg';
 
 function Search() {
   return (
-    <S.Helper>
+    <S.SearchLayout>
       <S.FormBox>
         <S.Form>
           <button>
@@ -12,7 +12,7 @@ function Search() {
           <input id="search" placeholder="링크를 검색해 보세요." />
         </S.Form>
       </S.FormBox>
-    </S.Helper>
+    </S.SearchLayout>
   );
 }
 

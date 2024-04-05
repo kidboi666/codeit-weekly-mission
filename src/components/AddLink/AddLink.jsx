@@ -1,5 +1,5 @@
 import * as S from './AddLink.style';
-import LinkIcon from '../assets/icons/link.svg';
+import LinkIcon from '../../assets/icons/link.svg';
 
 const AddLink = () => {
   return (

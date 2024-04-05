@@ -14,12 +14,14 @@ export const Header = styled.div`
 
 export const Links = styled.ul`
   display: grid;
-  grid-template-columns: ${({ noneLinks }) => (noneLinks ? 'repeat(1, 1fr)' : 'repeat(3, 340px)')};
+  grid-template-columns: ${({ $noneLinks }) =>
+    $noneLinks ? 'repeat(1, 1fr)' : 'repeat(3, 340px)'};
   gap: 25px 20px;
   margin-bottom: 100px;
 
   @media (max-width: 1124px) {
-    grid-template-columns: ${({ noneLinks }) => (noneLinks ? 'repeat(1, 1fr)' : 'repeat(2, 340px)')};
+    grid-template-columns: ${({ $noneLinks }) =>
+      $noneLinks ? 'repeat(1, 1fr)' : 'repeat(2, 340px)'};
     gap: 25px 24px;
   }
 

@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import App from './components/App';
+import App from './components/App/App';
 import FolderPage from './pages/FolderPage';
 import SharedPage from './pages/SharedPage';
 import Homepage from './pages/HomePage';

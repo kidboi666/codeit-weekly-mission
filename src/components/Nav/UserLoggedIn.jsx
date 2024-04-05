@@ -1,10 +1,10 @@
 import * as S from './UserLoggedIn.style';
 import { useState, useEffect, useCallback } from 'react';
-import { getUserRequest } from '../api';
-import useAsync from '../hooks/useAsync';
+import { getUserRequest } from '../../api';
+import useAsync from '../../hooks/useAsync';
 
 function UserLoggedIn() {
-  const [, , getUserProfile] = useAsync(getUserRequest);
+  const { requestFunction: getUserProfile } = useAsync(getUserRequest);
   const [profile, setProfile] = useState({
     name: '',
     email: '',
@@ -24,7 +24,7 @@ function UserLoggedIn() {
   }, [getUser]);
 
   return (
-    <S.Login>
+    <S.LoginLayout>
       {profile.email ? (
         <>
           <img src={profile['image_source']} alt="프로필 이미지" />
@@ -33,7 +33,7 @@ function UserLoggedIn() {
       ) : (
         <S.LoginButton href="#">로그인</S.LoginButton>
       )}
-    </S.Login>
+    </S.LoginLayout>
   );
 }
 

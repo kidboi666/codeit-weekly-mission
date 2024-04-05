@@ -8,7 +8,7 @@ export const CardImg = styled.img`
   transition: all 0.5s;
 `;
 
-export const CardDescription = styled.div`
+export const CardDescriptionContainer = styled.div`
   padding: 15px 20px;
   display: flex;
   position: relative;
@@ -16,23 +16,27 @@ export const CardDescription = styled.div`
   justify-content: space-between;
 `;
 
-export const Li = styled.li`
+export const CardLayout = styled.li`
   position: relative;
   border-radius: 20px;
   box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.08);
   overflow: hidden;
-  transition: transform 0.3s;
+  transition: transform 0.3s, translate 0.3s;
+
+  &:hover {
+    translate: 0 -10px;
+  }
 
   &:hover ${CardImg} {
     transform: scale(1.3);
   }
 
-  &:hover ${CardDescription} {
+  &:hover ${CardDescriptionContainer} {
     background-color: var(--gray5-color);
   }
 `;
 
-export const CardLink = styled.a`
+export const CardLinkContainer = styled.a`
   display: grid;
   grid-template-rows: 200px 134px;
   height: 100%;
@@ -42,7 +46,7 @@ export const CardLink = styled.a`
   }
 `;
 
-export const CardImgBox = styled.div`
+export const CardImgContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,7 +54,7 @@ export const CardImgBox = styled.div`
   background-color: #dddfff;
 `;
 
-export const BlankImgHelper = styled.div`
+export const BlankImgBox = styled.div`
   width: 200px;
 `;
 

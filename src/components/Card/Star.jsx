@@ -1,7 +1,7 @@
-import starTrue from '../assets/icons/star_true.svg';
-import starFalse from '../assets/icons/star_false.svg';
+import starTrue from '../../assets/icons/star_true.svg';
+import starFalse from '../../assets/icons/star_false.svg';
 import * as S from './Star.style';
-import useToggle from '../hooks/useToggle';
+import useToggle from '../../hooks/useToggle';
 
 function Star() {
   const [value, toggle] = useToggle();

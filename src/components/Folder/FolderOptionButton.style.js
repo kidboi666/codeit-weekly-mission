@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const OptionWrap = styled.div`
+export const OptionContainer = styled.div`
   display: flex;
   gap: 12px;
   color: var(--gray2-color);
@@ -12,19 +12,19 @@ export const OptionIcon = styled.img`
   height: 18px;
 `;
 
-export const Div = styled.div`
+export const OptionBox = styled.div`
   display: flex;
   align-items: center;
   gap: 4px;
   cursor: pointer;
 `;
 
-export const OptionTitle = styled.h1`
+export const SelectedFolder = styled.h1`
   font-size: 24px;
   font-weight: 400;
 `;
 
-export const Wrap = styled.div`
+export const FolderOptionButtonLayout = styled.div`
   margin-bottom: 24px;
   width: 1060px;
   display: flex;

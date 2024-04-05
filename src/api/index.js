@@ -11,10 +11,10 @@ export const getUserRequest = async () => {
   return response.json();
 };
 
-export const getLinkRequest = async (id) => {
+export const getLinksRequest = async (id) => {
   const response = await fetch(`${CODEIT_URL}/users/1/links?folderId=${id}`);
   if (!response.ok) {
-    throw new Error('유저 폴더 가져오기 실패');
+    throw new Error('링크 가져오기 실패');
   }
 
   return response.json();
@@ -23,13 +23,13 @@ export const getLinkRequest = async (id) => {
 export const getFolderRequest = async () => {
   const response = await fetch(`${CODEIT_URL}/users/1/folders`);
   if (!response.ok) {
-    throw new Error('유저 폴더 가져오기 실패');
+    throw new Error('폴더 가져오기 실패');
   }
 
   return response.json();
 };
 
-export const getAllLinkRequest = async () => {
+export const getAllLinksRequest = async () => {
   const response = await fetch(`${CODEIT_URL}/users/1/links`);
   if (!response.ok) {
     throw new Error('모든 링크 가져오기 실패');

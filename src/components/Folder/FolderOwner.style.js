@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const OwnerBox = styled.ul`
+export const OwnerLayoutList = styled.ul`
   width: 100%;
   display: flex;
   flex-direction: column;

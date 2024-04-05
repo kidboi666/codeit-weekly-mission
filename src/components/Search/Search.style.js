@@ -36,7 +36,7 @@ export const Form = styled.form`
   }
 `;
 
-export const Helper = styled.div`
+export const SearchLayout = styled.div`
   @media (max-width: 767px) {
     width: 100%;
   }
