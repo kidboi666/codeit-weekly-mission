@@ -25,10 +25,10 @@ function FolderPage() {
   }, [getFolders]);
 
   return (
-    <S.MainWrap>
-      <S.Header>
+    <S.FolderPageLayout>
+      <S.HeaderBox>
         <AddLink />
-      </S.Header>
+      </S.HeaderBox>
       <Search />
       <S.FolderSection>
         <Folder folders={folders} setLinks={setLinks} />
@@ -42,7 +42,7 @@ function FolderPage() {
           })}
         </S.Links>
       )}
-    </S.MainWrap>
+    </S.FolderPageLayout>
   );
 }
 

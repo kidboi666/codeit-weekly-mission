@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
-export const MainWrap = styled.main`
+export const FolderPageLayout = styled.main`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
 
-export const Header = styled.div`
+export const HeaderBox = styled.div`
   width: 100%;
   background-color: var(--gray5-color);
 `;

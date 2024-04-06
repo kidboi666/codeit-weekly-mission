@@ -31,7 +31,7 @@ const Nav = () => {
     window.addEventListener('scroll', handleNavigation);
     currentPageIsFolderPage();
     return () => {
-      window.addEventListener('scroll', handleNavigation);
+      window.removeEventListener('scroll', handleNavigation);
     };
   }, [pathname]);
 
