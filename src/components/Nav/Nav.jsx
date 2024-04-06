@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import * as S from './Nav.style';
 import UserLoggedIn from './UserLoggedIn';
@@ -9,11 +9,11 @@ const Nav = () => {
   const navRef = useRef();
   const { pathname } = useLocation();
 
-  const currentPageIsFolderPage = () => {
+  const currentPageIsFolderPage = useCallback(() => {
     const isFolderPage = pathname === '/folder';
     setNavFixedStatus(isFolderPage);
     window.scrollTo(0, 0);
-  };
+  }, [pathname]);
 
   const handleNavigation = () => {
     if (!navRef.current) return;
@@ -33,7 +33,7 @@ const Nav = () => {
     return () => {
       window.removeEventListener('scroll', handleNavigation);
     };
-  }, [pathname]);
+  }, [pathname, currentPageIsFolderPage]);
 
   return (
     <>
