@@ -1,7 +1,7 @@
 import * as S from './Search.style';
 import searchIcon from '../../assets/icons/search.svg';
 
-function Search() {
+const Search = () => {
   return (
     <S.SearchLayout>
       <S.FormBox>
@@ -14,6 +14,6 @@ function Search() {
       </S.FormBox>
     </S.SearchLayout>
   );
-}
+};
 
 export default Search;

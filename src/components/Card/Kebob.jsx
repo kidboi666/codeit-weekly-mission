@@ -2,14 +2,14 @@ import kebobIcon from '../../assets/icons/kebab.svg';
 import useToggle from '../../hooks/useToggle';
 import * as S from './Kebob.style';
 
-function KebobModal() {
+const KebobModal = () => {
   return (
     <S.ModalLayout>
       <button type="button">삭제하기</button>
       <button type="button">폴더에 추가</button>
     </S.ModalLayout>
   );
-}
+};
 
 function Kebob() {
   const [value, toggle] = useToggle();

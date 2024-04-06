@@ -4,7 +4,7 @@ import { calculatorTime, formatDate } from '../../utils/CalculatorTime';
 import Star from './Star';
 import Kebob from './Kebob';
 
-function Card({ link }) {
+const Card = ({ link }) => {
   const timeDelta = formatDate(link.createdAt ?? link.created_at);
   const createdDate = calculatorTime(link.createdAt ?? link.created_at);
   const preview = link.imageSource ?? link.image_source;
@@ -31,6 +31,6 @@ function Card({ link }) {
       </S.CardLinkContainer>
     </S.CardLayout>
   );
-}
+};
 
 export default Card;

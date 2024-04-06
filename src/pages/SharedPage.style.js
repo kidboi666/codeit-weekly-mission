@@ -1,18 +1,18 @@
 import styled from 'styled-components';
 
-export const MainWrap = styled.div`
+export const SharedPageLayout = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
 
-export const Header = styled.div`
+export const HeaderBox = styled.div`
   width: 100%;
   background-color: var(--gray5-color);
 `;
 
-export const Folder = styled.ul`
+export const FolderBox = styled.ul`
   margin-bottom: 100px;
   display: grid;
   grid-template-columns: repeat(3, 340px);

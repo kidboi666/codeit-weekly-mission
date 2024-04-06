@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Button from '../components/Button/Button.style';
 
-export const Wrap = styled.div`
+export const HomepageLayout = styled.div`
   display: flex;
   justify-content: center;
   gap: 25px;

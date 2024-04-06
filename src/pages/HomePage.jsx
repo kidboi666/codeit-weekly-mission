@@ -3,14 +3,14 @@ import * as S from './HomePage.style';
 
 const Homepage = () => {
   return (
-    <S.Wrap>
+    <S.HomepageLayout>
       <Link to="/folder">
         <S.StyledButton>folder</S.StyledButton>
       </Link>
       <Link to="/shared">
         <S.StyledButton>shared</S.StyledButton>
       </Link>
-    </S.Wrap>
+    </S.HomepageLayout>
   );
 };
 

@@ -5,22 +5,22 @@ import twitter from '../../assets/icons/fill_twitter_icon.svg';
 import youtube from '../../assets/icons/fill_youtube_icon.svg';
 import instagram from '../../assets/icons/fill_instagram_icon.svg';
 
-function Footer() {
+const Footer = () => {
   return (
-    <S.Footer>
+    <S.FooterLayout>
       <S.FooterBox>
-        <S.Copyright>
+        <S.CopyrightBox>
           <p>©codeit-2023</p>
-        </S.Copyright>
-        <S.Privacy>
+        </S.CopyrightBox>
+        <S.PrivacyBox>
           <a href="/privacy/" target="_blank" rel="noreferrer">
             Privacy Policy
           </a>
           <a href="/faq/" target="_blank" rel="noreferrer">
             FAQ
           </a>
-        </S.Privacy>
-        <S.Sns>
+        </S.PrivacyBox>
+        <S.SnsContainer>
           <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">
             <img src={facebook} alt="facebook" />
           </a>
@@ -41,10 +41,10 @@ function Footer() {
           <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
             <img src={instagram} alt="instagram" />
           </a>
-        </S.Sns>
+        </S.SnsContainer>
       </S.FooterBox>
-    </S.Footer>
+    </S.FooterLayout>
   );
-}
+};
 
 export default Footer;

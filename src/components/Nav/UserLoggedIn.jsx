@@ -3,7 +3,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { getUserRequest } from '../../api';
 import useAsync from '../../hooks/useAsync';
 
-function UserLoggedIn() {
+const UserLoggedIn = () => {
   const { requestFunction: getUserProfile } = useAsync(getUserRequest);
   const [profile, setProfile] = useState({
     name: '',
@@ -35,6 +35,6 @@ function UserLoggedIn() {
       )}
     </S.LoginLayout>
   );
-}
+};
 
 export default UserLoggedIn;

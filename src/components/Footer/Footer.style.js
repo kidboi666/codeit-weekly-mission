@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Footer = styled.footer`
+export const FooterLayout = styled.footer`
   background-color: var(--black-color);
 `;
 
@@ -30,13 +30,13 @@ export const FooterBox = styled.div`
   }
 `;
 
-export const Copyright = styled.div`
+export const CopyrightBox = styled.div`
   @media (max-width: 767px) {
     grid-row: 2 / -1;
   }
 `;
 
-export const Privacy = styled.div`
+export const PrivacyBox = styled.div`
   display: flex;
   align-items: center;
   justify-self: center;
@@ -52,7 +52,7 @@ export const Privacy = styled.div`
   }
 `;
 
-export const Sns = styled.div`
+export const SnsContainer = styled.div`
   display: flex;
   gap: 12px;
   justify-self: end;

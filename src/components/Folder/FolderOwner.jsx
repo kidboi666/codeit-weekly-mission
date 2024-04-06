@@ -3,7 +3,7 @@ import { getMockFolderRequest } from '../../api';
 import useAsync from '../../hooks/useAsync';
 import * as S from './FolderOwner.style';
 
-function FolderOwner() {
+const FolderOwner = () => {
   const { requestFunction: getUserFolder } = useAsync(getMockFolderRequest);
   const [owner, setOwner] = useState([]);
   const [star, setStar] = useState('');
@@ -36,6 +36,6 @@ function FolderOwner() {
       </li>
     </S.OwnerLayoutList>
   );
-}
+};
 
 export default FolderOwner;

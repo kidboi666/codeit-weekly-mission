@@ -1,7 +1,7 @@
 import Footer from '../Footer/Footer';
 import Nav from '../Nav/Nav';
 
-function App({ children }) {
+const App = ({ children }) => {
   return (
     <>
       <Nav />
@@ -9,6 +9,6 @@ function App({ children }) {
       <Footer />
     </>
   );
-}
+};
 
 export default App;

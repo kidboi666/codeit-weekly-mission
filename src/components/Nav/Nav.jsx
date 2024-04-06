@@ -4,7 +4,7 @@ import * as S from './Nav.style';
 import UserLoggedIn from './UserLoggedIn';
 import logo from '../../assets/icons/logo.svg';
 
-function Nav() {
+const Nav = () => {
   const [navFixedStatus, setNavFixedStatus] = useState(true);
   const navRef = useRef();
   const { pathname } = useLocation();
@@ -58,6 +58,6 @@ function Nav() {
       )}
     </>
   );
-}
+};
 
 export default Nav;

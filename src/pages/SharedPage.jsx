@@ -25,18 +25,18 @@ const SharedPage = () => {
   }, [getFolder]);
 
   return (
-    <S.MainWrap>
-      <S.Header>
+    <S.SharedPageLayout>
+      <S.HeaderBox>
         <FolderOwner />
-      </S.Header>
+      </S.HeaderBox>
       <Search />
-      <S.Folder>
+      <S.FolderBox>
         {folder.map((item) => {
           const { imageSource } = item;
           return <Card key={item.id} link={item} preview={imageSource} />;
         })}
-      </S.Folder>
-    </S.MainWrap>
+      </S.FolderBox>
+    </S.SharedPageLayout>
   );
 };
 
