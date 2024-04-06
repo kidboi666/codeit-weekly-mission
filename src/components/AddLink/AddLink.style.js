@@ -2,13 +2,13 @@ import Button from '../Button/Button.style';
 import Input from '../Input/Input.style';
 import styled from 'styled-components';
 
-export const Helper = styled.div`
+export const AddLinkLayout = styled.div`
   @media (max-width: 1124px) {
     width: 100%;
   }
 `;
 
-export const FormBox = styled.div`
+export const FormContainer = styled.div`
   display: flex;
   justify-content: center;
   padding: 60px 32.5px 90px 32.5px;
@@ -18,7 +18,7 @@ export const FormBox = styled.div`
   }
 `;
 
-export const Form = styled.form`
+export const FormBox = styled.form`
   position: relative;
 `;
 
@@ -30,7 +30,7 @@ export const StyledButton = styled(Button)`
   right: 20px;
 `;
 
-export const Icon = styled.img`
+export const IconImg = styled.img`
   position: absolute;
   left: 15px;
   top: 50%;
