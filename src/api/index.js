@@ -11,6 +11,19 @@ export const getUserRequest = async () => {
   return response.json();
 };
 
+export const postFolderRequest = async (formData) => {
+  const response = await fetch(`${CODEIT_URL}/folders`, {
+    method: 'POST',
+    header: 'Content-Type: application/json',
+    body: formData,
+  });
+  if (!response.ok) {
+    throw new Error('유저 폴더 만들기 실패');
+  }
+
+  return response.json();
+};
+
 export const getLinksRequest = async (id) => {
   const response = await fetch(`${CODEIT_URL}/users/1/links?folderId=${id}`);
   if (!response.ok) {

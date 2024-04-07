@@ -12,7 +12,7 @@ export const HeaderBox = styled.div`
   background-color: var(--gray5-color);
 `;
 
-export const Links = styled.ul`
+export const LinkSection = styled.ul`
   display: grid;
   grid-template-columns: ${({ $noneLinks }) =>
     $noneLinks ? 'repeat(1, 1fr)' : 'repeat(3, 340px)'};

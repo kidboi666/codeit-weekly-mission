@@ -4,7 +4,7 @@ import FolderPage from './pages/FolderPage';
 import SharedPage from './pages/SharedPage';
 import Homepage from './pages/HomePage';
 
-function Main() {
+const Main = () => {
   return (
     <BrowserRouter>
       <App>
@@ -16,6 +16,6 @@ function Main() {
       </App>
     </BrowserRouter>
   );
-}
+};
 
 export default Main;
