@@ -1,3 +1,4 @@
+import { useLocation } from 'react-router-dom';
 import kebobIcon from '../../assets/icons/kebab.svg';
 import useToggle from '../../hooks/useToggle';
 import * as S from './Kebob.style';
@@ -11,8 +12,13 @@ const KebobModal = () => {
   );
 };
 
-function Kebob() {
+const Kebob = () => {
   const [value, toggle] = useToggle();
+  const currentLocation = useLocation();
+
+  if (currentLocation.pathname !== '/folder') {
+    return;
+  }
 
   const onClickKebobButton = (e) => {
     e.preventDefault();
@@ -25,6 +31,6 @@ function Kebob() {
       {value ? <KebobModal /> : null}
     </S.KebobLayout>
   );
-}
+};
 
 export default Kebob;

@@ -8,7 +8,7 @@ import * as S from './SharedPage.style';
 
 const SharedPage = () => {
   const { requestFunction: getUserFolder } = useAsync(getMockFolderRequest);
-  const [folder, setFolder] = useState([]);
+  const [folders, setFolder] = useState([]);
 
   const getFolder = useCallback(async () => {
     const result = await getUserFolder();
@@ -31,9 +31,8 @@ const SharedPage = () => {
       </S.HeaderBox>
       <Search />
       <S.FolderBox>
-        {folder.map((item) => {
-          const { imageSource } = item;
-          return <Card key={item.id} link={item} preview={imageSource} />;
+        {folders.map((item) => {
+          return <Card key={item.id} link={item} />;
         })}
       </S.FolderBox>
     </S.SharedPageLayout>

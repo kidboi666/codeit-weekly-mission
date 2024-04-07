@@ -2,9 +2,15 @@ import starTrue from '../../assets/icons/star_true.svg';
 import starFalse from '../../assets/icons/star_false.svg';
 import * as S from './Star.style';
 import useToggle from '../../hooks/useToggle';
+import { useLocation } from 'react-router-dom';
 
 const Star = () => {
   const [value, toggle] = useToggle();
+  const currentLocation = useLocation();
+
+  if (currentLocation.pathname !== '/folder') {
+    return;
+  }
 
   const onClickStarButton = (e) => {
     e.preventDefault();
