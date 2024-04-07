@@ -37,8 +37,8 @@ function FolderPage() {
         <S.Links $noneLinks>저장된 링크가 없습니다.</S.Links>
       ) : (
         <S.Links>
-          {links.map((item) => {
-            return <Card key={item.id} link={item} />;
+          {links.map((link) => {
+            return <Card key={link.id} link={link} />;
           })}
         </S.Links>
       )}

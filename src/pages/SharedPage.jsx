@@ -31,8 +31,8 @@ const SharedPage = () => {
       </S.HeaderBox>
       <Search />
       <S.FolderBox>
-        {folders.map((item) => {
-          return <Card key={item.id} link={item} />;
+        {folders.map((link) => {
+          return <Card key={link.id} link={link} />;
         })}
       </S.FolderBox>
     </S.SharedPageLayout>
