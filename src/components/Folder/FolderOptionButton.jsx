@@ -7,7 +7,7 @@ const FolderOptionButton = ({ folderTitle }) => {
   return (
     <S.FolderOptionButtonLayout>
       <S.SelectedFolder>{folderTitle}</S.SelectedFolder>
-      {folderTitle === '전체' ? null : (
+      {folderTitle === '전체' ? (
         <S.OptionContainer>
           <S.OptionBox>
             <S.OptionIcon src={shareIcon} />
@@ -22,7 +22,7 @@ const FolderOptionButton = ({ folderTitle }) => {
             삭제
           </S.OptionBox>
         </S.OptionContainer>
-      )}
+      ) : null}
     </S.FolderOptionButtonLayout>
   );
 };
