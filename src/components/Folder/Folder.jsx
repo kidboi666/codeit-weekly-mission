@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 import { getAllLinksRequest, getLinksRequest } from '../../api';
-import * as S from './Folder.style';
+import * as S from './Folder.styled';
 import useAsync from '../../hooks/useAsync';
-import FolderSelectButton from './FolderSelectButton.style';
+import FolderSelectButton from './FolderSelectButton.styled';
 import FolderOptionButton from './FolderOptionButton';
 
 const AllItems = ({ setLinks, onClick, currentFolder }) => {

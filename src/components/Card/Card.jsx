@@ -1,4 +1,4 @@
-import * as S from './Card.style';
+import * as S from './Card.styled';
 import blankLogo from '../../assets/icons/blank_logo.svg';
 import { calculatorTime, formatDate } from '../../utils/CalculatorTime';
 import Star from './Star';

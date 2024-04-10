@@ -4,7 +4,7 @@ import { getMockFolderRequest } from '../api';
 import Search from '../components/Search/Search';
 import Card from '../components/Card/Card';
 import FolderOwner from '../components/Folder/FolderOwner';
-import * as S from './SharedPage.style';
+import * as S from './SharedPage.styled';
 
 const SharedPage = () => {
   const { requestFunction: getUserFolder } = useAsync(getMockFolderRequest);

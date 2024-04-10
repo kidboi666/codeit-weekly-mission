@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import * as S from './Nav.style';
+import * as S from './Nav.styled';
 import UserLoggedIn from './UserLoggedIn';
 import logo from '../../assets/icons/logo.svg';
 

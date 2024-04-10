@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import * as S from './HomePage.style';
+import * as S from './HomePage.styled';
 
 const Homepage = () => {
   return (

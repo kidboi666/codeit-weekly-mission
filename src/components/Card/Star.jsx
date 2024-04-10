@@ -1,6 +1,6 @@
 import starTrue from '../../assets/icons/star_true.svg';
 import starFalse from '../../assets/icons/star_false.svg';
-import * as S from './Star.style';
+import * as S from './Star.styled';
 import useToggle from '../../hooks/useToggle';
 import { useLocation } from 'react-router-dom';
 

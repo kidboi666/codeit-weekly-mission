@@ -1,7 +1,7 @@
 import shareIcon from '../../assets/icons/share.svg';
 import penIcon from '../../assets/icons/pen.svg';
 import deleteIcon from '../../assets/icons/delete.svg';
-import * as S from './FolderOptionButton.style';
+import * as S from './FolderOptionButton.styled';
 
 const FolderOptionButton = ({ folderTitle }) => {
   return (

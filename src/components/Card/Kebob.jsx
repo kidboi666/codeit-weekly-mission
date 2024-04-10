@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import kebobIcon from '../../assets/icons/kebab.svg';
 import useToggle from '../../hooks/useToggle';
-import * as S from './Kebob.style';
+import * as S from './Kebob.styled';
 
 const KebobModal = () => {
   return (

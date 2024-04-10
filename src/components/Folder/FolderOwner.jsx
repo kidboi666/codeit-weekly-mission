@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getMockFolderRequest } from '../../api';
 import useAsync from '../../hooks/useAsync';
-import * as S from './FolderOwner.style';
+import * as S from './FolderOwner.styled';
 
 const FolderOwner = () => {
   const { requestFunction: getUserFolder } = useAsync(getMockFolderRequest);

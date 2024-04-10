@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { getFolderRequest } from '../api';
-import * as S from './FolderPage.style';
+import * as S from './FolderPage.styled';
 import useAsync from '../hooks/useAsync';
 import Search from '../components/Search/Search';
 import AddLink from '../components/AddLink/AddLink';

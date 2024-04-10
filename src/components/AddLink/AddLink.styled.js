@@ -1,5 +1,5 @@
-import Button from '../Button/Button.style';
-import Input from '../Input/Input.style';
+import Button from '../Button/Button.styled';
+import Input from '../Input/Input.styled';
 import styled from 'styled-components';
 
 export const AddLinkLayout = styled.div`

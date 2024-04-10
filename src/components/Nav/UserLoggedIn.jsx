@@ -1,4 +1,4 @@
-import * as S from './UserLoggedIn.style';
+import * as S from './UserLoggedIn.styled';
 import { useState, useEffect, useCallback } from 'react';
 import { getUserRequest } from '../../api';
 import useAsync from '../../hooks/useAsync';
