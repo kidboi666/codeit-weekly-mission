@@ -1,36 +1,32 @@
-@import '../styles/colors.css';
+import styled from 'styled-components';
 
-a {
-  text-decoration: none;
-  color: #000;
-}
-
-.main_wrap {
+export const SharedPageLayout = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
+`;
 
-.folder {
-  margin: 40px 0 100px 0;
+export const HeaderBox = styled.div`
+  width: 100%;
+  background-color: var(--gray5-color);
+`;
+
+export const FolderBox = styled.ul`
+  margin-bottom: 100px;
   display: grid;
   grid-template-columns: repeat(3, 340px);
   gap: 25px 20px;
-}
 
-@media screen and (max-width: 1124px) {
-  .folder {
+  @media (max-width: 1124px) {
     grid-template-columns: repeat(2, 340px);
     gap: 25px 24px;
   }
-}
 
-@media screen and (max-width: 767px) {
-  .folder {
+  @media (max-width: 767px) {
     margin-bottom: 60px;
     padding: 0 32.5px;
     grid-template-columns: repeat(1, 1fr);
     gap: 20px;
   }
-}
+`;

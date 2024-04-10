@@ -1,12 +1,12 @@
-export function FormatDate({ value }) {
-  const date = new Date(value);
+export function formatDate(time) {
+  const date = new Date(time);
   return `${date.getFullYear()}. ${date.getMonth() + 1}. ${date.getDate()}`;
 }
 
-export function CalculatorTime({ value }) {
-  let currentTime = new Date() / (1000 * 60 * 60 * 24);
-  let dateTime = new Date(value) / (1000 * 60 * 60 * 24);
-  let diffTime = currentTime - dateTime;
+export function calculatorTime(value) {
+  const currentTime = new Date() / (1000 * 60 * 60 * 24);
+  const dateTime = new Date(value) / (1000 * 60 * 60 * 24);
+  const diffTime = currentTime - dateTime;
   if (diffTime >= 365) {
     return `${Math.floor(diffTime / 365)} years ago`;
   } else if (diffTime > 31) {

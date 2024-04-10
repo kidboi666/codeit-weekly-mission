@@ -1,25 +1,26 @@
-.owner_wrap {
+import styled from 'styled-components';
+
+export const OwnerLayoutList = styled.ul`
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px 0 60px 0;
   gap: 10px;
-  background-color: var(--gray5-color);
-}
+  padding: 20px 0 60px 0;
+`;
 
-.owner_img {
+export const OwnerImg = styled.img`
   width: 60px;
   height: 60px;
   border-radius: 50%;
-}
+`;
 
-.owner_name {
+export const OwnerName = styled.p`
   margin-top: 12px;
-}
+`;
 
-.star {
+export const Star = styled.p`
   margin-top: 20px;
   font-size: 40px;
-}
+`;
