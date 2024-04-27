@@ -13,15 +13,24 @@ const Modal = ({
   placeholder = '내용 입력',
   closeModal,
   currentFolder,
+  currentCard,
 }) => {
   switch (variant) {
     case 'changeName':
       title = '폴더 이름 변경';
       text = '변경하기';
+      placeholder = currentFolder;
+      variant = 'default';
       break;
     case 'addFolder':
       title = '폴더 추가';
       text = '추가하기';
+      variant = 'default';
+      break;
+    case 'addLink':
+      title = '링크 추가';
+      text = '추가하기';
+      variant = 'default';
       break;
     case 'shareFolder':
       title = '폴더 공유';
@@ -72,8 +81,12 @@ const Modal = ({
             <img src={cancelIcon} alt='취소이미지' />
           </S.CloseButton>
           <h4>{title}</h4>
-          <Input placeholder={placeholder} />
-          <Button text={text} />
+          {variant === 'deleteFolder' || variant === 'deleteLink' ? (
+            <S.CurrentFolder>{currentFolder || currentCard}</S.CurrentFolder>
+          ) : (
+            <Input placeholder={placeholder} />
+          )}
+          <Button variant={variant} text={text} type={'button'} />
         </S.ModalContainer>
       )}
     </S.ModalLayout>

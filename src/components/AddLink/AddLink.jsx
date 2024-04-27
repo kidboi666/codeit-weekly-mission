@@ -24,7 +24,7 @@ const AddLink = () => {
         </S.FormBox>
       </S.FormContainer>
       {isModalTrigger && (
-        <Modal variant={'addFolder'} onClick={changeTrigger} />
+        <Modal variant={'addLink'} closeModal={setIsModalTrigger} />
       )}
     </S.AddLinkLayout>
   );

@@ -4,13 +4,13 @@ export const ModalLayout = styled.div`
   position: fixed;
   top: 0;
   left: 0;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  height: 100vh;
   background-color: rgba(0, 0, 0, 0.4);
-  z-index: 200;
+  z-index: 50;
 `;
 
 export const ModalContainer = styled.div`
@@ -24,6 +24,7 @@ export const ModalContainer = styled.div`
   border-radius: 15px;
   border: 1px solid var(--gray3-color);
   background-color: var(--white-color);
+  z-index: 400;
 
   > h4 {
     font-size: 20px;

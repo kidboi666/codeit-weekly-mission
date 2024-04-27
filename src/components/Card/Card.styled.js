@@ -23,9 +23,9 @@ export const CardLayout = styled.li`
   overflow: hidden;
   transition: transform 0.3s, translate 0.3s;
 
-  &:hover {
-    translate: 0 -10px;
-  }
+  // &:hover {
+  //   translate: 0 -10px;
+  // }
 
   &:hover ${CardImg} {
     transform: scale(1.3);

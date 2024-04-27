@@ -4,6 +4,8 @@ import * as S from './Folder.styled';
 import useAsync from '../../hooks/useAsync';
 import FolderSelectButton from './FolderSelectButton.styled';
 import FolderOptionButton from './FolderOptionButton';
+import Button from '../Button/Button';
+import Modal from '../Modal/Modal';
 
 const AllItems = ({ setLinks, onClick, currentFolder }) => {
   const { requestFunction: getAllLinks } = useAsync(getAllLinksRequest);
@@ -63,6 +65,7 @@ const Item = ({ folder, onClick, setLinks, currentFolder }) => {
 const Folder = ({ folders, setLinks }) => {
   const [folder, setFolder] = useState('');
   const [currentFolder, setCurrentFolder] = useState('');
+  const [isModalTrigger, setModalTrigger] = useState(false);
 
   const onChangeFolderTitle = useCallback((value) => {
     setFolder(value);
@@ -88,11 +91,14 @@ const Folder = ({ folders, setLinks }) => {
             />
           ))}
         </S.FolderBox>
-        <div>
-          <S.AddButton>폴더 추가 +</S.AddButton>
+        <div onClick={() => setModalTrigger((prev) => !prev)}>
+          <Button variant={'addFolder'} text='폴더 추가' />
         </div>
       </S.FolderContainer>
       <FolderOptionButton folderTitle={folder} />
+      {isModalTrigger && (
+        <Modal variant='addFolder' closeModal={setModalTrigger} />
+      )}
     </S.FolderLayout>
   );
 };

@@ -2,7 +2,7 @@ import shareIcon from '../../assets/icons/share.svg';
 import penIcon from '../../assets/icons/pen.svg';
 import deleteIcon from '../../assets/icons/delete.svg';
 import * as S from './FolderOptionButton.styled';
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import Modal from '../Modal/Modal';
 
 const FolderOptionButton = ({ folderTitle }) => {
@@ -10,14 +10,14 @@ const FolderOptionButton = ({ folderTitle }) => {
   const [isDeleteModal, setDeleteModal] = useState(false);
   const [isChangeNameModal, setChangeNameModal] = useState(false);
 
-  const onModal = useCallback((setter) => {
+  const onModal = (setter) => {
     return setter((prev) => !prev);
-  }, []);
+  };
 
   return (
     <S.FolderOptionButtonLayout>
       <S.SelectedFolder>{folderTitle}</S.SelectedFolder>
-      {folderTitle !== '전체' ? (
+      {folderTitle !== '전체' && (
         <S.OptionContainer>
           <S.OptionBox onClick={() => onModal(setShareModal)}>
             <S.OptionIcon src={shareIcon} />
@@ -32,7 +32,7 @@ const FolderOptionButton = ({ folderTitle }) => {
             삭제
           </S.OptionBox>
         </S.OptionContainer>
-      ) : null}
+      )}
       {isShareModal && (
         <Modal
           variant={'shareFolder'}
@@ -41,10 +41,18 @@ const FolderOptionButton = ({ folderTitle }) => {
         />
       )}
       {isDeleteModal && (
-        <Modal variant={'deleteFolder'} closeModal={setDeleteModal} />
+        <Modal
+          variant={'deleteFolder'}
+          closeModal={setDeleteModal}
+          currentFolder={folderTitle}
+        />
       )}
       {isChangeNameModal && (
-        <Modal variant={'changeName'} closeModal={setChangeNameModal} />
+        <Modal
+          variant={'changeName'}
+          closeModal={setChangeNameModal}
+          currentFolder={folderTitle}
+        />
       )}
     </S.FolderOptionButtonLayout>
   );
