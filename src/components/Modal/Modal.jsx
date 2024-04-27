@@ -2,13 +2,16 @@ import Button from '../Button/Button';
 import Input from '../Input/Input';
 import * as S from './Modal.styled';
 import cancelIcon from '../../assets/icons/cancel.svg';
+import kakaoIcon from '../../assets/icons/kakao_icon.svg';
+import facebookIcon from '../../assets/icons/facebook_icon.svg';
+import linkIcon from '../../assets/icons/link.svg';
 
 const Modal = ({
   variant,
   title,
   text,
   placeholder = '내용 입력',
-  onClick,
+  closeModal,
   currentFolder,
 }) => {
   switch (variant) {
@@ -34,16 +37,45 @@ const Modal = ({
     default:
       return;
   }
+
+  const closingModal = () => {
+    closeModal(false);
+  };
+
   return (
     <S.ModalLayout>
-      <S.ModalContainer>
-        <S.CloseButton onClick={onClick}>
-          <img src={cancelIcon} alt='취소이미지' />
-        </S.CloseButton>
-        <h4>{title}</h4>
-        <Input placeholder={placeholder} />
-        <Button text={text} />
-      </S.ModalContainer>
+      {variant === 'shareFolder' ? (
+        <S.ModalContainer>
+          <S.CloseButton onClick={closingModal}>
+            <img src={cancelIcon} alt='취소이미지' />
+          </S.CloseButton>
+          <h4>{title}</h4>
+          <S.CurrentFolder>{currentFolder}</S.CurrentFolder>
+          <S.ShareContainer>
+            <div>
+              <img src={kakaoIcon} alt='카카오톡' />
+              <p>카카오톡</p>
+            </div>
+            <div>
+              <img src={facebookIcon} alt='페이스북' />
+              <p>페이스북</p>
+            </div>
+            <div>
+              <img src={linkIcon} alt='링크' />
+              <p>링크 복사</p>
+            </div>
+          </S.ShareContainer>
+        </S.ModalContainer>
+      ) : (
+        <S.ModalContainer>
+          <S.CloseButton onClick={closingModal}>
+            <img src={cancelIcon} alt='취소이미지' />
+          </S.CloseButton>
+          <h4>{title}</h4>
+          <Input placeholder={placeholder} />
+          <Button text={text} />
+        </S.ModalContainer>
+      )}
     </S.ModalLayout>
   );
 };

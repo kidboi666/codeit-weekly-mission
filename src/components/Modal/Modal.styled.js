@@ -59,3 +59,30 @@ export const CloseButton = styled.div`
   background-color: #e7effb;
   cursor: pointer;
 `;
+
+export const CurrentFolder = styled.span`
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  color: var(--gray2-color);
+  margin-bottom: 24px;
+`;
+
+export const ShareContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+
+  div {
+    display: grid;
+    grid-template-rows: 42px 15px;
+    gap: 10px;
+    place-items: center;
+    cursor: pointer;
+
+    p {
+      font-size: 13px;
+      line-height: 15px;
+    }
+  }
+`;
