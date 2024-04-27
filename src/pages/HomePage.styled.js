@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Button from '../components/Button/Button.styled';
+import Button from '../components/Button/Button';
 
 export const HomepageLayout = styled.div`
   display: flex;

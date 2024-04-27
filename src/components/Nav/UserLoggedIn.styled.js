@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Button from '../Button/Button.styled';
+import Button from '../Button/Button';
 
 export const LoginLayout = styled.div`
   flex-shrink: 0;
