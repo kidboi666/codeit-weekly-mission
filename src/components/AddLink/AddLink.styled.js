@@ -1,5 +1,5 @@
-import Button from '../Button/Button.styled';
-import Input from '../Input/Input.styled';
+import Button from '../Button/Button';
+import Input from '../Input/Input';
 import styled from 'styled-components';
 
 export const AddLinkLayout = styled.div`
@@ -42,6 +42,7 @@ export const StyledInput = styled(Input)`
   background-color: var(--white-color);
   width: 800px;
   height: 69px;
+  padding-left: 45px;
   border: 1px solid var(--primary-color);
   outline: none;
 
