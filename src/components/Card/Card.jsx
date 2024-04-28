@@ -1,17 +1,17 @@
 import * as S from './Card.styled';
 import blankLogo from '../../assets/icons/blank_logo.svg';
-import { calculatorTime, formatDate } from '../../utils/CalculatorTime';
+import { calculateTime, formatDate } from '../../utils/CalculateTime';
 import Star from './Star';
 import Kebab from './Kebab';
 import { useState } from 'react';
 import Modal from '../Modal/Modal';
 
 const Card = ({ link, folderList }) => {
-  const timeDelta = formatDate(link.createdAt ?? link.created_at);
-  const createdDate = calculatorTime(link.createdAt ?? link.created_at);
-  const preview = link.imageSource ?? link.image_source;
   const [isDeleteModal, setDeleteModal] = useState(false);
   const [isAddModal, setAddModal] = useState(false);
+  const timeDelta = formatDate(link.createdAt ?? link.created_at);
+  const createdDate = calculateTime(link.createdAt ?? link.created_at);
+  const preview = link.imageSource ?? link.image_source;
 
   return (
     <S.CardLayout>

@@ -7,7 +7,7 @@ import FolderOptionButton from './FolderOptionButton';
 import Button from '../Button/Button';
 import Modal from '../Modal/Modal';
 
-const AllItems = ({ setLinks, onClick, currentFolder }) => {
+const ItemList = ({ setLinks, onClick, currentFolder }) => {
   const { requestFunction: getAllLinks } = useAsync(getAllLinksRequest);
   const isActive = currentFolder === '전체';
 
@@ -76,7 +76,7 @@ const Folder = ({ folders, setLinks }) => {
     <S.FolderLayout>
       <S.FolderContainer>
         <S.FolderBox>
-          <AllItems
+          <ItemList
             currentFolder={currentFolder}
             setLinks={setLinks}
             onClick={onChangeFolderTitle}

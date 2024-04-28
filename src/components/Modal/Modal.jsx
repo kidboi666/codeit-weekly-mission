@@ -11,7 +11,7 @@ const FolderList = ({ folderList }) => {
     <>
       <S.FolderList>
         {folderList.map((folder) => (
-          <S.FolderListItem>
+          <S.FolderListItem key={folder.id}>
             <S.ItemName>{folder.name}</S.ItemName>
             <S.ItemLinkCount>{folder.link.count}개 링크</S.ItemLinkCount>
           </S.FolderListItem>

@@ -2,11 +2,8 @@ import { useLocation } from 'react-router-dom';
 import kebobIcon from '../../assets/icons/kebab.svg';
 import useToggle from '../../hooks/useToggle';
 import * as S from './Kebab.styled';
-import { useState, useRef } from 'react';
-import Modal from '../Modal/Modal';
-import Button from '../Button/Button';
 
-const Kebab = ({ isDeleteModal, setDeleteModal, isAddModal, setAddModal }) => {
+const Kebab = ({ setDeleteModal, setAddModal }) => {
   const [value, toggle] = useToggle();
   const currentLocation = useLocation();
 

@@ -3,7 +3,7 @@ export function formatDate(time) {
   return `${date.getFullYear()}. ${date.getMonth() + 1}. ${date.getDate()}`;
 }
 
-export function calculatorTime(value) {
+export function calculateTime(value) {
   const currentTime = new Date() / (1000 * 60 * 60 * 24);
   const dateTime = new Date(value) / (1000 * 60 * 60 * 24);
   const diffTime = currentTime - dateTime;
