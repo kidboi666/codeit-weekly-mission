@@ -15,6 +15,7 @@ import linkIcon from '../../assets/icons/link.svg';
  * @param {string} currentCard 카드내부에 케밥으로 모달을 띄웠울시 받는 카드 이름
  * @param {string} currentFolder 폴더관련 버튼으로 모달을 띄웠을시 받는 폴더 이름
  * @param {object} folderList 폴더에 링크 추가시 출력할 폴더 리스트
+ * @param {number} folderId
  * @returns {Element}
  */
 const Modal = ({
@@ -26,6 +27,7 @@ const Modal = ({
   currentFolder,
   currentCard,
   folderList,
+  folderId = 0,
 }) => {
   switch (variant) {
     case 'changeName':
@@ -68,6 +70,17 @@ const Modal = ({
     closeModal(false);
   };
 
+  console.log(folderId);
+  const copyUrl = async () => {
+    try {
+      await navigator.clipboard.writeText(
+        `https://resilient-tapioca-37feb1.netlify.app/shared/${folderId}`
+      );
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <S.ModalLayout>
       {variant === 'shareFolder' ? (
@@ -86,7 +99,7 @@ const Modal = ({
               <img src={facebookIcon} alt='페이스북' />
               <p>페이스북</p>
             </div>
-            <div>
+            <div onClick={copyUrl}>
               <img src={linkIcon} alt='링크' />
               <p>링크 복사</p>
             </div>

@@ -39,7 +39,7 @@ const ItemList = ({ setLinks, onClick, currentFolder }) => {
 
 const Item = ({ folder, onClick, setLinks, currentFolder }) => {
   const { requestFunction: getFolderLink } = useAsync(getLinksRequest);
-  const isActive = folder.name === currentFolder ? true : false;
+  const isActive = folder.name === currentFolder;
 
   const getLinks = useCallback(
     async (id) => {
@@ -54,7 +54,7 @@ const Item = ({ folder, onClick, setLinks, currentFolder }) => {
 
   const onChangeFolder = () => {
     getLinks(folder.id);
-    onClick(folder.name);
+    onClick(folder.name, folder.id);
   };
 
   return (
@@ -70,11 +70,13 @@ const Item = ({ folder, onClick, setLinks, currentFolder }) => {
 const Folder = ({ folderList, setLinks }) => {
   const [folder, setFolder] = useState('');
   const [currentFolder, setCurrentFolder] = useState('');
+  const [currentFolderId, setCurrentFolderId] = useState(null);
   const [isModalTrigger, setModalTrigger] = useState(false);
 
-  const onChangeFolderTitle = useCallback((value) => {
+  const onChangeFolderTitle = useCallback((value, id) => {
     setFolder(value);
     setCurrentFolder(value);
+    setCurrentFolderId(id);
   }, []);
 
   return (
@@ -93,6 +95,7 @@ const Folder = ({ folderList, setLinks }) => {
               folder={folderItem}
               onClick={onChangeFolderTitle}
               setLinks={setLinks}
+              setFolderId={setCurrentFolderId}
             />
           ))}
         </S.FolderBox>
@@ -102,7 +105,11 @@ const Folder = ({ folderList, setLinks }) => {
       </S.FolderContainer>
       <FolderOptionButton folderTitle={folder} />
       {isModalTrigger && (
-        <Modal variant='addFolder' closeModal={setModalTrigger} />
+        <Modal
+          variant='addFolder'
+          closeModal={setModalTrigger}
+          folderId={currentFolderId}
+        />
       )}
     </S.FolderLayout>
   );
