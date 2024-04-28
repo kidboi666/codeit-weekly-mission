@@ -1,9 +1,13 @@
 import * as S from './Toast.styled';
 
 const Toast = ({ callback }) => {
-  function closeButtonClickHandler() {
+  const closeButtonClickHandler = () => {
     callback();
-  }
+  };
+
+  setTimeout(() => {
+    callback();
+  }, 2000);
 
   return (
     <S.Layout>
