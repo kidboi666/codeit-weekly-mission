@@ -20,8 +20,7 @@ const Nav = () => {
   };
 
   useEffect(() => {
-    const isFolderPage = pathname === '/folder';
-    if (isFolderPage) return;
+    if (pathname === '/folder') return;
     window.addEventListener('scroll', handleNavigation);
     return () => {
       window.removeEventListener('scroll', handleNavigation);
