@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const KebobLayout = styled.div`
+export const KebabLayout = styled.div`
   position: absolute;
   height: 20px;
   top: 15px;

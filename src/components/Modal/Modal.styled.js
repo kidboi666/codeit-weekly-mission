@@ -24,7 +24,7 @@ export const ModalContainer = styled.div`
   border-radius: 15px;
   border: 1px solid var(--gray3-color);
   background-color: var(--white-color);
-  z-index: 400;
+  z-index: 60;
 
   > h4 {
     font-size: 20px;

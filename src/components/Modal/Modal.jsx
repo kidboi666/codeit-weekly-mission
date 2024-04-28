@@ -6,6 +6,10 @@ import kakaoIcon from '../../assets/icons/kakao_icon.svg';
 import facebookIcon from '../../assets/icons/facebook_icon.svg';
 import linkIcon from '../../assets/icons/link.svg';
 
+const FolderList = () => {
+  return <div>FolderList</div>;
+};
+
 const Modal = ({
   variant,
   title,
@@ -14,6 +18,7 @@ const Modal = ({
   closeModal,
   currentFolder,
   currentCard,
+  folderList,
 }) => {
   switch (variant) {
     case 'changeName':
@@ -23,7 +28,7 @@ const Modal = ({
       variant = 'default';
       break;
     case 'addFolder':
-      title = '폴더 추가';
+      title = '폴더에 추가';
       text = '추가하기';
       variant = 'default';
       break;
@@ -47,12 +52,13 @@ const Modal = ({
       return;
   }
 
-  const closingModal = () => {
+  const closingModal = (e) => {
+    e.stopPropagation();
     closeModal(false);
   };
 
   return (
-    <S.ModalLayout>
+    <S.ModalLayout onClick={closingModal}>
       {variant === 'shareFolder' ? (
         <S.ModalContainer>
           <S.CloseButton onClick={closingModal}>

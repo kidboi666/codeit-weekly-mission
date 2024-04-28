@@ -1,12 +1,12 @@
 import { useLocation } from 'react-router-dom';
 import kebobIcon from '../../assets/icons/kebab.svg';
 import useToggle from '../../hooks/useToggle';
-import * as S from './Kebob.styled';
+import * as S from './Kebab.styled';
 import { useState, useRef } from 'react';
 import Modal from '../Modal/Modal';
 import Button from '../Button/Button';
 
-const Kebob = ({ isDeleteModal, setDeleteModal, isAddModal, setAddModal }) => {
+const Kebab = ({ isDeleteModal, setDeleteModal, isAddModal, setAddModal }) => {
   const [value, toggle] = useToggle();
   const currentLocation = useLocation();
 
@@ -14,7 +14,7 @@ const Kebob = ({ isDeleteModal, setDeleteModal, isAddModal, setAddModal }) => {
     return;
   }
 
-  const onClickKebobButton = (e) => {
+  const onClickKebabButton = (e) => {
     e.preventDefault();
     toggle();
   };
@@ -24,7 +24,7 @@ const Kebob = ({ isDeleteModal, setDeleteModal, isAddModal, setAddModal }) => {
   };
 
   return (
-    <S.KebobLayout onClick={onClickKebobButton}>
+    <S.KebabLayout onClick={onClickKebabButton}>
       <img src={kebobIcon} alt='케밥 버튼 아이콘' />
       {value && (
         <S.ModalLayout>
@@ -36,8 +36,8 @@ const Kebob = ({ isDeleteModal, setDeleteModal, isAddModal, setAddModal }) => {
           </button>
         </S.ModalLayout>
       )}
-    </S.KebobLayout>
+    </S.KebabLayout>
   );
 };
 
-export default Kebob;
+export default Kebab;

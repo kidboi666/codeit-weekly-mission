@@ -9,7 +9,7 @@ import Modal from '../Modal/Modal';
 
 const AllItems = ({ setLinks, onClick, currentFolder }) => {
   const { requestFunction: getAllLinks } = useAsync(getAllLinksRequest);
-  const isActive = currentFolder === '전체' ? true : false;
+  const isActive = currentFolder === '전체';
 
   const getLinks = useCallback(async () => {
     const result = await getAllLinks();

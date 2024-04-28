@@ -17,6 +17,14 @@ export const OptionBox = styled.div`
   align-items: center;
   gap: 4px;
   cursor: pointer;
+  padding: 5px 8px;
+  border-radius: 8px;
+  transition: color 0.3s, background 0.3s;
+
+  &:hover {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+  }
 `;
 
 export const SelectedFolder = styled.h1`

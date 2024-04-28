@@ -5,13 +5,13 @@ import UserLoggedIn from './UserLoggedIn';
 import logo from '../../assets/icons/logo.svg';
 
 const Nav = () => {
-  const [navFixedStatus, setNavFixedStatus] = useState(true);
+  const [isNavFixed, setIsNavFixed] = useState(true);
   const navRef = useRef();
   const { pathname } = useLocation();
 
   const currentPageIsFolderPage = useCallback(() => {
     const isFolderPage = pathname === '/folder';
-    setNavFixedStatus(isFolderPage);
+    setIsNavFixed(isFolderPage);
     window.scrollTo(0, 0);
   }, [pathname]);
 
@@ -37,11 +37,11 @@ const Nav = () => {
 
   return (
     <>
-      {navFixedStatus ? (
+      {isNavFixed ? (
         <S.HeaderLayout>
           <S.LogoBox>
-            <Link to="/">
-              <img src={logo} alt="Linkbrary" />
+            <Link to='/'>
+              <img src={logo} alt='Linkbrary' />
             </Link>
           </S.LogoBox>
           <UserLoggedIn />
@@ -49,8 +49,8 @@ const Nav = () => {
       ) : (
         <S.HeaderLayout ref={navRef}>
           <S.LogoBox>
-            <Link to="/">
-              <img src={logo} alt="Linkbrary" />
+            <Link to='/'>
+              <img src={logo} alt='Linkbrary' />
             </Link>
           </S.LogoBox>
           <UserLoggedIn />

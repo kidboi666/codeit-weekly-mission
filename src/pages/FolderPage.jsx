@@ -38,7 +38,7 @@ function FolderPage() {
       ) : (
         <S.LinkSection>
           {links.map((link) => {
-            return <Card key={link.id} link={link} />;
+            return <Card key={link.id} link={link} folderList={folders} />;
           })}
         </S.LinkSection>
       )}
