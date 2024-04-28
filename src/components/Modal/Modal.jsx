@@ -69,12 +69,11 @@ const Modal = ({
   }
 
   const closingModal = (e) => {
-    e.stopPropagation();
     closeModal(false);
   };
 
   return (
-    <S.ModalLayout onClick={closingModal}>
+    <S.ModalLayout>
       {variant === 'shareFolder' ? (
         <S.ModalContainer>
           <S.CloseButton onClick={closingModal}>
@@ -100,7 +99,14 @@ const Modal = ({
       ) : (
         <S.ModalContainer>
           {title === '폴더에 추가' ? (
-            <FolderList folderList={folderList} />
+            <>
+              <S.CloseButton onClick={closingModal}>
+                <img src={cancelIcon} alt='취소이미지' />
+              </S.CloseButton>
+              <h4>{title}</h4>
+              <S.CurrentFolder>{currentCard}</S.CurrentFolder>
+              <FolderList folderList={folderList} />
+            </>
           ) : (
             <>
               <S.CloseButton onClick={closingModal}>

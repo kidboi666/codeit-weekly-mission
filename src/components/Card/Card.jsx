@@ -50,6 +50,7 @@ const Card = ({ link, folderList }) => {
         <Modal
           variant={'selectFolder'}
           closeModal={setAddModal}
+          currentCard={link.title}
           folderList={folderList}
         />
       )}
