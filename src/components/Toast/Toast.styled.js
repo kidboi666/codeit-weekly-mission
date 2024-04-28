@@ -8,7 +8,6 @@ export const Layout = styled.div`
   gap: 20px;
   border-radius: 8px;
   background: rgba(0, 0, 0, 0.8);
-  transition: all 0.3s;
 `;
 
 export const CheckContainer = styled.div`

@@ -7,7 +7,7 @@ const Toast = ({ callback }) => {
 
   setTimeout(() => {
     callback();
-  }, 2000);
+  }, 1500);
 
   return (
     <S.Layout>
