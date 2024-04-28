@@ -6,8 +6,19 @@ import kakaoIcon from '../../assets/icons/kakao_icon.svg';
 import facebookIcon from '../../assets/icons/facebook_icon.svg';
 import linkIcon from '../../assets/icons/link.svg';
 
-const FolderList = () => {
-  return <div>FolderList</div>;
+const FolderList = ({ folderList }) => {
+  return (
+    <>
+      <S.FolderList>
+        {folderList.map((folder) => (
+          <S.FolderListItem>
+            <S.ItemName>{folder.name}</S.ItemName>
+            <S.ItemLinkCount>{folder.link.count}개 링크</S.ItemLinkCount>
+          </S.FolderListItem>
+        ))}
+      </S.FolderList>
+    </>
+  );
 };
 
 const Modal = ({
@@ -28,6 +39,11 @@ const Modal = ({
       variant = 'default';
       break;
     case 'addFolder':
+      title = '폴더 추가';
+      text = '추가하기';
+      variant = 'default';
+      break;
+    case 'selectFolder':
       title = '폴더에 추가';
       text = '추가하기';
       variant = 'default';
@@ -83,14 +99,22 @@ const Modal = ({
         </S.ModalContainer>
       ) : (
         <S.ModalContainer>
-          <S.CloseButton onClick={closingModal}>
-            <img src={cancelIcon} alt='취소이미지' />
-          </S.CloseButton>
-          <h4>{title}</h4>
-          {variant === 'deleteFolder' || variant === 'deleteLink' ? (
-            <S.CurrentFolder>{currentFolder || currentCard}</S.CurrentFolder>
+          {title === '폴더에 추가' ? (
+            <FolderList folderList={folderList} />
           ) : (
-            <Input placeholder={placeholder} />
+            <>
+              <S.CloseButton onClick={closingModal}>
+                <img src={cancelIcon} alt='취소이미지' />
+              </S.CloseButton>
+              <h4>{title}</h4>
+              {variant === 'deleteFolder' || variant === 'deleteLink' ? (
+                <S.CurrentFolder>
+                  {currentFolder || currentCard}
+                </S.CurrentFolder>
+              ) : (
+                <Input placeholder={placeholder} />
+              )}
+            </>
           )}
           <Button variant={variant} text={text} type={'button'} />
         </S.ModalContainer>

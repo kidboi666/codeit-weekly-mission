@@ -48,7 +48,7 @@ const Card = ({ link, folderList }) => {
       )}
       {isAddModal && (
         <Modal
-          variant={'addFolder'}
+          variant={'selectFolder'}
           closeModal={setAddModal}
           folderList={folderList}
         />
