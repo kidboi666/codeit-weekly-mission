@@ -8,21 +8,21 @@ import Folder from '../components/Folder/Folder';
 import Card from '../components/Card/Card';
 
 function FolderPage() {
-  const { requestFunction: getUserFolder } = useAsync(getFolderRequest);
-  const [folders, setFolders] = useState([]);
+  const { requestFunction: getUserFolderList } = useAsync(getFolderRequest);
+  const [folderList, setFolderList] = useState([]);
   const [links, setLinks] = useState([]);
 
-  const getFolders = useCallback(async () => {
-    const result = await getUserFolder();
+  const getFolderList = useCallback(async () => {
+    const result = await getUserFolderList();
     if (!result) return;
 
     const { data } = result;
-    setFolders(data);
-  }, [getUserFolder]);
+    setFolderList(data);
+  }, [getUserFolderList]);
 
   useEffect(() => {
-    getFolders();
-  }, [getFolders]);
+    getFolderList();
+  }, [getFolderList]);
 
   return (
     <S.FolderPageLayout>
@@ -31,14 +31,14 @@ function FolderPage() {
       </S.HeaderBox>
       <Search />
       <S.FolderSection>
-        <Folder folders={folders} setLinks={setLinks} />
+        <Folder folderList={folderList} setLinks={setLinks} />
       </S.FolderSection>
       {links.length === 0 ? (
         <S.LinkSection $noneLinks>저장된 링크가 없습니다.</S.LinkSection>
       ) : (
         <S.LinkSection>
           {links.map((link) => {
-            return <Card key={link.id} link={link} folderList={folders} />;
+            return <Card key={link.id} link={link} folderList={folderList} />;
           })}
         </S.LinkSection>
       )}
