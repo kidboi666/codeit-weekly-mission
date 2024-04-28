@@ -5,7 +5,18 @@ import cancelIcon from '../../assets/icons/cancel.svg';
 import kakaoIcon from '../../assets/icons/kakao_icon.svg';
 import facebookIcon from '../../assets/icons/facebook_icon.svg';
 import linkIcon from '../../assets/icons/link.svg';
-
+/**
+ *
+ * @param {string} variant Button에 넘겨줄 프롭스, 버튼 색깔을 결정
+ * @param {string} title 모달 상단의 제목
+ * @param {string} text Button에 넘겨줄 프롭스, 버튼에 들어갈 텍스트
+ * @param {string} placeholder Input에 넘겨줄 프롭스,
+ * @param {function} closeModal 모달을 종료할 setter함수
+ * @param {string} currentCard 카드내부에 케밥으로 모달을 띄웠울시 받는 카드 이름
+ * @param {string} currentFolder 폴더관련 버튼으로 모달을 띄웠을시 받는 폴더 이름
+ * @param {object} folderList 폴더에 링크 추가시 출력할 폴더 리스트
+ * @returns {Element}
+ */
 const Modal = ({
   variant,
   title,
