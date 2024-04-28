@@ -102,12 +102,14 @@ export const FolderListItem = styled.div`
   padding: 8px;
   border-radius: 8px;
   line-height: 24px;
+  cursor: pointer;
 
   &:hover {
     background-color: var(--gray5-color);
     color: var(--primary-color);
   }
 `;
+
 export const ItemName = styled.div``;
 export const ItemLinkCount = styled.div`
   font-size: 14px;

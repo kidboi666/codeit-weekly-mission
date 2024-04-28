@@ -6,21 +6,6 @@ import kakaoIcon from '../../assets/icons/kakao_icon.svg';
 import facebookIcon from '../../assets/icons/facebook_icon.svg';
 import linkIcon from '../../assets/icons/link.svg';
 
-const FolderList = ({ folderList }) => {
-  return (
-    <>
-      <S.FolderList>
-        {folderList.map((folder) => (
-          <S.FolderListItem key={folder.id}>
-            <S.ItemName>{folder.name}</S.ItemName>
-            <S.ItemLinkCount>{folder.link.count}개 링크</S.ItemLinkCount>
-          </S.FolderListItem>
-        ))}
-      </S.FolderList>
-    </>
-  );
-};
-
 const Modal = ({
   variant,
   title,
@@ -68,7 +53,7 @@ const Modal = ({
       return;
   }
 
-  const closingModal = (e) => {
+  const closingModal = () => {
     closeModal(false);
   };
 
@@ -105,7 +90,16 @@ const Modal = ({
               </S.CloseButton>
               <h4>{title}</h4>
               <S.CurrentFolder>{currentCard}</S.CurrentFolder>
-              <FolderList folderList={folderList} />
+              <S.FolderList>
+                {folderList.map((folder) => (
+                  <S.FolderListItem key={folder.id}>
+                    <S.ItemName>{folder.name}</S.ItemName>
+                    <S.ItemLinkCount>
+                      {folder.link.count}개 링크
+                    </S.ItemLinkCount>
+                  </S.FolderListItem>
+                ))}
+              </S.FolderList>
             </>
           ) : (
             <>

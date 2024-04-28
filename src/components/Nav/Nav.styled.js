@@ -8,7 +8,7 @@ export const HeaderLayout = styled.div`
   padding: 20px 200px;
   background-color: var(--gray5-color);
   transition: box-shadow 0.3s;
-  z-index: 100;
+  z-index: 40;
   position: relative;
 
   ${({ $isShadow }) =>
