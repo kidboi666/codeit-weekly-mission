@@ -7,7 +7,7 @@ import AddLink from '../components/AddLink/AddLink';
 import Folder from '../components/Folder/Folder';
 import Card from '../components/Card/Card';
 
-function FolderPage() {
+const FolderPage = () => {
   const { requestFunction: getUserFolderList } = useAsync(getFolderRequest);
   const [folderList, setFolderList] = useState([]);
   const [links, setLinks] = useState([]);
@@ -44,6 +44,6 @@ function FolderPage() {
       )}
     </S.FolderPageLayout>
   );
-}
+};
 
 export default FolderPage;

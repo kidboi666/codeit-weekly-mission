@@ -21,11 +21,7 @@ export const CardLayout = styled.li`
   border-radius: 20px;
   box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.08);
   overflow: hidden;
-  transition: transform 0.3s, translate 0.3s;
-
-  // &:hover {
-  //   translate: 0 -10px;
-  // }
+  transition: transform 0.3s;
 
   &:hover ${CardImg} {
     transform: scale(1.3);
