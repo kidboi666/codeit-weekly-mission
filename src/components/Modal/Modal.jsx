@@ -28,6 +28,7 @@ const Modal = ({
   currentCard,
   folderList,
   folderId = 0,
+  setToast,
 }) => {
   switch (variant) {
     case 'changeName':
@@ -70,7 +71,6 @@ const Modal = ({
     closeModal(false);
   };
 
-  console.log(folderId);
   const copyUrl = async () => {
     try {
       await navigator.clipboard.writeText(
@@ -79,6 +79,7 @@ const Modal = ({
     } catch (error) {
       console.error(error);
     }
+    setToast(true);
   };
 
   return (

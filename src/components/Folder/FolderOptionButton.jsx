@@ -4,11 +4,13 @@ import deleteIcon from '../../assets/icons/delete.svg';
 import * as S from './FolderOptionButton.styled';
 import { useState } from 'react';
 import Modal from '../Modal/Modal';
+import Toast from '../Toast/Toast';
 
-const FolderOptionButton = ({ folderTitle }) => {
+const FolderOptionButton = ({ folderTitle, folderId }) => {
   const [isShareModal, setShareModal] = useState(false);
   const [isDeleteModal, setDeleteModal] = useState(false);
   const [isChangeNameModal, setChangeNameModal] = useState(false);
+  const [isToast, setToast] = useState(false);
 
   const onModal = (setter) => {
     return setter((prev) => !prev);
@@ -38,6 +40,8 @@ const FolderOptionButton = ({ folderTitle }) => {
           variant={'shareFolder'}
           closeModal={setShareModal}
           currentFolder={folderTitle}
+          folderId={folderId}
+          setToast={setToast}
         />
       )}
       {isDeleteModal && (
@@ -53,6 +57,11 @@ const FolderOptionButton = ({ folderTitle }) => {
           closeModal={setChangeNameModal}
           currentFolder={folderTitle}
         />
+      )}
+      {isToast && (
+        <S.ToastContainer>
+          <Toast callback={() => setToast(false)} />
+        </S.ToastContainer>
       )}
     </S.FolderOptionButtonLayout>
   );

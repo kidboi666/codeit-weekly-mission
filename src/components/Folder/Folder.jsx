@@ -70,7 +70,7 @@ const Item = ({ folder, onClick, setLinks, currentFolder }) => {
 const Folder = ({ folderList, setLinks }) => {
   const [folder, setFolder] = useState('');
   const [currentFolder, setCurrentFolder] = useState('');
-  const [currentFolderId, setCurrentFolderId] = useState(null);
+  const [currentFolderId, setCurrentFolderId] = useState(0);
   const [isModalTrigger, setModalTrigger] = useState(false);
 
   const onChangeFolderTitle = useCallback((value, id) => {
@@ -95,7 +95,6 @@ const Folder = ({ folderList, setLinks }) => {
               folder={folderItem}
               onClick={onChangeFolderTitle}
               setLinks={setLinks}
-              setFolderId={setCurrentFolderId}
             />
           ))}
         </S.FolderBox>
@@ -103,13 +102,9 @@ const Folder = ({ folderList, setLinks }) => {
           <Button variant={'addFolder'} text='폴더 추가' />
         </div>
       </S.FolderContainer>
-      <FolderOptionButton folderTitle={folder} />
+      <FolderOptionButton folderTitle={folder} folderId={currentFolderId} />
       {isModalTrigger && (
-        <Modal
-          variant='addFolder'
-          closeModal={setModalTrigger}
-          folderId={currentFolderId}
-        />
+        <Modal variant='addFolder' closeModal={setModalTrigger} />
       )}
     </S.FolderLayout>
   );
