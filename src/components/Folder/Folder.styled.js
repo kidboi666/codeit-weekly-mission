@@ -27,25 +27,3 @@ export const FolderBox = styled.div`
   gap: 8px;
   flex-wrap: wrap;
 `;
-
-export const AddButton = styled.button`
-  width: 75px;
-  color: var(--primary-color);
-  border: none;
-  background-color: var(--white-color);
-  cursor: pointer;
-
-  @media (max-width: 767px) {
-    width: 127px;
-    position: fixed;
-    padding: 8px 24px;
-    bottom: 101px;
-    left: 50%;
-    border-radius: 40px;
-    border: 1px solid var(--white-color);
-    transform: translateX(-63.5px);
-    z-index: 50;
-    background-color: var(--primary-color);
-    color: var(--white-color);
-  }
-`;

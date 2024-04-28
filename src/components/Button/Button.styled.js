@@ -11,23 +11,41 @@ export const Button = styled.button`
   ${({ $variant }) =>
     $variant === 'addFolder' &&
     `
+    width: 90px;
     background-color: var(--white-color);
     color: var(--primary-color);
 
     &::after {
       content: '+';
     }
+
+    @media (max-width: 767px) {
+      width: 127px;
+      position: fixed;
+      padding: 8px 24px;
+      bottom: 101px;
+      left: 50%;
+      border-radius: 40px;
+      border: 1px solid var(--white-color);
+      transform: translateX(-63.5px);
+      z-index: 50;
+      background-color: var(--primary-color);
+      color: var(--white-color);
+    }
     `}
+
   ${({ $variant }) =>
     ($variant === 'deleteFolder' || $variant === 'deleteLink') &&
     `
     background-color: var(--red-color);
     `}
+
   ${({ $variant }) =>
     $variant === 'default' &&
     `
     background-image: linear-gradient(270deg, #6ae3fe, var(--primary-color));
     `}
+    
   ${({ $variant, $isActive }) =>
     $variant === 'folderButton' &&
     `
