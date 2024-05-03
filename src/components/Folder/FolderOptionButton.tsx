@@ -18,7 +18,6 @@ const FolderOptionButton: React.FC<FolderOptionButtonProps> = ({
   const [isShareModal, setShareModal] = useState(false);
   const [isDeleteModal, setDeleteModal] = useState(false);
   const [isChangeNameModal, setChangeNameModal] = useState(false);
-  const [isToast, setToast] = useState(false);
 
   const onModal = (setter: React.Dispatch<React.SetStateAction<boolean>>) => {
     setter((prev: boolean) => !prev);
@@ -49,7 +48,6 @@ const FolderOptionButton: React.FC<FolderOptionButtonProps> = ({
           closeModal={setShareModal}
           currentFolder={folderTitle}
           folderId={folderId}
-          setToast={setToast}
         />
       )}
       {isDeleteModal && (
@@ -65,11 +63,6 @@ const FolderOptionButton: React.FC<FolderOptionButtonProps> = ({
           closeModal={setChangeNameModal}
           currentFolder={folderTitle}
         />
-      )}
-      {isToast && (
-        <S.ToastContainer>
-          <Toast callback={() => setToast(false)} />
-        </S.ToastContainer>
       )}
     </S.FolderOptionButtonLayout>
   );

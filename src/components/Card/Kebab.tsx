@@ -22,7 +22,9 @@ const Kebab: React.FC<Props> = ({ setDeleteModal, setAddModal }) => {
     toggle();
   };
 
-  const onModal = (setter: React.Dispatch<React.SetStateAction<boolean>>) => {
+  const onModalBox = (
+    setter: React.Dispatch<React.SetStateAction<boolean>>,
+  ) => {
     setter((prev: boolean) => !prev);
   };
 
@@ -36,13 +38,13 @@ const Kebab: React.FC<Props> = ({ setDeleteModal, setAddModal }) => {
         <S.ModalLayout>
           <button
             type='button'
-            onClick={() => onModal(setDeleteModal)}
+            onClick={() => onModalBox(setDeleteModal)}
           >
             삭제하기
           </button>
           <button
             type='button'
-            onClick={() => onModal(setAddModal)}
+            onClick={() => onModalBox(setAddModal)}
           >
             폴더에 추가
           </button>

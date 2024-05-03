@@ -6,11 +6,12 @@ import kakaoIcon from "../../assets/icons/kakao_icon.svg";
 import facebookIcon from "../../assets/icons/facebook_icon.svg";
 import linkIcon from "../../assets/icons/link.svg";
 import copyUrl from "../../utils/clipboard";
+import { useState } from "react";
+import Toast from "../Toast/Toast";
+import { FolderList } from "../../api/types";
 /**
  *
  * @param {string} variant Button에 넘겨줄 프롭스, 버튼 색깔을 결정
- * @param {string} title 모달 상단의 제목
- * @param {string} text Button에 넘겨줄 프롭스, 버튼에 들어갈 텍스트
  * @param {string} placeholder Input에 넘겨줄 프롭스,
  * @param {function} closeModal 모달을 종료할 setter함수
  * @param {string} currentCard 카드내부에 케밥으로 모달을 띄웠울시 받는 카드 이름
@@ -23,34 +24,36 @@ import copyUrl from "../../utils/clipboard";
 
 interface ModalProps {
   variant: string;
-  title?: string;
-  text?: string;
   placeholder?: string;
-  closeModal: any;
-  currentFolder?: any;
-  currentCard?: any;
-  folderList?: any;
+  closeModal: React.Dispatch<React.SetStateAction<boolean>>;
+  currentFolder?: string;
+  currentCard?: string;
+  folderList?: FolderList[];
   folderId?: number;
-  setToast?: any;
 }
 
 const Modal: React.FC<ModalProps> = ({
   variant,
-  title,
-  text,
   placeholder = "내용 입력",
   closeModal,
   currentFolder,
   currentCard,
   folderList,
   folderId = 0,
-  setToast,
 }) => {
+  const [isToast, setToast] = useState(false);
+
+  let title;
+  let text;
+
+  const closingModal = () => {
+    closeModal(false);
+  };
+
   switch (variant) {
     case "changeName":
       title = "폴더 이름 변경";
       text = "변경하기";
-      placeholder = currentFolder;
       variant = "default";
       break;
     case "addFolder":
@@ -70,6 +73,7 @@ const Modal: React.FC<ModalProps> = ({
       break;
     case "shareFolder":
       title = "폴더 공유";
+      text = "";
       break;
     case "deleteFolder":
       title = "폴더 삭제";
@@ -81,94 +85,68 @@ const Modal: React.FC<ModalProps> = ({
       break;
   }
 
-  const closingModal = () => {
-    closeModal(false);
-  };
-
   return (
     <S.ModalLayout>
-      {variant === "shareFolder" ? (
-        <S.ModalContainer>
-          <S.CloseButton onClick={closingModal}>
-            <img
-              src={cancelIcon}
-              alt='취소이미지'
-            />
-          </S.CloseButton>
-          <h4>{title}</h4>
-          <S.CurrentFolder>{currentFolder}</S.CurrentFolder>
+      <S.ModalContainer>
+        <S.CloseButton onClick={closingModal}>
+          <img
+            src={cancelIcon}
+            alt='취소이미지'
+          />
+        </S.CloseButton>
+        <h4>{title}</h4>
+        <S.CurrentFolder>{currentFolder || currentCard}</S.CurrentFolder>
+
+        {title === "폴더에 추가" ? (
+          <>
+            <S.FolderList>
+              {folderList?.map((folder) => (
+                <S.FolderListItem key={folder.id}>
+                  <S.ItemName>{folder.name}</S.ItemName>
+                  <S.ItemLinkCount>{folder.link.count}개 링크</S.ItemLinkCount>
+                </S.FolderListItem>
+              ))}
+            </S.FolderList>
+          </>
+        ) : (
+          variant !== "deleteFolder" &&
+          variant !== "deleteLink" && <Input placeholder={placeholder} />
+        )}
+        <Button
+          variant={variant}
+          text={text}
+        />
+        {title === "폴더 공유" && (
           <S.ShareContainer>
             <div>
               <img
                 src={kakaoIcon}
-                alt='카카오톡'
+                alt={kakaoIcon}
               />
               <p>카카오톡</p>
             </div>
             <div>
               <img
                 src={facebookIcon}
-                alt='페이스북'
+                alt={facebookIcon}
               />
               <p>페이스북</p>
             </div>
             <div onClick={() => copyUrl(setToast, folderId)}>
               <img
                 src={linkIcon}
-                alt='링크'
+                alt={linkIcon}
               />
               <p>링크 복사</p>
             </div>
+            {isToast && (
+              <S.ToastContainer>
+                <Toast callback={() => setToast(false)} />
+              </S.ToastContainer>
+            )}
           </S.ShareContainer>
-        </S.ModalContainer>
-      ) : (
-        <S.ModalContainer>
-          {title === "폴더에 추가" ? (
-            <>
-              <S.CloseButton onClick={closingModal}>
-                <img
-                  src={cancelIcon}
-                  alt='취소이미지'
-                />
-              </S.CloseButton>
-              <h4>{title}</h4>
-              <S.CurrentFolder>{currentCard}</S.CurrentFolder>
-              <S.FolderList>
-                {folderList.map((folder: any) => (
-                  <S.FolderListItem key={folder.id}>
-                    <S.ItemName>{folder.name}</S.ItemName>
-                    <S.ItemLinkCount>
-                      {folder.link.count}개 링크
-                    </S.ItemLinkCount>
-                  </S.FolderListItem>
-                ))}
-              </S.FolderList>
-            </>
-          ) : (
-            <>
-              <S.CloseButton onClick={closingModal}>
-                <img
-                  src={cancelIcon}
-                  alt='취소이미지'
-                />
-              </S.CloseButton>
-              <h4>{title}</h4>
-              {variant === "deleteFolder" || variant === "deleteLink" ? (
-                <S.CurrentFolder>
-                  {currentFolder || currentCard}
-                </S.CurrentFolder>
-              ) : (
-                <Input placeholder={placeholder} />
-              )}
-            </>
-          )}
-          <Button
-            variant={variant}
-            text={text}
-            type={"button"}
-          />
-        </S.ModalContainer>
-      )}
+        )}
+      </S.ModalContainer>
     </S.ModalLayout>
   );
 };

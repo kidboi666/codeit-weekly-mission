@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const ModalLayout = styled.div`
   position: fixed;
@@ -114,4 +114,12 @@ export const ItemName = styled.div``;
 export const ItemLinkCount = styled.div`
   font-size: 14px;
   color: var(--gray2-color);
+`;
+
+export const ToastContainer = styled.div`
+  position: fixed;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 70;
 `;
