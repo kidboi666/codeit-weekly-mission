@@ -1,5 +1,5 @@
 import * as S from "./UserLoggedIn.styled";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { getUserRequest } from "../../api";
 import useAsync from "../../hooks/useAsync";
 import { UserData } from "../../api/types";
@@ -8,17 +8,17 @@ const UserLoggedIn = () => {
   const { requestFunction: getUserProfile } = useAsync(getUserRequest);
   const [profile, setProfile] = useState<UserData>();
 
-  const getUser = useCallback(async () => {
+  const getUser = async () => {
     const result = await getUserProfile();
     if (!result) return;
 
     const { data } = result;
     setProfile(data[0]);
-  }, [getUserProfile]);
+  };
 
   useEffect(() => {
     getUser();
-  }, [getUser]);
+  }, []);
 
   return (
     <S.LoginLayout>

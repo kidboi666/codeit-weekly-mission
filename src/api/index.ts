@@ -1,67 +1,47 @@
-import axios from "axios";
+import { axiosInstance as axios } from "./axiosInstace";
 import camelcaseKeys from "camelcase-keys";
 import { FolderLink, FolderList, MockUserData, UserData } from "./types";
 
-const CODEIT_URL = `https://bootcamp-api.codeit.kr/api`;
-
-export const getUserRequest = async (): Promise<UserData> => {
-  const response = await axios.get(`${CODEIT_URL}/users/1`);
-
+const returnCase = (response: any, message: string) => {
   if (response.status < 200 || response.status >= 300) {
-    throw new Error("유저 프로필 가져오기 실패");
+    throw new Error(`${message} 실패`);
   }
 
   return camelcaseKeys(response.data, { deep: true });
+};
+
+export const getUserRequest = async (): Promise<UserData> => {
+  const response = await axios.get(`users/1`);
+
+  return returnCase(response, "유저 프로필 가져오기");
 };
 
 export const getLinksRequest = async (id: number): Promise<FolderLink[]> => {
-  const response = await axios.get(
-    `${CODEIT_URL}/users/1/links?folderId=${id}`,
-  );
+  const response = await axios.get(`users/1/links?folderId=${id}`);
 
-  if (response.status < 200 || response.status >= 300) {
-    throw new Error("링크 가져오기 실패");
-  }
-
-  return camelcaseKeys(response.data, { deep: true });
+  return returnCase(response, "링크 가져오기");
 };
 
 export const getFolderRequest = async (): Promise<FolderList[]> => {
-  const response = await axios.get(`${CODEIT_URL}/users/1/folders`);
+  const response = await axios.get(`users/1/folders`);
 
-  if (response.status < 200 || response.status >= 300) {
-    throw new Error("폴더 가져오기 실패");
-  }
-
-  return camelcaseKeys(response.data, { deep: true });
+  return returnCase(response, "폴더 가져오기");
 };
 
 export const getAllLinksRequest = async (): Promise<FolderLink[]> => {
-  const response = await axios.get(`${CODEIT_URL}/users/1/links`);
+  const response = await axios.get(`users/1/links`);
 
-  if (response.status < 200 || response.status >= 300) {
-    throw new Error("모든 링크 가져오기 실패");
-  }
-
-  return camelcaseKeys(response.data, { deep: true });
+  return returnCase(response, "모든 링크 가져오기");
 };
 
 export const getMockUserRequest = async (): Promise<MockUserData> => {
-  const response = await axios.get(`${CODEIT_URL}/sample/user`);
+  const response = await axios.get(`sample/user`);
 
-  if (response.status < 200 || response.status >= 300) {
-    throw new Error("샘플 유저 프로필 가져오기 실패");
-  }
-
-  return response.data;
+  return returnCase(response, "샘플 유저 프로필 가져오기");
 };
 
 export const getMockFolderRequest = async (): Promise<FolderLink> => {
-  const response = await axios.get(`${CODEIT_URL}/sample/folder`);
+  const response = await axios.get(`sample/folder`);
 
-  if (response.status < 200 || response.status >= 300) {
-    throw new Error("샘플 유저 폴더 가져오기 실패");
-  }
-
-  return response.data;
+  return returnCase(response, "샘플 유저 폴더 가져오기");
 };

@@ -1,13 +1,13 @@
-import { ReactNode } from 'react';
-import GlobalStyle from '../../styles/Global.styled';
-import Footer from '../Footer/Footer';
-import Nav from '../Nav/Nav';
+import { ReactNode } from "react";
+import GlobalStyle from "../../styles/Global.styled";
+import Footer from "../Footer/Footer";
+import Nav from "../Nav/Nav";
 
-interface Props {
+interface AppProps {
   children: ReactNode;
 }
 
-const App = ({ children }: Props) => {
+const App: React.FC<AppProps> = ({ children }) => {
   return (
     <>
       <GlobalStyle />
