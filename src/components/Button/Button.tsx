@@ -1,4 +1,5 @@
-import * as S from './Button.styled';
+import * as S from "./Button.styled";
+import React from "react";
 /**
  *
  * @param {string} variant 버튼의 형식 addFolder,deleteFolder,deleteLink,default,folderButton
@@ -10,23 +11,29 @@ import * as S from './Button.styled';
  * @returns {Element}
  */
 
-interface Props {
+interface ButtonProps {
   variant: string;
   isActive?: boolean;
   text?: string;
+  selected?: string;
   className?: string;
-  type?: 'submit' | 'button';
+  type?: "submit" | "button";
   onClick?: (e: React.MouseEvent) => void;
 }
 
-const Button = ({
-  variant = 'default',
+const Button: React.FC<ButtonProps> = ({
+  variant = "default",
   isActive,
   text,
+  selected,
   className,
-  type = 'button',
+  type = "button",
   onClick,
-}: Props) => {
+}) => {
+  if (selected) {
+    isActive = selected === text;
+  }
+
   return (
     <S.Button
       $variant={variant}

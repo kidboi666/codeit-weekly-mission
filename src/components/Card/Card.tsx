@@ -13,8 +13,8 @@ interface Props {
 }
 
 const Card: React.FC<Props> = ({ link, folderList }) => {
-  const [isDeleteModal, setDeleteModal] = useState<boolean>(false);
-  const [isAddModal, setAddModal] = useState<boolean>(false);
+  const [isDeleteModal, setDeleteModal] = useState(false);
+  const [isAddModal, setAddModal] = useState(false);
   const timeDelta = formatDate(link.createdAt);
   const createdDate = calculateTime(link.createdAt);
   const preview = link.imageSource;

@@ -7,89 +7,6 @@ import Button from "../Button/Button";
 import Modal from "../Modal/Modal";
 import { FolderLink, FolderList } from "../../api/types";
 
-interface ItemListProps {
-  setLinks: React.Dispatch<React.SetStateAction<FolderLink[]>>;
-  onClick: (value: string, id?: number) => void;
-  currentFolder: string;
-}
-
-const ItemList: React.FC<ItemListProps> = ({
-  setLinks,
-  onClick,
-  currentFolder,
-}) => {
-  const { requestFunction: getAllLinks } = useAsync(getAllLinksRequest);
-  const isActive = currentFolder === "전체";
-
-  const getLinks = useCallback(async () => {
-    const result = await getAllLinks();
-    if (!result) return;
-
-    const { data } = result;
-    setLinks(data);
-  }, [getAllLinks, setLinks]);
-
-  const onChangeFolder = useCallback(() => {
-    getLinks();
-    onClick("전체");
-  }, [getLinks, onClick]);
-
-  useEffect(() => {
-    onChangeFolder();
-  }, [onChangeFolder]);
-
-  return (
-    <Button
-      variant={"folderButton"}
-      isActive={isActive}
-      onClick={onChangeFolder}
-      text={"전체"}
-    />
-  );
-};
-
-interface ItemProps {
-  folder: FolderList;
-  onClick: (value: string, id?: number) => void;
-  setLinks: React.Dispatch<React.SetStateAction<FolderLink[]>>;
-  currentFolder: string;
-}
-
-const Item: React.FC<ItemProps> = ({
-  folder,
-  onClick,
-  setLinks,
-  currentFolder,
-}) => {
-  const { requestFunction: getFolderLink } = useAsync(getLinksRequest);
-  const isActive = folder.name === currentFolder;
-
-  const getLinks = useCallback(
-    async (id: number) => {
-      const result = await getFolderLink(id);
-      if (!result) return;
-
-      const { data } = result;
-      setLinks(data);
-    },
-    [getFolderLink, setLinks],
-  );
-
-  const onChangeFolder = () => {
-    getLinks(folder.id);
-    onClick(folder.name, folder.id);
-  };
-
-  return (
-    <Button
-      variant={"folderButton"}
-      isActive={isActive}
-      onClick={onChangeFolder}
-      text={folder.name}
-    />
-  );
-};
-
 interface FolderProps {
   folderList: FolderList[];
   setLinks: React.Dispatch<React.SetStateAction<FolderLink[]>>;
@@ -100,31 +17,60 @@ const Folder: React.FC<FolderProps> = ({ folderList, setLinks }) => {
   const [currentFolder, setCurrentFolder] = useState("");
   const [currentFolderId, setCurrentFolderId] = useState(0);
   const [isModalTrigger, setModalTrigger] = useState(false);
+  const { requestFunction: allLinksRequest } = useAsync(getAllLinksRequest);
+  const { requestFunction: LinkRequest } = useAsync(getLinksRequest);
 
-  const onChangeFolderTitle = useCallback((value: string, id?: number) => {
-    setFolder(value);
-    setCurrentFolder(value);
+  const getAllLinks = async () => {
+    const result = await allLinksRequest();
+    if (!result) return;
+
+    const { data } = result;
+    setLinks(data);
+  };
+
+  const getLink = async (id: number) => {
+    const result = await LinkRequest(id);
+    if (!result) return;
+
+    const { data } = result;
+    setLinks(data);
+  };
+
+  const onChangeFolderTitle = useCallback((name: string, id?: number) => {
+    setFolder(name);
+    setCurrentFolder(name);
     if (id) {
       setCurrentFolderId(id);
     }
+  }, []);
+
+  const onChangeAllLinksFolder = useCallback(() => {
+    getAllLinks();
+    onChangeFolderTitle("전체");
+  }, []);
+
+  const onChangeLinkFolder = useCallback((name: string, id: number) => {
+    getLink(id);
+    onChangeFolderTitle(name, id);
   }, []);
 
   return (
     <S.FolderLayout>
       <S.FolderContainer>
         <S.FolderBox>
-          <ItemList
-            currentFolder={currentFolder}
-            setLinks={setLinks}
-            onClick={onChangeFolderTitle}
+          <Button
+            variant={"folderButton"}
+            selected={currentFolder}
+            onClick={() => onChangeAllLinksFolder()}
+            text={"전체"}
           />
           {folderList.map((folderItem) => (
-            <Item
-              currentFolder={currentFolder}
+            <Button
               key={folderItem.id}
-              folder={folderItem}
-              onClick={onChangeFolderTitle}
-              setLinks={setLinks}
+              variant={"folderButton"}
+              selected={currentFolder}
+              onClick={() => onChangeLinkFolder(folderItem.name, folderItem.id)}
+              text={folderItem.name}
             />
           ))}
         </S.FolderBox>
