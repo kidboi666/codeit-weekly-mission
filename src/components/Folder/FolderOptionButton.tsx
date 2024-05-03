@@ -4,7 +4,6 @@ import deleteIcon from "../../assets/icons/delete.svg";
 import * as S from "./FolderOptionButton.styled";
 import React, { useState } from "react";
 import Modal from "../Modal/Modal";
-import Toast from "../Toast/Toast";
 
 interface FolderOptionButtonProps {
   folderTitle: string;

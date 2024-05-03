@@ -9,10 +9,8 @@ const UserLoggedIn = () => {
   const [profile, setProfile] = useState<UserData>();
 
   const getUser = async () => {
-    const result = await getUserProfile();
-    if (!result) return;
-
-    const { data } = result;
+    const { data } = await getUserProfile();
+    if (!data) return null;
     setProfile(data[0]);
   };
 
@@ -24,17 +22,11 @@ const UserLoggedIn = () => {
     <S.LoginLayout>
       {profile ? (
         <>
-          <img
-            src={profile.imageSource}
-            alt='프로필 이미지'
-          />
+          <img src={profile.imageSource} alt='프로필 이미지' />
           <div>{profile.email}</div>
         </>
       ) : (
-        <S.LoginButton
-          variant='default'
-          text='로그인'
-        />
+        <S.LoginButton variant='default' text='로그인' />
       )}
     </S.LoginLayout>
   );

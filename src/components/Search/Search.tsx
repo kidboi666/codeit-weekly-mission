@@ -7,15 +7,9 @@ const Search: React.FC = () => {
       <S.FormBox>
         <S.Form>
           <button>
-            <img
-              src={searchIcon}
-              alt={"검색 돋보기 아이콘"}
-            />
+            <img src={searchIcon} alt={"검색 돋보기 아이콘"} />
           </button>
-          <input
-            id={"search"}
-            placeholder={"링크를 검색해 보세요."}
-          />
+          <input id={"search"} placeholder={"링크를 검색해 보세요."} />
         </S.Form>
       </S.FormBox>
     </S.SearchLayout>

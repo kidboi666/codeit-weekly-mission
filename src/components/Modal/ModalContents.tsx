@@ -1,7 +1,7 @@
 import kakaoIcon from "../../assets/icons/kakao_icon.svg";
 import facebookIcon from "../../assets/icons/facebook_icon.svg";
 import linkIcon from "../../assets/icons/link.svg";
-import copyUrl from "../../utils/clipboard";
+import copyUrl from "../../utils/copyUrl";
 import Toast from "../Toast/Toast";
 import * as S from "./ModalContents.styled";
 import { FolderList } from "../../api/types";
@@ -23,24 +23,15 @@ export const Share: React.FC<ShareProps> = ({
     <>
       <S.ShareContainer>
         <div>
-          <img
-            src={kakaoIcon}
-            alt={kakaoIcon}
-          />
+          <img src={kakaoIcon} alt={kakaoIcon} />
           <p>카카오톡</p>
         </div>
         <div>
-          <img
-            src={facebookIcon}
-            alt={facebookIcon}
-          />
+          <img src={facebookIcon} alt={facebookIcon} />
           <p>페이스북</p>
         </div>
         <div onClick={() => copyUrl(setToast, folderId)}>
-          <img
-            src={linkIcon}
-            alt={linkIcon}
-          />
+          <img src={linkIcon} alt={linkIcon} />
           <p>링크 복사</p>
         </div>
       </S.ShareContainer>
@@ -74,10 +65,7 @@ export const LinkFolder: React.FC<LinkFolderProps> = ({
           </S.FolderListItem>
         ))}
       </S.FolderList>
-      <Button
-        variant={variant}
-        text={text}
-      />
+      <Button variant={variant} text={text} />
     </>
   );
 };
@@ -89,12 +77,7 @@ interface DeleteProps {
 
 export const Delete: React.FC<DeleteProps> = ({ variant, text }) => {
   console.log(variant, text);
-  return (
-    <Button
-      variant={variant}
-      text={text}
-    />
-  );
+  return <Button variant={variant} text={text} />;
 };
 
 interface ChangeNameProps {
@@ -111,10 +94,7 @@ export const ChangeName: React.FC<ChangeNameProps> = ({
   return (
     <>
       <Input placeholder={currentFolder} />
-      <Button
-        variant={variant}
-        text={text}
-      />
+      <Button variant={variant} text={text} />
     </>
   );
 };
@@ -128,10 +108,20 @@ export const AddFolder: React.FC<AddFolderProps> = ({ variant, text }) => {
   return (
     <>
       <Input placeholder={"생성할 폴더 이름"} />
-      <Button
-        variant={variant}
-        text={text}
-      />
+      <Button variant={variant} text={text} />
+    </>
+  );
+};
+
+interface AddLinkProps {
+  variant: string;
+  text?: string;
+}
+
+export const AddLink: React.FC<AddLinkProps> = ({ variant, text }) => {
+  return (
+    <>
+      <Button variant={variant} text={text} />
     </>
   );
 };

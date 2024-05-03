@@ -12,12 +12,10 @@ const SharedPage = () => {
   const [folders, setFolder] = useState([]);
 
   const getFolder = async () => {
-    const result = await getUserFolder();
-    if (!result) return;
-
     const {
       folder: { links },
-    } = result;
+    } = await getUserFolder();
+    if (!links) return [];
     setFolder(links);
   };
 
@@ -33,12 +31,7 @@ const SharedPage = () => {
       <Search />
       <S.FolderBox>
         {folders.map((link: FolderLink) => {
-          return (
-            <Card
-              key={link.id}
-              link={link}
-            />
-          );
+          return <Card key={link.id} link={link} />;
         })}
       </S.FolderBox>
     </S.SharedPageLayout>

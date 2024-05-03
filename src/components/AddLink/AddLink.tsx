@@ -14,10 +14,7 @@ const AddLink = () => {
     <S.AddLinkLayout>
       <S.FormContainer>
         <S.FormBox>
-          <S.IconImg
-            src={LinkIcon}
-            alt={""}
-          />
+          <S.IconImg src={LinkIcon} alt={""} />
           <S.StyledInput placeholder='링크를 추가해 보세요' />
           <S.StyledButton
             variant={"default"}
@@ -28,10 +25,7 @@ const AddLink = () => {
         </S.FormBox>
       </S.FormContainer>
       {isModalTrigger && (
-        <Modal
-          variant={"addLink"}
-          closeModal={setIsModalTrigger}
-        />
+        <Modal variant={"addLink"} closeModal={setIsModalTrigger} />
       )}
     </S.AddLinkLayout>
   );

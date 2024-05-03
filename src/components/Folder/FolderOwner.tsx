@@ -10,12 +10,9 @@ const FolderOwner = () => {
   const [star, setStar] = useState("");
 
   const getOwner = async () => {
-    const result = await getUserFolder();
-    if (!result) return;
-
-    const {
-      folder: { owner, name },
-    } = result;
+    const { folder } = await getUserFolder();
+    if (!folder) return null;
+    const { owner, name } = folder;
     setOwner(owner);
     setStar(name);
   };
@@ -27,10 +24,7 @@ const FolderOwner = () => {
   return (
     <S.OwnerLayoutList>
       <li>
-        <S.OwnerImg
-          src={owner?.profileImageSource}
-          alt='프로필 이미지'
-        />
+        <S.OwnerImg src={owner?.profileImageSource} alt='프로필 이미지' />
       </li>
       <li>
         <S.OwnerName>{owner?.name}</S.OwnerName>

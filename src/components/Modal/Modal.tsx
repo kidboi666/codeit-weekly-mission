@@ -80,33 +80,18 @@ const Modal: React.FC<ModalProps> = ({
     <S.ModalLayout>
       <S.ModalContainer>
         <S.CloseButton onClick={closingModal}>
-          <img
-            src={cancelIcon}
-            alt='취소이미지'
-          />
+          <img src={cancelIcon} alt='취소이미지' />
         </S.CloseButton>
         <h4>{title}</h4>
         <S.CurrentFolder>{currentFolder || currentCard}</S.CurrentFolder>
 
-        {title === "폴더 추가" && (
-          <M.AddFolder
-            variant={variant}
-            text={text}
-          />
-        )}
+        {title === "폴더 추가" && <M.AddFolder variant={variant} text={text} />}
+        {title === "링크 추가" && <M.AddLink variant={variant} text={text} />}
         {title === "폴더에 추가" && (
-          <M.LinkFolder
-            variant={variant}
-            text={text}
-            folderList={folderList}
-          />
+          <M.LinkFolder variant={variant} text={text} folderList={folderList} />
         )}
         {title === "폴더 공유" && (
-          <M.Share
-            isToast={isToast}
-            setToast={setToast}
-            folderId={folderId}
-          />
+          <M.Share isToast={isToast} setToast={setToast} folderId={folderId} />
         )}
         {title === "폴더 이름 변경" && (
           <M.ChangeName
@@ -115,18 +100,8 @@ const Modal: React.FC<ModalProps> = ({
             text={text}
           />
         )}
-        {title === "폴더 삭제" && (
-          <M.Delete
-            variant={variant}
-            text={text}
-          />
-        )}
-        {variant === "링크 삭제" && (
-          <M.Delete
-            variant={variant}
-            text={text}
-          />
-        )}
+        {title === "폴더 삭제" && <M.Delete variant={variant} text={text} />}
+        {title === "링크 삭제" && <M.Delete variant={variant} text={text} />}
       </S.ModalContainer>
     </S.ModalLayout>
   );

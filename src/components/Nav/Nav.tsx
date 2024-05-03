@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import * as S from './Nav.styled';
-import UserLoggedIn from './UserLoggedIn';
-import logo from '../../assets/icons/logo.svg';
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import * as S from "./Nav.styled";
+import UserLoggedIn from "./UserLoggedIn";
+import logo from "../../assets/icons/logo.svg";
 
 const Nav = () => {
   const [isShadow, setShadow] = useState(false);
@@ -20,10 +20,10 @@ const Nav = () => {
   };
 
   useEffect(() => {
-    if (pathname === '/folder') return;
-    window.addEventListener('scroll', handleNavigation);
+    if (pathname === "/folder") return;
+    window.addEventListener("scroll", handleNavigation);
     return () => {
-      window.removeEventListener('scroll', handleNavigation);
+      window.removeEventListener("scroll", handleNavigation);
     };
   }, [pathname]);
 

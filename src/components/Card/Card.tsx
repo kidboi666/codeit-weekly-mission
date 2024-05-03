@@ -21,32 +21,19 @@ const Card: React.FC<Props> = ({ link, folderList }) => {
 
   return (
     <S.CardLayout>
-      <S.CardLinkContainer
-        href={link.url}
-        target='_blank'
-        rel='noreferrer'
-      >
+      <S.CardLinkContainer href={link.url} target='_blank' rel='noreferrer'>
         <S.CardImgContainer>
           <Star />
           {preview ? (
-            <S.CardImg
-              src={preview}
-              alt={link.title}
-            />
+            <S.CardImg src={preview} alt={link.title} />
           ) : (
             <S.BlankImgBox>
-              <S.CardImg
-                src={blankLogo}
-                alt={link.title}
-              />
+              <S.CardImg src={blankLogo} alt={link.title} />
             </S.BlankImgBox>
           )}
         </S.CardImgContainer>
         <S.CardDescriptionContainer>
-          <Kebab
-            setDeleteModal={setDeleteModal}
-            setAddModal={setAddModal}
-          />
+          <Kebab setDeleteModal={setDeleteModal} setAddModal={setAddModal} />
           <S.CreatedDate>{createdDate}</S.CreatedDate>
           <S.Title>{link.title}</S.Title>
           <S.TimeStamp>{timeDelta}</S.TimeStamp>

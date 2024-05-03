@@ -73,10 +73,7 @@ const Folder: React.FC<FolderProps> = ({ folderList, setLinks }) => {
           ))}
         </S.FolderBox>
         <div onClick={() => setModalTrigger((prev) => !prev)}>
-          <Button
-            variant={"addFolder"}
-            text='폴더 추가'
-          />
+          <Button variant={"addFolder"} text='폴더 추가' />
         </div>
       </S.FolderContainer>
       <FolderOptionButton
@@ -84,10 +81,7 @@ const Folder: React.FC<FolderProps> = ({ folderList, setLinks }) => {
         folderId={currentFolderId}
       />
       {isModalTrigger && (
-        <Modal
-          variant='addFolder'
-          closeModal={setModalTrigger}
-        />
+        <Modal variant='addFolder' closeModal={setModalTrigger} />
       )}
     </S.FolderLayout>
   );

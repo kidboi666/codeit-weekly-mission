@@ -5,16 +5,10 @@ const Homepage = () => {
   return (
     <S.HomepageLayout>
       <Link to='/folder'>
-        <S.StyledButton
-          variant={"default"}
-          text={"folder page"}
-        />
+        <S.StyledButton variant={"default"} text={"folder page"} />
       </Link>
       <Link to='/shared'>
-        <S.StyledButton
-          variant={"default"}
-          text={"shared page"}
-        />
+        <S.StyledButton variant={"default"} text={"shared page"} />
       </Link>
     </S.HomepageLayout>
   );

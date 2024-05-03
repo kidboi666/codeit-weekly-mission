@@ -30,22 +30,13 @@ const Kebab: React.FC<Props> = ({ setDeleteModal, setAddModal }) => {
 
   return (
     <S.KebabLayout onClick={onClickKebabButton}>
-      <img
-        src={kebobIcon}
-        alt='케밥 버튼 아이콘'
-      />
+      <img src={kebobIcon} alt='케밥 버튼 아이콘' />
       {value && (
         <S.ModalLayout>
-          <button
-            type='button'
-            onClick={() => onModalBox(setDeleteModal)}
-          >
+          <button type='button' onClick={() => onModalBox(setDeleteModal)}>
             삭제하기
           </button>
-          <button
-            type='button'
-            onClick={() => onModalBox(setAddModal)}
-          >
+          <button type='button' onClick={() => onModalBox(setAddModal)}>
             폴더에 추가
           </button>
         </S.ModalLayout>

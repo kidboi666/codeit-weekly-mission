@@ -30,21 +30,14 @@ const FolderPage = () => {
       </S.HeaderBox>
       <Search />
       <S.FolderSection>
-        <Folder
-          folderList={folderList}
-          setLinks={setLinks}
-        />
+        <Folder folderList={folderList} setLinks={setLinks} />
       </S.FolderSection>
       {links.length === 0 ? (
         <S.LinkSection $noneLinks>저장된 링크가 없습니다.</S.LinkSection>
       ) : (
         <S.LinkSection>
           {links.map((link: FolderLink) => (
-            <Card
-              key={link.id}
-              link={link}
-              folderList={folderList}
-            />
+            <Card key={link.id} link={link} folderList={folderList} />
           ))}
         </S.LinkSection>
       )}

@@ -10,7 +10,7 @@ import * as S from "./Input.styled";
  */
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
-  setter?: () => void;
+  setter?: React.Dispatch<React.SetStateAction<any>>;
 }
 
 const Input = ({ placeholder, className, setter, value }: Props) => {
