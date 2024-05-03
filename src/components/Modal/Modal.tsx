@@ -1,10 +1,11 @@
-import Button from '../Button/Button';
-import Input from '../Input/Input';
-import * as S from './Modal.styled';
-import cancelIcon from '../../assets/icons/cancel.svg';
-import kakaoIcon from '../../assets/icons/kakao_icon.svg';
-import facebookIcon from '../../assets/icons/facebook_icon.svg';
-import linkIcon from '../../assets/icons/link.svg';
+import Button from "../Button/Button";
+import Input from "../Input/Input";
+import * as S from "./Modal.styled";
+import cancelIcon from "../../assets/icons/cancel.svg";
+import kakaoIcon from "../../assets/icons/kakao_icon.svg";
+import facebookIcon from "../../assets/icons/facebook_icon.svg";
+import linkIcon from "../../assets/icons/link.svg";
+import copyUrl from "../../utils/clipboard";
 /**
  *
  * @param {string} variant Button에 넘겨줄 프롭스, 버튼 색깔을 결정
@@ -20,7 +21,7 @@ import linkIcon from '../../assets/icons/link.svg';
  * @returns {Element}
  */
 
-interface Props {
+interface ModalProps {
   variant: string;
   title?: string;
   text?: string;
@@ -33,50 +34,50 @@ interface Props {
   setToast?: any;
 }
 
-const Modal = ({
+const Modal: React.FC<ModalProps> = ({
   variant,
   title,
   text,
-  placeholder = '내용 입력',
+  placeholder = "내용 입력",
   closeModal,
   currentFolder,
   currentCard,
   folderList,
   folderId = 0,
   setToast,
-}: Props) => {
+}) => {
   switch (variant) {
-    case 'changeName':
-      title = '폴더 이름 변경';
-      text = '변경하기';
+    case "changeName":
+      title = "폴더 이름 변경";
+      text = "변경하기";
       placeholder = currentFolder;
-      variant = 'default';
+      variant = "default";
       break;
-    case 'addFolder':
-      title = '폴더 추가';
-      text = '추가하기';
-      variant = 'default';
+    case "addFolder":
+      title = "폴더 추가";
+      text = "추가하기";
+      variant = "default";
       break;
-    case 'selectFolder':
-      title = '폴더에 추가';
-      text = '추가하기';
-      variant = 'default';
+    case "selectFolder":
+      title = "폴더에 추가";
+      text = "추가하기";
+      variant = "default";
       break;
-    case 'addLink':
-      title = '링크 추가';
-      text = '추가하기';
-      variant = 'default';
+    case "addLink":
+      title = "링크 추가";
+      text = "추가하기";
+      variant = "default";
       break;
-    case 'shareFolder':
-      title = '폴더 공유';
+    case "shareFolder":
+      title = "폴더 공유";
       break;
-    case 'deleteFolder':
-      title = '폴더 삭제';
-      text = '삭제하기';
+    case "deleteFolder":
+      title = "폴더 삭제";
+      text = "삭제하기";
       break;
-    case 'deleteLink':
-      title = '링크 삭제';
-      text = '삭제하기';
+    case "deleteLink":
+      title = "링크 삭제";
+      text = "삭제하기";
       break;
   }
 
@@ -84,47 +85,51 @@ const Modal = ({
     closeModal(false);
   };
 
-  const copyUrl = async () => {
-    try {
-      await navigator.clipboard.writeText(
-        `https://resilient-tapioca-37feb1.netlify.app/shared/${folderId}`
-      );
-    } catch (error) {
-      console.error(error);
-    }
-    setToast(true);
-  };
-
   return (
     <S.ModalLayout>
-      {variant === 'shareFolder' ? (
+      {variant === "shareFolder" ? (
         <S.ModalContainer>
           <S.CloseButton onClick={closingModal}>
-            <img src={cancelIcon} alt='취소이미지' />
+            <img
+              src={cancelIcon}
+              alt='취소이미지'
+            />
           </S.CloseButton>
           <h4>{title}</h4>
           <S.CurrentFolder>{currentFolder}</S.CurrentFolder>
           <S.ShareContainer>
             <div>
-              <img src={kakaoIcon} alt='카카오톡' />
+              <img
+                src={kakaoIcon}
+                alt='카카오톡'
+              />
               <p>카카오톡</p>
             </div>
             <div>
-              <img src={facebookIcon} alt='페이스북' />
+              <img
+                src={facebookIcon}
+                alt='페이스북'
+              />
               <p>페이스북</p>
             </div>
-            <div onClick={copyUrl}>
-              <img src={linkIcon} alt='링크' />
+            <div onClick={() => copyUrl(setToast, folderId)}>
+              <img
+                src={linkIcon}
+                alt='링크'
+              />
               <p>링크 복사</p>
             </div>
           </S.ShareContainer>
         </S.ModalContainer>
       ) : (
         <S.ModalContainer>
-          {title === '폴더에 추가' ? (
+          {title === "폴더에 추가" ? (
             <>
               <S.CloseButton onClick={closingModal}>
-                <img src={cancelIcon} alt='취소이미지' />
+                <img
+                  src={cancelIcon}
+                  alt='취소이미지'
+                />
               </S.CloseButton>
               <h4>{title}</h4>
               <S.CurrentFolder>{currentCard}</S.CurrentFolder>
@@ -142,10 +147,13 @@ const Modal = ({
           ) : (
             <>
               <S.CloseButton onClick={closingModal}>
-                <img src={cancelIcon} alt='취소이미지' />
+                <img
+                  src={cancelIcon}
+                  alt='취소이미지'
+                />
               </S.CloseButton>
               <h4>{title}</h4>
-              {variant === 'deleteFolder' || variant === 'deleteLink' ? (
+              {variant === "deleteFolder" || variant === "deleteLink" ? (
                 <S.CurrentFolder>
                   {currentFolder || currentCard}
                 </S.CurrentFolder>
@@ -154,7 +162,11 @@ const Modal = ({
               )}
             </>
           )}
-          <Button variant={variant} text={text} type={'button'} />
+          <Button
+            variant={variant}
+            text={text}
+            type={"button"}
+          />
         </S.ModalContainer>
       )}
     </S.ModalLayout>

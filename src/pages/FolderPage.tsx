@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getFolderRequest } from "../api";
 import * as S from "./FolderPage.styled";
 import useAsync from "../hooks/useAsync";
@@ -13,17 +13,15 @@ const FolderPage = () => {
   const [folderList, setFolderList] = useState([]);
   const [links, setLinks] = useState<FolderLink[]>([]);
 
-  const getFolderList = useCallback(async () => {
-    const result = await getUserFolderList();
-    if (!result) return;
-
-    const { data } = result;
+  const getFolderList = async () => {
+    const { data } = await getUserFolderList();
+    if (!data) return [];
     setFolderList(data);
-  }, [getUserFolderList]);
+  };
 
   useEffect(() => {
     getFolderList();
-  }, [getFolderList]);
+  }, []);
 
   return (
     <S.FolderPageLayout>

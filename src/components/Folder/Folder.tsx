@@ -13,7 +13,6 @@ interface FolderProps {
 }
 
 const Folder: React.FC<FolderProps> = ({ folderList, setLinks }) => {
-  const [folder, setFolder] = useState("");
   const [currentFolder, setCurrentFolder] = useState("");
   const [currentFolderId, setCurrentFolderId] = useState(0);
   const [isModalTrigger, setModalTrigger] = useState(false);
@@ -21,23 +20,18 @@ const Folder: React.FC<FolderProps> = ({ folderList, setLinks }) => {
   const { requestFunction: LinkRequest } = useAsync(getLinksRequest);
 
   const getAllLinks = async () => {
-    const result = await allLinksRequest();
-    if (!result) return;
-
-    const { data } = result;
+    const { data } = await allLinksRequest();
+    if (!data) return [];
     setLinks(data);
   };
 
   const getLink = async (id: number) => {
-    const result = await LinkRequest(id);
-    if (!result) return;
-
-    const { data } = result;
+    const { data } = await LinkRequest(id);
+    if (!data) return [];
     setLinks(data);
   };
 
   const onChangeFolderTitle = useCallback((name: string, id?: number) => {
-    setFolder(name);
     setCurrentFolder(name);
     if (id) {
       setCurrentFolderId(id);
@@ -52,6 +46,10 @@ const Folder: React.FC<FolderProps> = ({ folderList, setLinks }) => {
   const onChangeLinkFolder = useCallback((name: string, id: number) => {
     getLink(id);
     onChangeFolderTitle(name, id);
+  }, []);
+
+  useEffect(() => {
+    onChangeAllLinksFolder();
   }, []);
 
   return (
@@ -82,7 +80,7 @@ const Folder: React.FC<FolderProps> = ({ folderList, setLinks }) => {
         </div>
       </S.FolderContainer>
       <FolderOptionButton
-        folderTitle={folder}
+        folderTitle={currentFolder}
         folderId={currentFolderId}
       />
       {isModalTrigger && (
