@@ -11,7 +11,7 @@ const useAsync = (asyncFunction: any) => {
       return await asyncFunction(...args);
     } catch (error: any) {
       setError(error);
-      return;
+      throw error;
     } finally {
       setPending(false);
     }

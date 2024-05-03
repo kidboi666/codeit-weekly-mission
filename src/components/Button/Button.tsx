@@ -35,13 +35,7 @@ const Button: React.FC<ButtonProps> = ({
   }
 
   return (
-    <S.Button
-      $variant={variant}
-      $isActive={isActive}
-      type={type}
-      onClick={onClick}
-      className={className}
-    >
+    <S.Button $variant={variant} $isActive={isActive} type={type} onClick={onClick} className={className}>
       {text}
     </S.Button>
   );

@@ -24,16 +24,8 @@ interface ModalProps {
   folderId?: number;
 }
 
-const Modal: React.FC<ModalProps> = ({
-  variant,
-  closeModal,
-  currentFolder,
-  currentCard,
-  folderList,
-  folderId = 0,
-}) => {
+const Modal: React.FC<ModalProps> = ({ variant, closeModal, currentFolder, currentCard, folderList, folderId = 0 }) => {
   const [isToast, setToast] = useState(false);
-
   let title;
   let text;
 
@@ -87,19 +79,9 @@ const Modal: React.FC<ModalProps> = ({
 
         {title === "폴더 추가" && <M.AddFolder variant={variant} text={text} />}
         {title === "링크 추가" && <M.AddLink variant={variant} text={text} />}
-        {title === "폴더에 추가" && (
-          <M.LinkFolder variant={variant} text={text} folderList={folderList} />
-        )}
-        {title === "폴더 공유" && (
-          <M.Share isToast={isToast} setToast={setToast} folderId={folderId} />
-        )}
-        {title === "폴더 이름 변경" && (
-          <M.ChangeName
-            currentFolder={currentFolder}
-            variant={variant}
-            text={text}
-          />
-        )}
+        {title === "폴더에 추가" && <M.LinkFolder variant={variant} text={text} folderList={folderList} />}
+        {title === "폴더 공유" && <M.Share isToast={isToast} setToast={setToast} folderId={folderId} />}
+        {title === "폴더 이름 변경" && <M.ChangeName currentFolder={currentFolder} variant={variant} text={text} />}
         {title === "폴더 삭제" && <M.Delete variant={variant} text={text} />}
         {title === "링크 삭제" && <M.Delete variant={variant} text={text} />}
       </S.ModalContainer>

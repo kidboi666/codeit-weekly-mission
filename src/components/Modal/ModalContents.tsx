@@ -14,11 +14,23 @@ interface ShareProps {
   folderId: number;
 }
 
-export const Share: React.FC<ShareProps> = ({
-  isToast,
-  setToast,
-  folderId,
-}) => {
+interface DeleteProps {
+  variant: string;
+  text?: string;
+}
+
+interface LinkFolderProps extends DeleteProps {
+  folderList?: FolderList[];
+}
+
+interface ChangeNameProps extends DeleteProps {
+  currentFolder?: string;
+}
+
+interface AddFolderProps extends DeleteProps {}
+interface AddLinkProps extends DeleteProps {}
+
+export const Share: React.FC<ShareProps> = ({ isToast, setToast, folderId }) => {
   return (
     <>
       <S.ShareContainer>
@@ -37,24 +49,14 @@ export const Share: React.FC<ShareProps> = ({
       </S.ShareContainer>
       {isToast && (
         <S.ToastContainer>
-          <Toast callback={() => setToast(false)} />
+          <Toast setToast={setToast} />
         </S.ToastContainer>
       )}
     </>
   );
 };
 
-interface LinkFolderProps {
-  variant: string;
-  text?: string;
-  folderList?: FolderList[];
-}
-
-export const LinkFolder: React.FC<LinkFolderProps> = ({
-  folderList,
-  variant,
-  text,
-}) => {
+export const LinkFolder: React.FC<LinkFolderProps> = ({ folderList, variant, text }) => {
   return (
     <>
       <S.FolderList>
@@ -70,27 +72,11 @@ export const LinkFolder: React.FC<LinkFolderProps> = ({
   );
 };
 
-interface DeleteProps {
-  variant: string;
-  text?: string;
-}
-
 export const Delete: React.FC<DeleteProps> = ({ variant, text }) => {
-  console.log(variant, text);
   return <Button variant={variant} text={text} />;
 };
 
-interface ChangeNameProps {
-  variant: string;
-  text?: string;
-  currentFolder?: string;
-}
-
-export const ChangeName: React.FC<ChangeNameProps> = ({
-  variant,
-  text,
-  currentFolder,
-}) => {
+export const ChangeName: React.FC<ChangeNameProps> = ({ variant, text, currentFolder }) => {
   return (
     <>
       <Input placeholder={currentFolder} />
@@ -98,11 +84,6 @@ export const ChangeName: React.FC<ChangeNameProps> = ({
     </>
   );
 };
-
-interface AddFolderProps {
-  variant: string;
-  text?: string;
-}
 
 export const AddFolder: React.FC<AddFolderProps> = ({ variant, text }) => {
   return (
@@ -112,11 +93,6 @@ export const AddFolder: React.FC<AddFolderProps> = ({ variant, text }) => {
     </>
   );
 };
-
-interface AddLinkProps {
-  variant: string;
-  text?: string;
-}
 
 export const AddLink: React.FC<AddLinkProps> = ({ variant, text }) => {
   return (

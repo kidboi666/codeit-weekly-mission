@@ -56,12 +56,7 @@ const Folder: React.FC<FolderProps> = ({ folderList, setLinks }) => {
     <S.FolderLayout>
       <S.FolderContainer>
         <S.FolderBox>
-          <Button
-            variant={"folderButton"}
-            selected={currentFolder}
-            onClick={() => onChangeAllLinksFolder()}
-            text={"전체"}
-          />
+          <Button variant={"folderButton"} selected={currentFolder} onClick={onChangeAllLinksFolder} text={"전체"} />
           {folderList.map((folderItem) => (
             <Button
               key={folderItem.id}
@@ -76,13 +71,8 @@ const Folder: React.FC<FolderProps> = ({ folderList, setLinks }) => {
           <Button variant={"addFolder"} text='폴더 추가' />
         </div>
       </S.FolderContainer>
-      <FolderOptionButton
-        folderTitle={currentFolder}
-        folderId={currentFolderId}
-      />
-      {isModalTrigger && (
-        <Modal variant='addFolder' closeModal={setModalTrigger} />
-      )}
+      <FolderOptionButton folderTitle={currentFolder} folderId={currentFolderId} />
+      {isModalTrigger && <Modal variant='addFolder' closeModal={setModalTrigger} />}
     </S.FolderLayout>
   );
 };

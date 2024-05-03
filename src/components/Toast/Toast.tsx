@@ -1,16 +1,16 @@
 import * as S from "./Toast.styled";
 
 interface ToastProps {
-  callback: () => void;
+  setToast: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Toast: React.FC<ToastProps> = ({ callback }) => {
+const Toast: React.FC<ToastProps> = ({ setToast }) => {
   const closeButtonClickHandler = () => {
-    callback();
+    setToast(false);
   };
 
   setTimeout(() => {
-    callback();
+    setToast(false);
   }, 1500);
 
   return (
