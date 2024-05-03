@@ -11,7 +11,7 @@ export const getUserRequest = async (): Promise<UserData> => {
     throw new Error("유저 프로필 가져오기 실패");
   }
 
-  return response.data;
+  return camelcaseKeys(response.data, { deep: true });
 };
 
 export const getLinksRequest = async (id: number): Promise<FolderLink[]> => {

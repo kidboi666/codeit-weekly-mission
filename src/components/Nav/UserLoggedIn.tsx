@@ -1,15 +1,12 @@
-import * as S from './UserLoggedIn.styled';
-import { useState, useEffect, useCallback } from 'react';
-import { getUserRequest } from '../../api';
-import useAsync from '../../hooks/useAsync';
+import * as S from "./UserLoggedIn.styled";
+import { useState, useEffect, useCallback } from "react";
+import { getUserRequest } from "../../api";
+import useAsync from "../../hooks/useAsync";
+import { UserData } from "../../api/types";
 
 const UserLoggedIn = () => {
   const { requestFunction: getUserProfile } = useAsync(getUserRequest);
-  const [profile, setProfile] = useState({
-    name: '',
-    email: '',
-    image_source: null as string | null,
-  });
+  const [profile, setProfile] = useState<UserData>();
 
   const getUser = useCallback(async () => {
     const result = await getUserProfile();
@@ -25,15 +22,19 @@ const UserLoggedIn = () => {
 
   return (
     <S.LoginLayout>
-      {profile.email ? (
+      {profile ? (
         <>
-          {profile.image_source && (
-            <img src={profile['image_source']} alt='프로필 이미지' />
-          )}
-          <S.UserProfile href='#'>{profile.email}</S.UserProfile>
+          <img
+            src={profile.imageSource}
+            alt='프로필 이미지'
+          />
+          <div>{profile.email}</div>
         </>
       ) : (
-        <S.LoginButton variant='default' text='로그인' />
+        <S.LoginButton
+          variant='default'
+          text='로그인'
+        />
       )}
     </S.LoginLayout>
   );

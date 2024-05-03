@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import Button from '../Button/Button';
+import styled from "styled-components";
+import Button from "../Button/Button";
 
 export const LoginLayout = styled.div`
   flex-shrink: 0;
@@ -12,14 +12,14 @@ export const LoginLayout = styled.div`
     height: 28px;
     border-radius: 50%;
   }
-`;
 
-export const UserProfile = styled.a`
-  text-decoration: none;
-  color: #000;
+  > div {
+    text-decoration: none;
+    color: #000;
 
-  @media (max-width: 767px) {
-    display: none;
+    @media (max-width: 767px) {
+      display: none;
+    }
   }
 `;
 
