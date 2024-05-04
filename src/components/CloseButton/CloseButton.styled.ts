@@ -1,9 +1,7 @@
 import styled from "styled-components";
 
-export const CloseButton = styled.div`
+export const CloseButton = styled.div<{ $variant: string }>`
   position: absolute;
-  top: 16px;
-  right: 16px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11,6 +9,15 @@ export const CloseButton = styled.div`
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background-color: #e7effb;
   cursor: pointer;
+  ${({ $variant }) =>
+    $variant === "modal" &&
+    `
+  background-color: #e7effb;
+  `}
+  ${({ $variant }) =>
+    $variant === "searchInput" &&
+    `
+  background-color: #ccd5e3;
+  `}
 `;

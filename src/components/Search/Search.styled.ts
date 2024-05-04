@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled from "styled-components";
+import CloseButton from "../CloseButton/CloseButton";
 
 export const FormBox = styled.div`
   margin: 40px 0;
@@ -26,6 +27,12 @@ export const Form = styled.form`
     background-color: #f5f5f5;
     border-radius: 10px;
 
+    > div {
+      position: absolute;
+      top: 50%;
+      transform: translate(-12px);
+    }
+
     @media (max-width: 1124px) {
       width: 700px;
     }
@@ -40,4 +47,10 @@ export const SearchLayout = styled.div`
   @media (max-width: 767px) {
     width: 100%;
   }
+`;
+
+export const StyledCloseButton = styled(CloseButton)`
+  top: 50%;
+  right: 10px;
+  transform: translateY(-12px);
 `;

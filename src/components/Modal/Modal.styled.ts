@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import CloseButton from "../CloseButton/CloseButton";
 
 export const ModalLayout = styled.div`
   position: fixed;
@@ -44,6 +45,11 @@ export const ModalContainer = styled.div`
     font-weight: 600;
     color: #f5f5f5;
   }
+`;
+
+export const StyledCloseButton = styled(CloseButton)`
+  top: 16px;
+  right: 16px;
 `;
 
 export const CurrentFolder = styled.span`

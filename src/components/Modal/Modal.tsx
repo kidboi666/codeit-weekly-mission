@@ -71,7 +71,7 @@ const Modal: React.FC<ModalProps> = ({ variant, closeModal, currentFolder, curre
   return (
     <S.ModalLayout>
       <S.ModalContainer>
-        <CloseButton closingModal={closingModal} />
+        <S.StyledCloseButton variant={"modal"} onClick={closingModal} />
         <h4>{title}</h4>
         <S.CurrentFolder>{currentFolder || currentCard}</S.CurrentFolder>
 

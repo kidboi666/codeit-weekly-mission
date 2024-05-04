@@ -10,12 +10,10 @@ interface SearchProps {
 
 const Search: React.FC<SearchProps> = ({ links, setLinks }) => {
   const [keyword, setKeyword] = useState("");
-  const [temp, setTemp] = useState<FolderLink[]>([]);
 
   const onSubmit = (e: any) => {
     e.preventDefault();
     setLinks([]);
-    setTemp([]);
 
     const result = links.filter((link) => {
       return link.title?.includes(keyword) || link.url?.includes(keyword) || link.description?.includes(keyword);
@@ -29,6 +27,10 @@ const Search: React.FC<SearchProps> = ({ links, setLinks }) => {
     setKeyword(e.target.value);
   };
 
+  const onIntializingInputValue = () => {
+    setKeyword("");
+  };
+
   return (
     <S.SearchLayout>
       <S.FormBox>
@@ -36,7 +38,8 @@ const Search: React.FC<SearchProps> = ({ links, setLinks }) => {
           <button>
             <img src={searchIcon} alt={"검색 돋보기 아이콘"} />
           </button>
-          <input id={"search"} placeholder={"링크를 검색해 보세요."} onChange={onChangeInputValue} />
+          <input value={keyword} placeholder={"링크를 검색해 보세요."} onChange={onChangeInputValue} />
+          {keyword && <S.StyledCloseButton variant={"searchInput"} onClick={onIntializingInputValue} />}
         </S.Form>
       </S.FormBox>
     </S.SearchLayout>
