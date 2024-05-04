@@ -1,14 +1,27 @@
-import Button from '../Button/Button';
-import Input from '../Input/Input';
-import styled from 'styled-components';
+import Button from "../Button/Button";
+import Input from "../Input/Input";
+import styled from "styled-components";
 
-export const AddLinkLayout = styled.div`
+export const AddLinkLayout = styled.div``;
+
+export const InnerBox = styled.div<{ $isInterSecting: boolean }>`
   @media (max-width: 1124px) {
     width: 100%;
   }
+  ${({ $isInterSecting }) =>
+    $isInterSecting === true &&
+    `
+    position: fixed;
+    z-index: 100;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: var(--gray5-color);
+    box-shadow: 0 10px 30px rgba(188, 188, 188, 0.3);
+  `}
 `;
 
-export const FormContainer = styled.div`
+export const FormContainer = styled.div<{ $isInterSecting: boolean }>`
   display: flex;
   justify-content: center;
   padding: 60px 32.5px 90px 32.5px;
@@ -16,6 +29,12 @@ export const FormContainer = styled.div`
   @media (max-width: 767px) {
     display: block;
   }
+
+  ${({ $isInterSecting }) =>
+    $isInterSecting &&
+    `
+    padding: 24px 32.5px;
+  `}
 `;
 
 export const FormBox = styled.form`
@@ -28,6 +47,10 @@ export const StyledButton = styled(Button)`
   top: 50%;
   transform: translateY(-18px);
   right: 20px;
+
+  @media (max-width: 767px) {
+    right: 10px;
+  }
 `;
 
 export const IconImg = styled.img`
@@ -42,7 +65,7 @@ export const StyledInput = styled(Input)`
   background-color: var(--white-color);
   width: 800px;
   height: 69px;
-  padding-left: 45px;
+  padding: 16px 20px 16px 45px;
   border: 1px solid var(--primary-color);
   outline: none;
 
@@ -52,5 +75,7 @@ export const StyledInput = styled(Input)`
 
   @media (max-width: 767px) {
     width: 100%;
+    height: 53px;
+    padding: 8px 10px 8px 45px;
   }
 `;

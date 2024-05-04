@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const FolderPageLayout = styled.main`
   display: flex;
@@ -14,14 +14,13 @@ export const HeaderBox = styled.div`
 
 export const LinkSection = styled.ul<{ $noneLinks?: boolean }>`
   display: grid;
-  grid-template-columns: ${({ $noneLinks }) =>
-    $noneLinks ? 'repeat(1, 1fr)' : 'repeat(3, 340px)'};
+  min-width: 325px;
+  grid-template-columns: ${({ $noneLinks }) => ($noneLinks ? "repeat(1, 1fr)" : "repeat(3, 340px)")};
   gap: 25px 20px;
   margin-bottom: 100px;
 
   @media (max-width: 1124px) {
-    grid-template-columns: ${({ $noneLinks }) =>
-      $noneLinks ? 'repeat(1, 1fr)' : 'repeat(2, 340px)'};
+    grid-template-columns: ${({ $noneLinks }) => ($noneLinks ? "repeat(1, 1fr)" : "repeat(2, 340px)")};
     gap: 25px 24px;
   }
 
