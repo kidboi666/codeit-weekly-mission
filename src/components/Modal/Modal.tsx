@@ -1,5 +1,5 @@
 import * as S from "./Modal.styled";
-import cancelIcon from "../../assets/icons/cancel.svg";
+import CloseButton from "../CloseButton/CloseButton";
 import { useState } from "react";
 import { FolderList } from "../../api/types";
 import * as M from "./ModalContents";
@@ -71,9 +71,7 @@ const Modal: React.FC<ModalProps> = ({ variant, closeModal, currentFolder, curre
   return (
     <S.ModalLayout>
       <S.ModalContainer>
-        <S.CloseButton onClick={closingModal}>
-          <img src={cancelIcon} alt='취소이미지' />
-        </S.CloseButton>
+        <CloseButton closingModal={closingModal} />
         <h4>{title}</h4>
         <S.CurrentFolder>{currentFolder || currentCard}</S.CurrentFolder>
 
