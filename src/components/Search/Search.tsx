@@ -21,6 +21,7 @@ const Search: React.FC<SearchProps> = ({ links, setLinks }) => {
 
     if (!result) return setLinks([]);
     setLinks(result);
+    setKeyword("");
   };
 
   const onChangeInputValue = (e: any) => {
@@ -38,7 +39,7 @@ const Search: React.FC<SearchProps> = ({ links, setLinks }) => {
           <button>
             <img src={searchIcon} alt={"검색 돋보기 아이콘"} />
           </button>
-          <input value={keyword} placeholder={"링크를 검색해 보세요."} onChange={onChangeInputValue} />
+          <S.StyledInput value={keyword} placeholder={"링크를 검색해 보세요."} onChange={onChangeInputValue} />
           {keyword && <S.StyledCloseButton variant={"searchInput"} onClick={onIntializingInputValue} />}
         </S.Form>
       </S.FormBox>

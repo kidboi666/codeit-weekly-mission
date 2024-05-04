@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import CloseButton from "../CloseButton/CloseButton";
+import Input from "../Input/Input";
 
 export const FormBox = styled.div`
   margin: 40px 0;
@@ -10,28 +11,30 @@ export const Form = styled.form`
   position: relative;
 
   > button {
-    cursor: pointer;
-    border: none;
-    background-color: #f5f5f5;
     position: absolute;
     left: 10px;
     top: 50%;
+    z-index: 50;
+    border: none;
+    cursor: pointer;
     transform: translateY(-10.25px);
+    background-color: #f5f5f5;
   }
+`;
 
-  > input {
+export const SearchLayout = styled.div`
+  @media (max-width: 767px) {
+    width: 100%;
+  }
+`;
+
+export const StyledInput = styled(Input)`
     width: 1060px;
     padding: 15px 15px 15px 45px;
     box-sizing: border-box;
     border: none;
     background-color: #f5f5f5;
     border-radius: 10px;
-
-    > div {
-      position: absolute;
-      top: 50%;
-      transform: translate(-12px);
-    }
 
     @media (max-width: 1124px) {
       width: 700px;
@@ -40,12 +43,6 @@ export const Form = styled.form`
     @media (max-width: 767px) {
       width: 100%;
     }
-  }
-`;
-
-export const SearchLayout = styled.div`
-  @media (max-width: 767px) {
-    width: 100%;
   }
 `;
 
