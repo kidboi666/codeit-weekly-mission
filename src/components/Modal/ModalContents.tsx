@@ -95,9 +95,5 @@ export const AddFolder: React.FC<AddFolderProps> = ({ variant, text }) => {
 };
 
 export const AddLink: React.FC<AddLinkProps> = ({ variant, text }) => {
-  return (
-    <>
-      <Button variant={variant} text={text} />
-    </>
-  );
+  return <Button variant={variant} text={text} />;
 };

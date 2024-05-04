@@ -9,19 +9,12 @@ import * as S from "./Input.styled";
  * @returns {Element}
  */
 
-interface Props extends InputHTMLAttributes<HTMLInputElement> {
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   setter?: React.Dispatch<React.SetStateAction<any>>;
 }
 
-const Input = ({ placeholder, className, setter, value }: Props) => {
-  return (
-    <S.InputLayout
-      placeholder={placeholder}
-      className={className}
-      onChange={setter}
-      value={value}
-    />
-  );
+const Input: React.FC<InputProps> = ({ placeholder, className, setter, value }) => {
+  return <S.InputLayout placeholder={placeholder} className={className} onChange={setter} value={value} />;
 };
 
 export default Input;

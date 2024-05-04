@@ -10,10 +10,7 @@ interface FolderOptionButtonProps {
   folderId: number;
 }
 
-const FolderOptionButton: React.FC<FolderOptionButtonProps> = ({
-  folderTitle,
-  folderId,
-}) => {
+const FolderOptionButton: React.FC<FolderOptionButtonProps> = ({ folderTitle, folderId }) => {
   const [isShareModal, setShareModal] = useState(false);
   const [isDeleteModal, setDeleteModal] = useState(false);
   const [isChangeNameModal, setChangeNameModal] = useState(false);
@@ -42,26 +39,11 @@ const FolderOptionButton: React.FC<FolderOptionButtonProps> = ({
         </S.OptionContainer>
       )}
       {isShareModal && (
-        <Modal
-          variant={"shareFolder"}
-          closeModal={setShareModal}
-          currentFolder={folderTitle}
-          folderId={folderId}
-        />
+        <Modal variant={"shareFolder"} closeModal={setShareModal} currentFolder={folderTitle} folderId={folderId} />
       )}
-      {isDeleteModal && (
-        <Modal
-          variant={"deleteFolder"}
-          closeModal={setDeleteModal}
-          currentFolder={folderTitle}
-        />
-      )}
+      {isDeleteModal && <Modal variant={"deleteFolder"} closeModal={setDeleteModal} currentFolder={folderTitle} />}
       {isChangeNameModal && (
-        <Modal
-          variant={"changeName"}
-          closeModal={setChangeNameModal}
-          currentFolder={folderTitle}
-        />
+        <Modal variant={"changeName"} closeModal={setChangeNameModal} currentFolder={folderTitle} />
       )}
     </S.FolderOptionButtonLayout>
   );

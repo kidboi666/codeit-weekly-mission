@@ -1,6 +1,7 @@
 import * as S from "./Card.styled";
 import blankLogo from "../../assets/icons/blank_logo.svg";
-import { calculateTime, formatDate } from "../../utils/CalculateTime";
+import calculateTime from "../../utils/calculateTime";
+import formatDate from "../../utils/formatDate";
 import Star from "./Star";
 import Kebab from "./Kebab";
 import { useState } from "react";
@@ -39,20 +40,9 @@ const Card: React.FC<Props> = ({ link, folderList }) => {
           <S.TimeStamp>{timeDelta}</S.TimeStamp>
         </S.CardDescriptionContainer>
       </S.CardLinkContainer>
-      {isDeleteModal && (
-        <Modal
-          variant={"deleteLink"}
-          closeModal={setDeleteModal}
-          currentCard={link.title}
-        />
-      )}
+      {isDeleteModal && <Modal variant={"deleteLink"} closeModal={setDeleteModal} currentCard={link.title} />}
       {isAddModal && (
-        <Modal
-          variant={"selectFolder"}
-          closeModal={setAddModal}
-          currentCard={link.title}
-          folderList={folderList}
-        />
+        <Modal variant={"selectFolder"} closeModal={setAddModal} currentCard={link.title} folderList={folderList} />
       )}
     </S.CardLayout>
   );

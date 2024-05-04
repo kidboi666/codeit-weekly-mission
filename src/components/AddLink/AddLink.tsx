@@ -3,7 +3,7 @@ import LinkIcon from "../../assets/icons/link.svg";
 import { useCallback, useState } from "react";
 import Modal from "../Modal/Modal";
 
-const AddLink = () => {
+const AddLink: React.FC = () => {
   const [isModalTrigger, setIsModalTrigger] = useState(false);
 
   const changeTrigger = useCallback(() => {
@@ -16,17 +16,10 @@ const AddLink = () => {
         <S.FormBox>
           <S.IconImg src={LinkIcon} alt={""} />
           <S.StyledInput placeholder='링크를 추가해 보세요' />
-          <S.StyledButton
-            variant={"default"}
-            type={"button"}
-            text={"추가하기"}
-            onClick={changeTrigger}
-          />
+          <S.StyledButton variant={"default"} type={"button"} text={"추가하기"} onClick={changeTrigger} />
         </S.FormBox>
       </S.FormContainer>
-      {isModalTrigger && (
-        <Modal variant={"addLink"} closeModal={setIsModalTrigger} />
-      )}
+      {isModalTrigger && <Modal variant={"addLink"} closeModal={setIsModalTrigger} />}
     </S.AddLinkLayout>
   );
 };

@@ -4,7 +4,7 @@ import * as S from "./Nav.styled";
 import UserLoggedIn from "./UserLoggedIn";
 import logo from "../../assets/icons/logo.svg";
 
-const Nav = () => {
+const Nav: React.FC = () => {
   const [isShadow, setShadow] = useState(false);
   const { pathname } = useLocation();
 

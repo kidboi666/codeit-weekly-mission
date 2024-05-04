@@ -4,7 +4,7 @@ import * as S from "./Star.styled";
 import useToggle from "../../hooks/useToggle";
 import { useLocation } from "react-router-dom";
 
-const Star = () => {
+const Star: React.FC = () => {
   const [value, toggle] = useToggle();
   const currentLocation = useLocation();
 

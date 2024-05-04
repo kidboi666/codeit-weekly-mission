@@ -22,9 +22,7 @@ const Kebab: React.FC<Props> = ({ setDeleteModal, setAddModal }) => {
     toggle();
   };
 
-  const onModalBox = (
-    setter: React.Dispatch<React.SetStateAction<boolean>>,
-  ) => {
+  const onModalBox = (setter: React.Dispatch<React.SetStateAction<boolean>>) => {
     setter((prev: boolean) => !prev);
   };
 

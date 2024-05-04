@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import useAsync from "../hooks/useAsync";
 import { getMockFolderRequest } from "../api";
 import Search from "../components/Search/Search";

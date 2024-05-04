@@ -4,7 +4,7 @@ import { getUserRequest } from "../../api";
 import useAsync from "../../hooks/useAsync";
 import { UserData } from "../../api/types";
 
-const UserLoggedIn = () => {
+const UserLoggedIn: React.FC = () => {
   const { requestFunction: getUserProfile } = useAsync(getUserRequest);
   const [profile, setProfile] = useState<UserData>();
 

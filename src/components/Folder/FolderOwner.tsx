@@ -4,7 +4,7 @@ import useAsync from "../../hooks/useAsync";
 import * as S from "./FolderOwner.styled";
 import { Owner } from "../../api/types";
 
-const FolderOwner = () => {
+const FolderOwner: React.FC = () => {
   const { requestFunction: getUserFolder } = useAsync(getMockFolderRequest);
   const [owner, setOwner] = useState<Owner | null>(null);
   const [star, setStar] = useState("");
@@ -13,6 +13,7 @@ const FolderOwner = () => {
     const { folder } = await getUserFolder();
     if (!folder) return null;
     const { owner, name } = folder;
+
     setOwner(owner);
     setStar(name);
   };
