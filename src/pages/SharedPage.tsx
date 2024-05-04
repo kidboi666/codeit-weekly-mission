@@ -9,7 +9,7 @@ import { FolderLink } from "../api/types";
 
 const SharedPage = () => {
   const { requestFunction: getUserFolder } = useAsync(getMockFolderRequest);
-  const [folders, setFolder] = useState([]);
+  const [folders, setFolder] = useState<FolderLink[]>([]);
 
   const getFolder = async () => {
     const {
@@ -28,7 +28,7 @@ const SharedPage = () => {
       <S.HeaderBox>
         <FolderOwner />
       </S.HeaderBox>
-      <Search />
+      <Search links={folders} setLinks={setFolder} />
       <S.FolderBox>
         {folders.map((link: FolderLink) => {
           return <Card key={link.id} link={link} />;

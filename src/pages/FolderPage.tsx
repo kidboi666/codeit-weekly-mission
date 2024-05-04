@@ -28,7 +28,7 @@ const FolderPage = () => {
       <S.HeaderBox>
         <AddLink />
       </S.HeaderBox>
-      <Search />
+      <Search links={links} setLinks={setLinks} />
       <S.FolderSection>
         <Folder folderList={folderList} setLinks={setLinks} />
       </S.FolderSection>
