@@ -1,4 +1,3 @@
-import kakaoIcon from "../../assets/icons/kakao_icon.svg";
 import facebookIcon from "../../assets/icons/facebook_icon.svg";
 import linkIcon from "../../assets/icons/link.svg";
 import copyUrl from "../../utils/copyUrl";
@@ -7,6 +6,7 @@ import * as S from "./ModalContents.styled";
 import { FolderList } from "../../api/types";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
+import KakaoButton from "../KakaoButton/KakaoButton";
 
 interface ShareProps {
   isToast: boolean;
@@ -34,10 +34,7 @@ export const Share: React.FC<ShareProps> = ({ isToast, setToast, folderId }) => 
   return (
     <>
       <S.ShareContainer>
-        <div>
-          <img src={kakaoIcon} alt={kakaoIcon} />
-          <p>카카오톡</p>
-        </div>
+        <KakaoButton />
         <div>
           <img src={facebookIcon} alt={facebookIcon} />
           <p>페이스북</p>
