@@ -39,7 +39,7 @@ const FolderPage = () => {
         )}
       </S.SearchSection>
       <S.FolderSection>
-        <Folder folderList={folderList} setLinks={setLinks} />
+        <Folder folderList={folderList} setLinks={setLinks} setSearchResult={setSearchResult} />
       </S.FolderSection>
       {links.length === 0 ? (
         <S.LinkSection $noneLinks>저장된 링크가 없습니다.</S.LinkSection>

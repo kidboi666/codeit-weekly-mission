@@ -10,9 +10,10 @@ import { FolderLink, FolderList } from "../../api/types";
 interface FolderProps {
   folderList: FolderList[];
   setLinks: React.Dispatch<React.SetStateAction<FolderLink[]>>;
+  setSearchResult: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const Folder: React.FC<FolderProps> = ({ folderList, setLinks }) => {
+const Folder: React.FC<FolderProps> = ({ folderList, setLinks, setSearchResult }) => {
   const [currentFolder, setCurrentFolder] = useState("");
   const [currentFolderId, setCurrentFolderId] = useState(0);
   const [isModalTrigger, setModalTrigger] = useState(false);
@@ -33,6 +34,7 @@ const Folder: React.FC<FolderProps> = ({ folderList, setLinks }) => {
 
   const onChangeFolderTitle = useCallback((name: string, id?: number) => {
     setCurrentFolder(name);
+    setSearchResult("");
     if (id) {
       setCurrentFolderId(id);
     }
