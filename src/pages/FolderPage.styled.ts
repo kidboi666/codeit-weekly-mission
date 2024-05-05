@@ -49,7 +49,7 @@ export const FolderSection = styled.div`
 
 export const LinkSection = styled.ul<{ $noneLinks?: boolean }>`
   display: grid;
-  min-width: 325px;
+  min-width: ${({ $noneLinks }) => ($noneLinks ? "" : "325px")};
   grid-template-columns: ${({ $noneLinks }) => ($noneLinks ? "repeat(1, 1fr)" : "repeat(3, 340px)")};
   gap: 25px 20px;
   margin-bottom: 100px;
