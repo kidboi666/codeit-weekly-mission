@@ -1,5 +1,4 @@
 import * as S from "./Modal.styled";
-import CloseButton from "../CloseButton/CloseButton";
 import { useState } from "react";
 import { FolderList } from "../../api/types";
 import * as M from "./ModalContents";
