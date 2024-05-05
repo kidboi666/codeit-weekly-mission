@@ -7,9 +7,10 @@ interface SearchProps {
   links: FolderLink[];
   setLinks: React.Dispatch<React.SetStateAction<FolderLink[]>>;
   setSearchResult: React.Dispatch<React.SetStateAction<string>>;
+  searchResult: string;
 }
 
-const Search: React.FC<SearchProps> = ({ links, setLinks, setSearchResult }) => {
+const Search: React.FC<SearchProps> = ({ links, setLinks, searchResult, setSearchResult }) => {
   const [keyword, setKeyword] = useState("");
 
   const onSubmit = (e: any) => {
@@ -45,6 +46,12 @@ const Search: React.FC<SearchProps> = ({ links, setLinks, setSearchResult }) => 
           {keyword && <S.StyledCloseButton variant={"searchInput"} onClick={onIntializingInputValue} />}
         </S.Form>
       </S.FormBox>
+      {searchResult && (
+        <S.SearchResultSection>
+          <span>{searchResult}</span>
+          <span>으로 검색한 결과입니다.</span>
+        </S.SearchResultSection>
+      )}
     </S.SearchLayout>
   );
 };

@@ -46,6 +46,18 @@ export const StyledInput = styled(Input)`
   }
 `;
 
+export const SearchResultSection = styled.div`
+  width: 100%;
+  margin-bottom: 40px;
+  font-size: 32px;
+  text-align: left;
+  padding: 0 32.5px;
+
+  > span:last-child {
+    color: var(--gray2-color);
+  }
+`;
+
 export const StyledCloseButton = styled(CloseButton)`
   top: 50%;
   right: 10px;

@@ -30,13 +30,7 @@ const FolderPage = () => {
         <AddLink />
       </S.HeaderSection>
       <S.SearchSection>
-        <Search links={links} setLinks={setLinks} setSearchResult={setSearchResult} />
-        {searchResult && (
-          <S.SearchResultSection>
-            <span>{searchResult}</span>
-            <span>으로 검색한 결과입니다.</span>
-          </S.SearchResultSection>
-        )}
+        <Search links={links} setLinks={setLinks} searchResult={searchResult} setSearchResult={setSearchResult} />
       </S.SearchSection>
       <S.FolderSection>
         <Folder folderList={folderList} setLinks={setLinks} setSearchResult={setSearchResult} />
