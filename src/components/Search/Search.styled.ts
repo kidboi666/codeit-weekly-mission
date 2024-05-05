@@ -14,7 +14,7 @@ export const Form = styled.form`
     position: absolute;
     left: 10px;
     top: 50%;
-    z-index: 50;
+    z-index: 40;
     border: none;
     cursor: pointer;
     transform: translateY(-10.25px);
