@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getFolderRequest } from "../api";
 import * as S from "./FolderPage.styled";
 import useAsync from "../hooks/useAsync";

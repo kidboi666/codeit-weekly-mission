@@ -1,7 +1,9 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const FooterLayout = styled.footer`
+  position: relative;
   background-color: var(--black-color);
+  z-index: 50;
 `;
 
 export const FooterBox = styled.div`

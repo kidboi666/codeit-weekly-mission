@@ -28,7 +28,7 @@ export const Button = styled.button<{ $variant: string; $isActive?: boolean }>`
       border-radius: 20px;
       border: 1px solid var(--white-color);
       transform: translateX(-63.5px);
-      z-index: 50;
+      z-index: 40;
       background-color: var(--primary-color);
       color: var(--white-color);
       box-shadow:0px 2px 8px 0px rgba(51, 50, 54, 0.10);

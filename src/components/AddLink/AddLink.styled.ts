@@ -12,7 +12,7 @@ export const InnerBox = styled.div<{ $isInterSecting: boolean }>`
     $isInterSecting === true &&
     `
     position: fixed;
-    z-index: 100;
+    z-index: 40;
     bottom: 0;
     right: 0;
     left: 0;
