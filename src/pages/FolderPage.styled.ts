@@ -7,9 +7,44 @@ export const FolderPageLayout = styled.main`
   align-items: center;
 `;
 
-export const HeaderBox = styled.div`
+export const HeaderSection = styled.div`
   width: 100%;
   background-color: var(--gray5-color);
+`;
+
+export const SearchSection = styled.div`
+  @media (max-width: 767px) {
+    width: 100%;
+  }
+`;
+
+export const SearchResultSection = styled.div`
+  width: 100%;
+  margin-bottom: 40px;
+  font-size: 32px;
+  text-align: left;
+  padding: 0 32.5px;
+
+  > span:last-child {
+    color: var(--gray2-color);
+  }
+`;
+
+export const FolderSection = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+
+  @media (max-width: 767px) {
+    display: block;
+  }
+
+  > div {
+    @media (max-width: 767px) {
+      padding: 0 32.5px;
+    }
+  }
 `;
 
 export const LinkSection = styled.ul<{ $noneLinks?: boolean }>`
@@ -29,21 +64,5 @@ export const LinkSection = styled.ul<{ $noneLinks?: boolean }>`
     grid-template-columns: repeat(1, 1fr);
     gap: 20px;
     margin-bottom: 60px;
-  }
-`;
-
-export const FolderSection = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-
-  @media (max-width: 767px) {
-    display: block;
-  }
-
-  > div {
-    @media (max-width: 767px) {
-      padding: 0 32.5px;
-    }
   }
 `;

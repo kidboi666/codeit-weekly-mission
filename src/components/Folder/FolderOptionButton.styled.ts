@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const OptionContainer = styled.div`
   display: flex;
@@ -33,7 +33,6 @@ export const SelectedFolder = styled.h1`
 `;
 
 export const FolderOptionButtonLayout = styled.div`
-  margin-bottom: 24px;
   width: 1060px;
   display: flex;
   justify-content: space-between;

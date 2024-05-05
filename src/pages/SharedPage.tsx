@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useAsync from "../hooks/useAsync";
 import { getMockFolderRequest } from "../api";
 import Search from "../components/Search/Search";
@@ -10,6 +10,7 @@ import { FolderLink } from "../api/types";
 const SharedPage = () => {
   const { requestFunction: getUserFolder } = useAsync(getMockFolderRequest);
   const [folders, setFolder] = useState<FolderLink[]>([]);
+  const [searchResult, setSearchResult] = useState("");
 
   const getFolder = async () => {
     const {
@@ -28,7 +29,7 @@ const SharedPage = () => {
       <S.HeaderBox>
         <FolderOwner />
       </S.HeaderBox>
-      <Search links={folders} setLinks={setFolder} />
+      <Search links={folders} setLinks={setFolder} setSearchResult={setSearchResult} />
       <S.FolderBox>
         {folders.map((link: FolderLink) => {
           return <Card key={link.id} link={link} />;

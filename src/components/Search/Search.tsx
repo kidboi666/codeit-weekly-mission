@@ -6,9 +6,10 @@ import { useState } from "react";
 interface SearchProps {
   links: FolderLink[];
   setLinks: React.Dispatch<React.SetStateAction<FolderLink[]>>;
+  setSearchResult: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const Search: React.FC<SearchProps> = ({ links, setLinks }) => {
+const Search: React.FC<SearchProps> = ({ links, setLinks, setSearchResult }) => {
   const [keyword, setKeyword] = useState("");
 
   const onSubmit = (e: any) => {
@@ -21,6 +22,7 @@ const Search: React.FC<SearchProps> = ({ links, setLinks }) => {
 
     if (!result) return setLinks([]);
     setLinks(result);
+    setSearchResult(keyword);
     setKeyword("");
   };
 

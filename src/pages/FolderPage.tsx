@@ -12,6 +12,7 @@ const FolderPage = () => {
   const { requestFunction: getUserFolderList } = useAsync(getFolderRequest);
   const [folderList, setFolderList] = useState([]);
   const [links, setLinks] = useState<FolderLink[]>([]);
+  const [searchResult, setSearchResult] = useState("");
 
   const getFolderList = async () => {
     const { data } = await getUserFolderList();
@@ -25,10 +26,18 @@ const FolderPage = () => {
 
   return (
     <S.FolderPageLayout>
-      <S.HeaderBox>
+      <S.HeaderSection>
         <AddLink />
-      </S.HeaderBox>
-      <Search links={links} setLinks={setLinks} />
+      </S.HeaderSection>
+      <S.SearchSection>
+        <Search links={links} setLinks={setLinks} setSearchResult={setSearchResult} />
+        {searchResult && (
+          <S.SearchResultSection>
+            <span>{searchResult}</span>
+            <span>으로 검색한 결과입니다.</span>
+          </S.SearchResultSection>
+        )}
+      </S.SearchSection>
       <S.FolderSection>
         <Folder folderList={folderList} setLinks={setLinks} />
       </S.FolderSection>

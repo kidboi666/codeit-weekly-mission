@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const FolderLayout = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 24px;
 `;
 
 export const FolderContainer = styled.div`
@@ -10,7 +11,6 @@ export const FolderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
 
   @media (max-width: 1124px) {
     width: 700px;
