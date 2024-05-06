@@ -1,6 +1,6 @@
 import * as S from "./Search.styled";
 import searchIcon from "../../assets/icons/search.svg";
-import { FolderLink } from "../../api/types";
+import { FolderLink } from "../../pages/api/types";
 import { useState } from "react";
 
 interface SearchProps {

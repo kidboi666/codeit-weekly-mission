@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import useAsync from "../hooks/useAsync";
-import { getMockFolderRequest } from "../api";
+import { getMockFolderRequest } from "./api";
 import Search from "../components/Search/Search";
 import Card from "../components/Card/Card";
 import FolderOwner from "../components/Folder/FolderOwner";
 import * as S from "./SharedPage.styled";
-import { FolderLink } from "../api/types";
+import { FolderLink } from "./api/types";
 
-const SharedPage = () => {
+export default function SharedPage() {
   const { requestFunction: getUserFolder } = useAsync(getMockFolderRequest);
   const [folders, setFolder] = useState<FolderLink[]>([]);
   const [searchResult, setSearchResult] = useState("");
@@ -37,6 +37,4 @@ const SharedPage = () => {
       </S.FolderBox>
     </S.SharedPageLayout>
   );
-};
-
-export default SharedPage;
+}

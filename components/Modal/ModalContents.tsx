@@ -3,7 +3,7 @@ import linkIcon from "../../assets/icons/link.svg";
 import copyUrl from "../../utils/copyUrl";
 import Toast from "../Toast/Toast";
 import * as S from "./ModalContents.styled";
-import { FolderList } from "../../api/types";
+import { FolderList } from "../../pages/api/types";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
 import KakaoButton from "../KakaoButton/KakaoButton";

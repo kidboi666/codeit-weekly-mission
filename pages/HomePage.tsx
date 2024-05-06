@@ -1,7 +1,7 @@
 import Link from "next/link";
 import * as S from "./HomePage.styled";
 
-const Homepage = () => {
+export default function Homepage() {
   return (
     <S.HomepageLayout>
       <Link href='/folder'>
@@ -12,6 +12,4 @@ const Homepage = () => {
       </Link>
     </S.HomepageLayout>
   );
-};
-
-export default Homepage;
+}

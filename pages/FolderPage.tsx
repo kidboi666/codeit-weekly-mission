@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from "react";
-import { getFolderRequest } from "../api";
+import { getFolderRequest } from "./api";
 import * as S from "./FolderPage.styled";
 import useAsync from "../hooks/useAsync";
 import Search from "../components/Search/Search";
 import AddLink from "../components/AddLink/AddLink";
 import Folder from "../components/Folder/Folder";
 import Card from "../components/Card/Card";
-import { FolderLink } from "../api/types";
+import { FolderLink } from "./api/types";
 
-const FolderPage = () => {
+export default function FolderPage() {
   const { requestFunction: getUserFolderList } = useAsync(getFolderRequest);
   const [folderList, setFolderList] = useState([]);
   const [links, setLinks] = useState<FolderLink[]>([]);
@@ -46,6 +46,4 @@ const FolderPage = () => {
       )}
     </S.FolderPageLayout>
   );
-};
-
-export default FolderPage;
+}

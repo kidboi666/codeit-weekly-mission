@@ -6,7 +6,7 @@ import Star from "./Star";
 import Kebab from "./Kebab";
 import { useState } from "react";
 import Modal from "@/components/Modal/Modal";
-import { FolderLink, FolderList } from "@/api/types";
+import { FolderLink, FolderList } from "@/pages/api/types";
 
 interface Props {
   link: FolderLink;

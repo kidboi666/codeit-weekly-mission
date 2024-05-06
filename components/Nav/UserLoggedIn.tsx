@@ -1,8 +1,8 @@
 import * as S from "./UserLoggedIn.styled";
 import { useState, useEffect } from "react";
-import { getUserRequest } from "@/api";
+import { getUserRequest } from "@/pages/api";
 import useAsync from "../../hooks/useAsync";
-import { UserData } from "@/api/types";
+import { UserData } from "@/pages/api/types";
 
 const UserLoggedIn: React.FC = () => {
   const { requestFunction: getUserProfile } = useAsync(getUserRequest);
