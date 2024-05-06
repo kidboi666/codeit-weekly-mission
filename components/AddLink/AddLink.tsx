@@ -14,11 +14,7 @@ const AddLink: React.FC = () => {
   }, []);
 
   const callback = (entries: any) => {
-    if (entries[0].isIntersecting) {
-      setInterSecting(false);
-    } else {
-      setInterSecting(true);
-    }
+    setInterSecting(!entries[0].isIntersecting);
   };
 
   useEffect(() => {

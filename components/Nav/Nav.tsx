@@ -15,7 +15,7 @@ const Nav: React.FC = () => {
   };
 
   useEffect(() => {
-    if (pathname === "/folder") return;
+    if (pathname === "/folderPage") return;
 
     const scrollEvent = setInterval(() => {
       window.addEventListener("scroll", handleNavigation);
