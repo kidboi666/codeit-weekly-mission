@@ -1,6 +1,7 @@
+import { FolderLink } from "@/pages/api/types";
 import { PayloadAction } from "@reduxjs/toolkit";
 
-export const initialState = {};
+export const initialState: FolderLink[] = [];
 
 export const getLink = {
   type: "GET_LINK",
