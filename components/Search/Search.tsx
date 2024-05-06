@@ -14,7 +14,7 @@ interface SearchProps {
 const Search: React.FC<SearchProps> = ({ links, setLinks, searchResult, setSearchResult }) => {
   const [keyword, setKeyword] = useState("");
 
-  const onSubmit = (e: any) => {
+  const onSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     setLinks([]);
 
@@ -28,7 +28,7 @@ const Search: React.FC<SearchProps> = ({ links, setLinks, searchResult, setSearc
     setKeyword("");
   };
 
-  const onChangeInputValue = (e: any) => {
+  const onChangeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(e.target.value);
   };
 

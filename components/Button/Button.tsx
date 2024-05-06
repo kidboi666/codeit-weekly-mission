@@ -13,7 +13,6 @@ import React from "react";
 
 interface ButtonProps {
   variant: string;
-  isActive?: boolean;
   text?: string;
   selected?: string;
   className?: string;
@@ -23,19 +22,14 @@ interface ButtonProps {
 
 const Button: React.FC<ButtonProps> = ({
   variant = "default",
-  isActive,
   text,
   selected,
   className,
   type = "button",
   onClick,
 }) => {
-  if (selected) {
-    isActive = selected === text;
-  }
-
   return (
-    <S.Button $variant={variant} $isActive={isActive} type={type} onClick={onClick} className={className}>
+    <S.Button $variant={variant} $isActive={selected === text} type={type} onClick={onClick} className={className}>
       {text}
     </S.Button>
   );

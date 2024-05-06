@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export const InputLayout = styled.input`
+export const Input = styled.input`
   position: relative;
   padding: 15px 15px 15px 15px;
   box-sizing: border-box;

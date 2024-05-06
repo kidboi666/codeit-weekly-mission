@@ -5,6 +5,7 @@ import * as S from "./FolderOptionButton.styled";
 import React, { useState } from "react";
 import Modal from "../Modal/Modal";
 import Image from "next/image";
+import { COMBINED_FOLDER_NAME } from "@/constants/strings";
 
 interface FolderOptionButtonProps {
   folderTitle: string;
@@ -23,7 +24,7 @@ const FolderOptionButton: React.FC<FolderOptionButtonProps> = ({ folderTitle, fo
   return (
     <S.FolderOptionButtonLayout>
       <S.SelectedFolder>{folderTitle}</S.SelectedFolder>
-      {folderTitle !== "전체" && (
+      {folderTitle !== COMBINED_FOLDER_NAME && (
         <S.OptionContainer>
           <S.OptionBox onClick={() => onModal(setShareModal)}>
             <Image src={shareIcon} alt={"공유버튼"} style={{ width: "18px" }} />

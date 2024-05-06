@@ -11,14 +11,16 @@ declare global {
 const KakaoButton: React.FC = () => {
   let kakao: any;
   if (window.Kakao) kakao = window.Kakao;
+
   const realUrl = `https://resilient-tapioca-37feb1.netlify.app`;
+  const clientKey = process.env.KAKAO_API_KEY;
 
   useEffect(() => {
     kakao.cleanup();
-    kakao.init("05390666a4347d840fba87466785c78e");
+    kakao.init(`${clientKey}`);
   }, []);
 
-  const shareMessage = (e: any) => {
+  const shareMessage = () => {
     kakao.Share.sendDefault({
       objectType: "feed",
       content: {

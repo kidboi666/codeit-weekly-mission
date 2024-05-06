@@ -6,6 +6,7 @@ import FolderOptionButton from "./FolderOptionButton";
 import Button from "../Button/Button";
 import Modal from "../Modal/Modal";
 import { FolderLink, FolderList } from "../../pages/api/types";
+import { COMBINED_FOLDER_NAME } from "@/constants/strings";
 
 interface FolderProps {
   folderList: FolderList[];
@@ -42,7 +43,7 @@ const Folder: React.FC<FolderProps> = ({ folderList, setLinks, setSearchResult }
 
   const onChangeAllLinksFolder = useCallback(() => {
     getAllLinks();
-    onChangeFolderTitle("전체");
+    onChangeFolderTitle(COMBINED_FOLDER_NAME);
   }, []);
 
   const onChangeLinkFolder = useCallback((name: string, id: number) => {
@@ -58,7 +59,12 @@ const Folder: React.FC<FolderProps> = ({ folderList, setLinks, setSearchResult }
     <S.FolderLayout>
       <S.FolderContainer>
         <S.FolderBox>
-          <Button variant={"folderButton"} selected={currentFolder} onClick={onChangeAllLinksFolder} text={"전체"} />
+          <Button
+            variant={"folderButton"}
+            selected={currentFolder}
+            onClick={onChangeAllLinksFolder}
+            text={COMBINED_FOLDER_NAME}
+          />
           {folderList.map((folderItem) => (
             <Button
               key={folderItem.id}
