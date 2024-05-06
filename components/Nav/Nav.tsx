@@ -11,20 +11,18 @@ const Nav: React.FC = () => {
   const { pathname } = useRouter();
 
   const handleNavigation = () => {
-    setTimeout(() => {
-      if (window.scrollY > 30) {
-        setShadow(true);
-        return;
-      }
-
-      setShadow(false);
-    }, 100);
+    setShadow(window.scrollY > 30);
   };
 
   useEffect(() => {
     if (pathname === "/folder") return;
-    window.addEventListener("scroll", handleNavigation);
+
+    const scrollEvent = setInterval(() => {
+      window.addEventListener("scroll", handleNavigation);
+    }, 100);
+
     return () => {
+      clearInterval(scrollEvent);
       window.removeEventListener("scroll", handleNavigation);
     };
   }, [pathname]);
@@ -33,7 +31,7 @@ const Nav: React.FC = () => {
     <S.HeaderLayout $isShadow={isShadow}>
       <S.LogoBox>
         <Link href='/'>
-          <Image src={logo} alt='Linkbrary' />
+          <Image src={logo} alt='Linkbrary' style={{ width: "100%" }} />
         </Link>
       </S.LogoBox>
       <UserLoggedIn />

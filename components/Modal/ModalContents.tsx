@@ -1,12 +1,13 @@
-import facebookIcon from "../../assets/icons/facebook_icon.svg";
-import linkIcon from "../../assets/icons/link.svg";
-import copyUrl from "../../utils/copyUrl";
+import facebookIcon from "@/assets/icons/facebook_icon.svg";
+import linkIcon from "@/assets/icons/link.svg";
+import copyToClipboard from "@/utils/copyToClipboard";
 import Toast from "../Toast/Toast";
 import * as S from "./ModalContents.styled";
-import { FolderList } from "../../pages/api/types";
+import { FolderList } from "@/pages/api/types";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
 import KakaoButton from "../KakaoButton/KakaoButton";
+import Image from "next/image";
 
 interface ShareProps {
   isToast: boolean;
@@ -19,16 +20,26 @@ interface DeleteProps {
   text?: string;
 }
 
-interface LinkFolderProps extends DeleteProps {
+interface LinkFolderProps {
+  variant: string;
+  text?: string;
   folderList?: FolderList[];
 }
 
-interface ChangeNameProps extends DeleteProps {
+interface ChangeNameProps {
+  variant: string;
+  text?: string;
   currentFolder?: string;
 }
 
-interface AddFolderProps extends DeleteProps {}
-interface AddLinkProps extends DeleteProps {}
+interface AddFolderProps {
+  variant: string;
+  text?: string;
+}
+interface AddLinkProps {
+  variant: string;
+  text?: string;
+}
 
 export const Share: React.FC<ShareProps> = ({ isToast, setToast, folderId }) => {
   return (
@@ -36,11 +47,11 @@ export const Share: React.FC<ShareProps> = ({ isToast, setToast, folderId }) => 
       <S.ShareContainer>
         <KakaoButton />
         <div>
-          <img src={facebookIcon} alt={facebookIcon} />
+          <Image src={facebookIcon} alt={facebookIcon} />
           <p>페이스북</p>
         </div>
-        <div onClick={() => copyUrl(setToast, folderId)}>
-          <img src={linkIcon} alt={linkIcon} />
+        <div onClick={() => copyToClipboard(setToast, folderId)}>
+          <Image src={linkIcon} alt={linkIcon} />
           <p>링크 복사</p>
         </div>
       </S.ShareContainer>

@@ -53,7 +53,7 @@ export const StyledButton = styled(Button)`
   }
 `;
 
-export const IconImg = styled.img`
+export const IconImgBox = styled.div`
   position: absolute;
   left: 15px;
   top: 50%;

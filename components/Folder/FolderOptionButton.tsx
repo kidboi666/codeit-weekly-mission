@@ -4,6 +4,7 @@ import deleteIcon from "../../assets/icons/delete.svg";
 import * as S from "./FolderOptionButton.styled";
 import React, { useState } from "react";
 import Modal from "../Modal/Modal";
+import Image from "next/image";
 
 interface FolderOptionButtonProps {
   folderTitle: string;
@@ -25,15 +26,15 @@ const FolderOptionButton: React.FC<FolderOptionButtonProps> = ({ folderTitle, fo
       {folderTitle !== "전체" && (
         <S.OptionContainer>
           <S.OptionBox onClick={() => onModal(setShareModal)}>
-            <S.OptionIcon src={shareIcon} />
+            <Image src={shareIcon} alt={"공유버튼"} style={{ width: "18px" }} />
             공유
           </S.OptionBox>
           <S.OptionBox onClick={() => onModal(setChangeNameModal)}>
-            <S.OptionIcon src={penIcon} />
+            <Image src={penIcon} alt={"이름변경버튼"} style={{ width: "18px" }} />
             이름 변경
           </S.OptionBox>
           <S.OptionBox onClick={() => onModal(setDeleteModal)}>
-            <S.OptionIcon src={deleteIcon} />
+            <Image src={deleteIcon} alt={"삭제버튼"} style={{ width: "18px" }} />
             삭제
           </S.OptionBox>
         </S.OptionContainer>

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import kakaoIcon from "../../assets/icons/kakao_icon.svg";
+import Image from "next/image";
 
 declare global {
   interface Window {
@@ -43,7 +44,7 @@ const KakaoButton: React.FC = () => {
 
   return (
     <div onClick={shareMessage}>
-      <img src={kakaoIcon} alt={kakaoIcon} />
+      <Image src={kakaoIcon} alt={kakaoIcon} />
       <p>카카오톡</p>
     </div>
   );

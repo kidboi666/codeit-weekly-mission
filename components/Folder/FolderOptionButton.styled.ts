@@ -7,11 +7,6 @@ export const OptionContainer = styled.div`
   font-size: 14px;
 `;
 
-export const OptionIcon = styled.img`
-  width: 18px;
-  height: 18px;
-`;
-
 export const OptionBox = styled.div`
   display: flex;
   align-items: center;

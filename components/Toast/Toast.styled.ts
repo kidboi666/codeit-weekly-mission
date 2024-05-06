@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import ToastCheckSvg from "../../assets/icons/toast-check.svg";
-import ToastCloseSvg from "../../assets/icons/toast-close.svg";
 
 export const Layout = styled.div`
   display: flex;
@@ -16,7 +14,6 @@ export const CheckContainer = styled.div`
   gap: 12px;
 `;
 
-export const CheckIconBox = styled(ToastCheckSvg)``;
 export const CheckTextBox = styled.p`
   color: var(--white-color, #fff);
 `;
@@ -26,10 +23,4 @@ export const CloseIconButtonBox = styled.button`
   height: 24px;
   border: 0;
   background-color: transparent;
-`;
-
-export const CloseIconBox = styled(ToastCloseSvg)`
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
 `;
