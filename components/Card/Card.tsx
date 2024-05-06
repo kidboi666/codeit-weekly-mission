@@ -7,6 +7,7 @@ import Kebab from "./Kebab";
 import { useState } from "react";
 import Modal from "@/components/Modal/Modal";
 import { FolderLink, FolderList } from "@/pages/api/types";
+import Image from "next/image";
 
 interface Props {
   link: FolderLink;
@@ -18,18 +19,17 @@ const Card: React.FC<Props> = ({ link, folderList }) => {
   const [isAddModal, setAddModal] = useState(false);
   const timeDelta = formatDate(link.createdAt);
   const createdDate = calculateTime(link.createdAt);
-  const preview = link.imageSource;
 
   return (
     <S.CardLayout>
       <S.CardLinkContainer href={link.url} target='_blank' rel='noreferrer'>
         <S.CardImgContainer>
           <Star />
-          {preview ? (
-            <S.CardImg src={preview} alt={link.title} />
+          {link.imageSource ? (
+            <S.CardImg src={link.imageSource} alt={link.title} />
           ) : (
             <S.BlankImgBox>
-              <S.CardImg src={blankLogo} alt={link.title} />
+              <Image src={blankLogo} alt={link.title} style={{ width: "100%" }} />
             </S.BlankImgBox>
           )}
         </S.CardImgContainer>

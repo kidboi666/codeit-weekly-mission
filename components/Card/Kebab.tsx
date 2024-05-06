@@ -3,6 +3,7 @@ import kebobIcon from "../../assets/icons/kebab.svg";
 import useToggle from "../../hooks/useToggle";
 import * as S from "./Kebab.styled";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 interface Props {
   setDeleteModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -13,7 +14,7 @@ const Kebab: React.FC<Props> = ({ setDeleteModal, setAddModal }) => {
   const [value, toggle] = useToggle();
   const currentLocation = useRouter();
 
-  if (currentLocation.pathname !== "/folder") {
+  if (currentLocation.pathname !== "/folderPage") {
     return null;
   }
 
@@ -28,7 +29,7 @@ const Kebab: React.FC<Props> = ({ setDeleteModal, setAddModal }) => {
 
   return (
     <S.KebabLayout onClick={onClickKebabButton}>
-      <img src={kebobIcon} alt='케밥 버튼 아이콘' />
+      <Image src={kebobIcon} alt='케밥 버튼 아이콘' style={{ width: "100%" }} />
       {value && (
         <S.ModalLayout>
           <button type='button' onClick={() => onModalBox(setDeleteModal)}>

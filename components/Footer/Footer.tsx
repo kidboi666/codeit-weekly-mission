@@ -22,9 +22,7 @@ const Footer: React.FC = () => {
         </S.PrivacyBox>
         <S.SnsContainer>
           <a href='https://www.facebook.com/' target='_blank' rel='noreferrer'>
-            <div style={{ position: "relative" }}>
-              <Image fill src={facebook} alt='facebook' style={{ objectFit: "cover" }} />
-            </div>
+            <Image src={facebook} alt='facebook' />
           </a>
           <a href='https://twitter.com/?lang=ko' target='_blank' rel='noreferrer'>
             <Image src={twitter} alt='twitter' />

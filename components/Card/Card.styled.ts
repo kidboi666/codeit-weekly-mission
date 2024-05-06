@@ -8,6 +8,15 @@ export const CardImg = styled.img`
   transition: all 0.5s;
 `;
 
+export const ImgContainer = styled.div`
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.5s;
+`;
+
 export const CardDescriptionContainer = styled.div`
   padding: 15px 20px;
   display: flex;

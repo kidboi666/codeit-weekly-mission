@@ -2,6 +2,7 @@ import * as S from "./Search.styled";
 import searchIcon from "../../assets/icons/search.svg";
 import { FolderLink } from "../../pages/api/types";
 import { useState } from "react";
+import Image from "next/image";
 
 interface SearchProps {
   links: FolderLink[];
@@ -40,7 +41,7 @@ const Search: React.FC<SearchProps> = ({ links, setLinks, searchResult, setSearc
       <S.FormBox>
         <S.Form onSubmit={onSubmit}>
           <button>
-            <img src={searchIcon} alt={"검색 돋보기 아이콘"} />
+            <Image src={searchIcon} alt={"검색 돋보기 아이콘"} style={{ width: "100%" }} />
           </button>
           <S.StyledInput value={keyword} placeholder={"링크를 검색해 보세요."} onChange={onChangeInputValue} />
           {keyword && <S.StyledCloseButton variant={"searchInput"} onClick={onIntializingInputValue} />}

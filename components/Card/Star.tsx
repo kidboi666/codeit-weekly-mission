@@ -3,12 +3,13 @@ import starFalse from "../../assets/icons/star_false.svg";
 import * as S from "./Star.styled";
 import useToggle from "../../hooks/useToggle";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 const Star: React.FC = () => {
   const [value, toggle] = useToggle();
   const currentLocation = useRouter();
 
-  if (currentLocation.pathname !== "/folder") {
+  if (currentLocation.pathname !== "/folderPage") {
     return null;
   }
 
@@ -19,7 +20,7 @@ const Star: React.FC = () => {
 
   return (
     <S.StarBox onClick={onClickStarButton}>
-      <img src={value ? starTrue : starFalse} alt='즐겨찾기 아이콘' />
+      <Image src={value ? starTrue : starFalse} alt='즐겨찾기 아이콘' />
     </S.StarBox>
   );
 };
