@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import { ReactComponent as ToastCheckSvg } from '../../assets/icons/toast-check.svg';
-import { ReactComponent as ToastCloseSvg } from '../../assets/icons/toast-close.svg';
+import styled from "styled-components";
+import ToastCheckSvg from "../../assets/icons/toast-check.svg";
+import ToastCloseSvg from "../../assets/icons/toast-close.svg";
 
 export const Layout = styled.div`
   display: flex;

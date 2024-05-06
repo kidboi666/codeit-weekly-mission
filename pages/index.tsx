@@ -1,9 +1,14 @@
-import Homepage from "./HomePage";
+import Homepage from "./homePage";
+import AppLayout from "@/components/App/AppLayout";
 
-export default function Home() {
+const Home = () => {
   return (
     <>
-      <Homepage />
+      <AppLayout>
+        <Homepage />
+      </AppLayout>
     </>
   );
-}
+};
+
+export default Home;

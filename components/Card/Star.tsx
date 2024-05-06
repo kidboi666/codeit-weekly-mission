@@ -2,11 +2,11 @@ import starTrue from "../../assets/icons/star_true.svg";
 import starFalse from "../../assets/icons/star_false.svg";
 import * as S from "./Star.styled";
 import useToggle from "../../hooks/useToggle";
-import { useLocation } from "react-router-dom";
+import { useRouter } from "next/router";
 
 const Star: React.FC = () => {
   const [value, toggle] = useToggle();
-  const currentLocation = useLocation();
+  const currentLocation = useRouter();
 
   if (currentLocation.pathname !== "/folder") {
     return null;

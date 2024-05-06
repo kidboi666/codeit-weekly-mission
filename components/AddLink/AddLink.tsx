@@ -19,9 +19,10 @@ const AddLink: React.FC = () => {
       setInterSecting(true);
     }
   };
-  const observer = new IntersectionObserver(callback);
 
   useEffect(() => {
+    const observer = new IntersectionObserver(callback);
+
     if (targetRef.current) {
       observer.observe(targetRef.current);
     }

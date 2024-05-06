@@ -2,7 +2,7 @@ import React from "react";
 import kebobIcon from "../../assets/icons/kebab.svg";
 import useToggle from "../../hooks/useToggle";
 import * as S from "./Kebab.styled";
-import { useLocation } from "react-router-dom";
+import { useRouter } from "next/router";
 
 interface Props {
   setDeleteModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -11,7 +11,7 @@ interface Props {
 
 const Kebab: React.FC<Props> = ({ setDeleteModal, setAddModal }) => {
   const [value, toggle] = useToggle();
-  const currentLocation = useLocation();
+  const currentLocation = useRouter();
 
   if (currentLocation.pathname !== "/folder") {
     return null;
