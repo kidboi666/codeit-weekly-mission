@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import { useRouter } from "next/router";
 import * as S from "./Nav.styled";
 import UserLoggedIn from "./UserLoggedIn";
 import logo from "@/assets/icons/logo.svg";
-import { useRouter } from "next/router";
-import Image from "next/image";
 
 const Nav: React.FC = () => {
   const [isShadow, setShadow] = useState(false);

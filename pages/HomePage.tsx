@@ -1,15 +1,11 @@
 import Link from "next/link";
 import * as S from "../styles/homePage.styled";
+import LandingPage from "./landingPage";
 
 const Homepage = () => {
   return (
     <S.HomepageLayout>
-      <Link href='/folderPage'>
-        <S.StyledButton variant={"default"} text={"folder page"} />
-      </Link>
-      <Link href='/sharedPage'>
-        <S.StyledButton variant={"default"} text={"shared page"} />
-      </Link>
+      <LandingPage />
     </S.HomepageLayout>
   );
 };
