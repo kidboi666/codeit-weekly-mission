@@ -11,10 +11,9 @@ import Image from "next/image";
 
 interface Props {
   link: FolderLink;
-  folderList?: FolderList[];
 }
 
-const Card: React.FC<Props> = ({ link, folderList }) => {
+const Card: React.FC<Props> = ({ link }) => {
   const [isDeleteModal, setDeleteModal] = useState(false);
   const [isAddModal, setAddModal] = useState(false);
   const timeDelta = formatDate(link.createdAt);
@@ -41,9 +40,7 @@ const Card: React.FC<Props> = ({ link, folderList }) => {
         </S.CardDescriptionContainer>
       </S.CardLinkContainer>
       {isDeleteModal && <Modal variant={"deleteLink"} closeModal={setDeleteModal} currentCard={link.title} />}
-      {isAddModal && (
-        <Modal variant={"selectFolder"} closeModal={setAddModal} currentCard={link.title} folderList={folderList} />
-      )}
+      {isAddModal && <Modal variant={"selectFolder"} closeModal={setAddModal} currentCard={link.title} />}
     </S.CardLayout>
   );
 };

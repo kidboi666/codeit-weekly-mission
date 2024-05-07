@@ -2,7 +2,7 @@ export interface MockUserData {
   id: number;
   name: string;
   owner: Owner;
-  links: FolderLink[];
+  links: Link[];
   count: number;
 }
 
@@ -21,7 +21,7 @@ export interface Owner {
   profileImageSource: string;
 }
 
-export interface FolderLink {
+export interface Link {
   id: number;
   createdAt: string;
   url: string;

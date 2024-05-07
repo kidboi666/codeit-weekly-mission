@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import folderReducer from "@/redux/reducers/folderReducer";
+import folderReducer from "@/redux/reducers/folder";
 
 const store = configureStore({
   reducer: {

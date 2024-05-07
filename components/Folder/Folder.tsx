@@ -1,25 +1,28 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { getAllLinksRequest, getLinksRequest } from "../../services/api";
 import * as S from "./Folder.styled";
-import useAsync from "../../hooks/useAsync";
+import useAsync from "@/hooks/useAsync";
 import FolderOptionButton from "./FolderOptionButton";
 import Button from "../Button/Button";
 import Modal from "../Modal/Modal";
-import { FolderLink, FolderList } from "../../services/types";
+import { Link } from "@/services/types";
 import { COMBINED_FOLDER_NAME } from "@/constants/strings";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 
 interface FolderProps {
-  folderList: FolderList[];
-  setLinks: React.Dispatch<React.SetStateAction<FolderLink[]>>;
+  setLinks: React.Dispatch<React.SetStateAction<Link[]>>;
   setSearchResult: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const Folder: React.FC<FolderProps> = ({ folderList, setLinks, setSearchResult }) => {
+const Folder: React.FC<FolderProps> = ({ setLinks, setSearchResult }) => {
   const [currentFolder, setCurrentFolder] = useState("");
   const [currentFolderId, setCurrentFolderId] = useState(0);
   const [isModalTrigger, setModalTrigger] = useState(false);
   const { requestFunction: allLinksRequest } = useAsync(getAllLinksRequest);
   const { requestFunction: LinkRequest } = useAsync(getLinksRequest);
+  const folderList = useSelector((state: RootState) => state.folder.data);
+  const dispatch = useDispatch();
 
   const getAllLinks = async () => {
     const { data } = await allLinksRequest();

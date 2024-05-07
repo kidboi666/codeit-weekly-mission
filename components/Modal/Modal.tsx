@@ -1,7 +1,8 @@
 import * as S from "./Modal.styled";
 import { useState } from "react";
-import { FolderList } from "../../services/types";
 import * as M from "./ModalContents";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 /**
  *
  * @param {string} variant Button에 넘겨줄 프롭스, 버튼 색깔을 결정
@@ -19,12 +20,12 @@ interface ModalProps {
   closeModal: React.Dispatch<React.SetStateAction<boolean>>;
   currentFolder?: string;
   currentCard?: string;
-  folderList?: FolderList[];
   folderId?: number;
 }
 
-const Modal: React.FC<ModalProps> = ({ variant, closeModal, currentFolder, currentCard, folderList, folderId = 0 }) => {
+const Modal: React.FC<ModalProps> = ({ variant, closeModal, currentFolder, currentCard, folderId = 0 }) => {
   const [isToast, setToast] = useState(false);
+  const folderList = useSelector((state: RootState) => state.folder.data);
   let title;
   let text;
 
