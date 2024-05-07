@@ -1,28 +1,32 @@
 import { useEffect, useState } from "react";
-import { getFolderRequest } from "./api";
 import * as S from "../styles/folderPage.styled";
-import useAsync from "../hooks/useAsync";
 import Search from "../components/Search/Search";
 import AddLink from "../components/AddLink/AddLink";
 import Folder from "../components/Folder/Folder";
 import Card from "../components/Card/Card";
-import { FolderLink } from "./api/types";
+import { FolderLink } from "../services/types";
 import AppLayout from "@/components/App/AppLayout";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+import useAsync from "@/hooks/useAsync";
+import { getFolderRequest } from "@/services/api";
+import { getAllFolderList } from "@/redux/reducers/folderReducer";
 
 const FolderPage = () => {
-  const { requestFunction: getUserFolderList } = useAsync(getFolderRequest);
-  const [folderList, setFolderList] = useState([]);
+  const { requestFunction } = useAsync(getFolderRequest);
+  const folderList = useSelector((state: RootState) => state.folder);
+  const dispatch = useDispatch();
   const [links, setLinks] = useState<FolderLink[]>([]);
   const [searchResult, setSearchResult] = useState("");
 
-  const getFolderList = async () => {
-    const { data } = await getUserFolderList();
-    if (!data) return [];
-    setFolderList(data);
+  const getFolderFunc = async () => {
+    const { data } = await requestFunction();
+    if (!data) [];
+    dispatch(getAllFolderList(data));
   };
 
   useEffect(() => {
-    getFolderList();
+    getFolderFunc();
   }, []);
 
   return (

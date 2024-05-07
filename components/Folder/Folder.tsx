@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { getAllLinksRequest, getLinksRequest } from "../../pages/api";
+import { getAllLinksRequest, getLinksRequest } from "../../services/api";
 import * as S from "./Folder.styled";
 import useAsync from "../../hooks/useAsync";
 import FolderOptionButton from "./FolderOptionButton";
 import Button from "../Button/Button";
 import Modal from "../Modal/Modal";
-import { FolderLink, FolderList } from "../../pages/api/types";
+import { FolderLink, FolderList } from "../../services/types";
 import { COMBINED_FOLDER_NAME } from "@/constants/strings";
 
 interface FolderProps {

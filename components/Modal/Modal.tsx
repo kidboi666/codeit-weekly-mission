@@ -1,6 +1,6 @@
 import * as S from "./Modal.styled";
 import { useState } from "react";
-import { FolderList } from "../../pages/api/types";
+import { FolderList } from "../../services/types";
 import * as M from "./ModalContents";
 /**
  *

@@ -1,6 +1,6 @@
 import * as S from "./Search.styled";
 import searchIcon from "../../assets/icons/search.svg";
-import { FolderLink } from "../../pages/api/types";
+import { FolderLink } from "../../services/types";
 import { useState } from "react";
 import Image from "next/image";
 
