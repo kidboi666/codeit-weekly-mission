@@ -4,7 +4,7 @@ import { getMockFolderRequest } from "./api";
 import Search from "../components/Search/Search";
 import Card from "../components/Card/Card";
 import FolderOwner from "../components/Folder/FolderOwner";
-import * as S from "./sharedPage.styled";
+import * as S from "../styles/sharedPage.styled";
 import { FolderLink } from "./api/types";
 import AppLayout from "@/components/App/AppLayout";
 

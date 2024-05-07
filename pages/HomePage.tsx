@@ -1,6 +1,5 @@
 import Link from "next/link";
-import * as S from "./homePage.styled";
-import AppLayout from "@/components/App/AppLayout";
+import * as S from "../styles/homePage.styled";
 
 const Homepage = () => {
   return (

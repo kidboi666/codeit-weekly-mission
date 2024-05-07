@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getFolderRequest } from "./api";
-import * as S from "./folderPage.styled";
+import * as S from "../styles/folderPage.styled";
 import useAsync from "../hooks/useAsync";
 import Search from "../components/Search/Search";
 import AddLink from "../components/AddLink/AddLink";
