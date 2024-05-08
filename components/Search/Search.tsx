@@ -1,29 +1,34 @@
 import * as S from "./Search.styled";
 import searchIcon from "../../assets/icons/search.svg";
-import { FolderLink } from "../../services/types";
-import { useState } from "react";
+import { Link } from "../../services/types";
+import { useState, useEffect } from "react";
 import Image from "next/image";
+import { useDispatch, useSelector } from "react-redux";
+import { setSearchResult, setSearchKeyword } from "@/redux/reducers/link";
+import { RootState } from "@/redux/store";
 
 interface SearchProps {
-  links: FolderLink[];
-  setSearchResult: React.Dispatch<React.SetStateAction<string>>;
-  searchResult: string;
+  links: Link[];
 }
 
-const Search: React.FC<SearchProps> = ({ links, searchResult, setSearchResult }) => {
+const Search: React.FC<SearchProps> = ({ links }) => {
   const [keyword, setKeyword] = useState("");
+  const searchKeyword = useSelector((state: RootState) => state.link.search);
+  const data = useSelector((state: RootState) => state.link.data);
+  const searchResult = useSelector((state: RootState) => state.link.searchResult);
+  const dispatch = useDispatch();
 
   const onSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    setLinks([]);
+    dispatch(setSearchResult([]));
 
     const result = links.filter((link) => {
       return link.title?.includes(keyword) || link.url?.includes(keyword) || link.description?.includes(keyword);
     });
 
-    if (!result) return setLinks([]);
-    setLinks(result);
-    setSearchResult(keyword);
+    if (!result) return dispatch(setSearchResult([]));
+    dispatch(setSearchResult(result));
+    dispatch(setSearchKeyword(keyword));
     setKeyword("");
   };
 
@@ -34,6 +39,12 @@ const Search: React.FC<SearchProps> = ({ links, searchResult, setSearchResult })
   const onIntializingInputValue = () => {
     setKeyword("");
   };
+
+  useEffect(() => {
+    if (data !== searchResult) {
+      dispatch(setSearchKeyword(""));
+    }
+  }, [data]);
 
   return (
     <S.SearchLayout>
@@ -46,9 +57,9 @@ const Search: React.FC<SearchProps> = ({ links, searchResult, setSearchResult })
           {keyword && <S.StyledCloseButton variant={"searchInput"} onClick={onIntializingInputValue} />}
         </S.Form>
       </S.FormBox>
-      {searchResult && (
+      {searchKeyword && (
         <S.SearchResultSection>
-          <span>{searchResult}</span>
+          <span>{searchKeyword}</span>
           <span>으로 검색한 결과입니다.</span>
         </S.SearchResultSection>
       )}

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import * as S from "../styles/folderPage.styled";
 import Search from "../components/Search/Search";
 import AddLink from "../components/AddLink/AddLink";
@@ -11,9 +11,7 @@ import { getFolder } from "@/redux/actions/folder";
 import { RootState } from "@/redux/store";
 
 const FolderPage = () => {
-  // const [links, setLinks] = useState<Link[]>([]);
   const links = useSelector((state: RootState) => state.link.data);
-  const [searchResult, setSearchResult] = useState("");
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -27,10 +25,10 @@ const FolderPage = () => {
           <AddLink />
         </S.HeaderSection>
         <S.SearchSection>
-          <Search links={links} searchResult={searchResult} setSearchResult={setSearchResult} />
+          <Search links={links} />
         </S.SearchSection>
         <S.FolderSection>
-          <Folder setSearchResult={setSearchResult} />
+          <Folder />
         </S.FolderSection>
         {links.length === 0 ? (
           <S.LinkSection $noneLinks>저장된 링크가 없습니다.</S.LinkSection>

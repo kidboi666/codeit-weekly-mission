@@ -7,7 +7,6 @@ const store = configureStore({
     folder: folderReducer,
     link: linkReducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

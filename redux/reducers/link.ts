@@ -2,15 +2,25 @@ import { Link } from "@/services/types";
 import { createSlice } from "@reduxjs/toolkit";
 import { getLinkList, getAllLinkList } from "../actions/link";
 
-const initialState: { data: Link[]; status: string } = {
+const initialState: { data: Link[]; status: string; search: string; searchResult: Link[] } = {
   data: [],
   status: "",
+  search: "",
+  searchResult: [],
 };
 
 const linkSlice = createSlice({
   name: "link",
   initialState,
-  reducers: {},
+  reducers: {
+    setSearchResult: (state, action) => {
+      state.data = action.payload;
+      state.searchResult = action.payload;
+    },
+    setSearchKeyword: (state, action) => {
+      state.search = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getLinkList.pending, (state, action) => {
@@ -36,4 +46,5 @@ const linkSlice = createSlice({
   },
 });
 
+export const { setSearchResult, setSearchKeyword } = linkSlice.actions;
 export default linkSlice.reducer;

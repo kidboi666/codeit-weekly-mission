@@ -8,11 +8,7 @@ import Button from "../Button/Button";
 import Modal from "../Modal/Modal";
 import * as S from "./Folder.styled";
 
-interface FolderProps {
-  setSearchResult: React.Dispatch<React.SetStateAction<string>>;
-}
-
-const Folder: React.FC<FolderProps> = ({ setSearchResult }) => {
+const Folder: React.FC = () => {
   const [currentFolder, setCurrentFolder] = useState("");
   const [currentFolderId, setCurrentFolderId] = useState(0);
   const [isModalTrigger, setModalTrigger] = useState(false);
@@ -21,7 +17,6 @@ const Folder: React.FC<FolderProps> = ({ setSearchResult }) => {
 
   const onChangeFolderTitle = useCallback((name: string, id?: number) => {
     setCurrentFolder(name);
-    setSearchResult("");
     if (id) {
       setCurrentFolderId(id);
     }
