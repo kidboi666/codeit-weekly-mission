@@ -1,5 +1,6 @@
 import { UserData } from "@/services/types";
 import { createSlice } from "@reduxjs/toolkit";
+import { checkEmailAccess, loginAccess } from "../actions/auth";
 
 const initialState: { userInfo: UserData; isLoggedIn: boolean } = {
   userInfo: {
@@ -20,11 +21,14 @@ const userSlice = createSlice({
     getUserInfo: (state, action) => {
       state.userInfo = action.payload;
     },
-    login: (state, action) => {},
-    logout: (state, action) => {},
+  },
+  extraReducers: (builder) => {
+    builder.addCase(loginAccess.fulfilled, (state, action) => {
+      state.isLoggedIn = true;
+    });
   },
 });
 
-export const { getUserInfo, login, logout } = userSlice.actions;
+export const { getUserInfo } = userSlice.actions;
 
 export default userSlice.reducer;

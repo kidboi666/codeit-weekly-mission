@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Button = styled.button<{ $variant: string; $isActive?: boolean; $width?: boolean }>`
+export const Button = styled.button<{ $variant: string; $isActive?: boolean }>`
   border-radius: 8px;
   border: none;
   padding: 10px 16px;
@@ -41,11 +41,20 @@ export const Button = styled.button<{ $variant: string; $isActive?: boolean; $wi
       background-color: var(--red-color);
     `}
 
-  ${({ $variant, $width }) =>
+  ${({ $variant }) =>
     $variant === "default" &&
     `
-      padding: ${$width ? "16px 126px" : ""};
       background-image: linear-gradient(270deg, #6ae3fe, var(--primary-color));
+    `}
+
+  ${({ $variant }) =>
+    $variant === "underBar" &&
+    `
+      padding: 0;
+      color: var(--primary-color);
+      background-color: var(--gray5-color);
+      font-size: 16px;
+      text-decoration: underline;
     `}
     
   ${({ $variant, $isActive }) =>

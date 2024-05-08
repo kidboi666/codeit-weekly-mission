@@ -5,6 +5,7 @@ export const SignInLayout = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
 
   @media (max-width: 767px) {
     width: 100%;
@@ -22,11 +23,27 @@ export const HeaderContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
   margin-bottom: 30px;
 
-  > p {
-    color: var(--primary-color);
+  > a {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 16px;
   }
+
+  > p {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+`;
+
+export const ImgBox = styled.div`
+  position: relative;
+  width: 210px;
+  height: 38px;
 `;
 
 export const SignContainer = styled.div`
@@ -49,6 +66,7 @@ const signSectionStyle = css`
 
 export const EmailContainer = styled.div`
   ${signSectionStyle}
+  margin-bottom: 24px;
 `;
 
 export const PasswordContainer = styled.div`
