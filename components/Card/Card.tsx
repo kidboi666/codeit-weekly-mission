@@ -6,11 +6,11 @@ import Star from "./Star";
 import Kebab from "./Kebab";
 import { useState } from "react";
 import Modal from "@/components/Modal/Modal";
-import { FolderLink, FolderList } from "@/services/types";
+import { Link } from "@/services/types";
 import Image from "next/image";
 
 interface Props {
-  link: FolderLink;
+  link: Link;
 }
 
 const Card: React.FC<Props> = ({ link }) => {

@@ -10,7 +10,6 @@ const Search: React.FC = () => {
   const [keyword, setKeyword] = useState("");
   const searchKeyword = useSelector((state: RootState) => state.link.search);
   const data = useSelector((state: RootState) => state.link.data);
-  const searchResult = useSelector((state: RootState) => state.link.searchResult);
   const dispatch = useDispatch();
 
   const onSubmit = (e: React.SyntheticEvent) => {
