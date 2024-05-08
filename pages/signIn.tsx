@@ -28,12 +28,12 @@ const SignIn = () => {
           <form id='form'>
             <S.EmailContainer>
               <label htmlFor='email'>이메일</label>
-              <Input id='email' name='email' type='email' placeholder='codeit@codeit.kr' />
+              <Input variant={"sign"} id='email' name='email' type='email' placeholder='codeit@codeit.kr' />
               <div id='wrong_email_message'></div>
             </S.EmailContainer>
             <S.PasswordContainer>
               <label htmlFor='password'>비밀번호</label>
-              <Input id='password' name='password' type='password' placeholder='******' />
+              <Input variant={"sign"} id='password' name='password' type='password' placeholder='******' />
               <Eye />
               <div id='wrong_password_message'></div>
             </S.PasswordContainer>

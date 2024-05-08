@@ -53,6 +53,7 @@ export const EmailContainer = styled.div`
 
 export const PasswordContainer = styled.div`
   ${signSectionStyle}
+  margin-bottom: 30px;
 
   > img {
     width: 20px;

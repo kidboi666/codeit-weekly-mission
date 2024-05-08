@@ -3,11 +3,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import * as S from "./Nav.styled";
-import UserLoggedIn from "./UserLoggedIn";
 import logo from "@/assets/icons/logo.svg";
+import { useAppSelector } from "@/hooks/useApp";
 
 const Nav: React.FC = () => {
   const [isShadow, setShadow] = useState(false);
+  const isLoggedIn = useAppSelector((state) => state.user.isLoggedIn);
+  const userInfo = useAppSelector((state) => state.user.userInfo);
   const { pathname } = useRouter();
 
   const handleNavigation = () => {
@@ -34,7 +36,18 @@ const Nav: React.FC = () => {
           <Image src={logo} alt='Linkbrary' style={{ width: "100%" }} />
         </Link>
       </S.LogoBox>
-      <UserLoggedIn />
+      <S.LoginLayout>
+        {isLoggedIn ? (
+          <>
+            <Image src={userInfo.imageSource} alt='프로필 이미지' />
+            <div>{userInfo.email}</div>
+          </>
+        ) : (
+          <Link href='/signIn'>
+            <S.LoginButton variant='default' text='로그인' />
+          </Link>
+        )}
+      </S.LoginLayout>
     </S.HeaderLayout>
   );
 };

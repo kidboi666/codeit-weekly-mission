@@ -1,7 +1,7 @@
 import { UserData } from "@/services/types";
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState: { userInfo: UserData } = {
+const initialState: { userInfo: UserData; isLoggedIn: boolean } = {
   userInfo: {
     id: 0,
     createdAt: "",
@@ -10,6 +10,7 @@ const initialState: { userInfo: UserData } = {
     email: "",
     authId: "",
   },
+  isLoggedIn: false,
 };
 
 const userSlice = createSlice({

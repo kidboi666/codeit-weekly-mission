@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import folderReducer from "@/redux/reducers/folder";
 import linkReducer from "@/redux/reducers/link";
+import userReducer from "@/redux/reducers/user";
 
 const store = configureStore({
   reducer: {
     folder: folderReducer,
     link: linkReducer,
+    user: userReducer,
   },
 });
 

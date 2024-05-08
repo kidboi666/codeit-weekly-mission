@@ -9,10 +9,14 @@ import * as S from "./Input.styled";
  * @returns {Element}
  */
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {}
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  variant?: string;
+}
 
-const Input: React.FC<InputProps> = ({ placeholder, className, onChange, value }) => {
-  return <S.Input placeholder={placeholder} className={className} onChange={onChange} value={value} />;
+const Input: React.FC<InputProps> = ({ variant, placeholder, className, onChange, value }) => {
+  return (
+    <S.Input $variant={variant} placeholder={placeholder} className={className} onChange={onChange} value={value} />
+  );
 };
 
 export default Input;

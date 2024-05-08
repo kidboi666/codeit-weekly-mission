@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled from "styled-components";
+import Button from "../Button/Button";
 
 export const HeaderLayout = styled.div<{ $isShadow?: boolean }>`
   display: flex;
@@ -30,4 +31,29 @@ export const LogoBox = styled.div`
     width: 133px;
     height: 24px;
   }
+`;
+export const LoginLayout = styled.div`
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  > img {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+  }
+
+  > div {
+    text-decoration: none;
+    color: #000;
+
+    @media (max-width: 767px) {
+      display: none;
+    }
+  }
+`;
+
+export const LoginButton = styled(Button)`
+  padding: 15px 40px;
 `;

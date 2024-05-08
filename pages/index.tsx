@@ -12,7 +12,7 @@ const Home = () => {
         crossOrigin='anonymous'
       />
       <AppLayout>
-        <SignIn />
+        <LandingPage />
       </AppLayout>
     </>
   );
