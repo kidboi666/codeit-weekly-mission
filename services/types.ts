@@ -36,9 +36,9 @@ export interface FolderList {
   name: string;
   userId: number;
   favorite: boolean;
-  link: Link;
+  link: LinkCount;
 }
 
-export interface Link {
+export interface LinkCount {
   count: number;
 }
