@@ -3,7 +3,7 @@ import { Link } from "@/services/types";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import camelcaseKeys from "camelcase-keys";
 
-export const getLinkList = createAsyncThunk<Link[]>("link/getLinkList", async (id) => {
+export const getLinkList = createAsyncThunk<Link[], number>("link/getLinkList", async (id) => {
   const { data } = await axios.get(`users/1/links?folderId=${id}`);
   return camelcaseKeys(data.data, { deep: true });
 });

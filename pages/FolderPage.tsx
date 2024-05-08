@@ -6,13 +6,12 @@ import Folder from "../components/Folder/Folder";
 import Card from "../components/Card/Card";
 import { Link } from "../services/types";
 import AppLayout from "@/components/App/AppLayout";
-import { useDispatch, useSelector } from "react-redux";
 import { getFolder } from "@/redux/actions/folder";
-import { RootState } from "@/redux/store";
+import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 
 const FolderPage = () => {
-  const links = useSelector((state: RootState) => state.link.data);
-  const dispatch = useDispatch();
+  const links = useAppSelector((state) => state.link.data);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getFolder());
