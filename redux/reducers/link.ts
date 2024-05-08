@@ -14,7 +14,6 @@ const linkSlice = createSlice({
   initialState,
   reducers: {
     setSearchResult: (state, action) => {
-      state.data = action.payload;
       state.searchResult = action.payload;
     },
     setSearchKeyword: (state, action) => {

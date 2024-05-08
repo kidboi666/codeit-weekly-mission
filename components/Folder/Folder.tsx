@@ -7,6 +7,7 @@ import Button from "../Button/Button";
 import Modal from "../Modal/Modal";
 import * as S from "./Folder.styled";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
+import { setSearchKeyword, setSearchResult } from "@/redux/reducers/link";
 
 const Folder: React.FC = () => {
   const [currentFolder, setCurrentFolder] = useState("");
@@ -24,11 +25,15 @@ const Folder: React.FC = () => {
 
   const onChangeAllLinksFolder = useCallback(() => {
     dispatch(getAllLinkList());
+    dispatch(setSearchResult([]));
+    dispatch(setSearchKeyword(""));
     onChangeFolderTitle(COMBINED_FOLDER_NAME);
   }, []);
 
   const onChangeLinkFolder = useCallback((name: string, id: number) => {
     dispatch(getLinkList(id));
+    dispatch(setSearchResult([]));
+    dispatch(setSearchKeyword(""));
     onChangeFolderTitle(name, id);
   }, []);
 

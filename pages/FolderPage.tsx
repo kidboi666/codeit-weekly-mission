@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import * as S from "../styles/folderPage.styled";
 import Search from "../components/Search/Search";
 import AddLink from "../components/AddLink/AddLink";
@@ -10,12 +10,26 @@ import { getFolder } from "@/redux/actions/folder";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 
 const FolderPage = () => {
-  const links = useAppSelector((state) => state.link.data);
+  const linkList = useAppSelector((state) => state.link.data);
+  const searchResult = useAppSelector((state) => state.link.searchResult);
+  const searchKeyword = useAppSelector((state) => state.link.search);
   const dispatch = useAppDispatch();
+  const [link, setLink] = useState<Link[]>([]);
+
+  const onChangeLink = () => {
+    if (!searchKeyword && searchResult.length === 0) {
+      return setLink(linkList);
+    }
+    setLink(searchResult);
+  };
 
   useEffect(() => {
     dispatch(getFolder());
   }, []);
+
+  useEffect(() => {
+    onChangeLink();
+  }, [linkList, searchResult, searchKeyword]);
 
   return (
     <AppLayout>
@@ -24,20 +38,14 @@ const FolderPage = () => {
           <AddLink />
         </S.HeaderSection>
         <S.SearchSection>
-          <Search links={links} />
+          <Search />
         </S.SearchSection>
         <S.FolderSection>
           <Folder />
         </S.FolderSection>
-        {links.length === 0 ? (
-          <S.LinkSection $noneLinks>저장된 링크가 없습니다.</S.LinkSection>
-        ) : (
-          <S.LinkSection>
-            {links.map((link: Link) => (
-              <Card key={link.id} link={link} />
-            ))}
-          </S.LinkSection>
-        )}
+        <S.LinkSection>
+          {link.length === 0 ? "해당되는 링크가 없습니다." : link.map((v) => <Card key={v.id} link={v} />)}
+        </S.LinkSection>
       </S.FolderPageLayout>
     </AppLayout>
   );

@@ -1,17 +1,12 @@
 import * as S from "./Search.styled";
 import searchIcon from "../../assets/icons/search.svg";
-import { Link } from "../../services/types";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchResult, setSearchKeyword } from "@/redux/reducers/link";
 import { RootState } from "@/redux/store";
 
-interface SearchProps {
-  links: Link[];
-}
-
-const Search: React.FC<SearchProps> = ({ links }) => {
+const Search: React.FC = () => {
   const [keyword, setKeyword] = useState("");
   const searchKeyword = useSelector((state: RootState) => state.link.search);
   const data = useSelector((state: RootState) => state.link.data);
@@ -20,10 +15,12 @@ const Search: React.FC<SearchProps> = ({ links }) => {
 
   const onSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
+
+    if (!keyword) return null;
     dispatch(setSearchResult([]));
 
-    const result = links.filter((link) => {
-      return link.title?.includes(keyword) || link.url?.includes(keyword) || link.description?.includes(keyword);
+    const result = data.filter((v) => {
+      return v.title?.includes(keyword) || v.url?.includes(keyword) || v.description?.includes(keyword);
     });
 
     if (!result) return dispatch(setSearchResult([]));
@@ -39,12 +36,6 @@ const Search: React.FC<SearchProps> = ({ links }) => {
   const onIntializingInputValue = () => {
     setKeyword("");
   };
-
-  useEffect(() => {
-    if (data !== searchResult) {
-      dispatch(setSearchKeyword(""));
-    }
-  }, [data]);
 
   return (
     <S.SearchLayout>
