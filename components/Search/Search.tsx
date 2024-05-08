@@ -6,12 +6,11 @@ import Image from "next/image";
 
 interface SearchProps {
   links: FolderLink[];
-  setLinks: React.Dispatch<React.SetStateAction<FolderLink[]>>;
   setSearchResult: React.Dispatch<React.SetStateAction<string>>;
   searchResult: string;
 }
 
-const Search: React.FC<SearchProps> = ({ links, setLinks, searchResult, setSearchResult }) => {
+const Search: React.FC<SearchProps> = ({ links, searchResult, setSearchResult }) => {
   const [keyword, setKeyword] = useState("");
 
   const onSubmit = (e: React.SyntheticEvent) => {

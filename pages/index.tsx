@@ -1,6 +1,7 @@
 import Script from "next/script";
-import Homepage from "./homePage";
 import AppLayout from "@/components/App/AppLayout";
+import LandingPage from "./landingPage";
+// import SignIn from "./signin";
 
 const Home = () => {
   return (
@@ -11,7 +12,7 @@ const Home = () => {
         crossOrigin='anonymous'
       />
       <AppLayout>
-        <Homepage />
+        <LandingPage />
       </AppLayout>
     </>
   );

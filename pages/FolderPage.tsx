@@ -6,23 +6,18 @@ import Folder from "../components/Folder/Folder";
 import Card from "../components/Card/Card";
 import { Link } from "../services/types";
 import AppLayout from "@/components/App/AppLayout";
-import { useDispatch } from "react-redux";
-import useAsync from "@/hooks/useAsync";
-import { getFolderRequest } from "@/services/api";
-import { getFolder } from "@/redux/reducers/folder";
+import { useDispatch, useSelector } from "react-redux";
+import { getFolder } from "@/redux/actions/folder";
+import { RootState } from "@/redux/store";
 
 const FolderPage = () => {
-  const { requestFunction } = useAsync(getFolderRequest);
-  const dispatch = useDispatch();
-  const [links, setLinks] = useState<Link[]>([]);
+  // const [links, setLinks] = useState<Link[]>([]);
+  const links = useSelector((state: RootState) => state.link.data);
   const [searchResult, setSearchResult] = useState("");
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    (async () => {
-      const { data } = await requestFunction();
-      if (!data) [];
-      dispatch(getFolder(data));
-    })();
+    dispatch(getFolder());
   }, []);
 
   return (
@@ -32,10 +27,10 @@ const FolderPage = () => {
           <AddLink />
         </S.HeaderSection>
         <S.SearchSection>
-          <Search links={links} setLinks={setLinks} searchResult={searchResult} setSearchResult={setSearchResult} />
+          <Search links={links} searchResult={searchResult} setSearchResult={setSearchResult} />
         </S.SearchSection>
         <S.FolderSection>
-          <Folder setLinks={setLinks} setSearchResult={setSearchResult} />
+          <Folder setSearchResult={setSearchResult} />
         </S.FolderSection>
         {links.length === 0 ? (
           <S.LinkSection $noneLinks>저장된 링크가 없습니다.</S.LinkSection>

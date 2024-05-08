@@ -1,40 +1,23 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { getAllLinksRequest, getLinksRequest } from "../../services/api";
-import * as S from "./Folder.styled";
-import useAsync from "@/hooks/useAsync";
-import FolderOptionButton from "./FolderOptionButton";
-import Button from "../Button/Button";
-import Modal from "../Modal/Modal";
-import { Link } from "@/services/types";
 import { COMBINED_FOLDER_NAME } from "@/constants/strings";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
+import { getAllLinkList, getLinkList } from "@/redux/actions/link";
+import FolderOptionButton from "./FolderOptionButton";
+import Button from "../Button/Button";
+import Modal from "../Modal/Modal";
+import * as S from "./Folder.styled";
 
 interface FolderProps {
-  setLinks: React.Dispatch<React.SetStateAction<Link[]>>;
   setSearchResult: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const Folder: React.FC<FolderProps> = ({ setLinks, setSearchResult }) => {
+const Folder: React.FC<FolderProps> = ({ setSearchResult }) => {
   const [currentFolder, setCurrentFolder] = useState("");
   const [currentFolderId, setCurrentFolderId] = useState(0);
   const [isModalTrigger, setModalTrigger] = useState(false);
-  const { requestFunction: allLinksRequest } = useAsync(getAllLinksRequest);
-  const { requestFunction: LinkRequest } = useAsync(getLinksRequest);
   const folderList = useSelector((state: RootState) => state.folder.data);
   const dispatch = useDispatch();
-
-  const getAllLinks = async () => {
-    const { data } = await allLinksRequest();
-    if (!data) return [];
-    setLinks(data);
-  };
-
-  const getLink = async (id: number) => {
-    const { data } = await LinkRequest(id);
-    if (!data) return [];
-    setLinks(data);
-  };
 
   const onChangeFolderTitle = useCallback((name: string, id?: number) => {
     setCurrentFolder(name);
@@ -45,12 +28,12 @@ const Folder: React.FC<FolderProps> = ({ setLinks, setSearchResult }) => {
   }, []);
 
   const onChangeAllLinksFolder = useCallback(() => {
-    getAllLinks();
+    dispatch(getAllLinkList());
     onChangeFolderTitle(COMBINED_FOLDER_NAME);
   }, []);
 
   const onChangeLinkFolder = useCallback((name: string, id: number) => {
-    getLink(id);
+    dispatch(getLinkList(id));
     onChangeFolderTitle(name, id);
   }, []);
 

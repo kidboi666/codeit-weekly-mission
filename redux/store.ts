@@ -1,10 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import folderReducer from "@/redux/reducers/folder";
+import linkReducer from "@/redux/reducers/link";
 
 const store = configureStore({
   reducer: {
     folder: folderReducer,
+    link: linkReducer,
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

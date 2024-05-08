@@ -1,6 +1,25 @@
 import styled from "styled-components";
 export const LandingPageLayout = styled.div`
   width: 100%;
+  .info_gradient {
+    background: linear-gradient(270deg, #ff9f9f, var(--primary-color));
+  }
+  .link_gradient {
+    background: linear-gradient(270deg, #a4ceff, #fe8a8a);
+  }
+  .folder_gradient {
+    background: linear-gradient(270deg, #a4ceff, #ffd88b);
+  }
+  .share_gradient {
+    background: linear-gradient(270deg, #a4ceff, #528885);
+  }
+  .sns_gradient {
+    background: linear-gradient(270deg, #a4ceff, #76dbf0);
+  }
+  .text_gradient {
+    color: transparent;
+    background-clip: text;
+  }
 `;
 // main_header_wrap
 export const HeaderContainer = styled.div`
@@ -13,25 +32,22 @@ export const HeaderBox = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding-top: 7rem;
+  padding-top: 70px;
   text-align: center;
-
-  > a {
-    padding: 16px 126px;
-    background-image: linear-gradient(270deg, #6ae3fe, var(--primary-color));
-    border-radius: 8px;
-    color: var(--white-color);
-    text-decoration: none;
-    margin-top: 40px;
-    margin-bottom: 90px;
-  }
 `;
 // intro_wrap
 export const IntroWrap = styled.div`
+  margin-bottom: 40px;
+
   > h1,
   span {
     font-size: 64px;
+    font-weight: 700;
   }
+`;
+
+export const LinkBox = styled.div`
+  margin-bottom: 40px;
 `;
 //section
 export const SectionCotainer = styled.div`
@@ -57,12 +73,6 @@ export const CardBox = styled.div`
     grid-row: 2 / 3;
     font-size: 48px;
     font-weight: 500;
-
-    > span {
-      background: linear-gradient(270deg, #ff9f9f, var(--primary-color));
-      color: transparent;
-      background-clip: text;
-    }
   }
 
   > p {

@@ -1,7 +1,6 @@
 import { axiosInstance as axios } from "./axiosInstace";
 import camelcaseKeys from "camelcase-keys";
-import { FolderLink, FolderList, MockUserData, UserData } from "./types";
-import useAsync from "@/hooks/useAsync";
+import { Link, FolderList, MockUserData, UserData } from "./types";
 
 const returnCase = (response: any, message: string) => {
   if (response.status < 200 || response.status >= 300) {
@@ -17,7 +16,7 @@ export const getUserRequest = async (): Promise<UserData> => {
   return returnCase(response, "유저 프로필 가져오기");
 };
 
-export const getLinksRequest = async (id: number): Promise<FolderLink[]> => {
+export const getLinksRequest = async (id: number): Promise<Link[]> => {
   const response = await axios.get(`users/1/links?folderId=${id}`);
 
   return returnCase(response, "링크 가져오기");
@@ -29,7 +28,7 @@ export const getFolderRequest = async (): Promise<FolderList[]> => {
   return returnCase(response, "폴더 가져오기");
 };
 
-export const getAllLinksRequest = async (): Promise<FolderLink[]> => {
+export const getAllLinksRequest = async (): Promise<Link[]> => {
   const response = await axios.get(`users/1/links`);
 
   return returnCase(response, "모든 링크 가져오기");
@@ -41,7 +40,7 @@ export const getMockUserRequest = async (): Promise<MockUserData> => {
   return returnCase(response, "샘플 유저 프로필 가져오기");
 };
 
-export const getMockFolderRequest = async (): Promise<FolderLink> => {
+export const getMockFolderRequest = async (): Promise<Link> => {
   const response = await axios.get(`sample/folder`);
 
   return returnCase(response, "샘플 유저 폴더 가져오기");
