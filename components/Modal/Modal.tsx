@@ -1,8 +1,9 @@
 import * as S from "./Modal.styled";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as M from "./ModalContents";
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
+import { useAppSelector } from "@/hooks/useApp";
+import { useDispatch } from "react-redux";
+import { initialFolderStatus } from "@/redux/reducers/folder";
 
 interface ModalProps {
   variant: string;
@@ -14,7 +15,9 @@ interface ModalProps {
 
 const Modal: React.FC<ModalProps> = ({ variant, closeModal, currentFolder, currentCard, folderId = 0 }) => {
   const [isToast, setToast] = useState(false);
-  const folderList = useSelector((state: RootState) => state.folder.data);
+  const folderList = useAppSelector((state) => state.folder.data);
+  const requestStatus = useAppSelector((state) => state.folder.status);
+  const dispatch = useDispatch();
   let title;
   let text;
 
@@ -56,6 +59,13 @@ const Modal: React.FC<ModalProps> = ({ variant, closeModal, currentFolder, curre
       text = "삭제하기";
       break;
   }
+
+  useEffect(() => {
+    if (requestStatus === "Complete") {
+      dispatch(initialFolderStatus());
+      closingModal();
+    }
+  }, [requestStatus]);
 
   return (
     <S.ModalLayout>

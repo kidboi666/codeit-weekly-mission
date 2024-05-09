@@ -8,10 +8,9 @@ import Button from "../Button/Button";
 import Input from "../Input/Input";
 import KakaoButton from "../KakaoButton/KakaoButton";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import { postFolder } from "@/redux/actions/folder";
-import { initialStatus } from "@/redux/reducers/folder";
 
 interface ShareProps {
   isToast: boolean;
@@ -98,10 +97,9 @@ export const ChangeName: React.FC<ChangeNameProps> = ({ variant, text, currentFo
   );
 };
 
-export const AddFolder: React.FC<AddFolderProps> = ({ variant, text, closeModal }) => {
+export const AddFolder: React.FC<AddFolderProps> = ({ variant, text }) => {
   const [folderName, setFolderName] = useState("");
   const token = useAppSelector((state) => state.auth.accessToken);
-  const requestStatus = useAppSelector((state) => state.folder.status);
   const dispatch = useAppDispatch();
 
   const onChangeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -114,14 +112,6 @@ export const AddFolder: React.FC<AddFolderProps> = ({ variant, text, closeModal 
       dispatch(postFolder({ folderName, token }));
     }
   };
-
-  useEffect(() => {
-    if (requestStatus === "Complete") {
-      dispatch(initialStatus());
-      closeModal();
-    }
-    console.log(requestStatus);
-  }, [requestStatus]);
 
   return (
     <>

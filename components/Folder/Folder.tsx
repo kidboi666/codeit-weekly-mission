@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { COMBINED_FOLDER_NAME } from "@/constants/strings";
 import { getAllLinkList, getLinkList } from "@/redux/actions/link";
 import FolderOptionButton from "./FolderOptionButton";
@@ -6,39 +6,16 @@ import Button from "../Button/Button";
 import Modal from "../Modal/Modal";
 import * as S from "./Folder.styled";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
-import { setSearchKeyword, setSearchResult } from "@/redux/reducers/link";
 
 const Folder: React.FC = () => {
-  const [currentFolder, setCurrentFolder] = useState("");
-  const [currentFolderId, setCurrentFolderId] = useState(0);
   const [isModalTrigger, setModalTrigger] = useState(false);
   const folderList = useAppSelector((state) => state.folder.data);
+  const userId = useAppSelector((state) => state.auth.userInfo.id);
   const dispatch = useAppDispatch();
 
-  const onChangeFolderTitle = useCallback((name: string, id?: number) => {
-    setCurrentFolder(name);
-    if (id) {
-      setCurrentFolderId(id);
-    }
-  }, []);
-
-  const onChangeAllLinksFolder = useCallback(() => {
-    dispatch(getAllLinkList());
-    dispatch(setSearchResult([]));
-    dispatch(setSearchKeyword(""));
-    onChangeFolderTitle(COMBINED_FOLDER_NAME);
-  }, []);
-
-  const onChangeLinkFolder = useCallback((name: string, id: number) => {
-    dispatch(getLinkList(id));
-    dispatch(setSearchResult([]));
-    dispatch(setSearchKeyword(""));
-    onChangeFolderTitle(name, id);
-  }, []);
-
-  useEffect(() => {
-    onChangeAllLinksFolder();
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getAllLinkList(userId));
+  // }, []);
 
   return (
     <S.FolderLayout>
@@ -46,16 +23,14 @@ const Folder: React.FC = () => {
         <S.FolderBox>
           <Button
             variant={"folderButton"}
-            selected={currentFolder}
-            onClick={onChangeAllLinksFolder}
+            onClick={() => dispatch(getAllLinkList(userId))}
             text={COMBINED_FOLDER_NAME}
           />
           {folderList.map((folderItem) => (
             <Button
               key={folderItem.id}
               variant={"folderButton"}
-              selected={currentFolder}
-              onClick={() => onChangeLinkFolder(folderItem.name, folderItem.id)}
+              onClick={() => dispatch(getLinkList({ userId: userId, folderId: folderItem.id }))}
               text={folderItem.name}
             />
           ))}
@@ -64,7 +39,7 @@ const Folder: React.FC = () => {
           <Button variant={"addFolder"} text='폴더 추가 +' width={"95px"} />
         </div>
       </S.FolderContainer>
-      <FolderOptionButton folderTitle={currentFolder} folderId={currentFolderId} />
+      <FolderOptionButton />
       {isModalTrigger && <Modal variant='addFolder' closeModal={setModalTrigger} />}
     </S.FolderLayout>
   );

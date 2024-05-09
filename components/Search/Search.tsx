@@ -2,16 +2,16 @@ import * as S from "./Search.styled";
 import searchIcon from "../../assets/icons/search.svg";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setSearchResult, setSearchKeyword } from "@/redux/reducers/link";
-import { RootState } from "@/redux/store";
 import Input from "../Input/Input";
+import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 
 const Search: React.FC = () => {
   const [keyword, setKeyword] = useState("");
-  const searchKeyword = useSelector((state: RootState) => state.link.search);
-  const data = useSelector((state: RootState) => state.link.data);
-  const dispatch = useDispatch();
+  const searchKeyword = useAppSelector((state) => state.link.search);
+  const data = useAppSelector((state) => state.link.data);
+  const dispatch = useAppDispatch();
 
   const onSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();

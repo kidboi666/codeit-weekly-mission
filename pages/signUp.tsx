@@ -17,7 +17,7 @@ const SignUp = () => {
   });
   const [passwordCheck, setPasswordCheck] = useState("");
   const emailCheck = useAppSelector((state) => state.auth.status);
-  const isToken = useAppSelector((state) => state.auth.accessToken);
+  const token = useAppSelector((state) => state.auth.accessToken);
   const dispatch = useAppDispatch();
 
   const onChangeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,8 +43,9 @@ const SignUp = () => {
   };
 
   useEffect(() => {
-    dispatch(userInfoAccess());
-  }, [isToken]);
+    if (!token) return;
+    dispatch(userInfoAccess(token));
+  }, []);
 
   return (
     <S.SignUpLayout>

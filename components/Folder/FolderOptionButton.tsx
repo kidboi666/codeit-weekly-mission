@@ -6,13 +6,11 @@ import React, { useState } from "react";
 import Modal from "../Modal/Modal";
 import Image from "next/image";
 import { COMBINED_FOLDER_NAME } from "@/constants/strings";
+import { useAppSelector } from "@/hooks/useApp";
 
-interface FolderOptionButtonProps {
-  folderTitle: string;
-  folderId: number;
-}
-
-const FolderOptionButton: React.FC<FolderOptionButtonProps> = ({ folderTitle, folderId }) => {
+const FolderOptionButton: React.FC = () => {
+  const folderTitle = useAppSelector((state) => state.folder.selectedFolder);
+  const folderId = useAppSelector((state) => state.folder.selectedFolderId);
   const [isShareModal, setShareModal] = useState(false);
   const [isDeleteModal, setDeleteModal] = useState(false);
   const [isChangeNameModal, setChangeNameModal] = useState(false);

@@ -17,6 +17,7 @@ const SignIn = () => {
     pw: "",
   });
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
+  const token = useAppSelector((state) => state.auth.accessToken);
   const dispatch = useAppDispatch();
   const router = useRouter();
 
@@ -36,6 +37,7 @@ const SignIn = () => {
 
   useEffect(() => {
     if (isLoggedIn) {
+      dispatch(userInfoAccess(token));
       router.push("/folderPage");
     }
   }, [isLoggedIn]);
