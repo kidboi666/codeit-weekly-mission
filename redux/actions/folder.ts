@@ -23,6 +23,6 @@ export const postFolder = createAsyncThunk<any, { folderName: string; token: str
       },
     });
 
-    return data;
+    return camelcaseKeys(data.data, { deep: true });
   },
 );

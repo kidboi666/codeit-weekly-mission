@@ -60,13 +60,6 @@ const Modal: React.FC<ModalProps> = ({ variant, closeModal, currentFolder, curre
       break;
   }
 
-  useEffect(() => {
-    if (requestStatus === "Complete") {
-      dispatch(initialFolderStatus());
-      closingModal();
-    }
-  }, [requestStatus]);
-
   return (
     <S.ModalLayout>
       <S.ModalContainer>

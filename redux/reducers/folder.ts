@@ -33,7 +33,7 @@ const folderSlice = createSlice({
         state.status = "Fail";
       })
       .addCase(postFolder.fulfilled, (state, action) => {
-        state.status = "Complete";
+        state.data = [...state.data, action.payload[0]];
       });
   },
 });
