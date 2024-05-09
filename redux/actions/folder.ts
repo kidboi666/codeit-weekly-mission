@@ -26,3 +26,21 @@ export const postFolder = createAsyncThunk<any, { folderName: string; token: str
     return camelcaseKeys(data.data, { deep: true });
   },
 );
+
+export const putFolder = createAsyncThunk<any, { folderName: string; folderId: number; accessToken: string }>(
+  "folder/putFolder",
+  async ({ folderName, folderId, accessToken }) => {
+    const { data } = await axios({
+      method: "put",
+      url: `folders/${folderId}`,
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      data: {
+        name: folderName,
+      },
+    });
+
+    return camelcaseKeys(data.data, { deep: true });
+  },
+);

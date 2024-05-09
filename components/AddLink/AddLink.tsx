@@ -1,22 +1,32 @@
 import * as S from "./AddLink.styled";
 import LinkIcon from "../../assets/icons/link.svg";
-import { useCallback, useState, useRef, useEffect } from "react";
-import Modal from "../Modal/Modal";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
+import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
+import { postLink } from "@/redux/actions/link";
 
 const AddLink: React.FC = () => {
-  const [isModalTrigger, setIsModalTrigger] = useState(false);
   const [isInterSecting, setInterSecting] = useState(false);
+  const [linkUrl, setLinkUrl] = useState("");
   const targetRef = useRef(null);
-
-  const changeTrigger = useCallback(() => {
-    setIsModalTrigger((prevBoolean) => !prevBoolean);
-  }, []);
+  const { accessToken } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
 
   const callback = (entries: any) => {
     setInterSecting(!entries[0].isIntersecting);
+  };
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (linkUrl) {
+      dispatch(postLink({ url: linkUrl, accessToken: accessToken, folderId: 1024 }));
+    }
+  };
+
+  const onChangeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setLinkUrl(e.target.value);
   };
 
   useEffect(() => {
@@ -37,15 +47,19 @@ const AddLink: React.FC = () => {
     <S.AddLinkLayout ref={targetRef}>
       <S.InnerBox $isInterSecting={isInterSecting}>
         <S.FormContainer $isInterSecting={isInterSecting}>
-          <S.FormBox>
+          <S.FormBox onSubmit={onSubmit}>
             <S.IconImgBox>
               <Image src={LinkIcon} alt={""} />
             </S.IconImgBox>
-            <Input placeholder='링크를 추가해 보세요' variant={"addLink"} />
-            <Button variant={"addLink"} text={"추가하기"} onClick={changeTrigger} />
+            <Input
+              value={linkUrl}
+              onChange={onChangeInputValue}
+              placeholder='링크를 추가해 보세요'
+              variant={"addLink"}
+            />
+            <Button variant={"addLink"} text={"추가하기"} type={"submit"} />
           </S.FormBox>
         </S.FormContainer>
-        {isModalTrigger && <Modal variant={"addLink"} closeModal={setIsModalTrigger} />}
       </S.InnerBox>
     </S.AddLinkLayout>
   );

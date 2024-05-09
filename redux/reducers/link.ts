@@ -1,8 +1,8 @@
 import { Link } from "@/services/types";
 import { createSlice } from "@reduxjs/toolkit";
-import { getLinkList, getAllLinkList } from "../actions/link";
+import { getLinkList, getAllLinkList, postLink } from "../actions/link";
 
-const initialState: { data: Link[]; status: string; search: string; searchResult: Link[] } = {
+const initialState: { data: Link[]; status: any; search: string; searchResult: Link[] } = {
   data: [],
   status: "",
   search: "",
@@ -22,25 +22,18 @@ const linkSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getLinkList.pending, (state, action) => {
-        state.status = "Loading";
-      })
+      .addCase(getLinkList.pending, (state, action) => {})
       .addCase(getLinkList.fulfilled, (state, action) => {
         state.data = action.payload;
-        state.status = "Complete";
       })
-      .addCase(getLinkList.rejected, (state, action) => {
-        state.status = "Fail";
-      })
-      .addCase(getAllLinkList.pending, (state, action) => {
-        state.status = "Loading";
-      })
+      .addCase(getLinkList.rejected, (state, action) => {})
+      .addCase(getAllLinkList.pending, (state, action) => {})
       .addCase(getAllLinkList.fulfilled, (state, action) => {
         state.data = action.payload;
-        state.status = "Complete";
       })
-      .addCase(getAllLinkList.rejected, (state, action) => {
-        state.status = "Fail";
+      .addCase(getAllLinkList.rejected, (state, action) => {})
+      .addCase(postLink.fulfilled, (state, action) => {
+        state.status = action.payload;
       });
   },
 });

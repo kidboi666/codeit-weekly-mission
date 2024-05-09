@@ -117,12 +117,8 @@ export const AddFolder: React.FC<AddFolderProps> = ({ variant, text }) => {
     <>
       <form onSubmit={onSubmit}>
         <Input value={folderName} onChange={onChangeInputValue} placeholder={"생성할 폴더 이름"} />
-        <Button variant={variant} text={text} width={"100%"} />
+        <Button variant={variant} text={text} type={"submit"} width={"100%"} />
       </form>
     </>
   );
-};
-
-export const AddLink: React.FC<AddLinkProps> = ({ variant, text }) => {
-  return <Button variant={variant} text={text} width={"100%"} />;
 };

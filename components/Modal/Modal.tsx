@@ -68,7 +68,6 @@ const Modal: React.FC<ModalProps> = ({ variant, closeModal, currentFolder, curre
         <S.CurrentFolder>{currentFolder || currentCard}</S.CurrentFolder>
 
         {title === "폴더 추가" && <M.AddFolder variant={variant} text={text} closeModal={closingModal} />}
-        {title === "링크 추가" && <M.AddLink variant={variant} text={text} />}
         {title === "폴더에 추가" && <M.LinkFolder variant={variant} text={text} folderList={folderList} />}
         {title === "폴더 공유" && <M.Share isToast={isToast} setToast={setToast} folderId={folderId} />}
         {title === "폴더 이름 변경" && <M.ChangeName currentFolder={currentFolder} variant={variant} text={text} />}
