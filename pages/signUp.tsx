@@ -9,6 +9,7 @@ import Input from "@/components/Input/Input";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import { checkEmailAccess, signUpAccess, userInfoAccess } from "@/redux/actions/auth";
+import { useRouter } from "next/router";
 
 const SignUp = () => {
   const [signBody, setSignBody] = useState({
@@ -16,9 +17,9 @@ const SignUp = () => {
     pw: "",
   });
   const [passwordCheck, setPasswordCheck] = useState("");
-  const emailCheck = useAppSelector((state) => state.auth.status);
-  const token = useAppSelector((state) => state.auth.accessToken);
+  const { isLoggedIn, userInfo, accessToken, status } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const onChangeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSignBody({
@@ -36,16 +37,19 @@ const SignUp = () => {
     if (signBody.pw !== passwordCheck) return;
     if (signBody.email && signBody.pw) {
       dispatch(checkEmailAccess(signBody.email));
-      if (emailCheck?.data?.isUsableNickname) {
+      if (status?.data?.isUsableNickname) {
         dispatch(signUpAccess(signBody));
       }
     }
   };
 
   useEffect(() => {
-    if (!token) return;
-    dispatch(userInfoAccess(token));
-  }, []);
+    if (isLoggedIn) dispatch(userInfoAccess(accessToken));
+  }, [isLoggedIn]);
+
+  useEffect(() => {
+    if (userInfo.id) router.push("/folderPage");
+  }, [userInfo]);
 
   return (
     <S.SignUpLayout>

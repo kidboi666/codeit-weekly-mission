@@ -16,6 +16,9 @@ const folderSlice = createSlice({
     initialFolderStatus: (state) => {
       state.status = "";
     },
+    setSelectedFolder: (state, action) => {
+      state.selectedFolder = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -35,6 +38,6 @@ const folderSlice = createSlice({
   },
 });
 
-export const { initialFolderStatus } = folderSlice.actions;
+export const { initialFolderStatus, setSelectedFolder } = folderSlice.actions;
 
 export default folderSlice.reducer;

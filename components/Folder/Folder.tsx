@@ -6,17 +6,24 @@ import Button from "../Button/Button";
 import Modal from "../Modal/Modal";
 import * as S from "./Folder.styled";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
-import { getFolder } from "@/redux/actions/folder";
+import { FolderList } from "@/services/types";
+import { setSelectedFolder } from "@/redux/reducers/folder";
 
 const Folder: React.FC = () => {
   const [isModalTrigger, setModalTrigger] = useState(false);
-  const folderList = useAppSelector((state) => state.folder.data);
+  const { data, selectedFolder } = useAppSelector((state) => state.folder);
   const userId = useAppSelector((state) => state.auth.userInfo.id);
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    dispatch(getFolder(userId));
-  }, []);
+  const handleFetchLinkList = (folderItem: FolderList) => {
+    dispatch(getLinkList({ userId: userId, folderId: folderItem.id }));
+    dispatch(setSelectedFolder(folderItem.name));
+  };
+
+  const handleFetchAllLinkList = () => {
+    dispatch(getAllLinkList(userId));
+    dispatch(setSelectedFolder(COMBINED_FOLDER_NAME));
+  };
 
   return (
     <S.FolderLayout>
@@ -24,15 +31,17 @@ const Folder: React.FC = () => {
         <S.FolderBox>
           <Button
             variant={"folderButton"}
-            onClick={() => dispatch(getAllLinkList(userId))}
+            onClick={() => handleFetchAllLinkList()}
             text={COMBINED_FOLDER_NAME}
+            selected={selectedFolder}
           />
-          {folderList.map((folderItem) => (
+          {data.map((folderItem) => (
             <Button
               key={folderItem.id}
               variant={"folderButton"}
-              onClick={() => dispatch(getLinkList({ userId: userId, folderId: folderItem.id }))}
+              onClick={() => handleFetchLinkList(folderItem)}
               text={folderItem.name}
+              selected={selectedFolder}
             />
           ))}
         </S.FolderBox>

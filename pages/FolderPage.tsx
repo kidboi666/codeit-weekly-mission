@@ -7,10 +7,13 @@ import Card from "../components/Card/Card";
 import AppLayout from "@/components/App/AppLayout";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import { useRouter } from "next/router";
+import { getFolder } from "@/redux/actions/folder";
 
 const FolderPage = () => {
-  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
+  const { isLoggedIn, userInfo } = useAppSelector((state) => state.auth);
+  const folderLength = useAppSelector((state) => state.folder.data.length);
   const linkList = useAppSelector((state) => state.link.data);
+  const dispatch = useAppDispatch();
   const router = useRouter();
 
   useEffect(() => {
@@ -18,6 +21,10 @@ const FolderPage = () => {
       router.push("/");
     }
   }, [isLoggedIn]);
+
+  useEffect(() => {
+    dispatch(getFolder(userInfo.id));
+  }, [folderLength]);
 
   return (
     <AppLayout>
