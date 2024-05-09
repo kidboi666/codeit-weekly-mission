@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { COMBINED_FOLDER_NAME } from "@/constants/strings";
 import { getAllLinkList, getLinkList } from "@/redux/actions/link";
 import FolderOptionButton from "./FolderOptionButton";
@@ -6,6 +6,7 @@ import Button from "../Button/Button";
 import Modal from "../Modal/Modal";
 import * as S from "./Folder.styled";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
+import { getFolder } from "@/redux/actions/folder";
 
 const Folder: React.FC = () => {
   const [isModalTrigger, setModalTrigger] = useState(false);
@@ -13,9 +14,9 @@ const Folder: React.FC = () => {
   const userId = useAppSelector((state) => state.auth.userInfo.id);
   const dispatch = useAppDispatch();
 
-  // useEffect(() => {
-  //   dispatch(getAllLinkList(userId));
-  // }, []);
+  useEffect(() => {
+    dispatch(getFolder(userId));
+  }, []);
 
   return (
     <S.FolderLayout>

@@ -16,8 +16,7 @@ const SignIn = () => {
     email: "",
     pw: "",
   });
-  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
-  const token = useAppSelector((state) => state.auth.accessToken);
+  const { isLoggedIn, userInfo, accessToken } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const router = useRouter();
 
@@ -36,11 +35,12 @@ const SignIn = () => {
   };
 
   useEffect(() => {
-    if (isLoggedIn) {
-      dispatch(userInfoAccess(token));
-      router.push("/folderPage");
-    }
+    if (isLoggedIn) dispatch(userInfoAccess(accessToken));
   }, [isLoggedIn]);
+
+  useEffect(() => {
+    if (userInfo.id) router.push("/folderPage");
+  }, [userInfo]);
 
   return (
     <S.SignInLayout>

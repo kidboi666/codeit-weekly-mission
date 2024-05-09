@@ -53,6 +53,9 @@ const authSlice = createSlice({
         state.accessToken = action.payload.data.accessToken;
         state.refreshToken = action.payload.data.refreshToken;
       })
+      .addCase(userInfoAccess.pending, (state, action) => {
+        state.status = "loading";
+      })
       .addCase(userInfoAccess.fulfilled, (state, action) => {
         state.userInfo = action.payload.data[0];
       })
