@@ -1,6 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { checkEmailAccess, loginAccess, logoutAccess, signUpAccess, userInfoAccess } from "../actions/auth";
+import { checkEmailAccess, loginAccess, signUpAccess, userInfoAccess } from "../actions/auth";
 import { UserData } from "@/services/types";
+
+const initialUserInfo = {
+  id: 0,
+  createdAt: "",
+  name: "",
+  imageSource: "",
+  email: "",
+  authId: "",
+};
 
 const initialState: {
   isLoggedIn: boolean;
@@ -13,29 +22,26 @@ const initialState: {
   status: null,
   accessToken: "",
   refreshToken: "",
-  userInfo: {
-    id: 0,
-    createdAt: "",
-    name: "",
-    imageSource: "",
-    email: "",
-    authId: "",
-  },
+  userInfo: { ...initialUserInfo },
 };
 
 const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    logout: (state) => {
+      state.isLoggedIn = false;
+      state.accessToken = "";
+      state.refreshToken = "";
+      state.userInfo = initialUserInfo;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(loginAccess.fulfilled, (state, action) => {
         state.isLoggedIn = true;
         state.refreshToken = action.payload.data.refreshToken;
         state.accessToken = action.payload.data.accessToken;
-      })
-      .addCase(logoutAccess.fulfilled, (state, action) => {
-        state.isLoggedIn = false;
       })
       .addCase(checkEmailAccess.fulfilled, (state, action) => {
         state.status = action.payload;
@@ -55,5 +61,7 @@ const authSlice = createSlice({
       });
   },
 });
+
+export const { logout } = authSlice.actions;
 
 export default authSlice.reducer;

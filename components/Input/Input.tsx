@@ -17,6 +17,7 @@ const Input: React.FC<InputProps> = ({
   placeholder,
   className,
   disabled,
+  onBlur,
   onChange,
 }) => {
   const [error, setError] = useState("");
@@ -24,7 +25,7 @@ const Input: React.FC<InputProps> = ({
   const [transforemedType, setTransformedType] = useState(type);
 
   const processEye = () => {
-    if (type === "password" || type === "text") {
+    if (type === "password") {
       return setEye(true);
     }
     setEye(false);
@@ -33,17 +34,16 @@ const Input: React.FC<InputProps> = ({
   const changeInputType = () => {
     transforemedType === "password" ? setTransformedType("text") : setTransformedType("password");
   };
+  // const onBlur = (e: ChangeEvent<HTMLInputElement>) => {
+  //   if (e.target.type === "email") {
+  //     if (e.target.value.trim() === "") return setError(INPUT_MESSAGES.AUTH.ENTER_EMAIL);
+  //   }
+  //   if (e.target.type === "password" || e.target.type === "text") {
+  //     if (e.target.value.trim() === "") return setError(INPUT_MESSAGES.AUTH.ENTER_PW);
+  //   }
 
-  const onBlur = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.type === "email") {
-      if (e.target.value.trim() === "") return setError(INPUT_MESSAGES.AUTH.ENTER_EMAIL);
-    }
-    if (e.target.type === "password" || e.target.type === "text") {
-      if (e.target.value.trim() === "") return setError(INPUT_MESSAGES.AUTH.ENTER_PW);
-    }
-
-    setError("");
-  };
+  //   setError("");
+  // };
 
   useEffect(() => {
     processEye();

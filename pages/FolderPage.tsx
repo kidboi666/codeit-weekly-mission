@@ -8,13 +8,19 @@ import { Link } from "../services/types";
 import AppLayout from "@/components/App/AppLayout";
 import { getFolder } from "@/redux/actions/folder";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
+import { useRouter } from "next/router";
+import { getAllLinkList } from "@/redux/actions/link";
 
 const FolderPage = () => {
+  const [link, setLink] = useState<Link[]>([]);
+  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
   const linkList = useAppSelector((state) => state.link.data);
+  const folderList = useAppSelector((state) => state.folder.data);
   const searchResult = useAppSelector((state) => state.link.searchResult);
   const searchKeyword = useAppSelector((state) => state.link.search);
+  const userId = useAppSelector((state) => state.auth.userInfo.id);
   const dispatch = useAppDispatch();
-  const [link, setLink] = useState<Link[]>([]);
+  const router = useRouter();
 
   const onChangeLink = () => {
     if (!searchKeyword && searchResult.length === 0) {
@@ -24,8 +30,13 @@ const FolderPage = () => {
   };
 
   useEffect(() => {
-    dispatch(getFolder());
+    dispatch(getFolder(userId));
+    dispatch(getAllLinkList(userId));
   }, []);
+
+  useEffect(() => {
+    if (!isLoggedIn) router.push("/");
+  }, [isLoggedIn]);
 
   useEffect(() => {
     onChangeLink();
@@ -44,7 +55,7 @@ const FolderPage = () => {
           <Folder />
         </S.FolderSection>
         <S.LinkSection>
-          {link.length === 0 ? "해당되는 링크가 없습니다." : link.map((v) => <Card key={v.id} link={v} />)}
+          {link?.length === 0 ? "해당되는 링크가 없습니다." : link?.map((v) => <Card key={v.id} link={v} />)}
         </S.LinkSection>
       </S.FolderPageLayout>
     </AppLayout>

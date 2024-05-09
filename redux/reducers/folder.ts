@@ -1,6 +1,6 @@
 import { FolderList } from "@/services/types";
 import { createSlice } from "@reduxjs/toolkit";
-import { getFolder } from "../actions/folder";
+import { getFolder, postFolder } from "../actions/folder";
 
 const initialState: { data: FolderList[]; status: string } = {
   data: [],
@@ -10,7 +10,11 @@ const initialState: { data: FolderList[]; status: string } = {
 const folderSlice = createSlice({
   name: "folder",
   initialState,
-  reducers: {},
+  reducers: {
+    initialStatus: (state) => {
+      state.status = "";
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getFolder.pending, (state, action) => {
@@ -22,8 +26,13 @@ const folderSlice = createSlice({
       })
       .addCase(getFolder.rejected, (state, action) => {
         state.status = "Fail";
+      })
+      .addCase(postFolder.fulfilled, (state, action) => {
+        state.status = "Complete";
       });
   },
 });
+
+export const { initialStatus } = folderSlice.actions;
 
 export default folderSlice.reducer;

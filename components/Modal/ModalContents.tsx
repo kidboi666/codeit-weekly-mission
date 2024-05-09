@@ -8,6 +8,10 @@ import Button from "../Button/Button";
 import Input from "../Input/Input";
 import KakaoButton from "../KakaoButton/KakaoButton";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
+import { postFolder } from "@/redux/actions/folder";
+import { initialStatus } from "@/redux/reducers/folder";
 
 interface ShareProps {
   isToast: boolean;
@@ -35,6 +39,7 @@ interface ChangeNameProps {
 interface AddFolderProps {
   variant: string;
   text?: string;
+  closeModal: () => void;
 }
 interface AddLinkProps {
   variant: string;
@@ -93,11 +98,37 @@ export const ChangeName: React.FC<ChangeNameProps> = ({ variant, text, currentFo
   );
 };
 
-export const AddFolder: React.FC<AddFolderProps> = ({ variant, text }) => {
+export const AddFolder: React.FC<AddFolderProps> = ({ variant, text, closeModal }) => {
+  const [folderName, setFolderName] = useState("");
+  const token = useAppSelector((state) => state.auth.accessToken);
+  const requestStatus = useAppSelector((state) => state.folder.status);
+  const dispatch = useAppDispatch();
+
+  const onChangeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFolderName(e.target.value);
+  };
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (folderName) {
+      dispatch(postFolder({ folderName, token }));
+    }
+  };
+
+  useEffect(() => {
+    if (requestStatus === "Complete") {
+      dispatch(initialStatus());
+      closeModal();
+    }
+    console.log(requestStatus);
+  }, [requestStatus]);
+
   return (
     <>
-      <Input placeholder={"생성할 폴더 이름"} />
-      <Button variant={variant} text={text} width={"100%"} />
+      <form onSubmit={onSubmit}>
+        <Input value={folderName} onChange={onChangeInputValue} placeholder={"생성할 폴더 이름"} />
+        <Button variant={variant} text={text} width={"100%"} />
+      </form>
     </>
   );
 };

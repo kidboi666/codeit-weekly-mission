@@ -3,17 +3,6 @@ import { useState } from "react";
 import * as M from "./ModalContents";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
-/**
- *
- * @param {string} variant Button에 넘겨줄 프롭스, 버튼 색깔을 결정
- * @param {function} closeModal 모달을 종료할 setter함수
- * @param {string} currentCard 카드내부에 케밥으로 모달을 띄웠울시 받는 카드 이름
- * @param {string} currentFolder 폴더관련 버튼으로 모달을 띄웠을시 받는 폴더 이름
- * @param {object} folderList 폴더에 링크 추가시 출력할 폴더 리스트
- * @param {number} folderId 주소 복사시 사용될 url 프롭스
- * @param {function} setToast 토스트창을 띄울 boolean 프롭스
- * @returns {Element}
- */
 
 interface ModalProps {
   variant: string;
@@ -75,7 +64,7 @@ const Modal: React.FC<ModalProps> = ({ variant, closeModal, currentFolder, curre
         <h4>{title}</h4>
         <S.CurrentFolder>{currentFolder || currentCard}</S.CurrentFolder>
 
-        {title === "폴더 추가" && <M.AddFolder variant={variant} text={text} />}
+        {title === "폴더 추가" && <M.AddFolder variant={variant} text={text} closeModal={closingModal} />}
         {title === "링크 추가" && <M.AddLink variant={variant} text={text} />}
         {title === "폴더에 추가" && <M.LinkFolder variant={variant} text={text} folderList={folderList} />}
         {title === "폴더 공유" && <M.Share isToast={isToast} setToast={setToast} folderId={folderId} />}

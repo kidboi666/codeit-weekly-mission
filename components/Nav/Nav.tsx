@@ -7,6 +7,7 @@ import logo from "@/assets/icons/logo.svg";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import Button from "../Button/Button";
 import { userInfoAccess } from "@/redux/actions/auth";
+import { logout } from "@/redux/reducers/auth";
 
 const Nav: React.FC = () => {
   const [isShadow, setShadow] = useState(false);
@@ -33,7 +34,8 @@ const Nav: React.FC = () => {
     };
   }, [pathname]);
 
-  useEffect(() => {
+  useEffect((): void => {
+    if (!isLoggedIn) return;
     dispatch(userInfoAccess(token));
   }, [isLoggedIn]);
 
@@ -51,6 +53,7 @@ const Nav: React.FC = () => {
               <Image fill src={userInfo?.imageSource} alt='프로필 이미지' />
             </S.ImgBox>
             <div>{userInfo?.email}</div>
+            <Button variant={"default"} text={"로그아웃"} width={"88px"} onClick={() => dispatch(logout())} />
           </>
         ) : (
           <Link href='/signIn'>

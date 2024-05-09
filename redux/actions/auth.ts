@@ -16,12 +16,6 @@ export const loginAccess = createAsyncThunk<any, { email: string; pw: string }>(
   return data;
 });
 
-export const logoutAccess = createAsyncThunk<any>("user/logout", async () => {
-  const res = await axios.get(``);
-
-  return res;
-});
-
 export const checkEmailAccess = createAsyncThunk<any, string>("user/checkEmail", async (email) => {
   const { data } = await axios({
     method: "post",

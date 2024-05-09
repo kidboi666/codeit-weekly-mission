@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { COMBINED_FOLDER_NAME } from "@/constants/strings";
-import { RootState } from "@/redux/store";
 import { getAllLinkList, getLinkList } from "@/redux/actions/link";
 import FolderOptionButton from "./FolderOptionButton";
 import Button from "../Button/Button";
@@ -13,7 +12,7 @@ const Folder: React.FC = () => {
   const [currentFolder, setCurrentFolder] = useState("");
   const [currentFolderId, setCurrentFolderId] = useState(0);
   const [isModalTrigger, setModalTrigger] = useState(false);
-  const folderList = useAppSelector((state: RootState) => state.folder.data);
+  const folderList = useAppSelector((state) => state.folder.data);
   const dispatch = useAppDispatch();
 
   const onChangeFolderTitle = useCallback((name: string, id?: number) => {
