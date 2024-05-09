@@ -10,7 +10,7 @@ import KakaoButton from "../KakaoButton/KakaoButton";
 import Image from "next/image";
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
-import { postFolder } from "@/redux/actions/folder";
+import { postFolder, putFolder } from "@/redux/actions/folder";
 
 interface ShareProps {
   isToast: boolean;
@@ -89,11 +89,27 @@ export const Delete: React.FC<DeleteProps> = ({ variant, text }) => {
 };
 
 export const ChangeName: React.FC<ChangeNameProps> = ({ variant, text, currentFolder }) => {
+  const [folderName, setFolderName] = useState("");
+  const { accessToken } = useAppSelector((state) => state.auth);
+  const { selectedFolderId } = useAppSelector((state) => state.folder);
+  const dispatch = useAppDispatch();
+
+  const onChangeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFolderName(e.target.value);
+  };
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (folderName) {
+      dispatch(putFolder({ folderName: folderName, accessToken: accessToken, folderId: selectedFolderId }));
+    }
+  };
+
   return (
-    <>
-      <Input placeholder={currentFolder} />
-      <Button variant={variant} text={text} width={"100%"} />
-    </>
+    <form onSubmit={onSubmit}>
+      <Input value={folderName} onChange={onChangeInputValue} placeholder={currentFolder} />
+      <Button variant={variant} text={text} type={"submit"} width={"100%"} />
+    </form>
   );
 };
 
@@ -106,7 +122,7 @@ export const AddFolder: React.FC<AddFolderProps> = ({ variant, text }) => {
     setFolderName(e.target.value);
   };
 
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (folderName) {
       dispatch(postFolder({ folderName, token }));

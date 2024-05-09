@@ -17,12 +17,12 @@ const Folder: React.FC = () => {
 
   const handleFetchLinkList = (folderItem: FolderList) => {
     dispatch(getLinkList({ userId: userId, folderId: folderItem.id }));
-    dispatch(setSelectedFolder(folderItem.name));
+    dispatch(setSelectedFolder({ selectedFolder: folderItem.name, selectedFolderId: folderItem.id }));
   };
 
   const handleFetchAllLinkList = () => {
     dispatch(getAllLinkList(userId));
-    dispatch(setSelectedFolder(COMBINED_FOLDER_NAME));
+    dispatch(setSelectedFolder({ selectedFolder: COMBINED_FOLDER_NAME }));
   };
 
   return (

@@ -12,6 +12,7 @@ const AddLink: React.FC = () => {
   const [linkUrl, setLinkUrl] = useState("");
   const targetRef = useRef(null);
   const { accessToken } = useAppSelector((state) => state.auth);
+  const { selectedFolderId } = useAppSelector((state) => state.folder);
   const dispatch = useAppDispatch();
 
   const callback = (entries: any) => {
@@ -21,7 +22,7 @@ const AddLink: React.FC = () => {
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (linkUrl) {
-      dispatch(postLink({ url: linkUrl, accessToken: accessToken, folderId: 1024 }));
+      dispatch(postLink({ url: linkUrl, accessToken: accessToken, folderId: selectedFolderId }));
     }
   };
 
