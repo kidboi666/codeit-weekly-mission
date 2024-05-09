@@ -1,8 +1,10 @@
+import { useAppSelector } from "@/hooks/useApp";
 import { axiosInstance as axios } from "@/services/axiosInstace";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import camelcaseKeys from "camelcase-keys";
 
 export const loginAccess = createAsyncThunk<any, { email: string; pw: string }>("user/login", async ({ email, pw }) => {
-  const res = await axios({
+  const { data } = await axios({
     method: "post",
     url: `sign-in`,
     data: {
@@ -11,11 +13,17 @@ export const loginAccess = createAsyncThunk<any, { email: string; pw: string }>(
     },
   });
 
+  return data;
+});
+
+export const logoutAccess = createAsyncThunk<any>("user/logout", async () => {
+  const res = await axios.get(``);
+
   return res;
 });
 
-export const checkEmailAccess = createAsyncThunk<any, { email: string }>("user/checkEmail", async ({ email }) => {
-  const res = await axios({
+export const checkEmailAccess = createAsyncThunk<any, string>("user/checkEmail", async (email) => {
+  const { data } = await axios({
     method: "post",
     url: `check-email`,
     data: {
@@ -23,5 +31,34 @@ export const checkEmailAccess = createAsyncThunk<any, { email: string }>("user/c
     },
   });
 
-  return res;
+  return data;
+});
+
+export const signUpAccess = createAsyncThunk<any, { email: string; pw: string }>(
+  "user/signUp",
+  async ({ email, pw }) => {
+    const { data } = await axios({
+      method: "post",
+      url: `sign-up`,
+      data: {
+        email: email,
+        password: pw,
+      },
+    });
+
+    return data;
+  },
+);
+
+export const userInfoAccess = createAsyncThunk<any, string>("user/userInfo", async (token) => {
+  const { data } = await axios({
+    method: "get",
+    url: `users`,
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  });
+
+  return camelcaseKeys(data, { deep: true });
 });

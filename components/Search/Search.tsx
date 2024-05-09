@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchResult, setSearchKeyword } from "@/redux/reducers/link";
 import { RootState } from "@/redux/store";
+import Input from "../Input/Input";
 
 const Search: React.FC = () => {
   const [keyword, setKeyword] = useState("");
@@ -43,7 +44,12 @@ const Search: React.FC = () => {
           <button>
             <Image src={searchIcon} alt={"검색 돋보기 아이콘"} style={{ width: "100%" }} />
           </button>
-          <S.StyledInput value={keyword} placeholder={"링크를 검색해 보세요."} onChange={onChangeInputValue} />
+          <Input
+            value={keyword}
+            placeholder={"링크를 검색해 보세요."}
+            onChange={onChangeInputValue}
+            variant={"search"}
+          />
           {keyword && <S.StyledCloseButton variant={"searchInput"} onClick={onIntializingInputValue} />}
         </S.Form>
       </S.FormBox>

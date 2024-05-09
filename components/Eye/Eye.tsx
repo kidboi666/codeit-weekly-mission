@@ -4,7 +4,11 @@ import eyeOn from "@/assets/icons/eye-on.svg";
 import useToggle from "@/hooks/useToggle";
 import { useEffect, useState } from "react";
 
-const Eye = () => {
+interface EyeProps {
+  onClick: () => void;
+}
+
+const Eye: React.FC<EyeProps> = ({ onClick }) => {
   const [value, toggle] = useToggle();
   const [selected, setSelected] = useState(eyeOff);
 
@@ -13,11 +17,16 @@ const Eye = () => {
     if (!value) return setSelected(eyeOff);
   };
 
+  const onClickHandler = () => {
+    toggle();
+    onClick();
+  };
+
   useEffect(() => {
     onChangeImg();
   }, [value]);
 
-  return <Image src={selected} onClick={() => toggle()} alt='비밀번호 표시 아이콘' id='password_eyes' />;
+  return <Image src={selected} onClick={onClickHandler} alt='비밀번호 표시 아이콘' />;
 };
 
 export default Eye;

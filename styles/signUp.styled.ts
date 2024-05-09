@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-export const SignInLayout = styled.div`
+export const SignUpLayout = styled.div`
   background-color: var(--gray5-color);
   display: flex;
   justify-content: center;
@@ -12,7 +12,7 @@ export const SignInLayout = styled.div`
   }
 `;
 
-export const SignInContainer = styled.div`
+export const SignUpContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -70,6 +70,11 @@ export const EmailContainer = styled.div`
 `;
 
 export const PasswordContainer = styled.div`
+  ${signSectionStyle}
+  margin-bottom: 24px;
+`;
+
+export const PasswordRepeatContainer = styled.div`
   ${signSectionStyle}
   margin-bottom: 30px;
 `;

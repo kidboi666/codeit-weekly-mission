@@ -35,15 +35,7 @@ export const ModalContainer = styled.div`
   }
 
   > input {
-    width: 100%;
     margin-bottom: 15px;
-  }
-
-  > button {
-    width: 100%;
-    padding: 16px 20px;
-    font-weight: 600;
-    color: #f5f5f5;
   }
 `;
 

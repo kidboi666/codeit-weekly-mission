@@ -7,8 +7,11 @@ import mainShare from "@/assets/images/main_share.png";
 import mainSns from "@/assets/images/main_sns.png";
 import Link from "next/link";
 import Button from "@/components/Button/Button";
+import { useAppSelector } from "@/hooks/useApp";
 
 const LandingPage = () => {
+  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
+
   return (
     <S.LandingPageLayout>
       <S.HeaderContainer>
@@ -20,8 +23,8 @@ const LandingPage = () => {
             <h1>쉽게 저장하고 관리해 보세요.</h1>
           </S.IntroWrap>
           <S.LinkBox>
-            <Link href='/folderPage'>
-              <Button variant={"default"} text={"링크 추가하기"} width={true} />
+            <Link href={isLoggedIn ? "/folderPage" : "/signUp"}>
+              <Button variant={"default"} text={"링크 추가하기"} width={"310px"} />
             </Link>
           </S.LinkBox>
           <Image src={mainHeader} alt='' />

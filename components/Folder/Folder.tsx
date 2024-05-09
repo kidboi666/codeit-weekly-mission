@@ -62,7 +62,7 @@ const Folder: React.FC = () => {
           ))}
         </S.FolderBox>
         <div onClick={() => setModalTrigger((prev) => !prev)}>
-          <Button variant={"addFolder"} text='폴더 추가' />
+          <Button variant={"addFolder"} text='폴더 추가 +' width={"95px"} />
         </div>
       </S.FolderContainer>
       <FolderOptionButton folderTitle={currentFolder} folderId={currentFolderId} />

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
-export const Button = styled.button<{ $variant: string; $isActive?: boolean }>`
+export const Button = styled.button<{ $variant: string; $isActive?: boolean; $width?: string }>`
+  ${({ $width }) => `width: ${$width}`};
   border-radius: 8px;
   border: none;
   padding: 10px 16px;
@@ -11,13 +12,8 @@ export const Button = styled.button<{ $variant: string; $isActive?: boolean }>`
   ${({ $variant }) =>
     $variant === "addFolder" &&
     `
-      width: 90px;
       background-color: var(--white-color);
       color: var(--primary-color);
-
-      &::after {
-        content: '+';
-      }
 
       @media (max-width: 767px) {
         width: 127px;
@@ -36,23 +32,44 @@ export const Button = styled.button<{ $variant: string; $isActive?: boolean }>`
     `}
 
   ${({ $variant }) =>
+    $variant === "addLink" &&
+    `
+      position: absolute;
+      padding: 10px 16px;
+      top: 50%;
+      transform: translateY(-18px);
+      right: 20px;
+      background-image: linear-gradient(270deg, #6ae3fe, var(--primary-color));
+
+      @media (max-width: 767px) {
+        right: 10px;
+      }  
+  `}
+
+  ${({ $variant }) =>
     ($variant === "deleteFolder" || $variant === "deleteLink") &&
     `
+      padding: 16px 20px;
       background-color: var(--red-color);
+      font-weight: 600;
+      color: #f5f5f5;
     `}
 
   ${({ $variant }) =>
     $variant === "default" &&
     `
+      padding: 16px 20px;
       background-image: linear-gradient(270deg, #6ae3fe, var(--primary-color));
+      font-weight: 600;
+      color: #f5f5f5;
     `}
 
   ${({ $variant }) =>
     $variant === "underBar" &&
     `
       padding: 0;
-      color: var(--primary-color);
       background-color: var(--gray5-color);
+      color: var(--primary-color);
       font-size: 16px;
       text-decoration: underline;
     `}

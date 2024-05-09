@@ -1,4 +1,3 @@
-import Button from "../Button/Button";
 import Input from "../Input/Input";
 import styled from "styled-components";
 
@@ -39,18 +38,6 @@ export const FormContainer = styled.div<{ $isInterSecting: boolean }>`
 
 export const FormBox = styled.form`
   position: relative;
-`;
-
-export const StyledButton = styled(Button)`
-  position: absolute;
-  padding: 10px 16px;
-  top: 50%;
-  transform: translateY(-18px);
-  right: 20px;
-
-  @media (max-width: 767px) {
-    right: 10px;
-  }
 `;
 
 export const IconImgBox = styled.div`

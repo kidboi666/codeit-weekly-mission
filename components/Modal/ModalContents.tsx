@@ -75,20 +75,20 @@ export const LinkFolder: React.FC<LinkFolderProps> = ({ folderList, variant, tex
           </S.FolderListItem>
         ))}
       </S.FolderList>
-      <Button variant={variant} text={text} />
+      <Button variant={variant} text={text} width={"100%"} />
     </>
   );
 };
 
 export const Delete: React.FC<DeleteProps> = ({ variant, text }) => {
-  return <Button variant={variant} text={text} />;
+  return <Button variant={variant} text={text} width={"100%"} />;
 };
 
 export const ChangeName: React.FC<ChangeNameProps> = ({ variant, text, currentFolder }) => {
   return (
     <>
       <Input placeholder={currentFolder} />
-      <Button variant={variant} text={text} />
+      <Button variant={variant} text={text} width={"100%"} />
     </>
   );
 };
@@ -97,11 +97,11 @@ export const AddFolder: React.FC<AddFolderProps> = ({ variant, text }) => {
   return (
     <>
       <Input placeholder={"생성할 폴더 이름"} />
-      <Button variant={variant} text={text} />
+      <Button variant={variant} text={text} width={"100%"} />
     </>
   );
 };
 
 export const AddLink: React.FC<AddLinkProps> = ({ variant, text }) => {
-  return <Button variant={variant} text={text} />;
+  return <Button variant={variant} text={text} width={"100%"} />;
 };

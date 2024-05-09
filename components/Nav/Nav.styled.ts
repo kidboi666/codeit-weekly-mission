@@ -54,6 +54,12 @@ export const LoginLayout = styled.div`
   }
 `;
 
+export const ImgBox = styled.div`
+  position: relative;
+  width: 28px;
+  height: 28px;
+`;
+
 export const LoginButton = styled(Button)`
   padding: 15px 40px;
 `;
