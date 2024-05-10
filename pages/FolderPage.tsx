@@ -11,8 +11,7 @@ import { getFolder } from "@/redux/actions/folder";
 
 const FolderPage = () => {
   const { isLoggedIn, userInfo } = useAppSelector((state) => state.auth);
-  const folderLength = useAppSelector((state) => state.folder.data.length);
-  const linkList = useAppSelector((state) => state.link.data);
+  const { data, searchResult } = useAppSelector((state) => state.link);
   const dispatch = useAppDispatch();
   const router = useRouter();
 
@@ -24,7 +23,7 @@ const FolderPage = () => {
 
   useEffect(() => {
     dispatch(getFolder(userInfo.id));
-  }, [folderLength]);
+  }, []);
 
   return (
     <AppLayout>
@@ -39,7 +38,11 @@ const FolderPage = () => {
           <Folder />
         </S.FolderSection>
         <S.LinkSection>
-          {linkList?.length === 0 ? "해당되는 링크가 없습니다." : linkList?.map((v) => <Card key={v.id} link={v} />)}
+          {searchResult.length >= 1
+            ? searchResult?.map((v, i) => <Card key={i} link={v} />)
+            : data?.length === 0
+            ? "해당되는 링크가 없습니다."
+            : data?.map((v) => <Card key={v.id} link={v} />)}
         </S.LinkSection>
       </S.FolderPageLayout>
     </AppLayout>

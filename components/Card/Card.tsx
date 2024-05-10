@@ -9,10 +9,13 @@ import { Link } from "@/services/types";
 import Image from "next/image";
 
 interface Props {
-  link: Link;
+  link: Link | string;
 }
 
 const Card: React.FC<Props> = ({ link }) => {
+  if (typeof link === "string") {
+    return <p>{link}</p>;
+  }
   const timeDelta = formatDate(link.createdAt);
   const createdDate = calculateTime(link.createdAt);
 
