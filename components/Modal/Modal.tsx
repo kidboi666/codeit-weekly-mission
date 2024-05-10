@@ -4,10 +4,11 @@ import * as M from "./ModalContents";
 import { useAppSelector } from "@/hooks/useApp";
 import { useDispatch } from "react-redux";
 import { initialFolderStatus } from "@/redux/reducers/folder";
+import { createPortal } from "react-dom";
 
 interface ModalProps {
   variant: string;
-  closeModal: React.Dispatch<React.SetStateAction<boolean>>;
+  closeModal: (arg?: boolean) => void;
   currentFolder?: string;
   currentCard?: string;
   folderId?: number;
@@ -20,10 +21,6 @@ const Modal: React.FC<ModalProps> = ({ variant, closeModal, currentFolder, curre
   const dispatch = useDispatch();
   let title;
   let text;
-
-  const closingModal = () => {
-    closeModal(false);
-  };
 
   switch (variant) {
     case "changeName":
@@ -61,13 +58,13 @@ const Modal: React.FC<ModalProps> = ({ variant, closeModal, currentFolder, curre
   }
 
   return (
-    <S.ModalLayout>
-      <S.ModalContainer>
-        <S.StyledCloseButton variant={"modal"} onClick={closingModal} />
+    <S.ModalLayout onClick={() => closeModal(false)}>
+      <S.ModalContainer onClick={(e) => e.stopPropagation()}>
+        <S.StyledCloseButton variant={"modal"} onClick={() => closeModal(false)} />
         <h4>{title}</h4>
         <S.CurrentFolder>{currentFolder || currentCard}</S.CurrentFolder>
 
-        {title === "폴더 추가" && <M.AddFolder variant={variant} text={text} closeModal={closingModal} />}
+        {title === "폴더 추가" && <M.AddFolder variant={variant} text={text} />}
         {title === "폴더에 추가" && <M.LinkFolder variant={variant} text={text} folderList={folderList} />}
         {title === "폴더 공유" && <M.Share isToast={isToast} setToast={setToast} folderId={folderId} />}
         {title === "폴더 이름 변경" && <M.ChangeName currentFolder={currentFolder} variant={variant} text={text} />}

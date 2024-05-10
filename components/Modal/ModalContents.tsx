@@ -38,7 +38,6 @@ interface ChangeNameProps {
 interface AddFolderProps {
   variant: string;
   text?: string;
-  closeModal: () => void;
 }
 interface AddLinkProps {
   variant: string;
