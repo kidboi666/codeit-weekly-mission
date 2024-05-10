@@ -46,7 +46,7 @@ const linkSlice = createSlice({
       })
       .addCase(getAllLinkList.rejected, (state, action) => {})
       .addCase(postLink.fulfilled, (state, action) => {
-        state.data = [...state.data, action.payload[0]];
+        state.data = [action.payload[0], ...state.data];
       });
   },
 });
