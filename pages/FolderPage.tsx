@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import * as S from "../styles/folderPage.styled";
 import Search from "../components/Search/Search";
 import AddLink from "../components/AddLink/AddLink";
@@ -8,10 +8,14 @@ import AppLayout from "@/components/App/AppLayout";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import { useRouter } from "next/router";
 import { getFolder } from "@/redux/actions/folder";
+import { Link } from "@/services/types";
+import { initializeSelectedFolder } from "@/redux/reducers/folder";
+import { getAllLinkList } from "@/redux/actions/link";
 
 const FolderPage = () => {
   const { isLoggedIn, userInfo } = useAppSelector((state) => state.auth);
-  const { data, searchResult } = useAppSelector((state) => state.link);
+  const { data, searchResult, noSearchResult } = useAppSelector((state) => state.link);
+  const [linkStorage, setLinkStorage] = useState<Link[]>([]);
   const dispatch = useAppDispatch();
   const router = useRouter();
 
@@ -22,7 +26,19 @@ const FolderPage = () => {
   }, [isLoggedIn]);
 
   useEffect(() => {
+    setLinkStorage(data);
+  }, [data]);
+
+  useEffect(() => {
+    if (searchResult.length >= 1) {
+      setLinkStorage(searchResult);
+    }
+  }, [searchResult]);
+
+  useEffect(() => {
     dispatch(getFolder(userInfo.id));
+    dispatch(getAllLinkList(userInfo.id));
+    dispatch(initializeSelectedFolder());
   }, []);
 
   return (
@@ -38,11 +54,11 @@ const FolderPage = () => {
           <Folder />
         </S.FolderSection>
         <S.LinkSection>
-          {searchResult.length >= 1
-            ? searchResult?.map((v, i) => <Card key={i} link={v} />)
-            : data?.length === 0
+          {noSearchResult
+            ? "검색 결과가 없습니다."
+            : linkStorage?.length === 0
             ? "해당되는 링크가 없습니다."
-            : data?.map((v) => <Card key={v.id} link={v} />)}
+            : linkStorage?.map((v) => <Card key={v.id} link={v} />)}
         </S.LinkSection>
       </S.FolderPageLayout>
     </AppLayout>

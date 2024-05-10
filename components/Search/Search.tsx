@@ -2,7 +2,7 @@ import * as S from "./Search.styled";
 import searchIcon from "../../assets/icons/search.svg";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { setSearchResult, setSearchKeyword } from "@/redux/reducers/link";
+import { setSearchResult, setSearchKeyword, initializeSearch } from "@/redux/reducers/link";
 import Input from "../Input/Input";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 
@@ -25,17 +25,18 @@ const Search: React.FC = () => {
       );
     });
 
-    if (result.length === 0) {
-      const stringResult = ["검색 결과가 없습니다."];
-      return dispatch(setSearchResult(stringResult));
-    }
     dispatch(setSearchResult(result));
     dispatch(setSearchKeyword(searchBody));
+    setSearchBody("");
   };
 
   const onChangeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchBody(e.target.value);
   };
+
+  useEffect(() => {
+    dispatch(initializeSearch());
+  }, [data]);
 
   return (
     <S.SearchLayout>
