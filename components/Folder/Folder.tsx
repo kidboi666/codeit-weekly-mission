@@ -8,9 +8,9 @@ import * as S from "./Folder.styled";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import { FolderList } from "@/services/types";
 import { setSelectedFolder } from "@/redux/reducers/folder";
+import { openModal } from "@/redux/reducers/modal";
 
 const Folder: React.FC = () => {
-  const [isModalTrigger, setModalTrigger] = useState(false);
   const { data, selectedFolder } = useAppSelector((state) => state.folder);
   const userId = useAppSelector((state) => state.auth.userInfo.id);
   const dispatch = useAppDispatch();
@@ -45,12 +45,11 @@ const Folder: React.FC = () => {
             />
           ))}
         </S.FolderBox>
-        <div onClick={() => setModalTrigger((prev) => !prev)}>
+        <div onClick={() => dispatch(openModal("addFolder"))}>
           <Button variant={"addFolder"} text='폴더 추가 +' width={"95px"} />
         </div>
       </S.FolderContainer>
       <FolderOptionButton />
-      {isModalTrigger && <Modal variant='addFolder' closeModal={setModalTrigger} />}
     </S.FolderLayout>
   );
 };

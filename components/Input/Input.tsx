@@ -54,7 +54,7 @@ const Input: React.FC<InputProps> = ({
       <S.Input
         $variant={variant}
         $error={error}
-        $width={width}
+        width={width}
         value={value}
         name={name}
         type={transforemedType}

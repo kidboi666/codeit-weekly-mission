@@ -7,10 +7,12 @@ import mainShare from "@/assets/images/main_share.png";
 import mainSns from "@/assets/images/main_sns.png";
 import Link from "next/link";
 import Button from "@/components/Button/Button";
-import { useAppSelector } from "@/hooks/useApp";
+import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
+import { openModal } from "@/redux/reducers/modal";
 
 const LandingPage = () => {
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
+  const dispatch = useAppDispatch();
 
   return (
     <S.LandingPageLayout>
@@ -21,6 +23,7 @@ const LandingPage = () => {
               <span className='text_gradient info_gradient'>세상의 모든 정보</span>를<br />
             </h1>
             <h1>쉽게 저장하고 관리해 보세요.</h1>
+            <Button variant={"default"} text={"모달"} onClick={() => dispatch(openModal("basicModal"))} />
           </S.IntroWrap>
           <S.LinkBox>
             <Link href={isLoggedIn ? "/folderPage" : "/signUp"}>

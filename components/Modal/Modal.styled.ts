@@ -27,14 +27,21 @@ export const ModalContainer = styled.div`
   background-color: var(--white-color);
   z-index: 60;
 
-  > h4 {
+  > h3 {
+    position: relative;
     font-size: 20px;
     font-weight: 700;
     color: var(--gray1-color);
     margin-bottom: 24px;
   }
 
-  > input {
+  > h4 {
+    margin-bottom: 24px;
+    font-size: 14px;
+    color: var(--gray2-color);
+  }
+
+  & input {
     margin-bottom: 15px;
   }
 `;
@@ -42,12 +49,4 @@ export const ModalContainer = styled.div`
 export const StyledCloseButton = styled(CloseButton)`
   top: 16px;
   right: 16px;
-`;
-
-export const CurrentFolder = styled.span`
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 22px;
-  color: var(--gray2-color);
-  margin-bottom: 24px;
 `;

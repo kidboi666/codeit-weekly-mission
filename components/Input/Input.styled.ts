@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-export const Input = styled.input<{ $variant?: string; $width?: string; $error?: string }>`
-  ${({ $width }) => `width: ${$width}`};
+export const Input = styled.input<{ $variant?: string; width?: string; $error?: string }>`
+  ${({ width }) => `width: ${width}`};
   position: relative;
   padding: 15px 15px 15px 15px;
   box-sizing: border-box;

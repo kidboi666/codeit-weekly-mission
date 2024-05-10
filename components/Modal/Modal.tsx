@@ -1,75 +1,32 @@
 import * as S from "./Modal.styled";
-import { useEffect, useState } from "react";
-import * as M from "./ModalContents";
-import { useAppSelector } from "@/hooks/useApp";
-import { useDispatch } from "react-redux";
-import { initialFolderStatus } from "@/redux/reducers/folder";
-import { createPortal } from "react-dom";
+import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
+import { closeModal, putContents } from "@/redux/reducers/modal";
+import { MODAL_COMPONENTS } from "./ModalTypes";
 
-interface ModalProps {
-  variant: string;
-  closeModal: (arg?: boolean) => void;
-  currentFolder?: string;
-  currentCard?: string;
-  folderId?: number;
-}
+const Modal: React.FC = () => {
+  const { contents, isOpen } = useAppSelector((state) => state.modal);
+  const { title } = useAppSelector((state) => state.modal.contents);
+  const dispatch = useAppDispatch();
 
-const Modal: React.FC<ModalProps> = ({ variant, closeModal, currentFolder, currentCard, folderId = 0 }) => {
-  const [isToast, setToast] = useState(false);
-  const folderList = useAppSelector((state) => state.folder.data);
-  const requestStatus = useAppSelector((state) => state.folder.status);
-  const dispatch = useDispatch();
-  let title;
-  let text;
+  if (!isOpen) return null;
 
-  switch (variant) {
-    case "changeName":
-      title = "폴더 이름 변경";
-      text = "변경하기";
-      variant = "default";
-      break;
-    case "addFolder":
-      title = "폴더 추가";
-      text = "추가하기";
-      variant = "default";
-      break;
-    case "selectFolder":
-      title = "폴더에 추가";
-      text = "추가하기";
-      variant = "default";
-      break;
-    case "addLink":
-      title = "링크 추가";
-      text = "추가하기";
-      variant = "default";
-      break;
-    case "shareFolder":
-      title = "폴더 공유";
-      text = "";
-      break;
-    case "deleteFolder":
-      title = "폴더 삭제";
-      text = "삭제하기";
-      break;
-    case "deleteLink":
-      title = "링크 삭제";
-      text = "삭제하기";
-      break;
-  }
+  const findModal = MODAL_COMPONENTS.find((modal) => {
+    if (modal.contents.type === contents.type) {
+      dispatch(putContents(modal.contents));
+      return modal;
+    }
+  });
+
+  const renderModal = () => {
+    return findModal?.component;
+  };
 
   return (
-    <S.ModalLayout onClick={() => closeModal(false)}>
+    <S.ModalLayout onClick={() => dispatch(closeModal())}>
       <S.ModalContainer onClick={(e) => e.stopPropagation()}>
-        <S.StyledCloseButton variant={"modal"} onClick={() => closeModal(false)} />
-        <h4>{title}</h4>
-        <S.CurrentFolder>{currentFolder || currentCard}</S.CurrentFolder>
-
-        {title === "폴더 추가" && <M.AddFolder variant={variant} text={text} />}
-        {title === "폴더에 추가" && <M.LinkFolder variant={variant} text={text} folderList={folderList} />}
-        {title === "폴더 공유" && <M.Share isToast={isToast} setToast={setToast} folderId={folderId} />}
-        {title === "폴더 이름 변경" && <M.ChangeName currentFolder={currentFolder} variant={variant} text={text} />}
-        {title === "폴더 삭제" && <M.Delete variant={variant} text={text} />}
-        {title === "링크 삭제" && <M.Delete variant={variant} text={text} />}
+        <S.StyledCloseButton variant={"modal"} onClick={() => dispatch(closeModal())} />
+        <h3>{title}</h3>
+        {renderModal()}
       </S.ModalContainer>
     </S.ModalLayout>
   );

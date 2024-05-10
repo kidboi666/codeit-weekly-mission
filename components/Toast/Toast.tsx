@@ -5,9 +5,10 @@ import Image from "next/image";
 
 interface ToastProps {
   setToast: React.Dispatch<React.SetStateAction<boolean>>;
+  text?: string;
 }
 
-const Toast: React.FC<ToastProps> = ({ setToast }) => {
+const Toast: React.FC<ToastProps> = ({ setToast, text }) => {
   const closeButtonClickHandler = () => {
     setToast(false);
   };

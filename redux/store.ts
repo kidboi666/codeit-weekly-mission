@@ -3,12 +3,14 @@ import folderReducer from "@/redux/reducers/folder";
 import linkReducer from "@/redux/reducers/link";
 import authReducer from "@/redux/reducers/auth";
 import { createWrapper } from "next-redux-wrapper";
+import modalReducer from "@/redux/reducers/modal";
 
 const store = configureStore({
   reducer: {
     folder: folderReducer,
     link: linkReducer,
     auth: authReducer,
+    modal: modalReducer,
   },
 });
 

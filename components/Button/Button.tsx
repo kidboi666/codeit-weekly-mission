@@ -2,7 +2,7 @@ import * as S from "./Button.styled";
 import React from "react";
 
 interface ButtonProps {
-  variant: string;
+  variant?: string;
   width?: string;
   text?: string;
   selected?: string;

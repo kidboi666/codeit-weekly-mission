@@ -5,7 +5,6 @@ import formatDate from "@/utils/formatDate";
 import Star from "./Star";
 import Kebab from "./Kebab";
 import { useState } from "react";
-import Modal from "@/components/Modal/Modal";
 import { Link } from "@/services/types";
 import Image from "next/image";
 
@@ -14,8 +13,6 @@ interface Props {
 }
 
 const Card: React.FC<Props> = ({ link }) => {
-  const [isDeleteModal, setDeleteModal] = useState(false);
-  const [isAddModal, setAddModal] = useState(false);
   const timeDelta = formatDate(link.createdAt);
   const createdDate = calculateTime(link.createdAt);
 
@@ -33,14 +30,12 @@ const Card: React.FC<Props> = ({ link }) => {
           )}
         </S.CardImgContainer>
         <S.CardDescriptionContainer>
-          <Kebab setDeleteModal={setDeleteModal} setAddModal={setAddModal} />
+          <Kebab />
           <S.CreatedDate>{createdDate}</S.CreatedDate>
           <S.Title>{link.title}</S.Title>
           <S.TimeStamp>{timeDelta}</S.TimeStamp>
         </S.CardDescriptionContainer>
       </S.CardLinkContainer>
-      {isDeleteModal && <Modal variant={"deleteLink"} closeModal={setDeleteModal} currentCard={link.title} />}
-      {isAddModal && <Modal variant={"selectFolder"} closeModal={setAddModal} currentCard={link.title} />}
     </S.CardLayout>
   );
 };

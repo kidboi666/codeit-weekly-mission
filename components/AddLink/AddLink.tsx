@@ -6,6 +6,7 @@ import Button from "../Button/Button";
 import Input from "../Input/Input";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import { postLink } from "@/redux/actions/link";
+import { openModal } from "@/redux/reducers/modal";
 
 const AddLink: React.FC = () => {
   const [isInterSecting, setInterSecting] = useState(false);
