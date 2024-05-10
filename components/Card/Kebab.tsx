@@ -4,10 +4,16 @@ import useToggle from "../../hooks/useToggle";
 import * as S from "./Kebab.styled";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import { useAppDispatch } from "@/hooks/useApp";
+import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import { openModal } from "@/redux/reducers/modal";
+import { setSelectedLink } from "@/redux/reducers/link";
 
-const Kebab: React.FC = () => {
+interface KebabProps {
+  linkId: number;
+  linkTitle: string;
+}
+
+const Kebab: React.FC<KebabProps> = ({ linkId, linkTitle }) => {
   const dispatch = useAppDispatch();
   const [value, toggle] = useToggle();
   const currentLocation = useRouter();
@@ -21,8 +27,14 @@ const Kebab: React.FC = () => {
     toggle();
   };
 
-  const onModalBox = (setter: React.Dispatch<React.SetStateAction<boolean>>) => {
-    setter((prev: boolean) => !prev);
+  const onClickDeleteButton = () => {
+    dispatch(setSelectedLink({ linkId, linkTitle }));
+    dispatch(openModal("deleteLink"));
+  };
+
+  const onClickAddLinkToFolderButton = () => {
+    dispatch(setSelectedLink({ linkId, linkTitle }));
+    dispatch(openModal("addLinkToFolder"));
   };
 
   return (
@@ -30,10 +42,10 @@ const Kebab: React.FC = () => {
       <Image src={kebobIcon} alt='케밥 버튼 아이콘' style={{ width: "100%" }} />
       {value && (
         <S.ModalLayout>
-          <button type='button' onClick={() => dispatch(openModal("deleteLink"))}>
+          <button type='button' onClick={onClickDeleteButton}>
             삭제하기
           </button>
-          <button type='button' onClick={() => dispatch(openModal("addLinkToFolder"))}>
+          <button type='button' onClick={onClickAddLinkToFolderButton}>
             폴더에 추가
           </button>
         </S.ModalLayout>

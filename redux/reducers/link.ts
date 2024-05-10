@@ -5,12 +5,16 @@ import { getLinkList, getAllLinkList, postLink, deleteLink } from "../actions/li
 const initialState: {
   data: Link[];
   status: any;
+  selectedLinkId: number;
+  selectedLinkTitle: string;
   searchKeyword: string;
   searchResult: Link[];
   noSearchResult: boolean | null;
 } = {
   data: [],
   status: "",
+  selectedLinkId: 0,
+  selectedLinkTitle: "",
   searchKeyword: "",
   searchResult: [],
   noSearchResult: null,
@@ -31,6 +35,10 @@ const linkSlice = createSlice({
     },
     setSearchKeyword: (state, action) => {
       state.searchKeyword = action.payload;
+    },
+    setSelectedLink: (state, action) => {
+      state.selectedLinkId = action.payload.linkId;
+      state.selectedLinkTitle = action.payload.linkTitle;
     },
   },
   extraReducers: (builder) => {
@@ -54,5 +62,5 @@ const linkSlice = createSlice({
   },
 });
 
-export const { setSearchResult, setSearchKeyword, initializeSearch } = linkSlice.actions;
+export const { setSearchResult, setSearchKeyword, initializeSearch, setSelectedLink } = linkSlice.actions;
 export default linkSlice.reducer;

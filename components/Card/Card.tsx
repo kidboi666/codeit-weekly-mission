@@ -4,7 +4,6 @@ import calculateTime from "@/utils/calculateTime";
 import formatDate from "@/utils/formatDate";
 import Star from "./Star";
 import Kebab from "./Kebab";
-import { useState } from "react";
 import { Link } from "@/services/types";
 import Image from "next/image";
 
@@ -33,7 +32,7 @@ const Card: React.FC<Props> = ({ link }) => {
           )}
         </S.CardImgContainer>
         <S.CardDescriptionContainer>
-          <Kebab />
+          <Kebab linkId={link.id} linkTitle={link.title} />
           <S.CreatedDate>{createdDate}</S.CreatedDate>
           <S.Title>{link.title}</S.Title>
           <S.TimeStamp>{timeDelta}</S.TimeStamp>
