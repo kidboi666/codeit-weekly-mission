@@ -13,11 +13,11 @@ const SharedPage = () => {
           <FolderOwner />
         </S.HeaderBox>
         <Search />
-        <S.FolderBox>
+        {/* <S.FolderBox>
           {folders?.map((link: Link) => {
             return <Card key={link.id} link={link} />;
           })}
-        </S.FolderBox>
+        </S.FolderBox> */}
       </S.SharedPageLayout>
     </AppLayout>
   );

@@ -24,6 +24,7 @@ const AddLink: React.FC = () => {
     if (linkUrl) {
       dispatch(postLink({ url: linkUrl, accessToken: accessToken, folderId: selectedFolderId }));
     }
+    setLinkUrl("");
   };
 
   const onChangeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
