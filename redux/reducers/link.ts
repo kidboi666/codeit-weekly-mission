@@ -1,6 +1,6 @@
 import { Link } from "@/services/types";
 import { createSlice } from "@reduxjs/toolkit";
-import { getLinkList, getAllLinkList, postLink } from "../actions/link";
+import { getLinkList, getAllLinkList, postLink, deleteLink } from "../actions/link";
 
 const initialState: {
   data: Link[];
@@ -47,6 +47,9 @@ const linkSlice = createSlice({
       .addCase(getAllLinkList.rejected, (state, action) => {})
       .addCase(postLink.fulfilled, (state, action) => {
         state.data = [action.payload[0], ...state.data];
+      })
+      .addCase(deleteLink.fulfilled, (state, action) => {
+        state.status = action.payload;
       });
   },
 });

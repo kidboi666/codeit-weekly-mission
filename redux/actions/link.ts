@@ -33,3 +33,18 @@ export const postLink = createAsyncThunk<any, { url: string; folderId: number; a
     return camelcaseKeys(data.data, { deep: true });
   },
 );
+
+export const deleteLink = createAsyncThunk<any, { linkId: number; accessToken: string }>(
+  "folder/deleteFolder",
+  async ({ linkId, accessToken }) => {
+    const { data } = await axios({
+      method: "delete",
+      url: `links/${linkId}`,
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    return data;
+  },
+);

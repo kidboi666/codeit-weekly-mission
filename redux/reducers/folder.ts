@@ -1,6 +1,6 @@
 import { FolderList } from "@/services/types";
 import { createSlice } from "@reduxjs/toolkit";
-import { getFolder, postFolder, putFolder } from "../actions/folder";
+import { deleteFolder, getFolder, postFolder, putFolder } from "../actions/folder";
 import { COMBINED_FOLDER_NAME } from "@/constants/strings";
 
 const initialState: { data: FolderList[]; status: any; selectedFolder: string; selectedFolderId: number } = {
@@ -33,6 +33,9 @@ const folderSlice = createSlice({
         state.data = [...state.data, action.payload[0]];
       })
       .addCase(putFolder.fulfilled, (state, action) => {
+        state.status = action.payload;
+      })
+      .addCase(deleteFolder.fulfilled, (state, action) => {
         state.status = action.payload;
       });
   },

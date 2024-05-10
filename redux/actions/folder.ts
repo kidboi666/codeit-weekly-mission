@@ -16,7 +16,6 @@ export const postFolder = createAsyncThunk<any, { folderName: string; token: str
       url: `folders`,
       headers: {
         Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
       },
       data: {
         name: folderName,
@@ -42,5 +41,20 @@ export const putFolder = createAsyncThunk<any, { folderName: string; folderId: n
     });
 
     return camelcaseKeys(data.data, { deep: true });
+  },
+);
+
+export const deleteFolder = createAsyncThunk<any, { folderId: number; accessToken: string }>(
+  "folder/deleteFolder",
+  async ({ folderId, accessToken }) => {
+    const { data } = await axios({
+      method: "delete",
+      url: `folders/${folderId}`,
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    return data;
   },
 );
