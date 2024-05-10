@@ -1,4 +1,3 @@
-import { useAppSelector } from "@/hooks/useApp";
 import { axiosInstance as axios } from "@/services/axiosInstace";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import camelcaseKeys from "camelcase-keys";

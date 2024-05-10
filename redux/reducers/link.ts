@@ -33,7 +33,7 @@ const linkSlice = createSlice({
       })
       .addCase(getAllLinkList.rejected, (state, action) => {})
       .addCase(postLink.fulfilled, (state, action) => {
-        state.status = action.payload;
+        state.data = [...state.data, action.payload[0]];
       });
   },
 });

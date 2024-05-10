@@ -1,27 +1,34 @@
 import * as S from "./Toast.styled";
 import ToastCheckSvg from "@/assets/icons/toast-check.svg";
 import ToastCloseSvg from "@/assets/icons/toast-close.svg";
+import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
+import { closeToast, putContents } from "@/redux/reducers/toast";
 import Image from "next/image";
+import { TOAST_TYPES } from "./ToastTypes";
 
-interface ToastProps {
-  setToast: React.Dispatch<React.SetStateAction<boolean>>;
-  text?: string;
-}
+const Toast: React.FC = () => {
+  const { contents, isOpen } = useAppSelector((state) => state.toast);
+  const dispatch = useAppDispatch();
 
-const Toast: React.FC<ToastProps> = ({ setToast, text }) => {
+  if (!isOpen) return null;
+
+  const findToast = TOAST_TYPES.find((toast) => {
+    return toast.type === contents.type;
+  });
+
   const closeButtonClickHandler = () => {
-    setToast(false);
+    dispatch(closeToast());
   };
 
   setTimeout(() => {
-    setToast(false);
+    closeButtonClickHandler();
   }, 1500);
 
   return (
     <S.Layout>
       <S.CheckContainer>
         <Image src={ToastCheckSvg} alt={"체크이미지"} />
-        <S.CheckTextBox>URL이 복사 되었습니다.</S.CheckTextBox>
+        <S.CheckTextBox>{findToast?.text}</S.CheckTextBox>
       </S.CheckContainer>
       <S.CloseIconButtonBox onClick={closeButtonClickHandler}>
         <Image src={ToastCloseSvg} alt={"닫기버튼"} />

@@ -4,6 +4,7 @@ import linkReducer from "@/redux/reducers/link";
 import authReducer from "@/redux/reducers/auth";
 import { createWrapper } from "next-redux-wrapper";
 import modalReducer from "@/redux/reducers/modal";
+import toastReducer from "@/redux/reducers/toast";
 
 const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ const store = configureStore({
     link: linkReducer,
     auth: authReducer,
     modal: modalReducer,
+    toast: toastReducer,
   },
 });
 
