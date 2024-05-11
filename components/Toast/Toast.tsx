@@ -1,7 +1,6 @@
 import * as S from "./Toast.styled";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import { closeToast, putContents } from "@/redux/reducers/toast";
-import Image from "next/image";
 import { TOAST_TYPES } from "./ToastTypes";
 import { useState } from "react";
 

@@ -1,22 +1,41 @@
 import Button from "@/components/Button/Button";
+import { COMBINED_FOLDER_NAME } from "@/constants/strings";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
-import { deleteLink } from "@/redux/actions/link";
+import { deleteLink, getAllLinkList, getLinkList } from "@/redux/actions/link";
+import { closeModal } from "@/redux/reducers/modal";
+import { openToast } from "@/redux/reducers/toast";
 
 const DeleteLink: React.FC = () => {
-  const { accessToken } = useAppSelector((state) => state.auth);
+  const { accessToken, userInfo } = useAppSelector((state) => state.auth);
   const { selectedLinkId, selectedLinkTitle } = useAppSelector((state) => state.link);
+  const { selectedFolder, selectedFolderId } = useAppSelector((state) => state.folder);
   const { text, variant } = useAppSelector((state) => state.modal.contents);
   const dispatch = useAppDispatch();
+
+  const onClick = async () => {
+    if (selectedLinkId) {
+      const res = await dispatch(deleteLink({ linkId: selectedLinkId, accessToken: accessToken }));
+      console.log(res);
+      if (res.meta.requestStatus === "fulfilled") {
+        dispatch(closeModal());
+        dispatch(openToast("deleteLink"));
+        if (selectedFolder === COMBINED_FOLDER_NAME) {
+          return dispatch(getAllLinkList(userInfo.id));
+        }
+        dispatch(
+          getLinkList({
+            userId: userInfo.id,
+            folderId: selectedFolderId,
+          }),
+        );
+      }
+    }
+  };
 
   return (
     <>
       <h4>{selectedLinkTitle}</h4>
-      <Button
-        variant={variant}
-        text={text}
-        width={"100%"}
-        onClick={() => dispatch(deleteLink({ accessToken, linkId: selectedLinkId }))}
-      />
+      <Button variant={variant} text={text} width={"100%"} onClick={onClick} />
     </>
   );
 };

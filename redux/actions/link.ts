@@ -35,7 +35,7 @@ export const postLink = createAsyncThunk<any, { url: string; folderId: number; a
 );
 
 export const deleteLink = createAsyncThunk<any, { linkId: number; accessToken: string }>(
-  "folder/deleteFolder",
+  "folder/deleteLink",
   async ({ linkId, accessToken }) => {
     const { data } = await axios({
       method: "delete",
