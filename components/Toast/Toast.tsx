@@ -1,6 +1,4 @@
 import * as S from "./Toast.styled";
-import ToastCheckSvg from "@/assets/icons/toast-check.svg";
-import ToastCloseSvg from "@/assets/icons/toast-close.svg";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import { closeToast, putContents } from "@/redux/reducers/toast";
 import Image from "next/image";
@@ -40,9 +38,7 @@ const Toast: React.FC = () => {
     <S.ToastLayout $isAnimation={isAnimation}>
       <S.CheckContainer $backgroundColor={findToast?.contents.warning}>❕</S.CheckContainer>
       <S.CheckTextBox>{findToast?.contents.text}</S.CheckTextBox>
-      <S.CloseIconButtonBox onClick={closeButtonClickHandler}>
-        <Image src={ToastCloseSvg} alt={"닫기버튼"} />
-      </S.CloseIconButtonBox>
+      <S.CloseIconButtonBox onClick={closeButtonClickHandler}>❌</S.CloseIconButtonBox>
     </S.ToastLayout>
   );
 };
