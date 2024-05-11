@@ -13,3 +13,9 @@ export const INPUT_MESSAGES = {
     DIFFRENT_PW: "비밀번호가 일치하지 않아요.",
   },
 };
+
+export const API_MSG = {
+  PEN: "pending",
+  FUL: "fulfilled",
+  REJ: "rejected",
+};

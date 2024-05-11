@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { checkEmailAccess, loginAccess, signUpAccess, userInfoAccess } from "../actions/auth";
 import { UserData } from "@/services/types";
+import { API_MSG } from "@/constants/strings";
 
 interface Props {
   isLoggedIn: boolean;
-  status: any;
+  status: string;
   accessToken: string;
   refreshToken: string;
   userInfo: UserData;
@@ -20,7 +21,7 @@ const initialUserInfo = {
 
 const initialState: Props = {
   isLoggedIn: false,
-  status: null,
+  status: "",
   accessToken: "",
   refreshToken: "",
   userInfo: { ...initialUserInfo },
@@ -39,30 +40,49 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(loginAccess.pending, (state, action) => {
+        state.status = API_MSG.PEN;
+      })
       .addCase(loginAccess.fulfilled, (state, action) => {
         state.isLoggedIn = true;
         state.refreshToken = action.payload.data.refreshToken;
         state.accessToken = action.payload.data.accessToken;
+        state.status = API_MSG.FUL;
+      })
+      .addCase(loginAccess.rejected, (state, action) => {
+        state.status = API_MSG.REJ;
+      })
+      .addCase(checkEmailAccess.pending, (state, action) => {
+        state.status = API_MSG.PEN;
       })
       .addCase(checkEmailAccess.fulfilled, (state, action) => {
         state.status = action.payload;
+        state.status = API_MSG.FUL;
       })
       .addCase(checkEmailAccess.rejected, (state, action) => {
-        state.status = action.payload;
+        state.status = API_MSG.REJ;
+      })
+      .addCase(signUpAccess.pending, (state, action) => {
+        state.status = API_MSG.PEN;
       })
       .addCase(signUpAccess.fulfilled, (state, action) => {
         state.isLoggedIn = true;
         state.accessToken = action.payload.data.accessToken;
         state.refreshToken = action.payload.data.refreshToken;
+        state.status = API_MSG.FUL;
+      })
+      .addCase(signUpAccess.rejected, (state, action) => {
+        state.status = API_MSG.REJ;
       })
       .addCase(userInfoAccess.pending, (state, action) => {
-        state.status = "loading";
+        state.status = API_MSG.PEN;
       })
       .addCase(userInfoAccess.fulfilled, (state, action) => {
         state.userInfo = action.payload.data[0];
+        state.status = API_MSG.FUL;
       })
       .addCase(userInfoAccess.rejected, (state, action) => {
-        state.status = action.payload;
+        state.status = API_MSG.REJ;
       });
   },
 });

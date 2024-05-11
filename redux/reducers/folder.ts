@@ -1,9 +1,9 @@
 import { FolderList } from "@/services/types";
 import { createSlice } from "@reduxjs/toolkit";
 import { deleteFolder, getFolder, postFolder, putFolder } from "../actions/folder";
-import { COMBINED_FOLDER_NAME } from "@/constants/strings";
+import { API_MSG, COMBINED_FOLDER_NAME } from "@/constants/strings";
 
-const initialState: { data: FolderList[]; status: any; selectedFolder: string; selectedFolderId: number } = {
+const initialState: { data: FolderList[]; status: string; selectedFolder: string; selectedFolderId: number } = {
   data: [],
   status: "",
   selectedFolder: "",
@@ -24,20 +24,34 @@ const folderSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getFolder.pending, (state, action) => {})
+      .addCase(getFolder.pending, (state) => {
+        state.status = API_MSG.PEN;
+      })
       .addCase(getFolder.fulfilled, (state, action) => {
         state.data = action.payload;
         state.selectedFolder = COMBINED_FOLDER_NAME;
+        state.status = API_MSG.FUL;
       })
-      .addCase(getFolder.rejected, (state, action) => {})
+      .addCase(postFolder.pending, (state) => {
+        state.status = API_MSG.PEN;
+      })
       .addCase(postFolder.fulfilled, (state, action) => {
         state.data = [...state.data, action.payload[0]];
+        state.status = API_MSG.FUL;
+      })
+      .addCase(putFolder.pending, (state) => {
+        state.status = API_MSG.PEN;
       })
       .addCase(putFolder.fulfilled, (state, action) => {
         state.status = action.payload;
+        state.status = API_MSG.FUL;
+      })
+      .addCase(deleteFolder.pending, (state) => {
+        state.status = API_MSG.PEN;
       })
       .addCase(deleteFolder.fulfilled, (state, action) => {
         state.status = action.payload;
+        state.status = API_MSG.FUL;
       });
   },
 });
