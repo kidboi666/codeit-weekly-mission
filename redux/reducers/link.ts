@@ -2,7 +2,7 @@ import { Link } from "@/services/types";
 import { createSlice } from "@reduxjs/toolkit";
 import { getLinkList, getAllLinkList, postLink, deleteLink } from "../actions/link";
 
-const initialState: {
+interface Props {
   data: Link[];
   status: any;
   selectedLinkId: number;
@@ -10,7 +10,9 @@ const initialState: {
   searchKeyword: string;
   searchResult: Link[];
   noSearchResult: boolean | null;
-} = {
+}
+
+const initialState: Props = {
   data: [],
   status: "",
   selectedLinkId: 0,

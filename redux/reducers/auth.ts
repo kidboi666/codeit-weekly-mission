@@ -2,6 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 import { checkEmailAccess, loginAccess, signUpAccess, userInfoAccess } from "../actions/auth";
 import { UserData } from "@/services/types";
 
+interface Props {
+  isLoggedIn: boolean;
+  status: any;
+  accessToken: string;
+  refreshToken: string;
+  userInfo: UserData;
+}
 const initialUserInfo = {
   id: 0,
   createdAt: "",
@@ -11,13 +18,7 @@ const initialUserInfo = {
   authId: "",
 };
 
-const initialState: {
-  isLoggedIn: boolean;
-  status: any;
-  accessToken: string;
-  refreshToken: string;
-  userInfo: UserData;
-} = {
+const initialState: Props = {
   isLoggedIn: false,
   status: null,
   accessToken: "",
