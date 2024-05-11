@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import { checkEmailAccess, signUpAccess, userInfoAccess } from "@/redux/actions/auth";
 import { useRouter } from "next/router";
+import { API_MSG } from "@/constants/strings";
 
 const SignUp = () => {
   const [signBody, setSignBody] = useState({
@@ -37,7 +38,7 @@ const SignUp = () => {
     if (signBody.pw !== passwordCheck) return;
     if (signBody.email && signBody.pw) {
       dispatch(checkEmailAccess(signBody.email));
-      if (status?.data?.isUsableNickname) {
+      if (status === API_MSG.FUL) {
         dispatch(signUpAccess(signBody));
       }
     }
