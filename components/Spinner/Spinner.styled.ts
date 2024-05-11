@@ -9,7 +9,7 @@ export const SpinnerLayout = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  // background-color: var(--white-color);
+  background-color: var(--white-color);
 `;
 
 const rotate = keyframes`
@@ -26,7 +26,7 @@ export const Spinner = styled.div`
   position: fixed;
   z-index: 110;
 
-  > p {
+  > img {
     animation: ${rotate} 1s linear infinite;
     width: 50px;
     height: 50px;

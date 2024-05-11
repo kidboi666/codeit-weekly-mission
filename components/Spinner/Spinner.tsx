@@ -1,6 +1,8 @@
 import * as S from "./Spinner.styled";
 import { useAppSelector } from "@/hooks/useApp";
 import { API_MSG } from "@/constants/strings";
+import spinner from "@/assets/icons/spinner.png";
+import Image from "next/image";
 
 const Spinner = () => {
   const folderStatus = useAppSelector((state) => state.folder.status);
@@ -13,8 +15,8 @@ const Spinner = () => {
   return (
     <S.SpinnerLayout>
       <S.Spinner>
-        <p>😀</p>
-        {/* <Image src={spinnerImg} alt='로딩 중....' /> */}
+        {/* <p>✻</p> */}
+        <Image src={spinner} alt='로딩 중....' />
       </S.Spinner>
     </S.SpinnerLayout>
   );
