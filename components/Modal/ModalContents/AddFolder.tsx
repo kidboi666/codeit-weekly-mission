@@ -2,6 +2,7 @@ import Button from "@/components/Button/Button";
 import { Input } from "@/components/Input/Input.styled";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import { postFolder } from "@/redux/actions/folder";
+import { closeModal } from "@/redux/reducers/modal";
 import { useState } from "react";
 
 const AddFolder: React.FC = () => {
@@ -14,10 +15,13 @@ const AddFolder: React.FC = () => {
     setFolderName(e.target.value);
   };
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (folderName) {
-      dispatch(postFolder({ folderName, token }));
+      const res = await dispatch(postFolder({ folderName, token }));
+      if (res.meta.requestStatus === "fulfilled") {
+        dispatch(closeModal());
+      }
     }
   };
 
