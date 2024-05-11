@@ -6,7 +6,8 @@ import Button from "../Button/Button";
 import Input from "../Input/Input";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import { postLink } from "@/redux/actions/link";
-import { openModal } from "@/redux/reducers/modal";
+import { closeModal, openModal } from "@/redux/reducers/modal";
+import { openToast } from "@/redux/reducers/toast";
 
 const AddLink: React.FC = () => {
   const [isInterSecting, setInterSecting] = useState(false);
@@ -20,12 +21,19 @@ const AddLink: React.FC = () => {
     setInterSecting(!entries[0].isIntersecting);
   };
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (linkUrl) {
-      dispatch(postLink({ url: linkUrl, accessToken: accessToken, folderId: selectedFolderId }));
+      const res = await dispatch(postLink({ url: linkUrl, accessToken: accessToken, folderId: selectedFolderId }));
+      if (res.meta.requestStatus === "fulfilled") {
+        dispatch(closeModal());
+        dispatch(openToast("addLink"));
+        setLinkUrl("");
+      }
+      if (res.meta.requestStatus === "rejected") {
+        dispatch(openToast("rejectedAddLink"));
+      }
     }
-    setLinkUrl("");
   };
 
   const onChangeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {

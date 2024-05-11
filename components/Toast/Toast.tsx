@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import { closeToast, putContents } from "@/redux/reducers/toast";
 import Image from "next/image";
 import { TOAST_TYPES } from "./ToastTypes";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const Toast: React.FC = () => {
   const [isAnimation, setAnimation] = useState(false);
@@ -38,10 +38,8 @@ const Toast: React.FC = () => {
 
   return (
     <S.ToastLayout $isAnimation={isAnimation}>
-      <S.CheckContainer>
-        <Image src={ToastCheckSvg} alt={"체크이미지"} />
-        <S.CheckTextBox>{findToast?.contents.text}</S.CheckTextBox>
-      </S.CheckContainer>
+      <S.CheckContainer $backgroundColor={findToast?.contents.warning}>❕</S.CheckContainer>
+      <S.CheckTextBox>{findToast?.contents.text}</S.CheckTextBox>
       <S.CloseIconButtonBox onClick={closeButtonClickHandler}>
         <Image src={ToastCloseSvg} alt={"닫기버튼"} />
       </S.CloseIconButtonBox>

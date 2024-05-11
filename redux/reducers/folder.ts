@@ -27,6 +27,7 @@ const folderSlice = createSlice({
       .addCase(getFolder.pending, (state, action) => {})
       .addCase(getFolder.fulfilled, (state, action) => {
         state.data = action.payload;
+        state.selectedFolder = COMBINED_FOLDER_NAME;
       })
       .addCase(getFolder.rejected, (state, action) => {})
       .addCase(postFolder.fulfilled, (state, action) => {
