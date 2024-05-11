@@ -28,12 +28,13 @@ const AddLink: React.FC = () => {
       if (res.meta.requestStatus === "fulfilled") {
         dispatch(closeModal());
         dispatch(openToast("addLink"));
-        setLinkUrl("");
+        return setLinkUrl("");
       }
       if (res.meta.requestStatus === "rejected") {
-        dispatch(openToast("rejectedAddLink"));
+        return dispatch(openToast("rejectedAddLink"));
       }
     }
+    dispatch(openToast("nothingValue"));
   };
 
   const onChangeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {

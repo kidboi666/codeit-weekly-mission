@@ -6,4 +6,5 @@ export const TOAST_TYPES = [
   { contents: { type: "deleteLink", text: "링크가 삭제 되었습니다." } },
   { contents: { type: "changeName", text: "폴더 이름이 변경 되었습니다." } },
   { contents: { warning: true, type: "rejectedAddLink", text: "주소가 올바르지 않습니다." } },
+  { contents: { warning: true, type: "nothingValue", text: "주소를 입력하세요." } },
 ];
