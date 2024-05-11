@@ -73,6 +73,9 @@ const linkSlice = createSlice({
         state.data = [action.payload[0], ...state.data];
         state.status = API_MSG.FUL;
       })
+      .addCase(postLink.rejected, (state, action) => {
+        state.status = API_MSG.REJ;
+      })
       .addCase(deleteLink.pending, (state, action) => {
         state.status = API_MSG.PEN;
       })
