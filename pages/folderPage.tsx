@@ -11,6 +11,7 @@ import { getFolder } from "@/redux/actions/folder";
 import { Link } from "@/services/types";
 import { initializeSelectedFolder } from "@/redux/reducers/folder";
 import { getAllLinkList } from "@/redux/actions/link";
+import Spinner from "@/components/Spinner/Spinner";
 
 const FolderPage = () => {
   const { isLoggedIn, userInfo } = useAppSelector((state) => state.auth);
@@ -43,6 +44,7 @@ const FolderPage = () => {
 
   return (
     <AppLayout>
+      <Spinner />
       <S.FolderPageLayout>
         <S.HeaderSection>
           <AddLink />
