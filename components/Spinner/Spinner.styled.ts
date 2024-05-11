@@ -27,7 +27,7 @@ export const Spinner = styled.div`
   z-index: 110;
 
   > img {
-    animation: ${rotate} 1s linear infinite;
+    animation: ${rotate} 1.4s linear infinite;
     width: 50px;
     height: 50px;
   }

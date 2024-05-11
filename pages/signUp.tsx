@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import { checkEmailAccess, signUpAccess, userInfoAccess } from "@/redux/actions/auth";
 import { useRouter } from "next/router";
 import { API_MSG } from "@/constants/strings";
+import { openToast } from "@/redux/reducers/toast";
 
 const SignUp = () => {
   const [signBody, setSignBody] = useState({
@@ -33,15 +34,17 @@ const SignUp = () => {
     setPasswordCheck(e.target.value);
   };
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (signBody.pw !== passwordCheck) return;
+    if (signBody.pw !== passwordCheck) return dispatch(openToast("diffrentPassword"));
     if (signBody.email && signBody.pw) {
-      dispatch(checkEmailAccess(signBody.email));
+      await dispatch(checkEmailAccess(signBody.email));
       if (status === API_MSG.FUL) {
-        dispatch(signUpAccess(signBody));
+        return dispatch(signUpAccess(signBody));
       }
+      return dispatch(openToast("emailAlreadyExists"));
     }
+    dispatch(openToast("wrongAccount"));
   };
 
   useEffect(() => {
