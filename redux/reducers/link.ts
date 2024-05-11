@@ -80,8 +80,10 @@ const linkSlice = createSlice({
         state.status = API_MSG.PEN;
       })
       .addCase(deleteLink.fulfilled, (state, action) => {
-        state.status = action.payload;
         state.status = API_MSG.FUL;
+      })
+      .addCase(deleteLink.rejected, (state, action) => {
+        state.status = API_MSG.REJ;
       });
   },
 });

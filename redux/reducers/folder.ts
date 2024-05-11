@@ -32,6 +32,9 @@ const folderSlice = createSlice({
         state.selectedFolder = COMBINED_FOLDER_NAME;
         state.status = API_MSG.FUL;
       })
+      .addCase(getFolder.rejected, (state, action) => {
+        state.status = API_MSG.REJ;
+      })
       .addCase(postFolder.pending, (state) => {
         state.status = API_MSG.PEN;
       })
@@ -39,19 +42,26 @@ const folderSlice = createSlice({
         state.data = [...state.data, action.payload[0]];
         state.status = API_MSG.FUL;
       })
+      .addCase(postFolder.rejected, (state, action) => {
+        state.status = API_MSG.REJ;
+      })
       .addCase(putFolder.pending, (state) => {
         state.status = API_MSG.PEN;
       })
       .addCase(putFolder.fulfilled, (state, action) => {
-        state.status = action.payload;
         state.status = API_MSG.FUL;
+      })
+      .addCase(putFolder.rejected, (state, action) => {
+        state.status = API_MSG.REJ;
       })
       .addCase(deleteFolder.pending, (state) => {
         state.status = API_MSG.PEN;
       })
       .addCase(deleteFolder.fulfilled, (state, action) => {
-        state.status = action.payload;
         state.status = API_MSG.FUL;
+      })
+      .addCase(deleteFolder.rejected, (state, action) => {
+        state.status = API_MSG.REJ;
       });
   },
 });
