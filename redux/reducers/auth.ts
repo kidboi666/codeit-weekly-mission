@@ -66,9 +66,9 @@ const authSlice = createSlice({
         state.status = API_MSG.PEN;
       })
       .addCase(signUpAccess.fulfilled, (state, action) => {
-        state.isLoggedIn = true;
         state.accessToken = action.payload.data.accessToken;
         state.refreshToken = action.payload.data.refreshToken;
+        state.isLoggedIn = true;
         state.status = API_MSG.FUL;
       })
       .addCase(signUpAccess.rejected, (state, action) => {

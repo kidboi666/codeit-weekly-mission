@@ -4,12 +4,12 @@ export const SpinnerLayout = styled.div`
   position: fixed;
   width: 100vw;
   height: 100vh;
-  opacity: 0.8;
+  opacity: 1;
   z-index: 100;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--white-color);
+  // background-color: var(--white-color);
 `;
 
 const rotate = keyframes`
@@ -23,10 +23,12 @@ const rotate = keyframes`
 `;
 
 export const Spinner = styled.div`
-  animation: ${rotate} 1.3s linear infinite;
+  position: fixed;
+  z-index: 110;
 
-  > img {
-    width: 100px;
-    height: 100px;
+  > p {
+    animation: ${rotate} 1s linear infinite;
+    width: 50px;
+    height: 50px;
   }
 `;
