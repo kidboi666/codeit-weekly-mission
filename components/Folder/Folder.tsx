@@ -45,7 +45,7 @@ const Folder: React.FC = () => {
             />
           ))}
           <div onClick={() => dispatch(openModal("addFolder"))}>
-            <Button variant={"addFolder"} text={"폴더 추가 +"} width={"95px"} />
+            <Button variant={"addFolder"} text={"폴더 추가 +"} />
           </div>
         </S.FolderBox>
       </S.FolderContainer>

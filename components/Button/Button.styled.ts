@@ -12,11 +12,11 @@ export const Button = styled.button<{ $variant: string; $isActive?: boolean; $wi
   ${({ $variant }) =>
     $variant === "addFolder" &&
     `
-      width: 100%;
       height: 35px;
       background-color: var(--white-color);
       color: var(--primary-color);
       border: 1px solid var(--primary-color);
+      border-radius: 5px;
       transition: all 0.3s;
       line-height: 14px;
 

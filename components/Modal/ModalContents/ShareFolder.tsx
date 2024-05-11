@@ -4,34 +4,7 @@ import copyToClipboard from "@/utils/copyToClipboard";
 import facebookIcon from "@/assets/icons/facebook_icon.svg";
 import linkIcon from "@/assets/icons/link.svg";
 import KakaoButton from "@/components/KakaoButton/KakaoButton";
-import styled from "styled-components";
-
-const ShareContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-
-  div {
-    display: grid;
-    grid-template-rows: 42px 15px;
-    gap: 10px;
-    place-items: center;
-    cursor: pointer;
-
-    p {
-      font-size: 13px;
-      line-height: 15px;
-    }
-  }
-`;
-
-const ToastContainer = styled.div`
-  position: fixed;
-  bottom: 70px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 70;
-`;
+import * as S from "@/components/Modal/ModalContents/ShareFolder.styled";
 
 const ShareFolder: React.FC = () => {
   const { selectedFolderId, selectedFolder } = useAppSelector((state) => state.folder);
@@ -39,7 +12,7 @@ const ShareFolder: React.FC = () => {
   return (
     <>
       <h4>{selectedFolder}</h4>
-      <ShareContainer>
+      <S.ShareContainer>
         <KakaoButton />
         <div>
           <Image src={facebookIcon} alt={facebookIcon} />
@@ -49,7 +22,7 @@ const ShareFolder: React.FC = () => {
           <Image src={linkIcon} alt={linkIcon} />
           <p>링크 복사</p>
         </div>
-      </ShareContainer>
+      </S.ShareContainer>
       {/* {isToast && (
         <S.ToastContainer>
           <Toast setToast={setToast} />
