@@ -16,7 +16,7 @@ const SignIn = () => {
     email: "",
     pw: "",
   });
-  const { isLoggedIn, userInfo, accessToken } = useAppSelector((state) => state.auth);
+  const { isLoggedIn, accessToken } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const router = useRouter();
 

@@ -10,7 +10,7 @@ const nextConfig = {
         pathname: "folderPage/**",
       },
     ],
-    domains: ["avatars.githubusercontent.com"],
+    domains: ["avatars.githubusercontent.com", "cloudflare-ipfs.com"],
   },
 };
 

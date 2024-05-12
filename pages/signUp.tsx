@@ -19,8 +19,7 @@ const SignUp = () => {
     pw: "",
   });
   const [passwordCheck, setPasswordCheck] = useState("");
-  const { isLoggedIn, userInfo, status } = useAppSelector((state) => state.auth);
-  const accessToken = localStorage.getItem("accessToken");
+  const { isLoggedIn, accessToken, status } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const router = useRouter();
 
@@ -49,12 +48,13 @@ const SignUp = () => {
   };
 
   useEffect(() => {
-    if (isLoggedIn) dispatch(userInfoAccess(accessToken));
-  }, [isLoggedIn]);
+    const localToken = localStorage.getItem("accessToken");
+    if (localToken) dispatch(userInfoAccess(localToken));
+  }, [accessToken]);
 
   useEffect(() => {
-    if (userInfo.id) router.push("/folderPage");
-  }, [userInfo]);
+    if (isLoggedIn) router.push("/folderPage");
+  }, [isLoggedIn]);
 
   return (
     <S.SignUpLayout>

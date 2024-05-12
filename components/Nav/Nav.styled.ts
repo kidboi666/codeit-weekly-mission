@@ -52,12 +52,12 @@ export const LoginLayout = styled.div`
       display: none;
     }
   }
-`;
 
-export const ImgBox = styled.div`
-  position: relative;
-  width: 28px;
-  height: 28px;
+  > img {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+  }
 `;
 
 export const LoginButton = styled(Button)`

@@ -49,9 +49,7 @@ const Nav: React.FC = () => {
       <S.LoginLayout>
         {isLoggedIn ? (
           <>
-            <S.ImgBox>
-              <Image fill src={userInfo?.imageSource} alt='프로필 이미지' style={{ borderRadius: "50%" }} />
-            </S.ImgBox>
+            <img src={userInfo?.imageSource} alt='프로필 이미지' />
             <div>{userInfo?.email}</div>
             <Button variant={"default"} text={"로그아웃"} width={"88px"} onClick={() => dispatch(logout())} />
           </>
