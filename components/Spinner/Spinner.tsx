@@ -13,12 +13,12 @@ const Spinner = () => {
   if (turningPoint) return;
 
   return (
-    <S.SpinnerLayout>
-      <S.Spinner>
-        {/* <p>✻</p> */}
-        <Image src={spinner} alt='로딩 중....' />
-      </S.Spinner>
-    </S.SpinnerLayout>
+    // <S.SpinnerLayout>
+    <S.Spinner>
+      {/* <p>✻</p> */}
+      <Image src={spinner} alt='로딩 중....' />
+    </S.Spinner>
+    // </S.SpinnerLayout>
   );
 };
 

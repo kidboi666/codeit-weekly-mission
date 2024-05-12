@@ -1,5 +1,7 @@
+import { useAppSelector } from "@/hooks/useApp";
 import * as S from "./Button.styled";
 import React from "react";
+import Spinner from "../Spinner/Spinner";
 
 interface ButtonProps {
   variant?: string;
@@ -7,6 +9,7 @@ interface ButtonProps {
   text?: string;
   selected?: string;
   className?: string;
+  disabled?: boolean;
   type?: "submit" | "button";
   onClick?: (e: React.MouseEvent) => void;
 }
@@ -17,6 +20,7 @@ const Button: React.FC<ButtonProps> = ({
   text,
   selected,
   className,
+  disabled,
   type = "button",
   onClick,
 }) => {
@@ -26,6 +30,7 @@ const Button: React.FC<ButtonProps> = ({
       $width={width}
       $isActive={selected === text}
       type={type}
+      disabled={disabled}
       onClick={onClick}
       className={className}
     >
