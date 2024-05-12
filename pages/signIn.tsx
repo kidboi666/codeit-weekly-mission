@@ -40,7 +40,7 @@ const SignIn = () => {
   }, [accessToken]);
 
   useEffect(() => {
-    if (userInfo.id) router.push("/folderPage");
+    if (isLoggedIn) router.push("/folderPage");
   }, [isLoggedIn]);
 
   return (

@@ -15,12 +15,11 @@ import { getAllLinkList } from "@/redux/actions/link";
 const FolderPage = () => {
   const [isInterSecting, setInterSecting] = useState(false);
   const [linkStorage, setLinkStorage] = useState<Link[]>([]);
-  const { userInfo } = useAppSelector((state) => state.auth);
+  const { userInfo, isLoggedIn } = useAppSelector((state) => state.auth);
   const { data, searchResult, noSearchResult } = useAppSelector((state) => state.link);
   const dispatch = useAppDispatch();
   const router = useRouter();
   const targetRef = useRef<HTMLDivElement>();
-  let accessToken;
 
   const callback = (entries: any) => {
     setTimeout(() => {
@@ -43,11 +42,11 @@ const FolderPage = () => {
   }, []);
 
   useEffect(() => {
-    accessToken = localStorage?.getItem("accessToken");
+    const accessToken = localStorage?.getItem("accessToken");
     if (!accessToken) {
       router.push("/");
     }
-  }, [accessToken]);
+  }, [isLoggedIn]);
 
   useEffect(() => {
     setLinkStorage(data);
@@ -60,10 +59,11 @@ const FolderPage = () => {
   }, [searchResult]);
 
   useEffect(() => {
+    if (!userInfo.id) return;
     dispatch(getFolder(userInfo.id));
     dispatch(getAllLinkList(userInfo.id));
     dispatch(initializeSelectedFolder());
-  }, []);
+  }, [userInfo]);
 
   return (
     <AppLayout>
