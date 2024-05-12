@@ -8,6 +8,7 @@ export const Button = styled.button<{ $variant: string; $isActive?: boolean; $wi
   text-decoration: none;
   cursor: pointer;
   color: var(--white-color);
+  transition: all 0.3s;
 
   ${({ $variant }) =>
     $variant === "addFolder" &&
@@ -17,7 +18,6 @@ export const Button = styled.button<{ $variant: string; $isActive?: boolean; $wi
       color: var(--primary-color);
       border: 1px solid var(--primary-color);
       border-radius: 5px;
-      transition: all 0.3s;
       line-height: 14px;
 
       &:hover {
@@ -34,10 +34,14 @@ export const Button = styled.button<{ $variant: string; $isActive?: boolean; $wi
         border-radius: 20px;
         border: 1px solid var(--white-color);
         transform: translateX(-63.5px);
-        z-index: 40;
+        z-index: 60;
         background-color: var(--primary-color);
         color: var(--white-color);
-        box-shadow:0px 2px 8px 0px rgba(51, 50, 54, 0.10);
+        box-shadow:0px 2px 8px 0px rgba(51, 50, 54, 0.5);
+        
+        &:hover {
+          transform: translateX(-63.5px) scale(1.1);
+        }
       }
     `}
 
@@ -53,7 +57,11 @@ export const Button = styled.button<{ $variant: string; $isActive?: boolean; $wi
 
       @media (max-width: 767px) {
         right: 10px;
-      }  
+      }
+
+      &:hover {
+        transform: translateY(-18px) scale(1.1);
+      }
   `}
 
   ${({ $variant }) =>
@@ -72,6 +80,10 @@ export const Button = styled.button<{ $variant: string; $isActive?: boolean; $wi
       background-image: linear-gradient(270deg, #6ae3fe, var(--primary-color));
       font-weight: 600;
       color: #f5f5f5;
+
+      &:hover {
+        transform: scale(1.1);
+      }
     `}
 
   ${({ $variant }) =>
@@ -95,7 +107,6 @@ export const Button = styled.button<{ $variant: string; $isActive?: boolean; $wi
       background-color: ${$isActive ? "var(--primary-color)" : "var(--white-color)"};
       color: ${$isActive ? "var(--white-color)" : "var(--black-color)"};
       cursor: pointer;
-      transition: background-color 0.3s;
 
       &:hover {
         background-color: var(--primary-color);
