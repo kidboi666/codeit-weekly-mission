@@ -11,9 +11,10 @@ import { setSelectedLink } from "@/redux/reducers/link";
 interface KebabProps {
   linkId: number;
   linkTitle: string;
+  linkUrl: string;
 }
 
-const Kebab: React.FC<KebabProps> = ({ linkId, linkTitle }) => {
+const Kebab: React.FC<KebabProps> = ({ linkId, linkTitle, linkUrl }) => {
   const dispatch = useAppDispatch();
   const [value, toggle] = useToggle();
   const currentLocation = useRouter();
@@ -33,7 +34,7 @@ const Kebab: React.FC<KebabProps> = ({ linkId, linkTitle }) => {
   };
 
   const onClickAddLinkToFolderButton = () => {
-    dispatch(setSelectedLink({ linkId, linkTitle }));
+    dispatch(setSelectedLink({ linkId, linkTitle, linkUrl }));
     dispatch(openModal("addLinkToFolder"));
   };
 

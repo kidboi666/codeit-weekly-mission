@@ -32,7 +32,7 @@ const Card: React.FC<Props> = ({ link }) => {
           )}
         </S.CardImgContainer>
         <S.CardDescriptionContainer>
-          <Kebab linkId={link.id} linkTitle={link.title} />
+          <Kebab linkId={link.id} linkTitle={link.title} linkUrl={link.url} />
           <S.CreatedDate>{createdDate}</S.CreatedDate>
           <S.Title>{link.title}</S.Title>
           <S.TimeStamp>{timeDelta}</S.TimeStamp>

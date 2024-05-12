@@ -8,6 +8,7 @@ interface Props {
   status: string;
   selectedLinkId: number;
   selectedLinkTitle: string;
+  selectedLinkUrl: string;
   searchKeyword: string;
   searchResult: Link[];
   noSearchResult: boolean | null;
@@ -18,6 +19,7 @@ const initialState: Props = {
   status: "",
   selectedLinkId: 0,
   selectedLinkTitle: "",
+  selectedLinkUrl: "",
   searchKeyword: "",
   searchResult: [],
   noSearchResult: null,
@@ -42,6 +44,7 @@ const linkSlice = createSlice({
     setSelectedLink: (state, action) => {
       state.selectedLinkId = action.payload.linkId;
       state.selectedLinkTitle = action.payload.linkTitle;
+      state.selectedLinkUrl = action?.payload.linkUrl;
     },
   },
   extraReducers: (builder) => {

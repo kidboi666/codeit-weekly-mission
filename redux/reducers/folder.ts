@@ -3,11 +3,20 @@ import { createSlice } from "@reduxjs/toolkit";
 import { deleteFolder, getFolder, postFolder, putFolder } from "../actions/folder";
 import { API_MSG, COMBINED_FOLDER_NAME } from "@/constants/strings";
 
-const initialState: { data: FolderList[]; status: string; selectedFolder: string; selectedFolderId: number } = {
+const initialState: {
+  data: FolderList[];
+  status: string;
+  selectedFolder: string;
+  selectedFolderId: number;
+  selectedFolderForAddLink: string;
+  selectedFolderIdForAddLink: number;
+} = {
   data: [],
   status: "",
   selectedFolder: "",
   selectedFolderId: 0,
+  selectedFolderForAddLink: "",
+  selectedFolderIdForAddLink: 0,
 };
 
 const folderSlice = createSlice({
@@ -20,6 +29,10 @@ const folderSlice = createSlice({
     setSelectedFolder: (state, action) => {
       state.selectedFolder = action.payload.selectedFolder;
       state.selectedFolderId = action.payload.selectedFolderId;
+    },
+    setSelectedFolderForAddLink: (state, action) => {
+      state.selectedFolderForAddLink = action.payload.selectedFolder;
+      state.selectedFolderIdForAddLink = action.payload.selectedFolderId;
     },
   },
   extraReducers: (builder) => {
@@ -66,6 +79,6 @@ const folderSlice = createSlice({
   },
 });
 
-export const { initializeSelectedFolder, setSelectedFolder } = folderSlice.actions;
+export const { initializeSelectedFolder, setSelectedFolder, setSelectedFolderForAddLink } = folderSlice.actions;
 
 export default folderSlice.reducer;

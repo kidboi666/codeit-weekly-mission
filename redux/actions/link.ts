@@ -16,7 +16,7 @@ export const getAllLinkList = createAsyncThunk<Link[], number>("link/getLink", a
   return camelcaseKeys(data.data, { deep: true });
 });
 
-export const postLink = createAsyncThunk<any, { url: string; folderId: number; accessToken: string }>(
+export const postLink = createAsyncThunk<any, { url: string; folderId: number; accessToken: string | null }>(
   "link/postLink",
   async ({ url, folderId, accessToken }) => {
     const { data } = await axios({

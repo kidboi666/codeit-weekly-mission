@@ -1,12 +1,12 @@
 import * as S from "./AddLink.styled";
 import LinkIcon from "../../assets/icons/link.svg";
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import { postLink } from "@/redux/actions/link";
-import { closeModal, openModal } from "@/redux/reducers/modal";
+import { closeModal } from "@/redux/reducers/modal";
 import { openToast } from "@/redux/reducers/toast";
 
 interface AddLinkProps {
