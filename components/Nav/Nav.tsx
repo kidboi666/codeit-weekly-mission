@@ -6,7 +6,6 @@ import * as S from "./Nav.styled";
 import logo from "@/assets/icons/logo.svg";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import Button from "../Button/Button";
-import { logout } from "@/redux/reducers/auth";
 import { userInfoAccess } from "@/redux/actions/auth";
 import DropDown from "../DropDown/DropDown";
 

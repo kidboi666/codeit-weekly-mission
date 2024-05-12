@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
-import Footer from "@/components/Footer/Footer";
 import Nav from "@/components/Nav/Nav";
+import Footer from "../Footer/Footer";
 
 interface AppProps {
   children: ReactNode;

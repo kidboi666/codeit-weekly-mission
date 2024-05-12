@@ -80,7 +80,7 @@ export const FooterAddLink = styled.div<{ $animation: boolean }>`
   bottom: 0;
   right: 0;
   left: 0;
-  transform: translateY(93px);
+  transform: translateY(109px);
   padding: 20px 0;
   background-color: var(--gray5-color);
   box-shadow: 0 10px 30px rgba(188, 188, 188, 0.3);
