@@ -10,10 +10,10 @@ const DropDown = () => {
     <S.DropDownLayout>
       <S.InfoSection>
         <img src={imageSource} alt={"프로필 이미지"} />
-        <p>
-          {name}
-          {email}
-        </p>
+        <div>
+          <p>{name}</p>
+          <p>{email}</p>
+        </div>
       </S.InfoSection>
       <S.MenuList>
         <li>
