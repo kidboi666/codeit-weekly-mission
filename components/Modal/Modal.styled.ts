@@ -11,7 +11,7 @@ export const ModalLayout = styled.div`
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.4);
-  z-index: 60;
+  z-index: 100;
 `;
 
 export const ModalContainer = styled.div`

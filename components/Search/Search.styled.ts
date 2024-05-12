@@ -47,7 +47,6 @@ export const StyledInput = styled(Input)`
 `;
 
 export const SearchResultSection = styled.div`
-  width: 100%;
   margin-bottom: 40px;
   font-size: 32px;
   text-align: left;

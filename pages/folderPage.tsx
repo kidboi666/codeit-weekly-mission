@@ -78,15 +78,17 @@ const FolderPage = () => {
           <Folder />
         </S.FolderSection>
         <S.LinkSection>
-          {noSearchResult
-            ? "검색 결과가 없습니다."
-            : linkStorage?.length === 0
-            ? "해당되는 링크가 없습니다."
-            : linkStorage?.map((v) => (
-                <div key={v.id}>
-                  <Card link={v} />
-                </div>
-              ))}
+          {noSearchResult ? (
+            <div>{"검색 결과가 없습니다."}</div>
+          ) : linkStorage?.length === 0 ? (
+            <div>{"해당되는 링크가 없습니다."}</div>
+          ) : (
+            linkStorage?.map((v) => (
+              <div key={v.id}>
+                <Card link={v} />
+              </div>
+            ))
+          )}
         </S.LinkSection>
       </S.FolderPageLayout>
       <S.FooterAddLink $animation={isInterSecting}>

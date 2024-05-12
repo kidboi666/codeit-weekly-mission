@@ -8,7 +8,7 @@ export const ToastLayout = styled.div<{ $isAnimation: boolean }>`
   overflow: hidden;
   bottom: 0;
   left: 50%;
-  z-index: 60;
+  z-index: 110;
   opacity: 0;
   border-radius: 8px;
   box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.2);

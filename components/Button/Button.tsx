@@ -1,7 +1,6 @@
 import { useAppSelector } from "@/hooks/useApp";
 import * as S from "./Button.styled";
 import React from "react";
-import Spinner from "../Spinner/Spinner";
 
 interface ButtonProps {
   variant?: string;
