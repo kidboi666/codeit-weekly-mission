@@ -67,10 +67,15 @@ export const LinkSection = styled.ul<{ $noneLinks?: boolean }>`
   }
 
   @media (max-width: 767px) {
-    padding: 0 32.5px;
-    grid-template-columns: repeat(1, 1fr);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
     gap: 20px;
     margin-bottom: 60px;
+
+    > div {
+      padding: 0 32.5px;
+    }
   }
 `;
 
