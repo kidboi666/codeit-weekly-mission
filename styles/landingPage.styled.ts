@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 export const LandingPageLayout = styled.div`
   width: 100%;
   .info_gradient {
@@ -34,6 +35,13 @@ export const HeaderBox = styled.div`
   width: 100%;
   padding-top: 70px;
   text-align: center;
+
+  > img {
+    @media (max-width: 1199px) {
+      width: 100%;
+      height: 100%;
+    }
+  }
 `;
 // intro_wrap
 export const IntroWrap = styled.div`
@@ -43,6 +51,10 @@ export const IntroWrap = styled.div`
   span {
     font-size: 64px;
     font-weight: 700;
+
+    @media (max-width: 1199px) {
+      font-size: 40px;
+    }
   }
 `;
 
@@ -59,12 +71,21 @@ export const CardContainer = styled.div`
   padding: 50px 0;
   display: flex;
   justify-content: center;
+
+  @media (max-width: 767px) {
+    padding: 40px 32px;
+  }
+
+  &:nth-child(even) div div {
+    grid-column: 1 / 2;
+  }
 `;
+
 // card_item , section_link
 export const CardBox = styled.div`
   width: 998px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 50%);
   grid-template-rows: repeat(4, 1fr);
   column-gap: 157px;
   row-gap: 1px;
@@ -72,13 +93,69 @@ export const CardBox = styled.div`
   > h1 {
     grid-row: 2 / 3;
     font-size: 48px;
-    font-weight: 500;
+    font-weight: 700;
+
+    @media (max-width: 1199px) {
+      font-size: 40px;
+      grid-row: 1 / span 2;
+      align-self: end;
+    }
+
+    @media (max-width: 767px) {
+      align-self: start;
+    }
   }
 
   > p {
     margin-top: 10px;
     line-height: 25px;
     grid-row: 3 / 4;
+
+    @media (max-width: 1199px) {
+      grid-row: 3 / span 2;
+    }
+
+    @media (max-width: 767px) {
+      order: 1;
+    }
+  }
+
+  > div {
+    grid-column: 2 / -1;
+    grid-row: 1 / -1;
+
+    > img {
+      width: 100%;
+      height: 100%;
+    }
+
+    @media (max-width: 1199px) {
+      width: 100%;
+      grid-column: 2 / -1;
+      grid-row: 1 / span 4;
+    }
+
+    @media (max-width: 767px) {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 1199px) {
+    width: 698px;
+    row-gap: 10px;
+    column-gap: 51px;
+  }
+
+  @media (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
   }
 `;
-//
+
+export const Break = styled.br`
+  @media (max-width: 767px) {
+    display: none;
+  }
+`;
