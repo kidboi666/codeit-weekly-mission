@@ -43,7 +43,7 @@ export const signUpAccess = createAsyncThunk<any, { email: string; pw: string }>
   },
 );
 
-export const userInfoAccess = createAsyncThunk<any, string>("user/userInfo", async (token) => {
+export const userInfoAccess = createAsyncThunk<any, string | null>("user/userInfo", async (token) => {
   const { data } = await axios({
     method: "get",
     url: `users`,

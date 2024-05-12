@@ -19,7 +19,8 @@ const SignUp = () => {
     pw: "",
   });
   const [passwordCheck, setPasswordCheck] = useState("");
-  const { isLoggedIn, userInfo, accessToken, status } = useAppSelector((state) => state.auth);
+  const { isLoggedIn, userInfo, status } = useAppSelector((state) => state.auth);
+  const accessToken = localStorage.getItem("accessToken");
   const dispatch = useAppDispatch();
   const router = useRouter();
 

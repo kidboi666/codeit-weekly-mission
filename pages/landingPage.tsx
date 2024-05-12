@@ -8,9 +8,17 @@ import mainSns from "@/assets/images/main_sns.png";
 import Link from "next/link";
 import Button from "@/components/Button/Button";
 import { useAppSelector } from "@/hooks/useApp";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 const LandingPage = () => {
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    // if (token) router.push("/folderPage");
+  }, []);
 
   return (
     <S.LandingPageLayout>

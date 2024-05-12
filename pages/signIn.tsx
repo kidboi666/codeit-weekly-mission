@@ -35,12 +35,13 @@ const SignIn = () => {
   };
 
   useEffect(() => {
-    if (isLoggedIn) dispatch(userInfoAccess(accessToken));
-  }, [isLoggedIn]);
+    const localToken = localStorage.getItem("accessToken");
+    if (localToken) dispatch(userInfoAccess(localToken));
+  }, [accessToken]);
 
   useEffect(() => {
     if (userInfo.id) router.push("/folderPage");
-  }, [userInfo]);
+  }, [isLoggedIn]);
 
   return (
     <S.SignInLayout>

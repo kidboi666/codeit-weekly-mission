@@ -22,9 +22,9 @@ const initialUserInfo = {
 const initialState: Props = {
   isLoggedIn: false,
   status: "",
+  userInfo: { ...initialUserInfo },
   accessToken: "",
   refreshToken: "",
-  userInfo: { ...initialUserInfo },
 };
 
 const authSlice = createSlice({
@@ -36,6 +36,7 @@ const authSlice = createSlice({
       state.accessToken = "";
       state.refreshToken = "";
       state.userInfo = initialUserInfo;
+      localStorage.clear();
     },
   },
   extraReducers: (builder) => {
@@ -45,8 +46,10 @@ const authSlice = createSlice({
       })
       .addCase(loginAccess.fulfilled, (state, action) => {
         state.isLoggedIn = true;
-        state.refreshToken = action.payload.data.refreshToken;
         state.accessToken = action.payload.data.accessToken;
+        state.refreshToken = action.payload.data.refreshToken;
+        localStorage.setItem("accessToken", action.payload.data.accessToken);
+        localStorage.setItem("refreshToken", action.payload.data.refreshToken);
         state.status = API_MSG.FUL;
       })
       .addCase(loginAccess.rejected, (state, action) => {
@@ -66,9 +69,11 @@ const authSlice = createSlice({
         state.status = API_MSG.PEN;
       })
       .addCase(signUpAccess.fulfilled, (state, action) => {
+        state.isLoggedIn = true;
         state.accessToken = action.payload.data.accessToken;
         state.refreshToken = action.payload.data.refreshToken;
-        state.isLoggedIn = true;
+        localStorage.setItem("accessToken", action.payload.data.accessToken);
+        localStorage.setItem("refreshToken", action.payload.data.refreshToken);
         state.status = API_MSG.FUL;
       })
       .addCase(signUpAccess.rejected, (state, action) => {
@@ -78,6 +83,7 @@ const authSlice = createSlice({
         state.status = API_MSG.PEN;
       })
       .addCase(userInfoAccess.fulfilled, (state, action) => {
+        state.isLoggedIn = true;
         state.userInfo = action.payload.data[0];
         state.status = API_MSG.FUL;
       })

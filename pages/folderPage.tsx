@@ -15,11 +15,12 @@ import { getAllLinkList } from "@/redux/actions/link";
 const FolderPage = () => {
   const [isInterSecting, setInterSecting] = useState(false);
   const [linkStorage, setLinkStorage] = useState<Link[]>([]);
-  const { isLoggedIn, userInfo } = useAppSelector((state) => state.auth);
+  const { userInfo } = useAppSelector((state) => state.auth);
   const { data, searchResult, noSearchResult } = useAppSelector((state) => state.link);
   const dispatch = useAppDispatch();
   const router = useRouter();
   const targetRef = useRef<HTMLDivElement>();
+  let accessToken;
 
   const callback = (entries: any) => {
     setTimeout(() => {
@@ -29,7 +30,6 @@ const FolderPage = () => {
 
   useEffect(() => {
     const observer = new IntersectionObserver(callback);
-    console.log(targetRef.current);
 
     if (targetRef.current) {
       observer.observe(targetRef.current);
@@ -43,10 +43,11 @@ const FolderPage = () => {
   }, []);
 
   useEffect(() => {
-    if (!isLoggedIn) {
+    accessToken = localStorage?.getItem("accessToken");
+    if (!accessToken) {
       router.push("/");
     }
-  }, [isLoggedIn]);
+  }, [accessToken]);
 
   useEffect(() => {
     setLinkStorage(data);

@@ -7,11 +7,11 @@ import logo from "@/assets/icons/logo.svg";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import Button from "../Button/Button";
 import { logout } from "@/redux/reducers/auth";
+import { userInfoAccess } from "@/redux/actions/auth";
 
 const Nav: React.FC = () => {
   const [isShadow, setShadow] = useState(false);
-  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
-  const userInfo = useAppSelector((state) => state.auth.userInfo);
+  const { isLoggedIn, userInfo } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const { pathname } = useRouter();
 
@@ -31,6 +31,13 @@ const Nav: React.FC = () => {
       window.removeEventListener("scroll", handleNavigation);
     };
   }, [pathname]);
+
+  useEffect(() => {
+    const accessToken = localStorage?.getItem("accessToken");
+    if (accessToken) {
+      dispatch(userInfoAccess(accessToken));
+    }
+  }, []);
 
   return (
     <S.HeaderLayout $isShadow={isShadow}>

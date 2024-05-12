@@ -8,7 +8,7 @@ export const getFolder = createAsyncThunk<FolderList[], number>("folder/getFolde
   return camelcaseKeys(data.data, { deep: true });
 });
 
-export const postFolder = createAsyncThunk<any, { folderName: string; token: string }>(
+export const postFolder = createAsyncThunk<any, { folderName: string; token: string | null }>(
   "folder/postFolder",
   async ({ folderName, token }) => {
     const { data } = await axios({
@@ -26,7 +26,7 @@ export const postFolder = createAsyncThunk<any, { folderName: string; token: str
   },
 );
 
-export const putFolder = createAsyncThunk<any, { folderName: string; folderId: number; accessToken: string }>(
+export const putFolder = createAsyncThunk<any, { folderName: string; folderId: number; accessToken: string | null }>(
   "folder/putFolder",
   async ({ folderName, folderId, accessToken }) => {
     const { data } = await axios({
@@ -44,7 +44,7 @@ export const putFolder = createAsyncThunk<any, { folderName: string; folderId: n
   },
 );
 
-export const deleteFolder = createAsyncThunk<any, { folderId: number; accessToken: string }>(
+export const deleteFolder = createAsyncThunk<any, { folderId: number; accessToken: string | null }>(
   "folder/deleteFolder",
   async ({ folderId, accessToken }) => {
     const { data } = await axios({

@@ -9,7 +9,7 @@ import { useState } from "react";
 const AddFolder: React.FC = () => {
   const [folderName, setFolderName] = useState("");
   const { title, text, variant } = useAppSelector((state) => state.modal.contents);
-  const token = useAppSelector((state) => state.auth.accessToken);
+  const accessToken = localStorage.getItem("accessToken");
   const dispatch = useAppDispatch();
 
   const onChangeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,7 +19,7 @@ const AddFolder: React.FC = () => {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (folderName) {
-      const res = await dispatch(postFolder({ folderName, token }));
+      const res = await dispatch(postFolder({ folderName, token: accessToken }));
       if (res.meta.requestStatus === "fulfilled") {
         dispatch(closeModal());
         dispatch(openToast("addFolder"));

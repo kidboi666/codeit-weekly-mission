@@ -6,7 +6,8 @@ import { closeModal } from "@/redux/reducers/modal";
 import { openToast } from "@/redux/reducers/toast";
 
 const DeleteLink: React.FC = () => {
-  const { accessToken, userInfo } = useAppSelector((state) => state.auth);
+  const { userInfo } = useAppSelector((state) => state.auth);
+  const accessToken = localStorage.getItem("accessToken");
   const { selectedLinkId, selectedLinkTitle } = useAppSelector((state) => state.link);
   const { selectedFolder, selectedFolderId } = useAppSelector((state) => state.folder);
   const { text, variant } = useAppSelector((state) => state.modal.contents);
@@ -14,8 +15,7 @@ const DeleteLink: React.FC = () => {
 
   const onClick = async () => {
     if (selectedLinkId) {
-      const res = await dispatch(deleteLink({ linkId: selectedLinkId, accessToken: accessToken }));
-      console.log(res);
+      const res = await dispatch(deleteLink({ linkId: selectedLinkId, accessToken }));
       if (res.meta.requestStatus === "fulfilled") {
         dispatch(closeModal());
         dispatch(openToast("deleteLink"));

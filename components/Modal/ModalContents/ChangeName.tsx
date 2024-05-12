@@ -7,7 +7,7 @@ import { putFolder } from "@/redux/actions/folder";
 const ChangeName: React.FC = () => {
   const [folderName, setFolderName] = useState("");
   const { text, variant } = useAppSelector((state) => state.modal.contents);
-  const { accessToken } = useAppSelector((state) => state.auth);
+  const accessToken = localStorage.getItem("accessToken");
   const { selectedFolderId, selectedFolder } = useAppSelector((state) => state.folder);
   const dispatch = useAppDispatch();
 
@@ -18,7 +18,7 @@ const ChangeName: React.FC = () => {
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (folderName) {
-      dispatch(putFolder({ folderName: folderName, accessToken: accessToken, folderId: selectedFolderId }));
+      dispatch(putFolder({ folderName: folderName, accessToken, folderId: selectedFolderId }));
     }
   };
 
