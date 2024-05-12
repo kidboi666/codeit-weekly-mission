@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ToastLayout = styled.div<{ $isAnimation: boolean }>`
   display: grid;
-  grid-template-columns: 50px 300px 50px;
+  grid-template-columns: 50px 236px 50px;
   height: 60px;
   position: fixed;
   overflow: hidden;
@@ -13,7 +13,7 @@ export const ToastLayout = styled.div<{ $isAnimation: boolean }>`
   border-radius: 8px;
   box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.2);
   transition: all 0.3s;
-  transform: translate(-200px, 0);
+  transform: translate(-168px, 0);
   color: var(--black-color);
   background-color: var(--white-color);
 
@@ -21,7 +21,7 @@ export const ToastLayout = styled.div<{ $isAnimation: boolean }>`
     $isAnimation &&
     `
     opacity: 1;
-    transform: translate(-200px, -45px);
+    transform: translate(-168px, -45px);
   `}
 `;
 

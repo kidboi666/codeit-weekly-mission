@@ -10,13 +10,15 @@ import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import { loginAccess, userInfoAccess } from "@/redux/actions/auth";
 import { useRouter } from "next/router";
+import { API_MSG } from "@/constants/strings";
+import { openToast } from "@/redux/reducers/toast";
 
 const SignIn = () => {
   const [signBody, setSignBody] = useState({
     email: "",
     pw: "",
   });
-  const { isLoggedIn, accessToken } = useAppSelector((state) => state.auth);
+  const { isLoggedIn, accessToken, status } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const router = useRouter();
 
@@ -31,6 +33,9 @@ const SignIn = () => {
     e.preventDefault();
     if (signBody.email && signBody.pw) {
       dispatch(loginAccess(signBody));
+      if (status === API_MSG.REJ) {
+        dispatch(openToast("wrongAccount"));
+      }
     }
   };
 
