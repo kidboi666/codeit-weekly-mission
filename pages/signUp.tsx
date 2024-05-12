@@ -37,6 +37,7 @@ const SignUp = () => {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (signBody.pw !== passwordCheck) return dispatch(openToast("diffrentPassword"));
+    if (signBody.pw.length < 6) return dispatch(openToast("wrongPasswordForm"));
     if (signBody.email && signBody.pw) {
       await dispatch(checkEmailAccess(signBody.email));
       if (status === API_MSG.FUL) {

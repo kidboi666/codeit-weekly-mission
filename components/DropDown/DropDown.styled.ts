@@ -5,9 +5,9 @@ export const DropDownLayout = styled.div`
   top: 28px;
   right: 0;
   border-radius: 10px;
-  background: var(--primary-color);
+  background: var(--gray5-color);
+  box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.2);
   font-size: 14px;
-  font-weight: 600;
 `;
 
 export const InfoSection = styled.div`
@@ -16,7 +16,7 @@ export const InfoSection = styled.div`
   gap: 5px 10px;
   padding: 15px 15px;
   border-bottom: 1px solid var(--gray4-color);
-  color: var(--white-color);
+  color: var(--gray1-color);
 
   > img {
     width: 30px;
@@ -29,15 +29,17 @@ export const InfoSection = styled.div`
 `;
 
 export const MenuList = styled.ul`
-  color: var(--white-color);
   padding: 8px 0;
+  color: var(--gray2-color);
+  font-weight: 600;
 
   > li {
     cursor: pointer;
     height: 100%;
 
     &:hover {
-      background-color: rgba(0, 0, 0, 0.2);
+      background-color: rgba(0, 0, 0, 0.1);
+      color: var(--gray1-color);
     }
 
     > div {

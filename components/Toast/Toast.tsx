@@ -37,7 +37,7 @@ const Toast: React.FC = () => {
     <S.ToastLayout $isAnimation={isAnimation}>
       <S.CheckContainer $backgroundColor={findToast?.contents.warning}>❕</S.CheckContainer>
       <S.CheckTextBox>{findToast?.contents.text}</S.CheckTextBox>
-      <S.CloseIconButtonBox onClick={closeButtonClickHandler}>❌</S.CloseIconButtonBox>
+      <S.CloseIconButtonBox onClick={closeButtonClickHandler}>✕</S.CloseIconButtonBox>
     </S.ToastLayout>
   );
 };
