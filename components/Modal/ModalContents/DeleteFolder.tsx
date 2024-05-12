@@ -1,6 +1,9 @@
 import Button from "@/components/Button/Button";
+import { COMBINED_FOLDER_NAME } from "@/constants/strings";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import { deleteFolder, getFolder } from "@/redux/actions/folder";
+import { getAllLinkList } from "@/redux/actions/link";
+import { setSelectedFolder } from "@/redux/reducers/folder";
 import { closeModal } from "@/redux/reducers/modal";
 import { openToast } from "@/redux/reducers/toast";
 
@@ -17,6 +20,7 @@ const DeleteFolder: React.FC = () => {
       dispatch(closeModal());
       dispatch(openToast("deleteFolder"));
       dispatch(getFolder(userInfo.id));
+      dispatch(getAllLinkList(userInfo.id));
     }
   };
 

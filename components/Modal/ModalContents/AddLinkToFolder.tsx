@@ -3,10 +3,9 @@ import * as S from "./AddLinkToFolder.styled";
 import Button from "@/components/Button/Button";
 import { FolderList } from "@/services/types";
 import { setSelectedFolderForAddLink } from "@/redux/reducers/folder";
-import { postLink } from "@/redux/actions/link";
+import { getLinkList, postLink } from "@/redux/actions/link";
 import { closeModal } from "@/redux/reducers/modal";
 import { openToast } from "@/redux/reducers/toast";
-import { getFolder } from "@/redux/actions/folder";
 
 const AddLinkToFolder: React.FC = () => {
   const { data, selectedFolderForAddLink, selectedFolderIdForAddLink } = useAppSelector((state) => state.folder);
@@ -27,7 +26,7 @@ const AddLinkToFolder: React.FC = () => {
     if (res.meta.requestStatus === "fulfilled") {
       dispatch(closeModal());
       dispatch(openToast("addLinkToFolder"));
-      dispatch(getFolder(userInfo.id));
+      dispatch(getLinkList({ userId: userInfo.id, folderId: selectedFolderIdForAddLink }));
     }
   };
 
