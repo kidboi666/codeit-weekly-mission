@@ -1,7 +1,7 @@
 import * as S from "./Spinner.styled";
 import { useAppSelector } from "@/hooks/useApp";
 import { API_MSG } from "@/constants/strings";
-import spinner from "@/assets/icons/spinner.png";
+import spinner from "@/assets/icons/spinner.svg";
 import Image from "next/image";
 
 const Spinner = () => {
@@ -13,12 +13,13 @@ const Spinner = () => {
   if (turningPoint) return;
 
   return (
-    // <S.SpinnerLayout>
-    <S.Spinner>
-      {/* <p>✻</p> */}
-      <Image src={spinner} alt='로딩 중....' />
-    </S.Spinner>
-    // </S.SpinnerLayout>
+    <S.SpinnerLayout>
+      <S.SpinnerBox>
+        <S.Spinner>
+          <Image src={spinner} alt='로딩 중....' />
+        </S.Spinner>
+      </S.SpinnerBox>
+    </S.SpinnerLayout>
   );
 };
 

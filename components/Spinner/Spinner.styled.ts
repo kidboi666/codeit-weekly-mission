@@ -9,7 +9,7 @@ export const SpinnerLayout = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--white-color);
+  transition: all 0.2s;
 `;
 
 const rotate = keyframes`
@@ -22,13 +22,24 @@ const rotate = keyframes`
 }
 `;
 
-export const Spinner = styled.div`
+export const SpinnerBox = styled.div`
   position: fixed;
-  z-index: 110;
+  top: 50px;
+  left: 20px;
+  display: flex;
+  justify-content: center;
+  padding: 10px 10px;
+  width: 15px;
+  height: 15px;
+  box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  background-color: var(--primary-color);
+`;
 
+export const Spinner = styled.div`
   > img {
     animation: ${rotate} 1.4s linear infinite;
-    width: 50px;
-    height: 50px;
+    width: 15px;
+    height: 15px;
   }
 `;

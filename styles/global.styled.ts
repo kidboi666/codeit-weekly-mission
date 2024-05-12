@@ -2,6 +2,12 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
 
+@import url('https://cdn.jsdelivr.net/npm/pretendard@2/pretendard.css');
+
+body {
+  font-family: 'Pretendard', sans-serif;
+}
+
 /* ------- Reset css ------- */
 
 html,body,div,span,applet,object,iframe,h1,

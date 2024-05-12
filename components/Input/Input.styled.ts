@@ -8,6 +8,7 @@ export const Input = styled.input<{ $variant?: string; width?: string; $error?: 
   border: 0;
   border-radius: 10px;
   background-color: #f5f5f5;
+  outline: none;
 
   ${({ $variant, $error }) =>
     $variant === "sign" &&
