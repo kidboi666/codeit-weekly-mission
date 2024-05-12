@@ -32,10 +32,13 @@ const SignIn = () => {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (signBody.email && signBody.pw) {
-      dispatch(loginAccess(signBody));
+      const res = await dispatch(loginAccess(signBody));
+      console.log(res, status, API_MSG.REJ);
       if (status === API_MSG.REJ) {
-        dispatch(openToast("wrongAccount"));
+        return dispatch(openToast("wrongAccount"));
       }
+    } else {
+      dispatch(openToast("wrongAccount"));
     }
   };
 
