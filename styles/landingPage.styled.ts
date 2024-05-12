@@ -85,7 +85,7 @@ export const CardContainer = styled.div`
 export const CardBox = styled.div`
   width: 998px;
   display: grid;
-  grid-template-columns: repeat(2, 50%);
+  grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(4, 1fr);
   column-gap: 157px;
   row-gap: 1px;
@@ -121,22 +121,24 @@ export const CardBox = styled.div`
   }
 
   > div {
+    width: 100%;
     grid-column: 2 / -1;
     grid-row: 1 / -1;
 
-    > img {
-      width: 100%;
-      height: 100%;
-    }
-
     @media (max-width: 1199px) {
-      width: 100%;
       grid-column: 2 / -1;
       grid-row: 1 / span 4;
     }
 
     @media (max-width: 767px) {
       width: 100%;
+    }
+
+    > img {
+      @media (max-width: 1199px) {
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 
