@@ -12,7 +12,7 @@ const KakaoButton: React.FC = () => {
   let kakao: any;
   if (window.Kakao) kakao = window.Kakao;
 
-  const realUrl = `https://resilient-tapioca-37feb1.netlify.app`;
+  const realUrl = `https://codeit-weekly-mission.vercel.app`;
   const clientKey = process.env.KAKAO_API_KEY;
 
   useEffect(() => {
