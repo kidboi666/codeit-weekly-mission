@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as S from "../styles/folderPage.styled";
 import Search from "../components/Search/Search";
 import AddLink from "../components/AddLink/AddLink";
@@ -13,11 +13,34 @@ import { initializeSelectedFolder } from "@/redux/reducers/folder";
 import { getAllLinkList } from "@/redux/actions/link";
 
 const FolderPage = () => {
+  const [isInterSecting, setInterSecting] = useState(false);
+  const [linkStorage, setLinkStorage] = useState<Link[]>([]);
   const { isLoggedIn, userInfo } = useAppSelector((state) => state.auth);
   const { data, searchResult, noSearchResult } = useAppSelector((state) => state.link);
-  const [linkStorage, setLinkStorage] = useState<Link[]>([]);
   const dispatch = useAppDispatch();
   const router = useRouter();
+  const targetRef = useRef<HTMLDivElement>();
+
+  const callback = (entries: any) => {
+    setTimeout(() => {
+      setInterSecting(!entries[0].isIntersecting);
+    }, 100);
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(callback);
+    console.log(targetRef.current);
+
+    if (targetRef.current) {
+      observer.observe(targetRef.current);
+    }
+
+    return () => {
+      if (targetRef.current) {
+        observer.unobserve(targetRef.current);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -44,7 +67,7 @@ const FolderPage = () => {
   return (
     <AppLayout>
       <S.FolderPageLayout>
-        <S.HeaderSection>
+        <S.HeaderSection ref={targetRef}>
           <AddLink />
         </S.HeaderSection>
         <S.SearchSection>
@@ -61,6 +84,9 @@ const FolderPage = () => {
             : linkStorage?.map((v) => <Card key={v.id} link={v} />)}
         </S.LinkSection>
       </S.FolderPageLayout>
+      <S.FooterAddLink $animation={isInterSecting}>
+        <AddLink />
+      </S.FooterAddLink>
     </AppLayout>
   );
 };

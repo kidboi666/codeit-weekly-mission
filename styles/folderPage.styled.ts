@@ -7,9 +7,16 @@ export const FolderPageLayout = styled.main`
   align-items: center;
 `;
 
-export const HeaderSection = styled.div`
+export const HeaderSection = styled.div<{ ref?: any }>`
   width: 100%;
   background-color: var(--gray5-color);
+  display: flex;
+  justify-content: center;
+  padding: 60px 0 90px 0;
+
+  @media (max-width: 767px) {
+    display: block;
+  }
 `;
 
 export const SearchSection = styled.div`
@@ -65,4 +72,23 @@ export const LinkSection = styled.ul<{ $noneLinks?: boolean }>`
     gap: 20px;
     margin-bottom: 60px;
   }
+`;
+
+export const FooterAddLink = styled.div<{ $animation: boolean }>`
+  position: fixed;
+  z-index: 40;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  transform: translateY(93px);
+  padding: 20px 0;
+  background-color: var(--gray5-color);
+  box-shadow: 0 10px 30px rgba(188, 188, 188, 0.3);
+  transition: transform 1s;
+
+  ${({ $animation }) =>
+    $animation &&
+    `
+    transform: translateY(0);
+  `};
 `;

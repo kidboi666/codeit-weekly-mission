@@ -1,43 +1,22 @@
 import Input from "../Input/Input";
 import styled from "styled-components";
 
-export const AddLinkLayout = styled.div``;
-
-export const InnerBox = styled.div<{ $isInterSecting: boolean }>`
-  @media (max-width: 1124px) {
-    width: 100%;
-  }
-  ${({ $isInterSecting }) =>
-    $isInterSecting === true &&
-    `
-    position: fixed;
-    z-index: 40;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    background-color: var(--gray5-color);
-    box-shadow: 0 10px 30px rgba(188, 188, 188, 0.3);
-  `}
+export const AddLinkLayout = styled.div`
+  padding: 0 32.5px;
 `;
 
-export const FormContainer = styled.div<{ $isInterSecting: boolean }>`
-  display: flex;
-  justify-content: center;
-  padding: 60px 32.5px 90px 32.5px;
+export const InnerBox = styled.div`
+  position: relative;
 
   @media (max-width: 767px) {
-    display: block;
+    width: 100%;
   }
-
-  ${({ $isInterSecting }) =>
-    $isInterSecting &&
-    `
-    padding: 24px 32.5px;
-  `}
 `;
 
 export const FormBox = styled.form`
   position: relative;
+  display: flex;
+  justify-content: center;
 `;
 
 export const IconImgBox = styled.div`
