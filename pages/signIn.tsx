@@ -33,12 +33,9 @@ const SignIn = () => {
     e.preventDefault();
     if (signBody.email && signBody.pw) {
       const res = await dispatch(loginAccess(signBody));
-      console.log(res, status, API_MSG.REJ);
-      if (status === API_MSG.REJ) {
+      if (res.meta.requestStatus !== "fulfilled") {
         return dispatch(openToast("wrongAccount"));
       }
-    } else {
-      dispatch(openToast("wrongAccount"));
     }
   };
 
