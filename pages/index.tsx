@@ -1,3 +1,4 @@
+
 import Script from "next/script";
 import AppLayout from "@/components/App/AppLayout";
 import LandingPage from "./landingPage";
@@ -18,3 +19,4 @@ const Home = () => {
 };
 
 export default Home;
+

@@ -1,3 +1,4 @@
+
 import { AppProps } from "next/app";
 import GlobalStyle from "@/styles/global.styled";
 import Head from "next/head";
@@ -26,3 +27,4 @@ const App = ({ Component, ...rest }: AppProps) => {
 };
 
 export default App;
+
