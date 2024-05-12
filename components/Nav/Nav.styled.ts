@@ -33,6 +33,7 @@ export const LogoBox = styled.div`
   }
 `;
 export const LoginLayout = styled.div`
+  position: relative;
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -42,9 +43,10 @@ export const LoginLayout = styled.div`
     width: 28px;
     height: 28px;
     border-radius: 50%;
+    cursor: pointer;
   }
 
-  > div {
+  > p {
     text-decoration: none;
     color: #000;
 

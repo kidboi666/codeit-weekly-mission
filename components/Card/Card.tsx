@@ -3,7 +3,7 @@ import blankLogo from "@/assets/icons/blank_logo.svg";
 import calculateTime from "@/utils/calculateTime";
 import formatDate from "@/utils/formatDate";
 import Star from "./Star";
-import Kebab from "./Kebab";
+import Kebab from "../Kebab/Kebab";
 import { Link } from "@/services/types";
 import Image from "next/image";
 

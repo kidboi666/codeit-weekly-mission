@@ -8,15 +8,21 @@ import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import Button from "../Button/Button";
 import { logout } from "@/redux/reducers/auth";
 import { userInfoAccess } from "@/redux/actions/auth";
+import DropDown from "../DropDown/DropDown";
 
 const Nav: React.FC = () => {
   const [isShadow, setShadow] = useState(false);
+  const [isAccoutInfo, setAccoutInfo] = useState(false);
   const { isLoggedIn, userInfo } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const { pathname } = useRouter();
 
   const handleNavigation = () => {
     setShadow(window.scrollY > 30);
+  };
+
+  const handleAccountInfo = () => {
+    setAccoutInfo((prev) => !prev);
   };
 
   useEffect(() => {
@@ -49,9 +55,9 @@ const Nav: React.FC = () => {
       <S.LoginLayout>
         {isLoggedIn ? (
           <>
-            <img src={userInfo?.imageSource} alt='프로필 이미지' />
-            <div>{userInfo?.email}</div>
-            <Button variant={"default"} text={"로그아웃"} width={"88px"} onClick={() => dispatch(logout())} />
+            <p>{userInfo?.email}</p>
+            <img src={userInfo?.imageSource} alt='프로필 이미지' onClick={handleAccountInfo} />
+            {isAccoutInfo && <DropDown />}
           </>
         ) : (
           <Link href='/signIn'>
