@@ -55,7 +55,9 @@ const Nav: React.FC = () => {
         {isLoggedIn ? (
           <>
             <p>{userInfo?.email}</p>
-            <img src={userInfo?.imageSource} alt='프로필 이미지' onClick={handleAccountInfo} />
+            <S.ImageBox>
+              <Image fill src={userInfo?.imageSource} alt='프로필 이미지' onClick={handleAccountInfo} />
+            </S.ImageBox>
             {isAccoutInfo && <DropDown />}
           </>
         ) : (

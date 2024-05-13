@@ -5,7 +5,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "localhost:3000",
+        hostname: "**",
         port: "",
         pathname: "folderPage/**",
       },

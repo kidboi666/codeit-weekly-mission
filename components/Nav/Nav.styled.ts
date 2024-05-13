@@ -39,13 +39,6 @@ export const LoginLayout = styled.div`
   align-items: center;
   gap: 10px;
 
-  > img {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    cursor: pointer;
-  }
-
   > p {
     text-decoration: none;
     color: #000;
@@ -54,10 +47,15 @@ export const LoginLayout = styled.div`
       display: none;
     }
   }
+`;
+
+export const ImageBox = styled.div`
+  position: relative;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
 
   > img {
-    width: 28px;
-    height: 28px;
     border-radius: 50%;
   }
 `;
