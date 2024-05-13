@@ -9,6 +9,7 @@ const calculateTime = (time: string) => {
   } else if (diffTime > 1) {
     return `${Math.floor(diffTime)} days ago`;
   }
+  console.log(time, diffTime);
   return `${Math.floor(diffTime)} day ago`;
 };
 

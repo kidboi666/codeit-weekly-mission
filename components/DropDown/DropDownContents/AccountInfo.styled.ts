@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
-export const DropDownLayout = styled.div`
+export const AccountInfoLayout = styled.div`
   position: absolute;
-  top: 28px;
-  right: 0;
+  top: 55px;
+  right: 50px;
   width: 250px;
   border-radius: 10px;
-  background: var(--gray4-color);
-  box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.2);
+  background-color: var(--gray5-color);
+  box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.1);
   font-size: 14px;
 `;
 
