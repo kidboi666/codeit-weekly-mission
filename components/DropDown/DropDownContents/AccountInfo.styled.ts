@@ -6,7 +6,7 @@ export const DropDownLayout = styled.div`
   right: 0;
   width: 250px;
   border-radius: 10px;
-  background: var(--gray5-color);
+  background: var(--gray4-color);
   box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.2);
   font-size: 14px;
 `;
@@ -33,15 +33,15 @@ export const InfoSection = styled.div`
 
 export const MenuList = styled.ul`
   padding: 8px 0;
-  color: var(--gray2-color);
+  color: var(--gray1-color);
 
   > li {
     cursor: pointer;
     height: 100%;
 
     &:hover {
-      background-color: rgba(0, 0, 0, 0.1);
-      color: var(--gray1-color);
+      background-color: var(--gray4-color);
+      color: var(--primary-color);
     }
 
     > div {
