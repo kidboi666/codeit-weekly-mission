@@ -10,6 +10,7 @@ interface Props {
   refreshToken: string;
   userInfo: UserData;
 }
+
 const initialUserInfo = {
   id: 0,
   createdAt: "",

@@ -1,24 +1,23 @@
-import Image from "next/image";
-import logo from "@/assets/icons/logo.svg";
-import googleIcon from "@/assets/icons/google_icon.svg";
 import facebookIcon from "@/assets/icons/facebook_icon.svg";
-import * as S from "@/styles/signIn.styled";
-import Link from "next/link";
+import googleIcon from "@/assets/icons/google_icon.svg";
+import logo from "@/assets/icons/logo.svg";
 import Button from "@/components/Button/Button";
 import Input from "@/components/Input/Input";
-import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import { loginAccess, userInfoAccess } from "@/redux/actions/auth";
-import { useRouter } from "next/router";
-import { API_MSG } from "@/constants/strings";
 import { openToast } from "@/redux/reducers/toast";
+import * as S from "@/styles/signIn.styled";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 const SignIn = () => {
   const [signBody, setSignBody] = useState({
     email: "",
     pw: "",
   });
-  const { isLoggedIn, accessToken, status } = useAppSelector((state) => state.auth);
+  const { isLoggedIn, accessToken } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const router = useRouter();
 
@@ -38,11 +37,6 @@ const SignIn = () => {
       }
     }
   };
-
-  useEffect(() => {
-    const localToken = localStorage.getItem("accessToken");
-    if (localToken) dispatch(userInfoAccess(localToken));
-  }, [accessToken]);
 
   useEffect(() => {
     if (isLoggedIn) router.push("/folderPage");

@@ -38,9 +38,9 @@ const Nav: React.FC = () => {
   }, [pathname]);
 
   useEffect(() => {
-    const accessToken = localStorage?.getItem("accessToken");
-    if (accessToken) {
-      dispatch(userInfoAccess(accessToken));
+    const localToken = localStorage?.getItem("accessToken");
+    if (localToken) {
+      dispatch(userInfoAccess(localToken));
     }
   }, []);
 
