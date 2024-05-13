@@ -6,20 +6,23 @@ import Star from "./Star";
 import Kebab from "../Kebab/Kebab";
 import { Link } from "@/services/types";
 import Image from "next/image";
+import useToggle from "@/hooks/useToggle";
 
 interface Props {
-  link: Link | string;
+  link: Link;
 }
 
 const Card: React.FC<Props> = ({ link }) => {
-  if (typeof link === "string") {
-    return <p>{link}</p>;
-  }
+  const [value, toggle] = useToggle();
   const timeDelta = formatDate(link.createdAt);
   const createdDate = calculateTime(link.createdAt);
 
+  const handleMouseLeave = () => {
+    if (value) return toggle();
+  };
+
   return (
-    <S.CardLayout>
+    <S.CardLayout onMouseLeave={handleMouseLeave}>
       <S.CardLinkContainer href={link.url} target='_blank' rel='noreferrer'>
         <S.CardImgContainer>
           <Star />
@@ -32,7 +35,7 @@ const Card: React.FC<Props> = ({ link }) => {
           )}
         </S.CardImgContainer>
         <S.CardDescriptionContainer>
-          <Kebab linkId={link.id} linkTitle={link.title} linkUrl={link.url} />
+          <Kebab linkId={link.id} linkTitle={link.title} linkUrl={link.url} value={value} toggle={toggle} />
           <S.CreatedDate>{createdDate}</S.CreatedDate>
           <S.Title>{link.title}</S.Title>
           <S.TimeStamp>{timeDelta}</S.TimeStamp>

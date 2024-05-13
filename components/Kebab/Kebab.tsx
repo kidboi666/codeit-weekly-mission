@@ -12,11 +12,12 @@ interface KebabProps {
   linkId: number;
   linkTitle: string;
   linkUrl: string;
+  toggle: () => void;
+  value: boolean;
 }
 
-const Kebab: React.FC<KebabProps> = ({ linkId, linkTitle, linkUrl }) => {
+const Kebab: React.FC<KebabProps> = ({ linkId, linkTitle, linkUrl, toggle, value }) => {
   const dispatch = useAppDispatch();
-  const [value, toggle] = useToggle();
   const currentLocation = useRouter();
 
   if (currentLocation.pathname !== "/folderPage") {
