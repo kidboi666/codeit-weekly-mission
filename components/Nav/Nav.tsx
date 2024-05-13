@@ -8,10 +8,10 @@ import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import Button from "../Button/Button";
 import { userInfoAccess } from "@/redux/actions/auth";
 import DropDown from "../DropDown/DropDown";
+import { openDropDown } from "@/redux/reducers/dropDown";
 
 const Nav: React.FC = () => {
   const [isShadow, setShadow] = useState(false);
-  const [isAccoutInfo, setAccoutInfo] = useState(false);
   const { isLoggedIn, userInfo } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const { pathname } = useRouter();
@@ -21,7 +21,7 @@ const Nav: React.FC = () => {
   };
 
   const handleAccountInfo = () => {
-    setAccoutInfo((prev) => !prev);
+    dispatch(openDropDown("accountInfo"));
   };
 
   useEffect(() => {
@@ -55,10 +55,9 @@ const Nav: React.FC = () => {
         {isLoggedIn ? (
           <>
             <p>{userInfo?.email}</p>
-            <S.ImageBox>
-              <Image fill src={userInfo?.imageSource} alt='프로필 이미지' onClick={handleAccountInfo} />
+            <S.ImageBox onClick={handleAccountInfo}>
+              <Image fill src={userInfo?.imageSource} alt='프로필 이미지' />
             </S.ImageBox>
-            {isAccoutInfo && <DropDown />}
           </>
         ) : (
           <Link href='/signIn'>
@@ -66,6 +65,7 @@ const Nav: React.FC = () => {
           </Link>
         )}
       </S.LoginLayout>
+      <DropDown />
     </S.HeaderLayout>
   );
 };

@@ -1,29 +1,28 @@
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import * as S from "./DropDown.styled";
-import { logout } from "@/redux/reducers/auth";
+import { closeDropDown } from "@/redux/reducers/dropDown";
+import { DROPDOWN_TYPES } from "./DropDownType";
 
 const DropDown = () => {
-  const { name, email, imageSource } = useAppSelector((state) => state.auth.userInfo);
+  const { isOpen, contents } = useAppSelector((state) => state.dropDown);
   const dispatch = useAppDispatch();
 
+  if (!isOpen) return null;
+
+  const findDropDown = DROPDOWN_TYPES.find((dropDown) => {
+    if (dropDown.contents.type === contents.type) {
+      return dropDown;
+    }
+  });
+
+  const dropDownRender = () => {
+    return findDropDown?.component;
+  };
+
   return (
-    <S.DropDownLayout>
-      <S.InfoSection>
-        <img src={imageSource} alt={"프로필 이미지"} />
-        <div>
-          <p>{name}</p>
-          <p>{email}</p>
-        </div>
-      </S.InfoSection>
-      <S.MenuList>
-        <li>
-          <div onClick={() => dispatch(logout())}>
-            <span>⎋</span>
-            로그아웃
-          </div>
-        </li>
-      </S.MenuList>
-    </S.DropDownLayout>
+    <S.Background onClick={() => dispatch(closeDropDown())}>
+      <S.DropDownLayout onClick={(e) => e.stopPropagation()}>{dropDownRender()}</S.DropDownLayout>
+    </S.Background>
   );
 };
 
