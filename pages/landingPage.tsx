@@ -8,14 +8,41 @@ import mainSns from "@/assets/images/main_sns.png";
 import Link from "next/link";
 import Button from "@/components/Button/Button";
 import { useAppSelector } from "@/hooks/useApp";
+import { useEffect, useRef, useState } from "react";
 
 const LandingPage = () => {
+  const [isInterSecting, setInterSecting] = useState(false);
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
+  const targetRef = useRef();
+
+  const callback = (entries: IntersectionObserverEntry[]) => {
+    entries.forEach((entry: IntersectionObserverEntry) => {
+      setTimeout(() => {
+        if (entry.isIntersecting) {
+          setInterSecting(true);
+        }
+      }, 100);
+    });
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(callback);
+
+    if (targetRef.current) {
+      observer.observe(targetRef.current);
+    }
+
+    return () => {
+      if (targetRef.current) {
+        observer.unobserve(targetRef.current);
+      }
+    };
+  });
 
   return (
     <S.LandingPageLayout>
       <S.HeaderContainer>
-        <S.HeaderBox>
+        <S.HeaderBox $animation={isInterSecting} ref={targetRef}>
           <S.IntroWrap>
             <h1>
               <span className='text_gradient info_gradient'>세상의 모든 정보</span>를<br />

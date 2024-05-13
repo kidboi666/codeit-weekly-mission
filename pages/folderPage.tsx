@@ -21,7 +21,7 @@ const FolderPage = () => {
   const router = useRouter();
   const targetRef = useRef<HTMLDivElement>();
 
-  const callback = (entries: any) => {
+  const callback = (entries: IntersectionObserverEntry[]) => {
     setTimeout(() => {
       setInterSecting(!entries[0].isIntersecting);
     }, 100);

@@ -1,4 +1,17 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+
+const animationStyle = css<{ $animation: boolean }>`
+  transform: translateY(100px);
+  opacity: 0.1;
+  transition: transform 2s ease, opacity 2s ease;
+
+  ${({ $animation }) =>
+    $animation &&
+    `
+  opacity: 1;
+  transform: translateY(0);
+`}
+`;
 
 export const LandingPageLayout = styled.div`
   width: 100%;
@@ -28,15 +41,18 @@ export const HeaderContainer = styled.div`
   padding: 28px 32px 0;
 `;
 // main_header
-export const HeaderBox = styled.div`
+export const HeaderBox = styled.div<{ $animation: boolean; ref?: any }>`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   padding-top: 70px;
+  overflow: hidden;
   text-align: center;
 
   > img {
+    ${animationStyle}
+
     @media (max-width: 1199px) {
       width: 100%;
       height: 100%;
