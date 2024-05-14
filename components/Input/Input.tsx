@@ -1,6 +1,5 @@
-import { ChangeEvent, InputHTMLAttributes, useEffect, useState } from "react";
+import { InputHTMLAttributes, useEffect, useState } from "react";
 import * as S from "./Input.styled";
-import { INPUT_MESSAGES } from "@/constants/strings";
 import Eye from "../Eye/Eye";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {

@@ -2,18 +2,21 @@ import { axiosInstance as axios } from "@/services/axiosInstace";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import camelcaseKeys from "camelcase-keys";
 
-export const loginAccess = createAsyncThunk<any, { email: string; pw: string }>("user/login", async ({ email, pw }) => {
-  const { data } = await axios({
-    method: "post",
-    url: `sign-in`,
-    data: {
-      email: email,
-      password: pw,
-    },
-  });
+export const loginAccess = createAsyncThunk<any, { email: string; password: string }>(
+  "user/login",
+  async ({ email, password }) => {
+    const { data } = await axios({
+      method: "post",
+      url: `sign-in`,
+      data: {
+        email: email,
+        password: password,
+      },
+    });
 
-  return data;
-});
+    return data;
+  },
+);
 
 export const checkEmailAccess = createAsyncThunk<any, string>("user/checkEmail", async (email) => {
   const { data } = await axios({
