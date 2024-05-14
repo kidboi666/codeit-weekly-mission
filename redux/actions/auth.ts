@@ -30,15 +30,15 @@ export const checkEmailAccess = createAsyncThunk<any, string>("user/checkEmail",
   return data;
 });
 
-export const signUpAccess = createAsyncThunk<any, { email: string; pw: string }>(
+export const signUpAccess = createAsyncThunk<any, { email: string; password: string }>(
   "user/signUp",
-  async ({ email, pw }) => {
+  async ({ email, password }) => {
     const { data } = await axios({
       method: "post",
       url: `sign-up`,
       data: {
         email: email,
-        password: pw,
+        password: password,
       },
     });
 
@@ -46,15 +46,18 @@ export const signUpAccess = createAsyncThunk<any, { email: string; pw: string }>
   },
 );
 
-export const userInfoAccess = createAsyncThunk<any, string | null>("user/userInfo", async (token) => {
-  const { data } = await axios({
-    method: "get",
-    url: `users`,
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-  });
+export const userInfoAccess = createAsyncThunk<any, string | null>(
+  "user/userInfo",
+  async (token) => {
+    const { data } = await axios({
+      method: "get",
+      url: `users`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
 
-  return camelcaseKeys(data, { deep: true });
-});
+    return camelcaseKeys(data, { deep: true });
+  },
+);
