@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import useAsync from "../../hooks/useAsync";
 import * as S from "./FolderOwner.styled";
 import { Owner } from "../../services/types";
 

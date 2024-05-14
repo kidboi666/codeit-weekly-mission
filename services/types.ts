@@ -42,3 +42,11 @@ export interface FolderList {
 export interface LinkCount {
   count: number;
 }
+
+export interface SharedUser {
+  id: number;
+  createdAt: string;
+  name: string;
+  userId: number;
+  favorite: boolean;
+}

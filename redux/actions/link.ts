@@ -11,6 +11,11 @@ export const getLinkList = createAsyncThunk<Link[], { userId: number; folderId: 
   },
 );
 
+export const getSharedLink = createAsyncThunk<any, number>("link/getSharedLink", async (folderId) => {
+  const { data } = await axios.get(`folders/${folderId}`);
+  return camelcaseKeys(data.data, { deep: true });
+});
+
 export const getAllLinkList = createAsyncThunk<Link[], number>("link/getLink", async (userId) => {
   const { data } = await axios.get(`users/${userId}/links`);
   return camelcaseKeys(data.data, { deep: true });
