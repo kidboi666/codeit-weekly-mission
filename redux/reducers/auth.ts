@@ -1,5 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { checkEmailAccess, loginAccess, signUpAccess, userInfoAccess } from "../actions/auth";
+import {
+  checkEmailAccess,
+  getSharedUserInfo,
+  loginAccess,
+  signUpAccess,
+  userInfoAccess,
+} from "../actions/auth";
 import { UserData } from "@/services/types";
 import { API_MSG } from "@/constants/strings";
 
@@ -9,6 +15,7 @@ interface Props {
   accessToken: string;
   refreshToken: string;
   userInfo: UserData;
+  sharedUserInfo: UserData;
 }
 
 const initialUserInfo = {
@@ -26,6 +33,7 @@ const initialState: Props = {
   userInfo: { ...initialUserInfo },
   accessToken: "",
   refreshToken: "",
+  sharedUserInfo: { ...initialUserInfo },
 };
 
 const authSlice = createSlice({
@@ -85,10 +93,20 @@ const authSlice = createSlice({
       })
       .addCase(userInfoAccess.fulfilled, (state, action) => {
         state.isLoggedIn = true;
-        state.userInfo = action.payload.data[0];
+        state.userInfo = action.payload[0];
         state.status = API_MSG.FUL;
       })
       .addCase(userInfoAccess.rejected, (state, action) => {
+        state.status = API_MSG.REJ;
+      })
+      .addCase(getSharedUserInfo.pending, (state, action) => {
+        state.status = API_MSG.PEN;
+      })
+      .addCase(getSharedUserInfo.fulfilled, (state, action) => {
+        state.status = API_MSG.FUL;
+        state.sharedUserInfo = action.payload[0];
+      })
+      .addCase(getSharedUserInfo.rejected, (state, action) => {
         state.status = API_MSG.REJ;
       });
   },

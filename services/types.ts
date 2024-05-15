@@ -43,7 +43,7 @@ export interface LinkCount {
   count: number;
 }
 
-export interface SharedUser {
+export interface SharedFolder {
   id: number;
   createdAt: string;
   name: string;

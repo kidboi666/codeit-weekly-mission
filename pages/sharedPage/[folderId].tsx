@@ -1,34 +1,41 @@
 import Search from "@/components/Search/Search";
 import Card from "@/components/Card/Card";
-import FolderOwner from "@/components/Folder/FolderOwner";
 import * as S from "@/styles/sharedPage.styled";
-
 import AppLayout from "@/components/App/AppLayout";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Link } from "@/services/types";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
-import { getLinkList, getSharedLink } from "@/redux/actions/link";
+import { getSharedFolder } from "@/redux/actions/folder";
+import { getSharedUserInfo } from "@/redux/actions/auth";
+import { getLinkList } from "@/redux/actions/link";
 
 const SharedPage = () => {
   const [linkStorage, setLinkStorage] = useState<Link[]>([]);
   const { data, searchResult, noSearchResult } = useAppSelector((state) => state.link);
-  const sharedUser = useAppSelector((state) => state?.link?.sharedUser?.[0]);
+  const { sharedUserInfo } = useAppSelector((state) => state.auth);
+  const { sharedFolder } = useAppSelector((state) => state.folder);
   const dispatch = useAppDispatch();
   const router = useRouter();
   const { folderId } = router.query;
-  console.log(sharedUser);
-
-  const handleFetch = async () => {
-    const res = await dispatch(getSharedLink(Number(folderId)));
-    if (res.meta.requestStatus === "fulfilled") {
-      await dispatch(getLinkList({ userId: sharedUser?.userId, folderId: sharedUser?.id }));
-    }
-  };
 
   useEffect(() => {
-    handleFetch();
+    if (folderId) {
+      dispatch(getSharedFolder(Number(folderId)));
+    }
   }, [folderId]);
+
+  useEffect(() => {
+    if (sharedFolder.userId) {
+      dispatch(getSharedUserInfo(sharedFolder.userId));
+    }
+  }, [sharedFolder]);
+
+  useEffect(() => {
+    if (sharedFolder.id && sharedFolder.userId) {
+      dispatch(getLinkList({ userId: sharedFolder.userId, folderId: sharedFolder.id }));
+    }
+  }, [sharedUserInfo]);
 
   useEffect(() => {
     setLinkStorage(data);
@@ -44,7 +51,17 @@ const SharedPage = () => {
     <AppLayout>
       <S.SharedPageLayout>
         <S.HeaderBox>
-          <FolderOwner />
+          <S.OwnerLayoutList>
+            <li>
+              <S.OwnerImg src={sharedUserInfo?.imageSource} alt='프로필 이미지' />
+            </li>
+            <li>
+              <S.OwnerName>{sharedUserInfo?.name}</S.OwnerName>
+            </li>
+            <li>
+              <S.Star>{sharedFolder?.name}</S.Star>
+            </li>
+          </S.OwnerLayoutList>
         </S.HeaderBox>
         <Search />
         <S.LinkSection>

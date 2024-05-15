@@ -14,7 +14,6 @@ const App = ({ Component, ...rest }: AppProps) => {
       <Provider store={store}>
         <Head>
           <title>Linkbrary</title>
-          <link rel='stylesheet' href={"https://cdn.jsdelivr.net/npm/pretendard@2/pretendard.css"} />
         </Head>
         <GlobalStyle />
         <Modal />

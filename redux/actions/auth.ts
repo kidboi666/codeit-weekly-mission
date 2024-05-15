@@ -54,10 +54,17 @@ export const userInfoAccess = createAsyncThunk<any, string | null>(
       url: `users`,
       headers: {
         Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
       },
     });
 
-    return camelcaseKeys(data, { deep: true });
+    return camelcaseKeys(data.data, { deep: true });
+  },
+);
+
+export const getSharedUserInfo = createAsyncThunk<any, number>(
+  "link/getSharedUserInfo",
+  async (userId) => {
+    const { data } = await axios.get(`users/${userId}`);
+    return camelcaseKeys(data.data, { deep: true });
   },
 );

@@ -1,18 +1,16 @@
-import { Link, SharedUser } from "@/services/types";
+import { Link } from "@/services/types";
 import { createSlice } from "@reduxjs/toolkit";
 import {
   getLinkList,
   getAllLinkList,
   postLink,
   deleteLink,
-  getSharedLink,
   putFavoriteLink,
 } from "../actions/link";
 import { API_MSG } from "@/constants/strings";
 
 interface Props {
   data: Link[];
-  sharedUser: SharedUser[];
   status: string;
   selectedLinkId: number;
   selectedLinkTitle: string;
@@ -24,7 +22,6 @@ interface Props {
 
 const initialState: Props = {
   data: [],
-  sharedUser: [],
   status: "",
   selectedLinkId: 0,
   selectedLinkTitle: "",
@@ -95,16 +92,6 @@ const linkSlice = createSlice({
         state.status = API_MSG.FUL;
       })
       .addCase(deleteLink.rejected, (state, action) => {
-        state.status = API_MSG.REJ;
-      })
-      .addCase(getSharedLink.pending, (state, action) => {
-        state.status = API_MSG.PEN;
-      })
-      .addCase(getSharedLink.fulfilled, (state, action) => {
-        state.sharedUser = action.payload;
-        state.status = API_MSG.FUL;
-      })
-      .addCase(getSharedLink.rejected, (state, action) => {
         state.status = API_MSG.REJ;
       })
       .addCase(putFavoriteLink.pending, (state, action) => {

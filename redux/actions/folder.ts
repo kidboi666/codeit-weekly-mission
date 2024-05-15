@@ -26,23 +26,31 @@ export const postFolder = createAsyncThunk<any, { folderName: string; token: str
   },
 );
 
-export const putFolder = createAsyncThunk<any, { folderName: string; folderId: number; accessToken: string | null }>(
-  "folder/putFolder",
-  async ({ folderName, folderId, accessToken }) => {
-    const { data } = await axios({
-      method: "put",
-      url: `folders/${folderId}`,
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-      data: {
-        name: folderName,
-      },
-    });
-
+export const getSharedFolder = createAsyncThunk<any, number>(
+  "link/getSharedFolder",
+  async (folderId) => {
+    const { data } = await axios.get(`folders/${folderId}`);
     return camelcaseKeys(data.data, { deep: true });
   },
 );
+
+export const putFolder = createAsyncThunk<
+  any,
+  { folderName: string; folderId: number; accessToken: string | null }
+>("folder/putFolder", async ({ folderName, folderId, accessToken }) => {
+  const { data } = await axios({
+    method: "put",
+    url: `folders/${folderId}`,
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+    data: {
+      name: folderName,
+    },
+  });
+
+  return camelcaseKeys(data.data, { deep: true });
+});
 
 export const deleteFolder = createAsyncThunk<any, { folderId: number; accessToken: string | null }>(
   "folder/deleteFolder",

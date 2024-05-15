@@ -2,19 +2,12 @@ import { axiosInstance as axios } from "@/services/axiosInstace";
 import { Link } from "@/services/types";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import camelcaseKeys from "camelcase-keys";
+import { create } from "domain";
 
 export const getLinkList = createAsyncThunk<Link[], { userId: number; folderId: number }>(
   "link/getLinkList",
   async ({ userId, folderId }) => {
     const { data } = await axios.get(`users/${userId}/links?folderId=${folderId}`);
-    return camelcaseKeys(data.data, { deep: true });
-  },
-);
-
-export const getSharedLink = createAsyncThunk<any, number>(
-  "link/getSharedLink",
-  async (folderId) => {
-    const { data } = await axios.get(`folders/${folderId}`);
     return camelcaseKeys(data.data, { deep: true });
   },
 );
