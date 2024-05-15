@@ -1,0 +1,73 @@
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import * as S from "./Nav.styled";
+import logo from "@/assets/icons/logo.svg";
+import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
+import Button from "../Button/Button";
+import { userInfoAccess } from "@/redux/actions/auth";
+import DropDown from "../DropDown/DropDown";
+import { openDropDown } from "@/redux/reducers/dropDown";
+
+const Nav: React.FC = () => {
+  const [isShadow, setShadow] = useState(false);
+  const { isLoggedIn, userInfo } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
+  const { pathname } = useRouter();
+
+  const handleNavigation = () => {
+    setShadow(window.scrollY > 30);
+  };
+
+  const handleAccountInfo = () => {
+    dispatch(openDropDown("accountInfo"));
+  };
+
+  useEffect(() => {
+    if (pathname === "/folderPage") return;
+
+    const scrollEvent = setInterval(() => {
+      window.addEventListener("scroll", handleNavigation);
+    }, 100);
+
+    return () => {
+      clearInterval(scrollEvent);
+      window.removeEventListener("scroll", handleNavigation);
+    };
+  }, [pathname]);
+
+  useEffect(() => {
+    const localToken = localStorage?.getItem("accessToken");
+    if (localToken) {
+      dispatch(userInfoAccess(localToken));
+    }
+  }, []);
+
+  return (
+    <S.HeaderLayout $isShadow={isShadow}>
+      <S.LogoBox>
+        <Link href='/'>
+          <Image src={logo} alt='Linkbrary' style={{ width: "100%" }} />
+        </Link>
+      </S.LogoBox>
+      <S.LoginLayout>
+        {isLoggedIn ? (
+          <>
+            <p>{userInfo?.email}</p>
+            <S.ImageBox onClick={handleAccountInfo}>
+              <Image fill src={userInfo?.imageSource} alt='프로필 이미지' />
+            </S.ImageBox>
+          </>
+        ) : (
+          <Link href='/signIn'>
+            <Button variant={"default"} text={"로그인"} width={"88px"} />
+          </Link>
+        )}
+      </S.LoginLayout>
+      <DropDown />
+    </S.HeaderLayout>
+  );
+};
+
+export default Nav;
