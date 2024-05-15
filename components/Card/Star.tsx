@@ -4,9 +4,17 @@ import * as S from "./Star.styled";
 import useToggle from "../../hooks/useToggle";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import { Link } from "@/services/types";
+import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
+import { putFavoriteLink } from "@/redux/actions/link";
 
-const Star: React.FC = () => {
+interface StarProps {
+  link: Link;
+}
+
+const Star: React.FC<StarProps> = ({ link }) => {
   const [value, toggle] = useToggle();
+  const dispatch = useAppDispatch();
   const currentLocation = useRouter();
 
   if (currentLocation.pathname !== "/folderPage") {
@@ -15,7 +23,11 @@ const Star: React.FC = () => {
 
   const onClickStarButton = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
-    toggle();
+    const localToken = localStorage.getItem("accessToken");
+    if (localToken) {
+      dispatch(putFavoriteLink({ linkId: link.id, accessToken: localToken }));
+      toggle();
+    }
   };
 
   return (

@@ -25,7 +25,7 @@ const Card: React.FC<Props> = ({ link }) => {
     <S.CardLayout onMouseLeave={handleMouseLeave}>
       <S.CardLinkContainer href={link.url} target='_blank' rel='noreferrer'>
         <S.CardImgContainer>
-          <Star />
+          <Star link={link} />
           {link.imageSource ? (
             <S.CardImg src={link.imageSource} alt={link.title} />
           ) : (
@@ -35,7 +35,13 @@ const Card: React.FC<Props> = ({ link }) => {
           )}
         </S.CardImgContainer>
         <S.CardDescriptionContainer>
-          <Kebab linkId={link.id} linkTitle={link.title} linkUrl={link.url} value={value} toggle={toggle} />
+          <Kebab
+            linkId={link.id}
+            linkTitle={link.title}
+            linkUrl={link.url}
+            value={value}
+            toggle={toggle}
+          />
           <S.CreatedDate>{createdDate}</S.CreatedDate>
           <S.Title>{link.title}</S.Title>
           <S.TimeStamp>{timeDelta}</S.TimeStamp>
