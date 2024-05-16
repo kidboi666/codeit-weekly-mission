@@ -9,7 +9,7 @@ declare global {
 }
 
 export const getStaticProps = () => {
-  const kakaoKey: any = process.env.KAKAO_API_KEY;
+  const kakaoKey = process.env.KAKAO_API_KEY;
 
   return {
     props: {
