@@ -19,7 +19,7 @@ export const getStaticProps = () => {
 };
 
 interface KakaoButtonProps {
-  kakaoKey: string;
+  kakaoKey?: string;
 }
 
 const KakaoButton: React.FC<KakaoButtonProps> = ({ kakaoKey }) => {
