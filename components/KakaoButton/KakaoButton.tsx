@@ -8,10 +8,24 @@ declare global {
   }
 }
 
-const KakaoButton: React.FC = () => {
-  let realUrl = window.Kakao;
-  let clientKey = `https://codeit-weekly-mission.vercel.app`;
-  let kakao: any = process.env.KAKAO_API_KEY;
+export const getStaticProps = () => {
+  const kakaoKey: any = process.env.KAKAO_API_KEY;
+
+  return {
+    props: {
+      kakaoKey,
+    },
+  };
+};
+
+interface KakaoButtonProps {
+  kakaoKey: string;
+}
+
+const KakaoButton: React.FC<KakaoButtonProps> = ({ kakaoKey }) => {
+  const realUrl = `https://codeit-weekly-mission.vercel.app`;
+  const clientKey = kakaoKey;
+  const kakao: any = window.Kakao;
 
   useEffect(() => {
     kakao.cleanup();
