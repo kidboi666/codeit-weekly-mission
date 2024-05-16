@@ -5,8 +5,6 @@ import useToggle from "../../hooks/useToggle";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { Link } from "@/services/types";
-import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
-import { putFavoriteLink } from "@/redux/actions/link";
 
 interface StarProps {
   link: Link;
