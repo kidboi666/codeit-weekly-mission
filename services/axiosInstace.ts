@@ -4,7 +4,7 @@ const axiosInstance = axios.create({
   baseURL: "https://bootcamp-api.codeit.kr/api/",
 });
 
-const refreshingToken = async () => {
+const refreshAccessToken = async () => {
   try {
     const refreshToken = localStorage.getItem("refreshToken");
     const res = await axiosInstance.post(`refresh-token`, { "refresh-token": refreshToken });
@@ -37,7 +37,7 @@ axiosInstance.interceptors.response.use(
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
       try {
-        const newToken = await refreshingToken();
+        const newToken = await refreshAccessToken();
         originalRequest.headers.Authorization = `Bearer ${newToken}`;
         return axiosInstance(originalRequest);
       } catch (error) {
