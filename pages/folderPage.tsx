@@ -42,8 +42,7 @@ const FolderPage = () => {
   }, []);
 
   useEffect(() => {
-    const accessToken = localStorage?.getItem("accessToken");
-    if (!accessToken) {
+    if (!isLoggedIn) {
       router.push("/");
     }
   }, [isLoggedIn]);

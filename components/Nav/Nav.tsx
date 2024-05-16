@@ -37,13 +37,6 @@ const Nav: React.FC = () => {
     };
   }, [pathname]);
 
-  useEffect(() => {
-    const localToken = localStorage?.getItem("accessToken");
-    if (localToken) {
-      dispatch(userInfoAccess(localToken));
-    }
-  }, []);
-
   return (
     <S.HeaderLayout $isShadow={isShadow}>
       <S.LogoBox>
