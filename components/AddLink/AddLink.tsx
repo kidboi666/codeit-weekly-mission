@@ -15,16 +15,13 @@ interface AddLinkProps {
 
 const AddLink: React.FC<AddLinkProps> = ({ className }) => {
   const [linkUrl, setLinkUrl] = useState("");
-  const { accessToken } = useAppSelector((state) => state.auth);
   const { selectedFolderId } = useAppSelector((state) => state.folder);
   const dispatch = useAppDispatch();
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (linkUrl) {
-      const res = await dispatch(
-        postLink({ url: linkUrl, accessToken: accessToken, folderId: selectedFolderId }),
-      );
+      const res = await dispatch(postLink({ url: linkUrl, folderId: selectedFolderId }));
       dispatch(closeModal());
       if (res.meta.requestStatus === "fulfilled") {
         dispatch(openToast("addLink"));

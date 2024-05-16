@@ -14,24 +14,14 @@ interface StarProps {
 
 const Star: React.FC<StarProps> = ({ link }) => {
   const [value, toggle] = useToggle();
-  const dispatch = useAppDispatch();
   const currentLocation = useRouter();
 
   if (currentLocation.pathname !== "/folderPage") {
     return null;
   }
 
-  const onClickStarButton = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    const localToken = localStorage.getItem("accessToken");
-    if (localToken) {
-      dispatch(putFavoriteLink({ linkId: link.id, accessToken: localToken }));
-      toggle();
-    }
-  };
-
   return (
-    <S.StarBox onClick={onClickStarButton}>
+    <S.StarBox>
       <Image src={value ? starTrue : starFalse} alt='즐겨찾기 아이콘' />
     </S.StarBox>
   );
