@@ -7,10 +7,11 @@ const axiosInstance = axios.create({
 const refreshAccessToken = async () => {
   try {
     const refreshToken = localStorage.getItem("refreshToken");
-    const res = await axiosInstance.post(`refresh-token`, { "refresh-token": refreshToken });
-    const { newToken } = res.data;
-    localStorage.setItem("accessToken", newToken);
-    return newToken;
+    const res = await axiosInstance.post(`refresh-token`, { refresh_token: refreshToken });
+    const { data } = res.data;
+    localStorage.setItem("accessToken", data.accessToken);
+    localStorage.setItem("refreshToken", data.refreshToken);
+    return data;
   } catch (error) {
     console.error(error);
     throw error;
@@ -37,8 +38,8 @@ axiosInstance.interceptors.response.use(
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
       try {
-        const newToken = await refreshAccessToken();
-        originalRequest.headers.Authorization = `Bearer ${newToken}`;
+        const { accessToken } = await refreshAccessToken();
+        originalRequest.headers.Authorization = `Bearer ${accessToken}`;
         return axiosInstance(originalRequest);
       } catch (error) {
         return Promise.reject(error);

@@ -6,9 +6,9 @@ import * as S from "./Nav.styled";
 import logo from "@/assets/icons/logo.svg";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import Button from "../Button/Button";
-import { userInfoAccess } from "@/redux/actions/auth";
 import DropDown from "../DropDown/DropDown";
 import { openDropDown } from "@/redux/reducers/dropDown";
+import { userInfoAccess } from "@/redux/actions/auth";
 
 const Nav: React.FC = () => {
   const [isShadow, setShadow] = useState(false);
@@ -36,6 +36,10 @@ const Nav: React.FC = () => {
       window.removeEventListener("scroll", handleNavigation);
     };
   }, [pathname]);
+
+  useEffect(() => {
+    dispatch(userInfoAccess());
+  }, []);
 
   return (
     <S.HeaderLayout $isShadow={isShadow}>

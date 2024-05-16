@@ -15,7 +15,7 @@ import { getAllLinkList } from "@/redux/actions/link";
 const FolderPage = () => {
   const [isInterSecting, setInterSecting] = useState(false);
   const [linkStorage, setLinkStorage] = useState<Link[]>([]);
-  const { userInfo, isLoggedIn } = useAppSelector((state) => state.auth);
+  const { userInfo } = useAppSelector((state) => state.auth);
   const { data, searchResult, noSearchResult } = useAppSelector((state) => state.link);
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -42,10 +42,11 @@ const FolderPage = () => {
   }, []);
 
   useEffect(() => {
-    if (!isLoggedIn) {
+    const token = localStorage?.getItem("accessToken");
+    if (!token) {
       router.push("/");
     }
-  }, [isLoggedIn]);
+  }, []);
 
   useEffect(() => {
     setLinkStorage(data);
