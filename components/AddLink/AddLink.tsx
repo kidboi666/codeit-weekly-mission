@@ -22,9 +22,11 @@ const AddLink: React.FC<AddLinkProps> = ({ className }) => {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (linkUrl) {
-      const res = await dispatch(postLink({ url: linkUrl, accessToken: accessToken, folderId: selectedFolderId }));
+      const res = await dispatch(
+        postLink({ url: linkUrl, accessToken: accessToken, folderId: selectedFolderId }),
+      );
+      dispatch(closeModal());
       if (res.meta.requestStatus === "fulfilled") {
-        dispatch(closeModal());
         dispatch(openToast("addLink"));
         return setLinkUrl("");
       }
@@ -46,7 +48,12 @@ const AddLink: React.FC<AddLinkProps> = ({ className }) => {
           <S.IconImgBox>
             <Image src={LinkIcon} alt={""} />
           </S.IconImgBox>
-          <Input value={linkUrl} onChange={onChangeInputValue} placeholder='링크를 추가해 보세요' variant={"addLink"} />
+          <Input
+            value={linkUrl}
+            onChange={onChangeInputValue}
+            placeholder='링크를 추가해 보세요'
+            variant={"addLink"}
+          />
           <Button variant={"addLink"} text={"추가하기"} type={"submit"} />
         </S.InnerBox>
       </S.FormBox>
