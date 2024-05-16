@@ -1,11 +1,11 @@
-import { axiosInstance as axios } from "@/services/axiosInstace";
+import axiosInstance from "@/services/axiosInstace";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import camelcaseKeys from "camelcase-keys";
 
 export const loginAccess = createAsyncThunk<any, { email: string; password: string }>(
   "user/login",
   async ({ email, password }) => {
-    const { data } = await axios({
+    const { data } = await axiosInstance({
       method: "post",
       url: `sign-in`,
       data: {
@@ -19,7 +19,7 @@ export const loginAccess = createAsyncThunk<any, { email: string; password: stri
 );
 
 export const checkEmailAccess = createAsyncThunk<any, string>("user/checkEmail", async (email) => {
-  const { data } = await axios({
+  const { data } = await axiosInstance({
     method: "post",
     url: `check-email`,
     data: {
@@ -33,7 +33,7 @@ export const checkEmailAccess = createAsyncThunk<any, string>("user/checkEmail",
 export const signUpAccess = createAsyncThunk<any, { email: string; password: string }>(
   "user/signUp",
   async ({ email, password }) => {
-    const { data } = await axios({
+    const { data } = await axiosInstance({
       method: "post",
       url: `sign-up`,
       data: {
@@ -49,7 +49,7 @@ export const signUpAccess = createAsyncThunk<any, { email: string; password: str
 export const userInfoAccess = createAsyncThunk<any, string | null>(
   "user/userInfo",
   async (token) => {
-    const { data } = await axios({
+    const { data } = await axiosInstance({
       method: "get",
       url: `users`,
       headers: {
@@ -64,7 +64,7 @@ export const userInfoAccess = createAsyncThunk<any, string | null>(
 export const getSharedUserInfo = createAsyncThunk<any, number>(
   "link/getSharedUserInfo",
   async (userId) => {
-    const { data } = await axios.get(`users/${userId}`);
+    const { data } = await axiosInstance.get(`users/${userId}`);
     return camelcaseKeys(data.data, { deep: true });
   },
 );
