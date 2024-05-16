@@ -8,25 +8,9 @@ declare global {
   }
 }
 
-export const getStaticProps = () => {
-  const kakaoKey = process.env.NEXT_PUBLIC_KAKAO_API_KEY;
-
-  return {
-    props: {
-      kakaoKey,
-    },
-  };
-};
-
-interface KakaoButtonProps {
-  kakaoKey?: string;
-}
-
-const KakaoButton: React.FC<KakaoButtonProps> = () => {
+const KakaoButton: React.FC = () => {
   const realUrl = `https://codeit-weekly-mission.vercel.app`;
-
-  const kakaoKey = process.env.KAKAO_API_KEY;
-  const clientKey = kakaoKey;
+  const clientKey = process.env.NEXT_PUBLIC_KAKAO_API_KEY;
   const kakao: any = window.Kakao;
 
   useEffect(() => {
