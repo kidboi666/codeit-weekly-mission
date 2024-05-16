@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import kakaoIcon from "../../assets/icons/kakao_icon.svg";
 import Image from "next/image";
 
@@ -8,16 +9,14 @@ declare global {
 }
 
 const KakaoButton: React.FC = () => {
-  let kakao: any;
-  if (window.Kakao) {
-    kakao = window.Kakao;
-  }
+  let realUrl = window.Kakao;
+  let clientKey = `https://codeit-weekly-mission.vercel.app`;
+  let kakao: any = process.env.KAKAO_API_KEY;
 
-  const realUrl = `https://codeit-weekly-mission.vercel.app`;
-  const clientKey = process.env.KAKAO_API_KEY;
-
-  kakao.cleanup();
-  kakao.init(`${clientKey}`);
+  useEffect(() => {
+    kakao.cleanup();
+    kakao.init(`${clientKey}`);
+  }, []);
 
   const shareMessage = () => {
     kakao.Share.sendDefault({

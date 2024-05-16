@@ -33,16 +33,6 @@ const Input: React.FC<InputProps> = ({
   const changeInputType = () => {
     transforemedType === "password" ? setTransformedType("text") : setTransformedType("password");
   };
-  // const onBlur = (e: ChangeEvent<HTMLInputElement>) => {
-  //   if (e.target.type === "email") {
-  //     if (e.target.value.trim() === "") return setError(INPUT_MESSAGES.AUTH.ENTER_EMAIL);
-  //   }
-  //   if (e.target.type === "password" || e.target.type === "text") {
-  //     if (e.target.value.trim() === "") return setError(INPUT_MESSAGES.AUTH.ENTER_PW);
-  //   }
-
-  //   setError("");
-  // };
 
   useEffect(() => {
     processEye();

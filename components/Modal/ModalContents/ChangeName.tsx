@@ -21,7 +21,9 @@ const ChangeName: React.FC = () => {
     e.preventDefault();
     const accessToken = localStorage.getItem("accessToken");
     if (folderName) {
-      const res = await dispatch(putFolder({ folderName: folderName, accessToken, folderId: selectedFolderId }));
+      const res = await dispatch(
+        putFolder({ folderName: folderName, accessToken, folderId: selectedFolderId }),
+      );
       if (res.meta.requestStatus === "fulfilled") {
         dispatch(closeModal());
         dispatch(openToast("changeName"));

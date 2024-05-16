@@ -78,12 +78,7 @@ const SignUp = () => {
                 name='email'
                 control={control}
                 render={({ field }) => (
-                  <Input
-                    variant={"sign"}
-                    {...field}
-                    type={"email"}
-                    placeholder={"codeit@codeit.kr"}
-                  />
+                  <Input {...field} type={"email"} placeholder={"codeit@codeit.kr"} />
                 )}
               />
             </S.EmailContainer>
@@ -93,7 +88,7 @@ const SignUp = () => {
                 name='password'
                 control={control}
                 render={({ field }) => (
-                  <Input variant={"sign"} {...field} type={"password"} placeholder={"******"} />
+                  <Input {...field} type={"password"} placeholder={"******"} />
                 )}
               />
             </S.PasswordContainer>
@@ -103,7 +98,7 @@ const SignUp = () => {
                 name='passwordCheck'
                 control={control}
                 render={({ field }) => (
-                  <Input variant={"sign"} {...field} type={"password"} placeholder={"******"} />
+                  <Input {...field} type={"password"} placeholder={"******"} />
                 )}
               />
             </S.PasswordRepeatContainer>

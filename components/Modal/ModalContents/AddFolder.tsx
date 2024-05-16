@@ -1,5 +1,5 @@
 import Button from "@/components/Button/Button";
-import { Input } from "@/components/Input/Input.styled";
+import Input from "@/components/Input/Input";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import { postFolder } from "@/redux/actions/folder";
 import { getLinkList } from "@/redux/actions/link";
@@ -28,7 +28,9 @@ const AddFolder: React.FC = () => {
         dispatch(closeModal());
         dispatch(openToast("addFolder"));
         dispatch(getLinkList({ userId: userInfo.id, folderId: res.payload[0].id }));
-        dispatch(setSelectedFolder({ selectedFolder: folderName, selectedFolderId: res.payload[0].id }));
+        dispatch(
+          setSelectedFolder({ selectedFolder: folderName, selectedFolderId: res.payload[0].id }),
+        );
       }
     }
   };
@@ -36,7 +38,12 @@ const AddFolder: React.FC = () => {
   return (
     <>
       <form onSubmit={onSubmit}>
-        <Input value={folderName} onChange={onChangeInputValue} placeholder={"생성할 폴더 이름"} width={"100%"} />
+        <Input
+          value={folderName}
+          onChange={onChangeInputValue}
+          placeholder={"생성할 폴더 이름"}
+          width={"100%"}
+        />
         <Button variant={variant} text={text} type={"submit"} width={"100%"} />
       </form>
     </>
