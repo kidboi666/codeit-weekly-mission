@@ -8,23 +8,10 @@ export const getFolder = createAsyncThunk<FolderList[], number>("folder/getFolde
   return camelcaseKeys(data.data, { deep: true });
 });
 
-export const postFolder = createAsyncThunk<any, { folderName: string; token: string | null }>(
-  "folder/postFolder",
-  async ({ folderName, token }) => {
-    const { data } = await axiosInstance({
-      method: "post",
-      url: `folders`,
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      data: {
-        name: folderName,
-      },
-    });
-
-    return camelcaseKeys(data.data, { deep: true });
-  },
-);
+export const postFolder = createAsyncThunk<any, string>("folder/postFolder", async (folderName) => {
+  const { data } = await axiosInstance.post(`folders`, { name: folderName });
+  return camelcaseKeys(data.data, { deep: true });
+});
 
 export const getSharedFolder = createAsyncThunk<any, number>(
   "link/getSharedFolder",
@@ -34,34 +21,18 @@ export const getSharedFolder = createAsyncThunk<any, number>(
   },
 );
 
-export const putFolder = createAsyncThunk<
-  any,
-  { folderName: string; folderId: number; accessToken: string | null }
->("folder/putFolder", async ({ folderName, folderId, accessToken }) => {
-  const { data } = await axiosInstance({
-    method: "put",
-    url: `folders/${folderId}`,
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-    data: {
-      name: folderName,
-    },
-  });
+export const putFolder = createAsyncThunk<any, { folderName: string; folderId: number }>(
+  "folder/putFolder",
+  async ({ folderName, folderId }) => {
+    const { data } = await axiosInstance.put(`folders/${folderId}`, { name: folderName });
+    return camelcaseKeys(data.data, { deep: true });
+  },
+);
 
-  return camelcaseKeys(data.data, { deep: true });
-});
-
-export const deleteFolder = createAsyncThunk<any, { folderId: number; accessToken: string | null }>(
+export const deleteFolder = createAsyncThunk<any, number>(
   "folder/deleteFolder",
-  async ({ folderId, accessToken }) => {
-    const { data } = await axiosInstance({
-      method: "delete",
-      url: `folders/${folderId}`,
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
+  async (folderId) => {
+    const { data } = await axiosInstance.delete(`folders/${folderId}`);
 
     return data;
   },

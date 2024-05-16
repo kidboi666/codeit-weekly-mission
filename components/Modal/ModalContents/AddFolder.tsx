@@ -20,10 +20,8 @@ const AddFolder: React.FC = () => {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const accessToken = localStorage.getItem("accessToken");
     if (folderName) {
-      const res = await dispatch(postFolder({ folderName, token: accessToken }));
-      console.log(res.payload[0].id);
+      const res = await dispatch(postFolder(folderName));
       if (res.meta.requestStatus === "fulfilled") {
         dispatch(closeModal());
         dispatch(openToast("addFolder"));

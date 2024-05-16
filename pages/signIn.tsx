@@ -4,7 +4,7 @@ import logo from "@/assets/icons/logo.svg";
 import Button from "@/components/Button/Button";
 import Input from "@/components/Input/Input";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
-import { loginAccess } from "@/redux/actions/auth";
+import { loginAccess, userInfoAccess } from "@/redux/actions/auth";
 import { openToast } from "@/redux/reducers/toast";
 import * as S from "@/styles/signIn.styled";
 import Image from "next/image";
@@ -32,9 +32,10 @@ const SignIn = () => {
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     if (data.email && data.password) {
       const res = await dispatch(loginAccess({ email: data.email, password: data.password }));
-      if (res.meta.requestStatus !== "fulfilled") {
-        return dispatch(openToast("wrongAccount"));
+      if (res.meta.requestStatus === "fulfilled") {
+        return dispatch(userInfoAccess());
       }
+      return dispatch(openToast("wrongAccount"));
     }
   };
 

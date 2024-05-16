@@ -31,31 +31,15 @@ export const postLink = createAsyncThunk<any, { url: string; folderId: number }>
   },
 );
 
-export const deleteLink = createAsyncThunk<any, { linkId: number; accessToken: string | null }>(
-  "link/deleteLink",
-  async ({ linkId, accessToken }) => {
-    const { data } = await axiosInstance({
-      method: "delete",
-      url: `links/${linkId}`,
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
+export const deleteLink = createAsyncThunk<any, number>("link/deleteLink", async (linkId) => {
+  const { data } = await axiosInstance.delete(`links/${linkId}`);
+  return data;
+});
 
-    return data;
-  },
-);
-
-export const putFavoriteLink = createAsyncThunk<
-  any,
-  { linkId: number; accessToken: string | null }
->("link/putFavorite", async ({ linkId, accessToken }) => {
+export const putFavoriteLink = createAsyncThunk<any, number>("link/putFavorite", async (linkId) => {
   const { data } = await axiosInstance({
     method: "put",
     url: `https://bootcamp-api.codeit.kr/docs/linkbrary/v1/links/${linkId}`,
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
   });
 
   return data;

@@ -19,11 +19,8 @@ const ChangeName: React.FC = () => {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const accessToken = localStorage.getItem("accessToken");
     if (folderName) {
-      const res = await dispatch(
-        putFolder({ folderName: folderName, accessToken, folderId: selectedFolderId }),
-      );
+      const res = await dispatch(putFolder({ folderName: folderName, folderId: selectedFolderId }));
       if (res.meta.requestStatus === "fulfilled") {
         dispatch(closeModal());
         dispatch(openToast("changeName"));

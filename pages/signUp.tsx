@@ -20,7 +20,7 @@ interface Inputs {
 }
 
 const SignUp = () => {
-  const { isLoggedIn, accessToken } = useAppSelector((state) => state.auth);
+  const { isLoggedIn } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const router = useRouter();
   const { handleSubmit, control } = useForm<Inputs>({
@@ -46,12 +46,10 @@ const SignUp = () => {
   };
 
   useEffect(() => {
-    const localToken = localStorage.getItem("accessToken");
-    if (localToken) dispatch(userInfoAccess(localToken));
-  }, [accessToken]);
-
-  useEffect(() => {
-    if (isLoggedIn) router.push("/folderPage");
+    if (isLoggedIn) {
+      dispatch(userInfoAccess());
+      router.push("/folderPage");
+    }
   }, [isLoggedIn]);
 
   return (

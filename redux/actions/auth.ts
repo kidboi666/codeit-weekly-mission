@@ -19,14 +19,7 @@ export const loginAccess = createAsyncThunk<any, { email: string; password: stri
 );
 
 export const checkEmailAccess = createAsyncThunk<any, string>("user/checkEmail", async (email) => {
-  const { data } = await axiosInstance({
-    method: "post",
-    url: `check-email`,
-    data: {
-      email: email,
-    },
-  });
-
+  const { data } = await axiosInstance.post(`check-email`, email);
   return data;
 });
 
@@ -46,20 +39,10 @@ export const signUpAccess = createAsyncThunk<any, { email: string; password: str
   },
 );
 
-export const userInfoAccess = createAsyncThunk<any, string | null>(
-  "user/userInfo",
-  async (token) => {
-    const { data } = await axiosInstance({
-      method: "get",
-      url: `users`,
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    return camelcaseKeys(data.data, { deep: true });
-  },
-);
+export const userInfoAccess = createAsyncThunk("user/userInfo", async () => {
+  const { data } = await axiosInstance.get(`users`);
+  return camelcaseKeys(data.data, { deep: true });
+});
 
 export const getSharedUserInfo = createAsyncThunk<any, number>(
   "link/getSharedUserInfo",

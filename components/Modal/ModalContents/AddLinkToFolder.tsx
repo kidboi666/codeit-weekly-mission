@@ -8,20 +8,26 @@ import { closeModal } from "@/redux/reducers/modal";
 import { openToast } from "@/redux/reducers/toast";
 
 const AddLinkToFolder: React.FC = () => {
-  const { data, selectedFolderForAddLink, selectedFolderIdForAddLink } = useAppSelector((state) => state.folder);
+  const { data, selectedFolderForAddLink, selectedFolderIdForAddLink } = useAppSelector(
+    (state) => state.folder,
+  );
   const { selectedLinkUrl } = useAppSelector((state) => state.link);
   const { userInfo } = useAppSelector((state) => state.auth);
   const { variant, text } = useAppSelector((state) => state.modal.contents);
   const dispatch = useAppDispatch();
 
   const handleSelectedFolder = (folderItem: FolderList) => {
-    dispatch(setSelectedFolderForAddLink({ selectedFolder: folderItem.name, selectedFolderId: folderItem.id }));
+    dispatch(
+      setSelectedFolderForAddLink({
+        selectedFolder: folderItem.name,
+        selectedFolderId: folderItem.id,
+      }),
+    );
   };
 
   const onClick = async () => {
-    const accessToken = localStorage.getItem("accessToken");
     const res = await dispatch(
-      postLink({ url: selectedLinkUrl, folderId: selectedFolderIdForAddLink, accessToken: accessToken }),
+      postLink({ url: selectedLinkUrl, folderId: selectedFolderIdForAddLink }),
     );
     if (res.meta.requestStatus === "fulfilled") {
       dispatch(closeModal());
