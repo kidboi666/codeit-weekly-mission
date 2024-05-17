@@ -29,8 +29,8 @@ const AddFolder: React.FC = () => {
     e.preventDefault();
     if (folderName && !checkForDuplicates()) {
       const res = await dispatch(postFolder(folderName));
+      dispatch(closeModal());
       if (res.meta.requestStatus === "fulfilled") {
-        dispatch(closeModal());
         dispatch(openToast("addFolder"));
         dispatch(getLinkList({ userId: userInfo.id, folderId: res.payload[0].id }));
         dispatch(

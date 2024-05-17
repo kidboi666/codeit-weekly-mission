@@ -15,8 +15,8 @@ const DeleteLink: React.FC = () => {
   const onClick = async () => {
     if (selectedLinkId) {
       const res = await dispatch(deleteLink(selectedLinkId));
+      dispatch(closeModal());
       if (res.meta.requestStatus === "fulfilled") {
-        dispatch(closeModal());
         dispatch(openToast("deleteLink"));
         if (selectedFolder === COMBINED_FOLDER_NAME) {
           return dispatch(getAllLinkList(userInfo.id));

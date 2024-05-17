@@ -13,8 +13,8 @@ const DeleteFolder: React.FC = () => {
 
   const onClick = async () => {
     const res = await dispatch(deleteFolder(selectedFolderId));
+    dispatch(closeModal());
     if (res.meta.requestStatus === "fulfilled") {
-      dispatch(closeModal());
       dispatch(openToast("deleteFolder"));
       dispatch(getFolder(userInfo.id));
       dispatch(getAllLinkList(userInfo.id));

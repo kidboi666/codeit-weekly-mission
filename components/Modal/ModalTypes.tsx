@@ -1,5 +1,4 @@
 import AddFolder from "@/components/Modal/ModalContents/AddFolder";
-import BasicModal from "@/components/Modal/ModalContents/BasicModal";
 import ChangeName from "@/components/Modal/ModalContents/ChangeName";
 import ShareFolder from "@/components/Modal/ModalContents/ShareFolder";
 import AddLinkToFolder from "@/components/Modal/ModalContents/AddLinkToFolder";
@@ -7,12 +6,6 @@ import DeleteFolder from "@/components/Modal/ModalContents/DeleteFolder";
 import DeleteLink from "@/components/Modal/ModalContents/DeleteLink";
 
 export const MODAL_TYPES = {
-  basicModal: {
-    type: "basicModal",
-    title: "기본입니다.",
-    text: "모달인데요.",
-    variant: "default",
-  },
   changeName: {
     type: "changeName",
     title: "폴더 이름 변경",
@@ -51,10 +44,6 @@ export const MODAL_TYPES = {
 };
 
 export const MODAL_COMPONENTS = [
-  {
-    contents: MODAL_TYPES.basicModal,
-    component: <BasicModal />,
-  },
   {
     contents: MODAL_TYPES.addFolder,
     component: <AddFolder />,

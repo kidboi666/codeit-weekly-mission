@@ -21,8 +21,8 @@ const ChangeName: React.FC = () => {
     e.preventDefault();
     if (folderName) {
       const res = await dispatch(putFolder({ folderName: folderName, folderId: selectedFolderId }));
+      dispatch(closeModal());
       if (res.meta.requestStatus === "fulfilled") {
-        dispatch(closeModal());
         dispatch(openToast("changeName"));
         dispatch(getFolder(userInfo.id));
       }

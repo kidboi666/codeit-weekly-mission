@@ -29,8 +29,8 @@ const AddLinkToFolder: React.FC = () => {
     const res = await dispatch(
       postLink({ url: selectedLinkUrl, folderId: selectedFolderIdForAddLink }),
     );
+    dispatch(closeModal());
     if (res.meta.requestStatus === "fulfilled") {
-      dispatch(closeModal());
       dispatch(openToast("addLinkToFolder"));
       dispatch(getLinkList({ userId: userInfo.id, folderId: selectedFolderIdForAddLink }));
     }
