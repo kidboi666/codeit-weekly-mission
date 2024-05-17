@@ -1,21 +1,24 @@
 import * as S from "./Search.styled";
 import searchIcon from "../../assets/icons/search.svg";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { setSearchResult, setSearchKeyword, initializeSearch } from "@/redux/reducers/link";
 import Input from "../Input/Input";
-import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
+import { useAppSelector } from "@/hooks/useApp";
+import { Link } from "@/services/types";
 
-const Search = () => {
+interface SearchProps {
+  setSearchResult: React.Dispatch<React.SetStateAction<Link[]>>;
+  setNoSearchResult: (arg: boolean) => void;
+}
+
+const Search = ({ setSearchResult, setNoSearchResult }: SearchProps) => {
   const [searchBody, setSearchBody] = useState("");
-  const { searchKeyword } = useAppSelector((state) => state.link);
+  const [searchKeyword, setSearchKeyword] = useState("");
   const { data } = useAppSelector((state) => state.link);
-  const dispatch = useAppDispatch();
 
   const onSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     if (!searchBody) return null;
-    dispatch(setSearchResult([]));
 
     const result = data.filter((link) => {
       return (
@@ -25,8 +28,9 @@ const Search = () => {
       );
     });
 
-    dispatch(setSearchResult(result));
-    dispatch(setSearchKeyword(searchBody));
+    setNoSearchResult(result.length === 0);
+    setSearchResult(result);
+    setSearchKeyword(searchBody);
     setSearchBody("");
   };
 
@@ -35,7 +39,9 @@ const Search = () => {
   };
 
   useEffect(() => {
-    dispatch(initializeSearch());
+    setSearchKeyword("");
+    setSearchResult([]);
+    setNoSearchResult(false);
   }, [data]);
 
   return (

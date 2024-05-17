@@ -9,9 +9,6 @@ interface Props {
   selectedLinkUrl: string;
   selectedLinkId: number;
   selectedLinkTitle: string;
-  searchKeyword: string;
-  searchResult: Link[];
-  noSearchResult: boolean | null;
 }
 
 const initialState: Props = {
@@ -20,27 +17,12 @@ const initialState: Props = {
   selectedLinkUrl: "",
   selectedLinkId: 0,
   selectedLinkTitle: "",
-  searchKeyword: "",
-  searchResult: [],
-  noSearchResult: null,
 };
 
 const linkSlice = createSlice({
   name: "link",
   initialState,
   reducers: {
-    initializeSearch: (state) => {
-      state.searchKeyword = "";
-      state.searchResult = [];
-      state.noSearchResult = null;
-    },
-    setSearchResult: (state, action) => {
-      state.searchResult = action.payload;
-      state.noSearchResult = action.payload.length === 0;
-    },
-    setSearchKeyword: (state, action) => {
-      state.searchKeyword = action.payload;
-    },
     setSelectedLink: (state, action) => {
       state.selectedLinkUrl = action?.payload.linkUrl;
       state.selectedLinkId = action?.payload.linkId;
@@ -100,5 +82,5 @@ const linkSlice = createSlice({
   },
 });
 
-export const { setSearchResult, setSearchKeyword, initializeSearch, setSelectedLink } = linkSlice.actions;
+export const { setSelectedLink } = linkSlice.actions;
 export default linkSlice.reducer;

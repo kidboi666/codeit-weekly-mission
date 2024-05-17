@@ -23,11 +23,13 @@ export interface Owner {
 
 export interface Link {
   id: number;
-  createdAt: string;
   url: string;
   title: string;
-  description: string;
   imageSource: string;
+  description: string;
+  createdAt: string;
+  updatedAt?: string;
+  folderId?: number;
 }
 
 export interface FolderList {

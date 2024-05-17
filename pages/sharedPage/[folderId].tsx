@@ -12,7 +12,9 @@ import { getLinkList } from "@/redux/actions/link";
 
 const SharedPage = () => {
   const [linkStorage, setLinkStorage] = useState<Link[]>([]);
-  const { data, searchResult, noSearchResult } = useAppSelector((state) => state.link);
+  const [searchResult, setSearchResult] = useState<Link[]>([]);
+  const [noSearchResult, setNoSearchResult] = useState(false);
+  const { data } = useAppSelector((state) => state.link);
   const { sharedUserInfo } = useAppSelector((state) => state.auth);
   const { sharedFolder } = useAppSelector((state) => state.folder);
   const dispatch = useAppDispatch();
@@ -38,14 +40,11 @@ const SharedPage = () => {
   }, [sharedUserInfo]);
 
   useEffect(() => {
-    setLinkStorage(data);
-  }, [data]);
-
-  useEffect(() => {
     if (searchResult.length >= 1) {
-      setLinkStorage(searchResult);
+      return setLinkStorage(searchResult);
     }
-  }, [searchResult]);
+    setLinkStorage(data);
+  }, [data, searchResult]);
 
   return (
     <AppLayout>
@@ -63,7 +62,7 @@ const SharedPage = () => {
             </li>
           </S.OwnerLayoutList>
         </S.HeaderBox>
-        <Search />
+        <Search setSearchResult={setSearchResult} setNoSearchResult={setNoSearchResult} />
         <S.LinkSection>
           {noSearchResult ? (
             <div>검색 결과가 없습니다.</div>

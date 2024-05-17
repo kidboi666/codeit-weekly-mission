@@ -15,8 +15,10 @@ import { getAllLinkList } from "@/redux/actions/link";
 const FolderPage = () => {
   const [isInterSecting, setInterSecting] = useState(false);
   const [linkStorage, setLinkStorage] = useState<Link[]>([]);
+  const [searchResult, setSearchResult] = useState<Link[]>([]);
+  const [noSearchResult, setNoSearchResult] = useState(false);
   const { userInfo } = useAppSelector((state) => state.auth);
-  const { data, searchResult, noSearchResult } = useAppSelector((state) => state.link);
+  const { data } = useAppSelector((state) => state.link);
   const dispatch = useAppDispatch();
   const router = useRouter();
   const targetRef = useRef<HTMLDivElement>();
@@ -49,14 +51,11 @@ const FolderPage = () => {
   }, [userInfo]);
 
   useEffect(() => {
-    setLinkStorage(data);
-  }, [data]);
-
-  useEffect(() => {
     if (searchResult.length >= 1) {
-      setLinkStorage(searchResult);
+      return setLinkStorage(searchResult);
     }
-  }, [searchResult]);
+    setLinkStorage(data);
+  }, [data, searchResult]);
 
   useEffect(() => {
     if (!userInfo.id) return;
@@ -72,7 +71,7 @@ const FolderPage = () => {
           <AddLink />
         </S.HeaderSection>
         <S.SearchSection>
-          <Search />
+          <Search setSearchResult={setSearchResult} setNoSearchResult={setNoSearchResult} />
         </S.SearchSection>
         <S.FolderSection>
           <Folder />
@@ -81,7 +80,7 @@ const FolderPage = () => {
           {noSearchResult ? (
             <div>검색 결과가 없습니다.</div>
           ) : linkStorage?.length === 0 ? (
-            <div>해당되는 링크가 없습니다.</div>
+            <div>저장된 링크가 없습니다.</div>
           ) : (
             linkStorage?.map((v) => (
               <div key={v.id}>
