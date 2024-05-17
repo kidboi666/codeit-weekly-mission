@@ -51,10 +51,10 @@ const LandingPage = () => {
           </S.IntroWrap>
           <S.LinkBox>
             <Link href={isLoggedIn ? "/folderPage" : "/signUp"}>
-              <Button variant={"default"} text={"링크 추가하기"} width={"310px"} />
+              <Button variant='default' text='링크 추가하기' width='310px' />
             </Link>
           </S.LinkBox>
-          <Image src={mainHeader} alt={""} />
+          <Image src={mainHeader} alt='' />
         </S.HeaderBox>
       </S.HeaderContainer>
       <S.SectionCotainer>
@@ -70,7 +70,7 @@ const LandingPage = () => {
               공간에 저장하세요.
             </p>
             <div>
-              <Image src={mainLink} alt={""} />
+              <Image src={mainLink} alt='' />
             </div>
           </S.CardBox>
         </S.CardContainer>
@@ -83,7 +83,7 @@ const LandingPage = () => {
             </h1>
             <p>나만의 폴더를 무제한으로 만들고 다양하게 활용할 수 있습니다.</p>
             <div>
-              <Image src={mainFolder} alt={""} />
+              <Image src={mainFolder} alt='' />
             </div>
           </S.CardBox>
         </S.CardContainer>
@@ -99,7 +99,7 @@ const LandingPage = () => {
               공유해 보세요.
             </p>
             <div>
-              <Image src={mainShare} alt={""} />
+              <Image src={mainShare} alt='' />
             </div>
           </S.CardBox>
         </S.CardContainer>
@@ -112,7 +112,7 @@ const LandingPage = () => {
             </h1>
             <p>중요한 정보들을 검색으로 쉽게 찾아보세요.</p>
             <div>
-              <Image src={mainSns} alt={""} />
+              <Image src={mainSns} alt='' />
             </div>
           </S.CardBox>
         </S.CardContainer>

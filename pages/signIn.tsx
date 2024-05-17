@@ -55,7 +55,7 @@ const SignIn = () => {
           <p>
             회원이 아니신가요?
             <Link href='/signUp'>
-              <Button variant={"underBar"} text={"회원 가입하기"} />
+              <Button variant='underBar' text='회원 가입하기' />
             </Link>
           </p>
         </S.HeaderContainer>
@@ -67,7 +67,7 @@ const SignIn = () => {
                 name='email'
                 control={control}
                 render={({ field }) => (
-                  <Input {...field} type={"email"} placeholder={"codeit@codeit.kr"} />
+                  <Input {...field} type='email' placeholder='codeit@codeit.kr' />
                 )}
               />
             </S.EmailContainer>
@@ -76,12 +76,10 @@ const SignIn = () => {
               <Controller
                 name='password'
                 control={control}
-                render={({ field }) => (
-                  <Input {...field} type={"password"} placeholder={"******"} />
-                )}
+                render={({ field }) => <Input {...field} type='password' placeholder='******' />}
               />
             </S.PasswordContainer>
-            <Button variant={"default"} type='submit' text={"로그인"} />
+            <Button variant='default' type='submit' text='로그인' />
           </form>
         </S.SignContainer>
         <S.SocialContainer>

@@ -58,7 +58,7 @@ const Nav: React.FC = () => {
           </>
         ) : (
           <Link href='/signIn'>
-            <Button variant={"default"} text={"로그인"} width={"88px"} />
+            <Button variant='default' text='로그인' width='88px' />
           </Link>
         )}
       </S.LoginLayout>

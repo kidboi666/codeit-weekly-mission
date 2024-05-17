@@ -43,15 +43,15 @@ const AddLink: React.FC<AddLinkProps> = ({ className }) => {
       <S.FormBox onSubmit={onSubmit}>
         <S.InnerBox>
           <S.IconImgBox>
-            <Image src={LinkIcon} alt={""} />
+            <Image src={LinkIcon} alt='' />
           </S.IconImgBox>
           <Input
             value={linkUrl}
             onChange={onChangeInputValue}
             placeholder='링크를 추가해 보세요'
-            variant={"addLink"}
+            variant='addLink'
           />
-          <Button variant={"addLink"} text={"추가하기"} type={"submit"} />
+          <Button variant='addLink' text='추가하기' type='submit' />
         </S.InnerBox>
       </S.FormBox>
     </S.AddLinkLayout>

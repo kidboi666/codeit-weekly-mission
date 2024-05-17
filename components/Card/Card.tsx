@@ -2,7 +2,7 @@ import * as S from "./Card.styled";
 import blankLogo from "@/assets/icons/blank_logo.svg";
 import calculateTime from "@/utils/calculateTime";
 import formatDate from "@/utils/formatDate";
-import Star from "./Star";
+import Star from "@/components/Star/Star";
 import Kebab from "../Kebab/Kebab";
 import { Link } from "@/services/types";
 import Image from "next/image";
@@ -13,12 +13,12 @@ interface Props {
 }
 
 const Card: React.FC<Props> = ({ link }) => {
-  const [value, toggle] = useToggle();
+  const [showKebabMenu, toggle] = useToggle();
   const timeDelta = formatDate(link.createdAt);
   const createdDate = calculateTime(link.createdAt);
 
   const handleMouseLeave = () => {
-    if (value) return toggle();
+    if (showKebabMenu) return toggle();
   };
 
   return (
@@ -39,7 +39,7 @@ const Card: React.FC<Props> = ({ link }) => {
             linkId={link.id}
             linkTitle={link.title}
             linkUrl={link.url}
-            value={value}
+            showKebabMenu={showKebabMenu}
             toggle={toggle}
           />
           <S.CreatedDate>{createdDate}</S.CreatedDate>

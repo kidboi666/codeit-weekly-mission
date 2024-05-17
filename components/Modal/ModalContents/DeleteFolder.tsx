@@ -24,7 +24,7 @@ const DeleteFolder: React.FC = () => {
   return (
     <>
       <h4>{selectedFolder}</h4>
-      <Button variant={variant} text={text} width={"100%"} onClick={onClick} />
+      <Button variant={variant} text={text} width='100%' onClick={onClick} />
     </>
   );
 };

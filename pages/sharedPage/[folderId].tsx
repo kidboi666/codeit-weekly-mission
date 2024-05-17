@@ -66,9 +66,9 @@ const SharedPage = () => {
         <Search />
         <S.LinkSection>
           {noSearchResult ? (
-            <div>{"검색 결과가 없습니다."}</div>
+            <div>검색 결과가 없습니다.</div>
           ) : linkStorage?.length === 0 ? (
-            <div>{"해당되는 링크가 없습니다."}</div>
+            <div>해당되는 링크가 없습니다.</div>
           ) : (
             linkStorage?.map((v) => (
               <div key={v.id}>

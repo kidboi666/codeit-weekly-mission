@@ -43,15 +43,17 @@ const Search: React.FC = () => {
       <S.FormBox>
         <S.Form onSubmit={onSubmit}>
           <button>
-            <Image src={searchIcon} alt={"검색 돋보기 아이콘"} style={{ width: "100%" }} />
+            <Image src={searchIcon} alt='검색 돋보기 아이콘' style={{ width: "100%" }} />
           </button>
           <Input
             value={searchBody}
-            placeholder={"링크를 검색해 보세요."}
+            placeholder='링크를 검색해 보세요.'
             onChange={onChangeInputValue}
-            variant={"search"}
+            variant='search'
           />
-          {searchBody && <S.StyledCloseButton variant={"searchInput"} onClick={() => setSearchBody("")} />}
+          {searchBody && (
+            <S.StyledCloseButton variant='searchInput' onClick={() => setSearchBody("")} />
+          )}
         </S.Form>
       </S.FormBox>
       {searchKeyword && (

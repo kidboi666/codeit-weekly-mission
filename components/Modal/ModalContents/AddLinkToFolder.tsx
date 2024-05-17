@@ -51,7 +51,7 @@ const AddLinkToFolder: React.FC = () => {
           </S.FolderListItem>
         ))}
       </S.FolderList>
-      <Button variant={variant} text={text} width={"100%"} onClick={onClick} />
+      <Button variant={variant} text={text} width='100%' onClick={onClick} />
     </>
   );
 };

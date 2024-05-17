@@ -46,10 +46,10 @@ const AddFolder: React.FC = () => {
         <Input
           value={folderName}
           onChange={onChangeInputValue}
-          placeholder={"생성할 폴더 이름"}
-          width={"100%"}
+          placeholder='생성할 폴더 이름'
+          width='100%'
         />
-        <Button variant={variant} text={text} type={"submit"} width={"100%"} />
+        <Button variant={variant} text={text} type='submit' width='100%' />
       </form>
     </>
   );

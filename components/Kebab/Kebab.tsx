@@ -13,10 +13,10 @@ interface KebabProps {
   linkTitle: string;
   linkUrl: string;
   toggle: () => void;
-  value: boolean;
+  showKebabMenu: boolean;
 }
 
-const Kebab: React.FC<KebabProps> = ({ linkId, linkTitle, linkUrl, toggle, value }) => {
+const Kebab: React.FC<KebabProps> = ({ linkId, linkTitle, linkUrl, toggle, showKebabMenu }) => {
   const dispatch = useAppDispatch();
   const currentLocation = useRouter();
 
@@ -42,7 +42,7 @@ const Kebab: React.FC<KebabProps> = ({ linkId, linkTitle, linkUrl, toggle, value
   return (
     <S.KebabLayout onClick={onClickKebabButton}>
       <Image src={kebobIcon} alt='케밥 버튼 아이콘' style={{ width: "100%" }} />
-      {value && (
+      {showKebabMenu && (
         <S.ModalLayout>
           <button type='button' onClick={onClickDeleteButton}>
             삭제하기

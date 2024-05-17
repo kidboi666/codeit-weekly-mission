@@ -26,7 +26,7 @@ const Modal: React.FC = () => {
       <S.ScrollLock />
       <S.ModalLayout onClick={() => dispatch(closeModal())}>
         <S.ModalContainer onClick={(e) => e.stopPropagation()}>
-          <S.StyledCloseButton variant={"modal"} onClick={() => dispatch(closeModal())} />
+          <S.StyledCloseButton variant='modal' onClick={() => dispatch(closeModal())} />
           <h3>{title}</h3>
           {renderModal()}
         </S.ModalContainer>

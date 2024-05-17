@@ -32,7 +32,7 @@ const ChangeName: React.FC = () => {
   return (
     <form onSubmit={onSubmit}>
       <Input value={folderName} onChange={onChangeInputValue} placeholder={selectedFolder} />
-      <Button variant={variant} text={text} type={"submit"} width={"100%"} />
+      <Button variant={variant} text={text} type='submit' width='100%' />
     </form>
   );
 };
