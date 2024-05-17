@@ -22,7 +22,7 @@ const AddLink = ({ className }: AddLinkProps) => {
     e.preventDefault();
     if (data.length === 0) return dispatch(openToast("firstAction"));
     if (linkUrl) {
-      dispatch(setSelectedLink(linkUrl));
+      dispatch(setSelectedLink({ linkUrl }));
       return dispatch(openModal("addLinkToFolder"));
     }
     dispatch(openToast("nothingValue"));
