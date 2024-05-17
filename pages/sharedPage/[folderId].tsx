@@ -21,23 +21,21 @@ const SharedPage = () => {
   const router = useRouter();
   const { folderId } = router.query;
 
-  useEffect(() => {
+  const fetchSharePageData = async () => {
     if (folderId) {
-      dispatch(getSharedFolder(Number(folderId)));
+      const resFolder = await dispatch(getSharedFolder(Number(folderId)));
+      if (resFolder.meta.requestStatus === "fulfilled") {
+        const resUser = await dispatch(getSharedUserInfo(resFolder.payload[0].userId));
+        if (folderId && resUser) {
+          await dispatch(getLinkList({ userId: resFolder.payload[0].userId, folderId: Number(folderId) }));
+        }
+      }
     }
+  };
+
+  useEffect(() => {
+    fetchSharePageData();
   }, [folderId]);
-
-  useEffect(() => {
-    if (sharedFolder.userId) {
-      dispatch(getSharedUserInfo(sharedFolder.userId));
-    }
-  }, [sharedFolder]);
-
-  useEffect(() => {
-    if (sharedFolder.id && sharedFolder.userId) {
-      dispatch(getLinkList({ userId: sharedFolder.userId, folderId: sharedFolder.id }));
-    }
-  }, [sharedUserInfo]);
 
   useEffect(() => {
     if (searchResult.length >= 1) {

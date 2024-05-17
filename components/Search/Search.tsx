@@ -8,7 +8,7 @@ import { Link } from "@/services/types";
 
 interface SearchProps {
   setSearchResult: React.Dispatch<React.SetStateAction<Link[]>>;
-  setNoSearchResult: (arg: boolean) => void;
+  setNoSearchResult: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Search = ({ setSearchResult, setNoSearchResult }: SearchProps) => {
