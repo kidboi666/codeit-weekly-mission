@@ -6,14 +6,12 @@ import { setSelectedFolderForAddLink } from "@/redux/reducers/folder";
 import { getLinkList, postLink } from "@/redux/actions/link";
 import { closeModal } from "@/redux/reducers/modal";
 import { openToast } from "@/redux/reducers/toast";
+import { ModalProps } from "../ModalTypes";
 
-const AddLinkToFolder: React.FC = () => {
-  const { data, selectedFolderForAddLink, selectedFolderIdForAddLink } = useAppSelector(
-    (state) => state.folder,
-  );
+const AddLinkToFolder: React.FC<ModalProps> = ({ title, text, variant }) => {
+  const { data, selectedFolderForAddLink, selectedFolderIdForAddLink } = useAppSelector((state) => state.folder);
   const { selectedLinkUrl } = useAppSelector((state) => state.link);
   const { userInfo } = useAppSelector((state) => state.auth);
-  const { variant, text } = useAppSelector((state) => state.modal.contents);
   const dispatch = useAppDispatch();
 
   const handleSelectedFolder = (folderItem: FolderList) => {
@@ -26,9 +24,7 @@ const AddLinkToFolder: React.FC = () => {
   };
 
   const onClick = async () => {
-    const res = await dispatch(
-      postLink({ url: selectedLinkUrl, folderId: selectedFolderIdForAddLink }),
-    );
+    const res = await dispatch(postLink({ url: selectedLinkUrl, folderId: selectedFolderIdForAddLink }));
     dispatch(closeModal());
     if (res.meta.requestStatus === "fulfilled") {
       dispatch(openToast("addLinkToFolder"));
@@ -38,6 +34,7 @@ const AddLinkToFolder: React.FC = () => {
 
   return (
     <>
+      <h3>{title}</h3>
       <S.FolderList>
         {data?.map((folder) => (
           <S.FolderListItem

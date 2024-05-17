@@ -7,12 +7,12 @@ import { setSelectedFolder } from "@/redux/reducers/folder";
 import { closeModal } from "@/redux/reducers/modal";
 import { openToast } from "@/redux/reducers/toast";
 import { useState } from "react";
+import { ModalProps } from "../ModalTypes";
 
-const AddFolder: React.FC = () => {
+const AddFolder: React.FC<ModalProps> = ({ title, text, variant }) => {
   const [folderName, setFolderName] = useState("");
   const { userInfo } = useAppSelector((state) => state.auth);
   const { data } = useAppSelector((state) => state.folder);
-  const { text, variant } = useAppSelector((state) => state.modal.contents);
   const dispatch = useAppDispatch();
 
   const onChangeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,22 +33,16 @@ const AddFolder: React.FC = () => {
       if (res.meta.requestStatus === "fulfilled") {
         dispatch(openToast("addFolder"));
         dispatch(getLinkList({ userId: userInfo.id, folderId: res.payload[0].id }));
-        dispatch(
-          setSelectedFolder({ selectedFolder: folderName, selectedFolderId: res.payload[0].id }),
-        );
+        dispatch(setSelectedFolder({ selectedFolder: folderName, selectedFolderId: res.payload[0].id }));
       }
     }
   };
 
   return (
     <>
+      <h3>{title}</h3>
       <form onSubmit={onSubmit}>
-        <Input
-          value={folderName}
-          onChange={onChangeInputValue}
-          placeholder='생성할 폴더 이름'
-          width='100%'
-        />
+        <Input value={folderName} onChange={onChangeInputValue} placeholder='생성할 폴더 이름' width='100%' />
         <Button variant={variant} text={text} type='submit' width='100%' />
       </form>
     </>

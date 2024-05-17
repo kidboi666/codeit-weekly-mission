@@ -4,12 +4,12 @@ import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import { deleteLink, getAllLinkList, getLinkList } from "@/redux/actions/link";
 import { closeModal } from "@/redux/reducers/modal";
 import { openToast } from "@/redux/reducers/toast";
+import { ModalProps } from "../ModalTypes";
 
-const DeleteLink: React.FC = () => {
+const DeleteLink: React.FC<ModalProps> = ({ title, text, variant }) => {
   const { userInfo } = useAppSelector((state) => state.auth);
   const { selectedLinkId, selectedLinkTitle } = useAppSelector((state) => state.link);
   const { selectedFolder, selectedFolderId } = useAppSelector((state) => state.folder);
-  const { text, variant } = useAppSelector((state) => state.modal.contents);
   const dispatch = useAppDispatch();
 
   const onClick = async () => {
@@ -33,6 +33,7 @@ const DeleteLink: React.FC = () => {
 
   return (
     <>
+      <h3>{title}</h3>
       <h4>{selectedLinkTitle}</h4>
       <Button variant={variant} text={text} width='100%' onClick={onClick} />
     </>
