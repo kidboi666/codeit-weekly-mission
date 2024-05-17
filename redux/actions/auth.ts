@@ -19,7 +19,7 @@ export const loginAccess = createAsyncThunk<any, { email: string; password: stri
 );
 
 export const checkEmailAccess = createAsyncThunk<any, string>("user/checkEmail", async (email) => {
-  const { data } = await axiosInstance.post(`check-email`, email);
+  const { data } = await axiosInstance.post(`check-email`, { email: email });
   return data;
 });
 

@@ -46,7 +46,7 @@ const FolderPage = () => {
     if (!token) {
       router.push("/");
     }
-  }, []);
+  }, [userInfo]);
 
   useEffect(() => {
     setLinkStorage(data);
