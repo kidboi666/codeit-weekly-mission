@@ -8,11 +8,11 @@ import { Link } from "@/services/types";
 import Image from "next/image";
 import useToggle from "@/hooks/useToggle";
 
-interface Props {
+interface CardProps {
   link: Link;
 }
 
-const Card: React.FC<Props> = ({ link }) => {
+const Card = ({ link }: CardProps) => {
   const [showKebabMenu, toggle] = useToggle();
   const timeDelta = formatDate(link.createdAt);
   const createdDate = calculateTime(link.createdAt);

@@ -8,7 +8,7 @@ import { closeModal } from "@/redux/reducers/modal";
 import { openToast } from "@/redux/reducers/toast";
 import { ModalProps } from "../ModalTypes";
 
-const AddLinkToFolder: React.FC<ModalProps> = ({ title, text, variant }) => {
+const AddLinkToFolder = ({ title, text, variant }: ModalProps) => {
   const { data, selectedFolderForAddLink, selectedFolderIdForAddLink } = useAppSelector((state) => state.folder);
   const { selectedLinkUrl } = useAppSelector((state) => state.link);
   const { userInfo } = useAppSelector((state) => state.auth);

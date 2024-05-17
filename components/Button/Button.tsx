@@ -13,7 +13,7 @@ interface ButtonProps {
   onClick?: (e: React.MouseEvent) => void;
 }
 
-const Button: React.FC<ButtonProps> = ({
+const Button = ({
   variant = "default",
   width,
   text,
@@ -22,7 +22,7 @@ const Button: React.FC<ButtonProps> = ({
   disabled,
   type = "button",
   onClick,
-}) => {
+}: ButtonProps) => {
   return (
     <S.Button
       $variant={variant}

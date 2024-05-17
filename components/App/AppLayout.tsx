@@ -6,7 +6,7 @@ interface AppProps {
   children: ReactNode;
 }
 
-const AppLayout: React.FC<AppProps> = ({ children }) => {
+const AppLayout = ({ children }: AppProps) => {
   return (
     <>
       <Nav />

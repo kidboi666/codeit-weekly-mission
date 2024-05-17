@@ -13,7 +13,7 @@ interface AddLinkProps {
   className?: string;
 }
 
-const AddLink: React.FC<AddLinkProps> = ({ className }) => {
+const AddLink = ({ className }: AddLinkProps) => {
   const [linkUrl, setLinkUrl] = useState("");
   const { selectedFolderId } = useAppSelector((state) => state.folder);
   const dispatch = useAppDispatch();
@@ -45,12 +45,7 @@ const AddLink: React.FC<AddLinkProps> = ({ className }) => {
           <S.IconImgBox>
             <Image src={LinkIcon} alt='' />
           </S.IconImgBox>
-          <Input
-            value={linkUrl}
-            onChange={onChangeInputValue}
-            placeholder='링크를 추가해 보세요'
-            variant='addLink'
-          />
+          <Input value={linkUrl} onChange={onChangeInputValue} placeholder='링크를 추가해 보세요' variant='addLink' />
           <Button variant='addLink' text='추가하기' type='submit' />
         </S.InnerBox>
       </S.FormBox>

@@ -7,7 +7,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   width?: string;
 }
 
-const Input: React.FC<InputProps> = ({
+const Input = ({
   variant,
   width = "100%",
   value,
@@ -18,7 +18,7 @@ const Input: React.FC<InputProps> = ({
   disabled,
   onBlur,
   onChange,
-}) => {
+}: InputProps) => {
   const [error, setError] = useState("");
   const [isEye, setEye] = useState(false);
   const [transforemedType, setTransformedType] = useState(type);

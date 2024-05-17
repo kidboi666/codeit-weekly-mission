@@ -8,7 +8,7 @@ import * as S from "@/components/Modal/ModalContents/ShareFolder.styled";
 import { openToast } from "@/redux/reducers/toast";
 import { ModalProps } from "../ModalTypes";
 
-const ShareFolder: React.FC<ModalProps> = ({ title }) => {
+const ShareFolder = ({ title }: ModalProps) => {
   const { selectedFolderId, selectedFolder } = useAppSelector((state) => state.folder);
   const dispatch = useAppDispatch();
 

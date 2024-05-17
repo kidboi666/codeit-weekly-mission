@@ -6,7 +6,7 @@ import { closeModal } from "@/redux/reducers/modal";
 import { openToast } from "@/redux/reducers/toast";
 import { ModalProps } from "../ModalTypes";
 
-const DeleteLink: React.FC<ModalProps> = ({ title, text, variant }) => {
+const DeleteLink = ({ title, text, variant }: ModalProps) => {
   const { userInfo } = useAppSelector((state) => state.auth);
   const { selectedLinkId, selectedLinkTitle } = useAppSelector((state) => state.link);
   const { selectedFolder, selectedFolderId } = useAppSelector((state) => state.folder);

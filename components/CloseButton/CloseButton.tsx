@@ -8,7 +8,7 @@ interface CloseButtonProps {
   className?: string;
 }
 
-const CloseButton: React.FC<CloseButtonProps> = ({ variant, onClick, className }) => {
+const CloseButton = ({ variant, onClick, className }: CloseButtonProps) => {
   return (
     <S.CloseButton className={className} $variant={variant} onClick={onClick}>
       <Image src={cancelIcon} alt='취소이미지' />

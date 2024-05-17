@@ -8,13 +8,12 @@ declare global {
   }
 }
 
-const KakaoButton: React.FC = () => {
+const KakaoButton = () => {
   const realUrl = `https://codeit-weekly-mission.vercel.app`;
   const clientKey = process.env.NEXT_PUBLIC_KAKAO_API_KEY;
   const kakao: any = window.Kakao;
 
   useEffect(() => {
-    console.log(clientKey, kakao);
     kakao.cleanup();
     kakao.init(`${clientKey}`);
   }, []);
@@ -25,8 +24,7 @@ const KakaoButton: React.FC = () => {
       content: {
         title: "Linkbrary",
         description: "위클리미션",
-        imageUrl:
-          "https://5rolling.netlify.app/static/media/logo.c1f18ffcdc76df4e2e28b644ee3ae6fb.svg",
+        imageUrl: "https://5rolling.netlify.app/static/media/logo.c1f18ffcdc76df4e2e28b644ee3ae6fb.svg",
         link: {
           mobileWebUrl: realUrl,
           webUrl: realUrl,

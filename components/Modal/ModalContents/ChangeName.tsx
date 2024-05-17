@@ -7,7 +7,7 @@ import { closeModal } from "@/redux/reducers/modal";
 import { openToast } from "@/redux/reducers/toast";
 import { ModalProps } from "../ModalTypes";
 
-const ChangeName: React.FC<ModalProps> = ({ title, text, variant }) => {
+const ChangeName = ({ title, text, variant }: ModalProps) => {
   const [folderName, setFolderName] = useState("");
   const { userInfo } = useAppSelector((state) => state.auth);
   const { selectedFolderId, selectedFolder } = useAppSelector((state) => state.folder);

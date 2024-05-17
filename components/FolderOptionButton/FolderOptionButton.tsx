@@ -8,7 +8,7 @@ import { COMBINED_FOLDER_NAME } from "@/constants/strings";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import { openModal } from "@/redux/reducers/modal";
 
-const FolderOptionButton: React.FC = () => {
+const FolderOptionButton = () => {
   const folderTitle = useAppSelector((state) => state.folder.selectedFolder);
   const dispatch = useAppDispatch();
 

@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import { closeModal } from "@/redux/reducers/modal";
 import { MODAL_COMPONENTS } from "./ModalTypes";
 
-const Modal: React.FC = () => {
+const Modal = () => {
   const { type, isOpen } = useAppSelector((state) => state.modal);
   const dispatch = useAppDispatch();
 

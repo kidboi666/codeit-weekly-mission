@@ -5,7 +5,7 @@ import youtube from "@/assets/icons/fill_youtube_icon.svg";
 import instagram from "@/assets/icons/fill_instagram_icon.svg";
 import Image from "next/image";
 
-const Footer: React.FC = () => {
+const Footer = () => {
   return (
     <S.FooterLayout>
       <S.FooterBox>

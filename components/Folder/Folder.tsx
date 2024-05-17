@@ -9,16 +9,14 @@ import { FolderList } from "@/services/types";
 import { setSelectedFolder } from "@/redux/reducers/folder";
 import { openModal } from "@/redux/reducers/modal";
 
-const Folder: React.FC = () => {
+const Folder = () => {
   const { data, selectedFolder } = useAppSelector((state) => state.folder);
   const userId = useAppSelector((state) => state.auth.userInfo.id);
   const dispatch = useAppDispatch();
 
   const handleFetchLinkList = (folderItem: FolderList) => {
     dispatch(getLinkList({ userId: userId, folderId: folderItem.id }));
-    dispatch(
-      setSelectedFolder({ selectedFolder: folderItem.name, selectedFolderId: folderItem.id }),
-    );
+    dispatch(setSelectedFolder({ selectedFolder: folderItem.name, selectedFolderId: folderItem.id }));
   };
 
   const handleFetchAllLinkList = () => {

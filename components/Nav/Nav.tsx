@@ -10,7 +10,7 @@ import DropDown from "../DropDown/DropDown";
 import { openDropDown } from "@/redux/reducers/dropDown";
 import { userInfoAccess } from "@/redux/actions/auth";
 
-const Nav: React.FC = () => {
+const Nav = () => {
   const [isShadow, setShadow] = useState(false);
   const { isLoggedIn, userInfo } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();

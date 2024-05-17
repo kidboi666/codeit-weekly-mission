@@ -6,7 +6,7 @@ import { closeModal } from "@/redux/reducers/modal";
 import { openToast } from "@/redux/reducers/toast";
 import { ModalProps } from "../ModalTypes";
 
-const DeleteFolder: React.FC<ModalProps> = ({ title, text, variant }) => {
+const DeleteFolder = ({ title, text, variant }: ModalProps) => {
   const { userInfo } = useAppSelector((state) => state.auth);
   const { selectedFolder, selectedFolderId } = useAppSelector((state) => state.folder);
   const dispatch = useAppDispatch();

@@ -8,7 +8,7 @@ interface EyeProps {
   onClick: () => void;
 }
 
-const Eye: React.FC<EyeProps> = ({ onClick }) => {
+const Eye = ({ onClick }: EyeProps) => {
   const [value, toggle] = useToggle();
 
   const onClickHandler = () => {

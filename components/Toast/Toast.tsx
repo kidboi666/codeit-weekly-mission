@@ -4,7 +4,7 @@ import { closeToast, putContents } from "@/redux/reducers/toast";
 import { TOAST_TYPES } from "./ToastTypes";
 import { useState } from "react";
 
-const Toast: React.FC = () => {
+const Toast = () => {
   const [isAnimation, setAnimation] = useState(false);
   const { contents, isOpen } = useAppSelector((state) => state.toast);
   const dispatch = useAppDispatch();

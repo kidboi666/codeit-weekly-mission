@@ -9,7 +9,7 @@ import { openToast } from "@/redux/reducers/toast";
 import { useState } from "react";
 import { ModalProps } from "../ModalTypes";
 
-const AddFolder: React.FC<ModalProps> = ({ title, text, variant }) => {
+const AddFolder = ({ title, text, variant }: ModalProps) => {
   const [folderName, setFolderName] = useState("");
   const { userInfo } = useAppSelector((state) => state.auth);
   const { data } = useAppSelector((state) => state.folder);

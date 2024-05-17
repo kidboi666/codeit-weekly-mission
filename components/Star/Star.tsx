@@ -9,8 +9,8 @@ import { Link } from "@/services/types";
 interface StarProps {
   link: Link;
 }
-
-const Star: React.FC<StarProps> = ({ link }) => {
+/** 즐겨찾기 기능 추가를 위해선 api의 baseUrl과 리스폰스 데이터 형식이 전부 바뀌어서 추후 작업 예정 */
+const Star = ({ link }: StarProps) => {
   const [value, toggle] = useToggle();
   const currentLocation = useRouter();
 

@@ -16,7 +16,7 @@ interface KebabProps {
   showKebabMenu: boolean;
 }
 
-const Kebab: React.FC<KebabProps> = ({ linkId, linkTitle, linkUrl, toggle, showKebabMenu }) => {
+const Kebab = ({ linkId, linkTitle, linkUrl, toggle, showKebabMenu }: KebabProps) => {
   const dispatch = useAppDispatch();
   const currentLocation = useRouter();
 

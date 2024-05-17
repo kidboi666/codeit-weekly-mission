@@ -11,7 +11,7 @@ interface LinkMenuProps {
   linkUrl: string;
 }
 
-const LinkMenu: React.FC<LinkMenuProps> = ({ linkId, linkTitle, linkUrl }) => {
+const LinkMenu = ({ linkId, linkTitle, linkUrl }: LinkMenuProps) => {
   const dispatch = useAppDispatch();
   const currentLocation = useRouter();
 

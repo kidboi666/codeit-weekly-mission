@@ -66,9 +66,7 @@ const SignIn = () => {
               <Controller
                 name='email'
                 control={control}
-                render={({ field }) => (
-                  <Input {...field} type='email' placeholder='codeit@codeit.kr' />
-                )}
+                render={({ field }) => <Input {...field} type='email' placeholder='codeit@codeit.kr' />}
               />
             </S.EmailContainer>
             <S.PasswordContainer>

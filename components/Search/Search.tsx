@@ -6,7 +6,7 @@ import { setSearchResult, setSearchKeyword, initializeSearch } from "@/redux/red
 import Input from "../Input/Input";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 
-const Search: React.FC = () => {
+const Search = () => {
   const [searchBody, setSearchBody] = useState("");
   const { searchKeyword } = useAppSelector((state) => state.link);
   const { data } = useAppSelector((state) => state.link);
@@ -51,9 +51,7 @@ const Search: React.FC = () => {
             onChange={onChangeInputValue}
             variant='search'
           />
-          {searchBody && (
-            <S.StyledCloseButton variant='searchInput' onClick={() => setSearchBody("")} />
-          )}
+          {searchBody && <S.StyledCloseButton variant='searchInput' onClick={() => setSearchBody("")} />}
         </S.Form>
       </S.FormBox>
       {searchKeyword && (
