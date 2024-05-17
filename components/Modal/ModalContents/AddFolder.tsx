@@ -11,6 +11,7 @@ import { useState } from "react";
 const AddFolder: React.FC = () => {
   const [folderName, setFolderName] = useState("");
   const { userInfo } = useAppSelector((state) => state.auth);
+  const { data } = useAppSelector((state) => state.folder);
   const { text, variant } = useAppSelector((state) => state.modal.contents);
   const dispatch = useAppDispatch();
 
@@ -18,9 +19,15 @@ const AddFolder: React.FC = () => {
     setFolderName(e.target.value);
   };
 
+  const checkForDuplicates = () => {
+    const result = data.some((folder) => folder.name === folderName);
+    if (result) dispatch(openToast("duplicateFolderName"));
+    return result;
+  };
+
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (folderName) {
+    if (folderName && !checkForDuplicates()) {
       const res = await dispatch(postFolder(folderName));
       if (res.meta.requestStatus === "fulfilled") {
         dispatch(closeModal());

@@ -12,5 +12,18 @@ export const TOAST_TYPES = [
   { contents: { warning: true, type: "emailAlreadyExists", text: "이미 존재하는 이메일 입니다." } },
   { contents: { warning: true, type: "diffrentPassword", text: "비밀번호를 확인해주세요." } },
   { contents: { warning: true, type: "wrongAccount", text: "이메일과 비밀번호를 확인해주세요." } },
-  { contents: { warning: true, type: "wrongPasswordForm", text: "비밀번호는 6자 이상 입력해주세요." } },
+  {
+    contents: {
+      warning: true,
+      type: "wrongPasswordForm",
+      text: "비밀번호는 6자 이상 입력해주세요.",
+    },
+  },
+  {
+    contents: {
+      warning: true,
+      type: "duplicateFolderName",
+      text: "같은 이름의 폴더가 이미 존재합니다.",
+    },
+  },
 ];
