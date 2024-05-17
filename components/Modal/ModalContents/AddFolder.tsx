@@ -1,7 +1,7 @@
 import Button from "@/components/Button/Button";
 import Input from "@/components/Input/Input";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
-import { postFolder } from "@/redux/actions/folder";
+import { getFolder, postFolder } from "@/redux/actions/folder";
 import { getLinkList } from "@/redux/actions/link";
 import { setSelectedFolder } from "@/redux/reducers/folder";
 import { closeModal } from "@/redux/reducers/modal";
@@ -32,6 +32,7 @@ const AddFolder = ({ title, text, variant }: ModalProps) => {
       dispatch(closeModal());
       if (res.meta.requestStatus === "fulfilled") {
         dispatch(openToast("addFolder"));
+        await dispatch(getFolder(userInfo.id));
         dispatch(getLinkList({ userId: userInfo.id, folderId: res.payload[0].id }));
         dispatch(setSelectedFolder({ selectedFolder: folderName, selectedFolderId: res.payload[0].id }));
       }

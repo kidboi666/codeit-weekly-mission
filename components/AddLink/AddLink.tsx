@@ -5,9 +5,9 @@ import Image from "next/image";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
-import { postLink } from "@/redux/actions/link";
-import { closeModal } from "@/redux/reducers/modal";
+import { openModal } from "@/redux/reducers/modal";
 import { openToast } from "@/redux/reducers/toast";
+import { setSelectedLink } from "@/redux/reducers/link";
 
 interface AddLinkProps {
   className?: string;
@@ -15,21 +15,15 @@ interface AddLinkProps {
 
 const AddLink = ({ className }: AddLinkProps) => {
   const [linkUrl, setLinkUrl] = useState("");
-  const { selectedFolderId } = useAppSelector((state) => state.folder);
+  const { data } = useAppSelector((state) => state.folder);
   const dispatch = useAppDispatch();
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (data.length === 0) return dispatch(openToast("firstAction"));
     if (linkUrl) {
-      const res = await dispatch(postLink({ url: linkUrl, folderId: selectedFolderId }));
-      dispatch(closeModal());
-      if (res.meta.requestStatus === "fulfilled") {
-        dispatch(openToast("addLink"));
-        return setLinkUrl("");
-      }
-      if (res.meta.requestStatus === "rejected") {
-        return dispatch(openToast("rejectedAddLink"));
-      }
+      dispatch(setSelectedLink(linkUrl));
+      return dispatch(openModal("addLinkToFolder"));
     }
     dispatch(openToast("nothingValue"));
   };

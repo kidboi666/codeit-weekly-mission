@@ -35,7 +35,7 @@ const Kebab = ({ linkId, linkTitle, linkUrl, toggle, showKebabMenu }: KebabProps
   };
 
   const onClickAddLinkToFolderButton = () => {
-    dispatch(setSelectedLink({ linkId, linkTitle, linkUrl }));
+    dispatch(setSelectedLink(linkUrl));
     dispatch(openModal("addLinkToFolder"));
   };
 

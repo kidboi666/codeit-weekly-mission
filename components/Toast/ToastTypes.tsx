@@ -26,4 +26,11 @@ export const TOAST_TYPES = [
       text: "같은 이름의 폴더가 이미 존재합니다.",
     },
   },
+  {
+    contents: {
+      warning: true,
+      type: "firstAction",
+      text: "폴더가 없다면 먼저 폴더를 생성해주세요.",
+    },
+  },
 ];

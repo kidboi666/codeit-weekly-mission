@@ -1,19 +1,11 @@
 import { Link } from "@/services/types";
 import { createSlice } from "@reduxjs/toolkit";
-import {
-  getLinkList,
-  getAllLinkList,
-  postLink,
-  deleteLink,
-  putFavoriteLink,
-} from "../actions/link";
+import { getLinkList, getAllLinkList, postLink, deleteLink, putFavoriteLink } from "../actions/link";
 import { API_MSG } from "@/constants/strings";
 
 interface Props {
   data: Link[];
   status: string;
-  selectedLinkId: number;
-  selectedLinkTitle: string;
   selectedLinkUrl: string;
   searchKeyword: string;
   searchResult: Link[];
@@ -23,8 +15,6 @@ interface Props {
 const initialState: Props = {
   data: [],
   status: "",
-  selectedLinkId: 0,
-  selectedLinkTitle: "",
   selectedLinkUrl: "",
   searchKeyword: "",
   searchResult: [],
@@ -48,9 +38,7 @@ const linkSlice = createSlice({
       state.searchKeyword = action.payload;
     },
     setSelectedLink: (state, action) => {
-      state.selectedLinkId = action.payload.linkId;
-      state.selectedLinkTitle = action.payload.linkTitle;
-      state.selectedLinkUrl = action?.payload.linkUrl;
+      state.selectedLinkUrl = action?.payload;
     },
   },
   extraReducers: (builder) => {
@@ -106,6 +94,5 @@ const linkSlice = createSlice({
   },
 });
 
-export const { setSearchResult, setSearchKeyword, initializeSearch, setSelectedLink } =
-  linkSlice.actions;
+export const { setSearchResult, setSearchKeyword, initializeSearch, setSelectedLink } = linkSlice.actions;
 export default linkSlice.reducer;

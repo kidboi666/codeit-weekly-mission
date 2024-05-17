@@ -2,7 +2,7 @@ import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import * as S from "./AddLinkToFolder.styled";
 import Button from "@/components/Button/Button";
 import { FolderList } from "@/services/types";
-import { setSelectedFolderForAddLink } from "@/redux/reducers/folder";
+import { setSelectedFolder, setSelectedFolderForAddLink } from "@/redux/reducers/folder";
 import { getLinkList, postLink } from "@/redux/actions/link";
 import { closeModal } from "@/redux/reducers/modal";
 import { openToast } from "@/redux/reducers/toast";
@@ -29,6 +29,9 @@ const AddLinkToFolder = ({ title, text, variant }: ModalProps) => {
     if (res.meta.requestStatus === "fulfilled") {
       dispatch(openToast("addLinkToFolder"));
       dispatch(getLinkList({ userId: userInfo.id, folderId: selectedFolderIdForAddLink }));
+      dispatch(
+        setSelectedFolder({ selectedFolder: selectedFolderForAddLink, selectedFolderId: selectedFolderIdForAddLink }),
+      );
     }
   };
 
