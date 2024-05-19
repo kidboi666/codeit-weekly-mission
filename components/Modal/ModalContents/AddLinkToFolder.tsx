@@ -33,11 +33,13 @@ const AddLinkToFolder = ({ title, text, variant }: ModalProps) => {
 
     if (linkId) {
       await dispatch(deleteLink(linkId));
+      await dispatch(getLinkList({ userId: userInfo.id, folderId: currentFolderId }));
+      return dispatch(openToast("moveLink"));
     }
 
     setLinkUrl("");
-    dispatch(openToast("addLink"));
     dispatch(getLinkList({ userId: userInfo.id, folderId: currentFolderId || selectedFolderForAddLink.folderId }));
+    dispatch(openToast("addLink"));
   };
 
   useEffect(() => {
