@@ -10,7 +10,7 @@ import { ModalProps } from "../ModalTypes";
 const ChangeName = ({ title, text, variant }: ModalProps) => {
   const [folderName, setFolderName] = useState("");
   const { userInfo } = useAppSelector((state) => state.auth);
-  const { selectedFolder, selectedFolderId, setSelectedFolder } = useAppSelector((state) => state.modal.props) || {};
+  const { currentFolder, currentFolderId, setCurrentFolder } = useAppSelector((state) => state.modal.props) || {};
   const dispatch = useAppDispatch();
 
   const onChangeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,12 +20,12 @@ const ChangeName = ({ title, text, variant }: ModalProps) => {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (folderName) {
-      const res = await dispatch(putFolder({ folderName: folderName, folderId: selectedFolderId }));
+      const res = await dispatch(putFolder({ folderName: folderName, folderId: currentFolderId }));
       dispatch(closeModal());
       if (res.meta.requestStatus === "fulfilled") {
         dispatch(openToast("changeName"));
         await dispatch(getFolder(userInfo.id));
-        setSelectedFolder(folderName);
+        setCurrentFolder(folderName);
       }
     }
   };
@@ -34,7 +34,7 @@ const ChangeName = ({ title, text, variant }: ModalProps) => {
     <>
       <h3>{title}</h3>
       <form onSubmit={onSubmit}>
-        <Input value={folderName} onChange={onChangeInputValue} placeholder={selectedFolder} />
+        <Input value={folderName} onChange={onChangeInputValue} placeholder={currentFolder} />
         <Button variant={variant} text={text} type='submit' width='100%' />
       </form>
     </>

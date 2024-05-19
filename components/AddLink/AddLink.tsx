@@ -21,8 +21,8 @@ const AddLink = ({ className }: AddLinkProps) => {
     e.preventDefault();
     if (data.length === 0) return dispatch(openToast("firstAction"));
     if (linkUrl) {
-      dispatch(openModal({ type: "addLinkToFolder", props: { selectedLinkUrl: linkUrl } }));
-      return setLinkUrl("");
+      dispatch(openModal({ type: "addLinkToFolder", props: { linkUrl, setLinkUrl } }));
+      return;
     }
     dispatch(openToast("nothingValue"));
   };

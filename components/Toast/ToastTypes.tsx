@@ -1,11 +1,11 @@
 export const TOAST_TYPES = [
   { type: "copyUrl", text: "URL이 복사 되었습니다." },
   { type: "addLink", text: "링크가 추가 되었습니다." },
+  { type: "moveLink", text: "링크가 이동 되었습니다." },
   { type: "addFolder", text: "폴더가 추가 되었습니다." },
   { type: "deleteFolder", text: "폴더가 삭제 되었습니다." },
   { type: "deleteLink", text: "링크가 삭제 되었습니다." },
   { type: "changeName", text: "폴더 이름이 변경 되었습니다." },
-  { type: "addLinkToFolder", text: "폴더에 링크가 추가 되었습니다." },
   { type: "loginSuccess", text: "로그인 성공!" },
   { type: "rejectedAddLink", text: "주소가 올바르지 않습니다.", warning: true },
   { type: "nothingValue", text: "주소를 입력하세요.", warning: true },

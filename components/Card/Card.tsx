@@ -10,9 +10,13 @@ import useToggle from "@/hooks/useToggle";
 
 interface CardProps {
   link: Link;
+  currentFolder: string;
+  setCurrentFolder: React.Dispatch<React.SetStateAction<string>>;
+  currentFolderId: number;
+  setCurrentFolderId: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const Card = ({ link }: CardProps) => {
+const Card = ({ link, currentFolder, setCurrentFolder, currentFolderId, setCurrentFolderId }: CardProps) => {
   const [showKebabMenu, toggle] = useToggle();
   const timeDelta = formatDate(link.createdAt);
   const createdDate = calculateTime(link.createdAt);
@@ -39,6 +43,10 @@ const Card = ({ link }: CardProps) => {
             linkId={link.id}
             linkTitle={link.title}
             linkUrl={link.url}
+            currentFolder={currentFolder}
+            setCurrentFolder={setCurrentFolder}
+            currentFolderId={currentFolderId}
+            setCurrentFolderId={setCurrentFolderId}
             showKebabMenu={showKebabMenu}
             toggle={toggle}
           />

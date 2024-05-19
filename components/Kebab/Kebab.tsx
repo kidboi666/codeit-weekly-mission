@@ -1,6 +1,5 @@
 import React from "react";
 import kebobIcon from "../../assets/icons/kebab.svg";
-import useToggle from "../../hooks/useToggle";
 import * as S from "./Kebab.styled";
 import { useRouter } from "next/router";
 import Image from "next/image";
@@ -11,11 +10,25 @@ interface KebabProps {
   linkId: number;
   linkTitle: string;
   linkUrl: string;
+  currentFolder: string;
+  setCurrentFolder: React.Dispatch<React.SetStateAction<string>>;
+  currentFolderId: number;
+  setCurrentFolderId: React.Dispatch<React.SetStateAction<number>>;
   toggle: () => void;
   showKebabMenu: boolean;
 }
 
-const Kebab = ({ linkId, linkTitle, linkUrl, toggle, showKebabMenu }: KebabProps) => {
+const Kebab = ({
+  linkId,
+  linkTitle,
+  linkUrl,
+  currentFolder,
+  setCurrentFolder,
+  currentFolderId,
+  setCurrentFolderId,
+  toggle,
+  showKebabMenu,
+}: KebabProps) => {
   const dispatch = useAppDispatch();
   const currentLocation = useRouter();
 
@@ -29,11 +42,28 @@ const Kebab = ({ linkId, linkTitle, linkUrl, toggle, showKebabMenu }: KebabProps
   };
 
   const onClickDeleteButton = () => {
-    dispatch(openModal({ type: "deleteLink", props: { selectedLinkId: linkId, selectedLinkTitle: linkTitle } }));
+    dispatch(
+      openModal({
+        type: "deleteLink",
+        props: { linkId, linkTitle, currentFolder, currentFolderId },
+      }),
+    );
   };
 
   const onClickAddLinkToFolderButton = () => {
-    dispatch(openModal({ type: "addLinkToFolder", props: { selectedLinkUrl: linkUrl } }));
+    dispatch(
+      openModal({
+        type: "addLink",
+        props: {
+          linkId,
+          linkUrl,
+          currentFolder,
+          setCurrentFolder,
+          currentFolderId,
+          setCurrentFolderId,
+        },
+      }),
+    );
   };
 
   return (
@@ -45,7 +75,7 @@ const Kebab = ({ linkId, linkTitle, linkUrl, toggle, showKebabMenu }: KebabProps
             삭제하기
           </button>
           <button type='button' onClick={onClickAddLinkToFolderButton}>
-            폴더에 추가
+            폴더 이동
           </button>
         </S.ModalLayout>
       )}

@@ -17,8 +17,8 @@ const FolderPage = () => {
   const [linkStorage, setLinkStorage] = useState<Link[]>([]);
   const [searchResult, setSearchResult] = useState<Link[]>([]);
   const [noSearchResult, setNoSearchResult] = useState(false);
-  const [selectedFolder, setSelectedFolder] = useState("");
-  const [selectedFolderId, setSelectedFolderId] = useState(0);
+  const [currentFolder, setCurrentFolder] = useState("");
+  const [currentFolderId, setCurrentFolderId] = useState(0);
   const { userInfo } = useAppSelector((state) => state.auth);
   const linkData = useAppSelector((state) => state.link.data);
   const folderDataLength = useAppSelector((state) => state.folder.data.length);
@@ -58,7 +58,7 @@ const FolderPage = () => {
     if (!token) router.push("/");
     dispatch(getFolder(userInfo.id));
     dispatch(getAllLinkList(userInfo.id));
-    setSelectedFolder(COMBINED_FOLDER_NAME);
+    setCurrentFolder(COMBINED_FOLDER_NAME);
   }, [userInfo, folderDataLength]);
 
   return (
@@ -72,10 +72,10 @@ const FolderPage = () => {
         </S.SearchSection>
         <S.FolderSection>
           <Folder
-            selectedFolder={selectedFolder}
-            setSelectedFolder={setSelectedFolder}
-            selectedFolderId={selectedFolderId}
-            setSelectedFolderId={setSelectedFolderId}
+            currentFolder={currentFolder}
+            setCurrentFolder={setCurrentFolder}
+            currentFolderId={currentFolderId}
+            setCurrentFolderId={setCurrentFolderId}
           />
         </S.FolderSection>
         <S.LinkSection>
@@ -86,7 +86,13 @@ const FolderPage = () => {
           ) : (
             linkStorage?.map((v) => (
               <div key={v.id}>
-                <Card link={v} />
+                <Card
+                  link={v}
+                  currentFolder={currentFolder}
+                  setCurrentFolder={setCurrentFolder}
+                  currentFolderId={currentFolderId}
+                  setCurrentFolderId={setCurrentFolderId}
+                />
               </div>
             ))
           )}

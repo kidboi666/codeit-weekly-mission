@@ -43,7 +43,6 @@ const linkSlice = createSlice({
         state.status = API_MSG.PEN;
       })
       .addCase(postLink.fulfilled, (state, action) => {
-        state.data = [action.payload[0], ...state.data];
         state.status = API_MSG.FUL;
       })
       .addCase(postLink.rejected, (state, action) => {

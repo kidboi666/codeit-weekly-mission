@@ -9,26 +9,26 @@ import { FolderList } from "@/services/types";
 import { openModal } from "@/redux/reducers/modal";
 
 interface FolderProps {
-  selectedFolder: string;
-  setSelectedFolder: React.Dispatch<React.SetStateAction<string>>;
-  selectedFolderId: number;
-  setSelectedFolderId: React.Dispatch<React.SetStateAction<number>>;
+  currentFolder: string;
+  setCurrentFolder: React.Dispatch<React.SetStateAction<string>>;
+  currentFolderId: number;
+  setCurrentFolderId: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const Folder = ({ selectedFolder, setSelectedFolder, selectedFolderId, setSelectedFolderId }: FolderProps) => {
+const Folder = ({ currentFolder, setCurrentFolder, currentFolderId, setCurrentFolderId }: FolderProps) => {
   const { data } = useAppSelector((state) => state.folder);
   const userId = useAppSelector((state) => state.auth.userInfo.id);
   const dispatch = useAppDispatch();
 
   const handleFetchLinkList = (folderItem: FolderList) => {
     dispatch(getLinkList({ userId: userId, folderId: folderItem.id }));
-    setSelectedFolder(folderItem.name);
-    setSelectedFolderId(folderItem.id);
+    setCurrentFolder(folderItem.name);
+    setCurrentFolderId(folderItem.id);
   };
 
   const handleFetchAllLinkList = () => {
     dispatch(getAllLinkList(userId));
-    setSelectedFolder(COMBINED_FOLDER_NAME);
+    setCurrentFolder(COMBINED_FOLDER_NAME);
   };
 
   useEffect(() => {
@@ -43,7 +43,7 @@ const Folder = ({ selectedFolder, setSelectedFolder, selectedFolderId, setSelect
             variant='folderButton'
             onClick={() => handleFetchAllLinkList()}
             text={COMBINED_FOLDER_NAME}
-            selected={selectedFolder}
+            selected={currentFolder}
           />
           {data.map((folderItem) => (
             <Button
@@ -51,7 +51,7 @@ const Folder = ({ selectedFolder, setSelectedFolder, selectedFolderId, setSelect
               variant='folderButton'
               onClick={() => handleFetchLinkList(folderItem)}
               text={folderItem.name}
-              selected={selectedFolder}
+              selected={currentFolder}
             />
           ))}
           <div onClick={() => dispatch(openModal({ type: "addFolder" }))}>
@@ -60,9 +60,9 @@ const Folder = ({ selectedFolder, setSelectedFolder, selectedFolderId, setSelect
         </S.FolderBox>
       </S.FolderContainer>
       <FolderOptionButton
-        selectedFolder={selectedFolder}
-        setSelectedFolder={setSelectedFolder}
-        selectedFolderId={selectedFolderId}
+        currentFolder={currentFolder}
+        setCurrentFolder={setCurrentFolder}
+        currentFolderId={currentFolderId}
       />
     </S.FolderLayout>
   );
