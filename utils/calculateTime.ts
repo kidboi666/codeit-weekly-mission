@@ -20,6 +20,7 @@ const calculateTime = (time: string) => {
     diffTime = currentMinuteTime - minuteTime;
     return `${Math.floor(diffTime <= 1 ? 1 : diffTime)} minutes ago`;
   }
+  return `1 minutes ago`;
 };
 
 export default calculateTime;
