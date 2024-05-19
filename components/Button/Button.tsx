@@ -1,4 +1,3 @@
-import { useAppSelector } from "@/hooks/useApp";
 import * as S from "./Button.styled";
 import React from "react";
 

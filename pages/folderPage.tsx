@@ -17,6 +17,8 @@ const FolderPage = () => {
   const [linkStorage, setLinkStorage] = useState<Link[]>([]);
   const [searchResult, setSearchResult] = useState<Link[]>([]);
   const [noSearchResult, setNoSearchResult] = useState(false);
+  const [selectedFolder, setSelectedFolder] = useState("");
+  const [selectedFolderId, setSelectedFolderId] = useState(0);
   const { userInfo } = useAppSelector((state) => state.auth);
   const { data } = useAppSelector((state) => state.link);
   const dispatch = useAppDispatch();
@@ -44,13 +46,6 @@ const FolderPage = () => {
   }, []);
 
   useEffect(() => {
-    const token = localStorage?.getItem("accessToken");
-    if (!token) {
-      router.push("/");
-    }
-  }, [userInfo]);
-
-  useEffect(() => {
     if (searchResult.length >= 1) {
       return setLinkStorage(searchResult);
     }
@@ -58,6 +53,10 @@ const FolderPage = () => {
   }, [data, searchResult]);
 
   useEffect(() => {
+    const token = localStorage?.getItem("accessToken");
+    if (!token) {
+      router.push("/");
+    }
     if (!userInfo.id) return;
     dispatch(getFolder(userInfo.id));
     dispatch(getAllLinkList(userInfo.id));
@@ -74,7 +73,12 @@ const FolderPage = () => {
           <Search setSearchResult={setSearchResult} setNoSearchResult={setNoSearchResult} />
         </S.SearchSection>
         <S.FolderSection>
-          <Folder />
+          <Folder
+            selectedFolder={selectedFolder}
+            setSelectedFolder={setSelectedFolder}
+            selectedFolderId={selectedFolderId}
+            setSelectedFolderId={setSelectedFolderId}
+          />
         </S.FolderSection>
         <S.LinkSection>
           {noSearchResult ? (

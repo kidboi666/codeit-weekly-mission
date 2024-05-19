@@ -12,8 +12,8 @@ const Toast = () => {
   if (!isOpen) return null;
 
   const findToast = TOAST_TYPES.find((toast) => {
-    if (toast.contents.type === contents.type) {
-      dispatch(putContents(toast.contents));
+    if (toast.type === contents.type) {
+      dispatch(putContents(toast));
       return toast;
     }
   });
@@ -35,8 +35,8 @@ const Toast = () => {
 
   return (
     <S.ToastLayout $isAnimation={isAnimation}>
-      <S.CheckContainer $backgroundColor={findToast?.contents.warning}>❕</S.CheckContainer>
-      <S.CheckTextBox>{findToast?.contents.text}</S.CheckTextBox>
+      <S.CheckContainer $backgroundColor={findToast?.warning}>❕</S.CheckContainer>
+      <S.CheckTextBox>{findToast?.text}</S.CheckTextBox>
       <S.CloseIconButtonBox onClick={closeButtonClickHandler}>✕</S.CloseIconButtonBox>
     </S.ToastLayout>
   );

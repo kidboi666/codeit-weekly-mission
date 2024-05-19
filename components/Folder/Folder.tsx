@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { COMBINED_FOLDER_NAME } from "@/constants/strings";
 import { getAllLinkList, getLinkList } from "@/redux/actions/link";
 import FolderOptionButton from "@/components/FolderOptionButton/FolderOptionButton";
@@ -6,22 +6,28 @@ import Button from "../Button/Button";
 import * as S from "./Folder.styled";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import { FolderList } from "@/services/types";
-import { setSelectedFolder } from "@/redux/reducers/folder";
 import { openModal } from "@/redux/reducers/modal";
 
-const Folder = () => {
-  const { data, selectedFolder } = useAppSelector((state) => state.folder);
+interface FolderProps {
+  selectedFolder: string;
+  setSelectedFolder: React.Dispatch<React.SetStateAction<string>>;
+  selectedFolderId: number;
+  setSelectedFolderId: React.Dispatch<React.SetStateAction<number>>;
+}
+const Folder = ({ selectedFolder, setSelectedFolder, selectedFolderId, setSelectedFolderId }: FolderProps) => {
+  const { data } = useAppSelector((state) => state.folder);
   const userId = useAppSelector((state) => state.auth.userInfo.id);
   const dispatch = useAppDispatch();
 
   const handleFetchLinkList = (folderItem: FolderList) => {
     dispatch(getLinkList({ userId: userId, folderId: folderItem.id }));
-    dispatch(setSelectedFolder({ selectedFolder: folderItem.name, selectedFolderId: folderItem.id }));
+    setSelectedFolder(folderItem.name);
+    setSelectedFolderId(folderItem.id);
   };
 
   const handleFetchAllLinkList = () => {
     dispatch(getAllLinkList(userId));
-    dispatch(setSelectedFolder({ selectedFolder: COMBINED_FOLDER_NAME }));
+    setSelectedFolder(COMBINED_FOLDER_NAME);
   };
 
   return (
