@@ -9,7 +9,7 @@ import { openToast } from "@/redux/reducers/toast";
 import { ModalProps } from "../ModalTypes";
 
 const ShareFolder = ({ title }: ModalProps) => {
-  const { selectedFolderId, selectedFolder } = useAppSelector((state) => state.modal.props);
+  const { selectedFolderId, selectedFolder } = useAppSelector((state) => state.modal.props) || {};
   const dispatch = useAppDispatch();
 
   const onClick = () => {

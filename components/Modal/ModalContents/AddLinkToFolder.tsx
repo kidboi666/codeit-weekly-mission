@@ -15,7 +15,7 @@ const AddLinkToFolder = ({ title, text, variant }: ModalProps) => {
     folderName: "",
     folderId: 0,
   });
-  const { selectedLinkUrl } = useAppSelector((state) => state.modal.props);
+  const { selectedLinkUrl } = useAppSelector((state) => state.modal.props) || {};
   const { userInfo } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
 

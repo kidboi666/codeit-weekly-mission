@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 interface Props {
   type: any;
   isOpen: boolean;
-  props: Record<string, any>;
+  props?: Record<string, any>;
 }
 
 const initialState: Props = {
