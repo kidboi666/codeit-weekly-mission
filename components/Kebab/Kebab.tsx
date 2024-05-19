@@ -53,7 +53,7 @@ const Kebab = ({
   const onClickAddLinkToFolderButton = () => {
     dispatch(
       openModal({
-        type: "addLink",
+        type: "addLinkToFolder",
         props: {
           linkId,
           linkUrl,
