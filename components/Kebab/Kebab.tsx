@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import { useAppDispatch } from "@/hooks/useApp";
 import { openModal } from "@/redux/reducers/modal";
+import { COMBINED_FOLDER_NAME } from "@/constants/strings";
 
 interface KebabProps {
   linkId: number;
@@ -32,7 +33,7 @@ const Kebab = ({
   const dispatch = useAppDispatch();
   const currentLocation = useRouter();
 
-  if (currentLocation.pathname !== "/folderPage") {
+  if (currentLocation.pathname !== "/folderPage" || currentFolder === COMBINED_FOLDER_NAME) {
     return null;
   }
 
