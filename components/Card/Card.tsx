@@ -10,10 +10,10 @@ import useToggle from "@/hooks/useToggle";
 
 interface CardProps {
   link: Link;
-  currentFolder: string;
-  setCurrentFolder: React.Dispatch<React.SetStateAction<string>>;
-  currentFolderId: number;
-  setCurrentFolderId: React.Dispatch<React.SetStateAction<number>>;
+  currentFolder?: string;
+  setCurrentFolder?: React.Dispatch<React.SetStateAction<string>>;
+  currentFolderId?: number;
+  setCurrentFolderId?: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const Card = ({ link, currentFolder, setCurrentFolder, currentFolderId, setCurrentFolderId }: CardProps) => {

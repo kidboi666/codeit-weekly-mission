@@ -10,10 +10,10 @@ interface KebabProps {
   linkId: number;
   linkTitle: string;
   linkUrl: string;
-  currentFolder: string;
-  setCurrentFolder: React.Dispatch<React.SetStateAction<string>>;
-  currentFolderId: number;
-  setCurrentFolderId: React.Dispatch<React.SetStateAction<number>>;
+  currentFolder?: string;
+  setCurrentFolder?: React.Dispatch<React.SetStateAction<string>>;
+  currentFolderId?: number;
+  setCurrentFolderId?: React.Dispatch<React.SetStateAction<number>>;
   toggle: () => void;
   showKebabMenu: boolean;
 }
