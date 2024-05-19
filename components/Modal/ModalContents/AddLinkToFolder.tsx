@@ -10,11 +10,11 @@ import { useEffect, useState } from "react";
 import { getFolder } from "@/redux/actions/folder";
 
 const AddLinkToFolder = ({ title, text, variant }: ModalProps) => {
-  const { data } = useAppSelector((state) => state.folder);
   const [selectedFolderForAddLink, setSelectedFolderForAddLink] = useState({
     folderName: "",
     folderId: 0,
   });
+  const { data } = useAppSelector((state) => state.folder);
   const { linkUrl, setLinkUrl } = useAppSelector((state) => state.modal.props) || {};
   const { linkId, currentFolderId } = useAppSelector((state) => state.modal.props) || {};
   const { userInfo } = useAppSelector((state) => state.auth);
@@ -33,9 +33,10 @@ const AddLinkToFolder = ({ title, text, variant }: ModalProps) => {
 
     if (linkId) {
       await dispatch(deleteLink(linkId));
-      dispatch(openToast("moveLink"));
     }
+
     setLinkUrl("");
+    dispatch(openToast("addLink"));
     dispatch(getLinkList({ userId: userInfo.id, folderId: currentFolderId || selectedFolderForAddLink.folderId }));
   };
 

@@ -1,7 +1,7 @@
 import { FolderList, SharedFolder } from "@/services/types";
 import { createSlice } from "@reduxjs/toolkit";
 import { deleteFolder, getFolder, getSharedFolder, postFolder, putFolder } from "../actions/folder";
-import { API_MSG, COMBINED_FOLDER_NAME } from "@/constants/strings";
+import { API_MSG } from "@/constants/strings";
 
 const initialSharedFolder = {
   id: 0,

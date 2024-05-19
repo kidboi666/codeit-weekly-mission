@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { COMBINED_FOLDER_NAME } from "@/constants/strings";
 import { getAllLinkList, getLinkList } from "@/redux/actions/link";
 import FolderOptionButton from "@/components/FolderOptionButton/FolderOptionButton";
