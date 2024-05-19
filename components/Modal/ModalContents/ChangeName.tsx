@@ -10,7 +10,7 @@ import { ModalProps } from "../ModalTypes";
 const ChangeName = ({ title, text, variant }: ModalProps) => {
   const [folderName, setFolderName] = useState("");
   const { userInfo } = useAppSelector((state) => state.auth);
-  const { selectedFolderId, selectedFolder } = useAppSelector((state) => state.folder);
+  const { selectedFolder, selectedFolderId, setSelectedFolder } = useAppSelector((state) => state.modal.props);
   const dispatch = useAppDispatch();
 
   const onChangeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,7 +24,8 @@ const ChangeName = ({ title, text, variant }: ModalProps) => {
       dispatch(closeModal());
       if (res.meta.requestStatus === "fulfilled") {
         dispatch(openToast("changeName"));
-        dispatch(getFolder(userInfo.id));
+        await dispatch(getFolder(userInfo.id));
+        setSelectedFolder(folderName);
       }
     }
   };

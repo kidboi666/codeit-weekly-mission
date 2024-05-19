@@ -7,7 +7,6 @@ import Input from "../Input/Input";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import { openModal } from "@/redux/reducers/modal";
 import { openToast } from "@/redux/reducers/toast";
-import { setSelectedLink } from "@/redux/reducers/link";
 
 interface AddLinkProps {
   className?: string;
@@ -22,8 +21,8 @@ const AddLink = ({ className }: AddLinkProps) => {
     e.preventDefault();
     if (data.length === 0) return dispatch(openToast("firstAction"));
     if (linkUrl) {
-      dispatch(setSelectedLink({ linkUrl }));
-      return dispatch(openModal("addLinkToFolder"));
+      dispatch(openModal({ type: "addLinkToFolder", props: { selectedLinkUrl: linkUrl } }));
+      return setLinkUrl("");
     }
     dispatch(openToast("nothingValue"));
   };

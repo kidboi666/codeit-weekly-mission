@@ -15,36 +15,16 @@ const initialState: {
   data: FolderList[];
   status: string;
   sharedFolder: SharedFolder;
-  selectedFolder: string;
-  selectedFolderId: number;
-  selectedFolderForAddLink: string;
-  selectedFolderIdForAddLink: number;
 } = {
   data: [],
   status: "",
   sharedFolder: { ...initialSharedFolder },
-  selectedFolder: "",
-  selectedFolderId: 0,
-  selectedFolderForAddLink: "",
-  selectedFolderIdForAddLink: 0,
 };
 
 const folderSlice = createSlice({
   name: "folder",
   initialState,
-  reducers: {
-    initializeSelectedFolder: (state) => {
-      state.selectedFolder = COMBINED_FOLDER_NAME;
-    },
-    setSelectedFolder: (state, action) => {
-      state.selectedFolder = action.payload.selectedFolder;
-      state.selectedFolderId = action.payload.selectedFolderId;
-    },
-    setSelectedFolderForAddLink: (state, action) => {
-      state.selectedFolderForAddLink = action.payload.selectedFolder;
-      state.selectedFolderIdForAddLink = action.payload.selectedFolderId;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(getFolder.pending, (state) => {
@@ -52,7 +32,6 @@ const folderSlice = createSlice({
       })
       .addCase(getFolder.fulfilled, (state, action) => {
         state.data = action.payload;
-        state.selectedFolder = COMBINED_FOLDER_NAME;
         state.status = API_MSG.FUL;
       })
       .addCase(getFolder.rejected, (state, action) => {
@@ -99,7 +78,6 @@ const folderSlice = createSlice({
   },
 });
 
-export const { initializeSelectedFolder, setSelectedFolder, setSelectedFolderForAddLink } =
-  folderSlice.actions;
+export const {} = folderSlice.actions;
 
 export default folderSlice.reducer;

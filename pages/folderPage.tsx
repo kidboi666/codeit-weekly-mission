@@ -9,8 +9,8 @@ import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import { useRouter } from "next/router";
 import { getFolder } from "@/redux/actions/folder";
 import { Link } from "@/services/types";
-import { initializeSelectedFolder } from "@/redux/reducers/folder";
 import { getAllLinkList } from "@/redux/actions/link";
+import { COMBINED_FOLDER_NAME } from "@/constants/strings";
 
 const FolderPage = () => {
   const [isInterSecting, setInterSecting] = useState(false);
@@ -20,7 +20,8 @@ const FolderPage = () => {
   const [selectedFolder, setSelectedFolder] = useState("");
   const [selectedFolderId, setSelectedFolderId] = useState(0);
   const { userInfo } = useAppSelector((state) => state.auth);
-  const { data } = useAppSelector((state) => state.link);
+  const linkData = useAppSelector((state) => state.link.data);
+  const folderDataLength = useAppSelector((state) => state.folder.data.length);
   const dispatch = useAppDispatch();
   const router = useRouter();
   const targetRef = useRef<HTMLDivElement>();
@@ -49,19 +50,16 @@ const FolderPage = () => {
     if (searchResult.length >= 1) {
       return setLinkStorage(searchResult);
     }
-    setLinkStorage(data);
-  }, [data, searchResult]);
+    setLinkStorage(linkData);
+  }, [linkData, searchResult]);
 
   useEffect(() => {
     const token = localStorage?.getItem("accessToken");
-    if (!token) {
-      router.push("/");
-    }
-    if (!userInfo.id) return;
+    if (!token) router.push("/");
     dispatch(getFolder(userInfo.id));
     dispatch(getAllLinkList(userInfo.id));
-    dispatch(initializeSelectedFolder());
-  }, [userInfo]);
+    setSelectedFolder(COMBINED_FOLDER_NAME);
+  }, [userInfo, folderDataLength]);
 
   return (
     <AppLayout>

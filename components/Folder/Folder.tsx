@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { COMBINED_FOLDER_NAME } from "@/constants/strings";
 import { getAllLinkList, getLinkList } from "@/redux/actions/link";
 import FolderOptionButton from "@/components/FolderOptionButton/FolderOptionButton";
@@ -14,6 +14,7 @@ interface FolderProps {
   selectedFolderId: number;
   setSelectedFolderId: React.Dispatch<React.SetStateAction<number>>;
 }
+
 const Folder = ({ selectedFolder, setSelectedFolder, selectedFolderId, setSelectedFolderId }: FolderProps) => {
   const { data } = useAppSelector((state) => state.folder);
   const userId = useAppSelector((state) => state.auth.userInfo.id);
@@ -29,6 +30,10 @@ const Folder = ({ selectedFolder, setSelectedFolder, selectedFolderId, setSelect
     dispatch(getAllLinkList(userId));
     setSelectedFolder(COMBINED_FOLDER_NAME);
   };
+
+  useEffect(() => {
+    handleFetchAllLinkList();
+  }, []);
 
   return (
     <S.FolderLayout>
@@ -49,12 +54,16 @@ const Folder = ({ selectedFolder, setSelectedFolder, selectedFolderId, setSelect
               selected={selectedFolder}
             />
           ))}
-          <div onClick={() => dispatch(openModal("addFolder"))}>
+          <div onClick={() => dispatch(openModal({ type: "addFolder" }))}>
             <Button variant='addFolder' text='폴더 추가 +' />
           </div>
         </S.FolderBox>
       </S.FolderContainer>
-      <FolderOptionButton />
+      <FolderOptionButton
+        selectedFolder={selectedFolder}
+        setSelectedFolder={setSelectedFolder}
+        selectedFolderId={selectedFolderId}
+      />
     </S.FolderLayout>
   );
 };

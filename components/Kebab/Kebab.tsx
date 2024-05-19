@@ -4,9 +4,8 @@ import useToggle from "../../hooks/useToggle";
 import * as S from "./Kebab.styled";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
+import { useAppDispatch } from "@/hooks/useApp";
 import { openModal } from "@/redux/reducers/modal";
-import { setSelectedLink } from "@/redux/reducers/link";
 
 interface KebabProps {
   linkId: number;
@@ -30,13 +29,11 @@ const Kebab = ({ linkId, linkTitle, linkUrl, toggle, showKebabMenu }: KebabProps
   };
 
   const onClickDeleteButton = () => {
-    dispatch(setSelectedLink({ linkId, linkTitle }));
-    dispatch(openModal("deleteLink"));
+    dispatch(openModal({ type: "deleteLink", props: { selectedLinkId: linkId, selectedLinkTitle: linkTitle } }));
   };
 
   const onClickAddLinkToFolderButton = () => {
-    dispatch(setSelectedLink(linkUrl));
-    dispatch(openModal("addLinkToFolder"));
+    dispatch(openModal({ type: "addLinkToFolder", props: { selectedLinkUrl: linkUrl } }));
   };
 
   return (

@@ -6,7 +6,8 @@ import { getLinkList, postLink } from "@/redux/actions/link";
 import { closeModal } from "@/redux/reducers/modal";
 import { openToast } from "@/redux/reducers/toast";
 import { ModalProps } from "../ModalTypes";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getFolder } from "@/redux/actions/folder";
 
 const AddLinkToFolder = ({ title, text, variant }: ModalProps) => {
   const { data } = useAppSelector((state) => state.folder);
@@ -14,7 +15,7 @@ const AddLinkToFolder = ({ title, text, variant }: ModalProps) => {
     folderName: "",
     folderId: 0,
   });
-  const { selectedLinkUrl } = useAppSelector((state) => state.link);
+  const { selectedLinkUrl } = useAppSelector((state) => state.modal.props);
   const { userInfo } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
 
@@ -33,6 +34,10 @@ const AddLinkToFolder = ({ title, text, variant }: ModalProps) => {
       dispatch(getLinkList({ userId: userInfo.id, folderId: selectedFolderForAddLink.folderId }));
     }
   };
+
+  useEffect(() => {
+    dispatch(getFolder(userInfo.id));
+  }, []);
 
   return (
     <>

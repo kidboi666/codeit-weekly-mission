@@ -6,29 +6,17 @@ import { API_MSG } from "@/constants/strings";
 interface Props {
   data: Link[];
   status: string;
-  selectedLinkUrl: string;
-  selectedLinkId: number;
-  selectedLinkTitle: string;
 }
 
 const initialState: Props = {
   data: [],
   status: "",
-  selectedLinkUrl: "",
-  selectedLinkId: 0,
-  selectedLinkTitle: "",
 };
 
 const linkSlice = createSlice({
   name: "link",
   initialState,
-  reducers: {
-    setSelectedLink: (state, action) => {
-      state.selectedLinkUrl = action?.payload.linkUrl;
-      state.selectedLinkId = action?.payload.linkId;
-      state.selectedLinkTitle = action?.payload.linkTitle;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(getLinkList.pending, (state, action) => {
@@ -82,5 +70,5 @@ const linkSlice = createSlice({
   },
 });
 
-export const { setSelectedLink } = linkSlice.actions;
+export const {} = linkSlice.actions;
 export default linkSlice.reducer;
