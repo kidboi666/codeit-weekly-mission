@@ -1,9 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import * as S from "../styles/folderPage.styled";
-import Search from "../components/Search/Search";
-import AddLink from "../components/AddLink/AddLink";
-import Folder from "../components/Folder/Folder";
-import Card from "../components/Card/Card";
+import * as S from "@/styles/folderPage.styled";
+import Search from "@/components/Search/Search";
+import AddLink from "@/components/AddLink/AddLink";
+import Folder from "@/components/Folder/Folder";
 import AppLayout from "@/components/App/AppLayout";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import { useRouter } from "next/router";
@@ -11,6 +10,7 @@ import { getFolder } from "@/redux/actions/folder";
 import { Link } from "@/services/types";
 import { getAllLinkList } from "@/redux/actions/link";
 import { COMBINED_FOLDER_NAME } from "@/constants/strings";
+import FolderLinkList from "./[id]";
 
 const FolderPage = () => {
   const [isInterSecting, setInterSecting] = useState(false);
@@ -79,23 +79,12 @@ const FolderPage = () => {
           />
         </S.FolderSection>
         <S.LinkSection>
-          {noSearchResult ? (
-            <div>검색 결과가 없습니다.</div>
-          ) : linkStorage?.length === 0 ? (
-            <div>저장된 링크가 없습니다.</div>
-          ) : (
-            linkStorage?.map((v) => (
-              <div key={v.id}>
-                <Card
-                  link={v}
-                  currentFolder={currentFolder}
-                  setCurrentFolder={setCurrentFolder}
-                  currentFolderId={currentFolderId}
-                  setCurrentFolderId={setCurrentFolderId}
-                />
-              </div>
-            ))
-          )}
+          <FolderLinkList
+            currentFolder={currentFolder}
+            setCurrentFolder={setCurrentFolder}
+            currentFolderId={currentFolderId}
+            setCurrentFolderId={setCurrentFolderId}
+          />
         </S.LinkSection>
       </S.FolderPageLayout>
       <S.FooterAddLink $animation={isInterSecting}>

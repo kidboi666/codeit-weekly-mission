@@ -50,7 +50,7 @@ const LandingPage = () => {
             <h1>쉽게 저장하고 관리해 보세요.</h1>
           </S.IntroWrap>
           <S.LinkBox>
-            <Link href={isLoggedIn ? "/folderPage" : "/signUp"}>
+            <Link href={isLoggedIn ? "/folder" : "/signup"}>
               <Button variant='default' text='링크 추가하기' width='310px' />
             </Link>
           </S.LinkBox>

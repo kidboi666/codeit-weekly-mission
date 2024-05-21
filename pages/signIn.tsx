@@ -18,7 +18,7 @@ interface Inputs {
   password: string;
 }
 
-const SignIn = () => {
+const SignInPage = () => {
   const { isLoggedIn } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -40,7 +40,7 @@ const SignIn = () => {
   };
 
   useEffect(() => {
-    if (isLoggedIn) router.push("/folderPage");
+    if (isLoggedIn) router.push("/folder");
   }, [isLoggedIn]);
 
   return (
@@ -54,7 +54,7 @@ const SignIn = () => {
           </Link>
           <p>
             회원이 아니신가요?
-            <Link href='/signUp'>
+            <Link href='/signup'>
               <Button variant='underBar' text='회원 가입하기' />
             </Link>
           </p>
@@ -98,4 +98,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignInPage;

@@ -1,6 +1,7 @@
+import { FieldError } from "react-hook-form";
 import styled from "styled-components";
 
-export const Input = styled.input<{ $variant?: string; width?: string; $error?: string }>`
+export const Input = styled.input<{ $variant?: string; width?: string; $error?: FieldError }>`
   ${({ width }) => `width: ${width}`};
   position: relative;
   padding: 15px 15px 15px 15px;

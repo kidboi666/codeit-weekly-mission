@@ -25,7 +25,7 @@ const Nav = () => {
   };
 
   useEffect(() => {
-    if (pathname === "/folderPage") return;
+    if (pathname === "/folder") return;
 
     const scrollEvent = setInterval(() => {
       window.addEventListener("scroll", handleNavigation);
@@ -57,7 +57,7 @@ const Nav = () => {
             </S.ImageBox>
           </>
         ) : (
-          <Link href='/signIn'>
+          <Link href='/signin'>
             <Button variant='default' text='로그인' width='88px' />
           </Link>
         )}

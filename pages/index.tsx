@@ -1,5 +1,5 @@
 import AppLayout from "@/components/App/AppLayout";
-import LandingPage from "./landingPage";
+import LandingPage from "./landing";
 
 const Home = () => {
   return (

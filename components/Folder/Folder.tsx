@@ -7,6 +7,8 @@ import * as S from "./Folder.styled";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import { FolderList } from "@/services/types";
 import { openModal } from "@/redux/reducers/modal";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 interface FolderProps {
   currentFolder: string;
@@ -17,42 +19,47 @@ interface FolderProps {
 
 const Folder = ({ currentFolder, setCurrentFolder, currentFolderId, setCurrentFolderId }: FolderProps) => {
   const { data } = useAppSelector((state) => state.folder);
-  const userId = useAppSelector((state) => state.auth.userInfo.id);
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
-  const handleFetchLinkList = (folderItem: FolderList) => {
-    dispatch(getLinkList({ userId: userId, folderId: folderItem.id }));
-    setCurrentFolder(folderItem.name);
-    setCurrentFolderId(folderItem.id);
+  const handleFetchLinkList = (folderId: number) => {
+    // router.push(`/folder/${folderId}`);
+    // dispatch(getLinkList({ userId: userId, folderId: folderItem.id }));
+    // setCurrentFolder(folderItem.name);
+    // setCurrentFolderId(folderItem.id);
   };
 
   const handleFetchAllLinkList = () => {
-    dispatch(getAllLinkList(userId));
-    setCurrentFolder(COMBINED_FOLDER_NAME);
+    // router.push("/folder/");
+    // dispatch(getAllLinkList(userId));
+    // setCurrentFolder(COMBINED_FOLDER_NAME);
   };
 
-  useEffect(() => {
-    handleFetchAllLinkList();
-  }, []);
+  // useEffect(() => {
+  //   handleFetchAllLinkList();
+  // }, []);
 
   return (
     <S.FolderLayout>
       <S.FolderContainer>
         <S.FolderBox>
-          <Button
-            variant='folderButton'
-            onClick={() => handleFetchAllLinkList()}
-            text={COMBINED_FOLDER_NAME}
-            selected={currentFolder}
-          />
-          {data.map((folderItem) => (
+          <Link href='/folder/'>
             <Button
-              key={folderItem.id}
               variant='folderButton'
-              onClick={() => handleFetchLinkList(folderItem)}
-              text={folderItem.name}
+              onClick={() => handleFetchAllLinkList()}
+              text={COMBINED_FOLDER_NAME}
               selected={currentFolder}
             />
+          </Link>
+          {data.map((folderItem) => (
+            <Link key={folderItem.id} href={`/folder/${folderItem.id}`}>
+              <Button
+                variant='folderButton'
+                onClick={() => handleFetchLinkList(folderItem.id)}
+                text={folderItem.name}
+                selected={currentFolder}
+              />
+            </Link>
           ))}
           <div onClick={() => dispatch(openModal({ type: "addFolder" }))}>
             <Button variant='addFolder' text='폴더 추가 +' />
