@@ -6,26 +6,21 @@ import { Star, Kebab } from "@/components";
 import { Link } from "@/services/types";
 import Image from "next/image";
 import useToggle from "@/hooks/useToggle";
+import { CurrentFolderType } from "@/pages/folder/[[...folderId]]";
 
 interface CardProps {
   linkList: Link[] | string;
-  currentFolder?: string;
-  setCurrentFolder?: React.Dispatch<React.SetStateAction<string>>;
-  currentFolderId?: number;
-  setCurrentFolderId?: React.Dispatch<React.SetStateAction<number>>;
+  currentFolder?: CurrentFolderType;
+  setCurrentFolder?: React.Dispatch<React.SetStateAction<CurrentFolderType>>;
 }
 
-const Card = ({
-  linkList,
-  currentFolder,
-  setCurrentFolder,
-  currentFolderId,
-  setCurrentFolderId,
-}: CardProps) => {
+const Card = ({ linkList, currentFolder, setCurrentFolder }: CardProps) => {
   const [showKebabMenu, toggle] = useToggle();
 
   if (typeof linkList === "string") {
     return <div>{linkList}</div>;
+  } else if (linkList.length === 0) {
+    return <div>해당되는 링크가 없습니다.</div>;
   }
 
   const handleMouseLeave = () => {
@@ -54,8 +49,6 @@ const Card = ({
                 linkUrl={link.url}
                 currentFolder={currentFolder}
                 setCurrentFolder={setCurrentFolder}
-                currentFolderId={currentFolderId}
-                setCurrentFolderId={setCurrentFolderId}
                 showKebabMenu={showKebabMenu}
                 toggle={toggle}
               />

@@ -12,39 +12,39 @@ import { COMBINED_FOLDER_NAME } from "@/constants/strings";
 
 const AddLinkToFolder = ({ title, text, variant }: ModalProps) => {
   const [selectedFolderForAddLink, setSelectedFolderForAddLink] = useState({
-    folderName: "",
-    folderId: 0,
+    name: "",
+    id: 0,
   });
   const { data } = useAppSelector((state) => state.folder);
   const { linkUrl, setLinkUrl } = useAppSelector((state) => state.modal.props) || {};
-  const { linkId, currentFolderId, currentFolder } = useAppSelector((state) => state.modal.props) || {};
+  const { linkId, currentFolder } = useAppSelector((state) => state.modal.props) || {};
   const { userInfo } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
 
   const handleSelectedFolder = (folderItem: FolderList) => {
     setSelectedFolderForAddLink({
-      folderName: folderItem.name,
-      folderId: folderItem.id,
+      name: folderItem.name,
+      id: folderItem.id,
     });
   };
 
   const onClick = async () => {
-    await dispatch(postLink({ url: linkUrl, folderId: selectedFolderForAddLink.folderId }));
+    await dispatch(postLink({ url: linkUrl, folderId: selectedFolderForAddLink.id }));
     dispatch(closeModal());
 
     if (linkId) {
       await dispatch(deleteLink(linkId));
-      await dispatch(getLinkList({ userId: userInfo.id, folderId: currentFolderId }));
+      await dispatch(getLinkList({ userId: userInfo.id, folderId: currentFolder.id }));
       return dispatch(openToast({ type: "moveLink" }));
     }
 
     setLinkUrl("");
     dispatch(openToast("addLink"));
 
-    if (currentFolder === COMBINED_FOLDER_NAME) {
+    if (currentFolder.name === COMBINED_FOLDER_NAME) {
       return dispatch(getAllLinkList(userInfo.id));
     }
-    dispatch(getLinkList({ userId: userInfo.id, folderId: currentFolderId || selectedFolderForAddLink.folderId }));
+    dispatch(getLinkList({ userId: userInfo.id, folderId: currentFolder.id || selectedFolderForAddLink.id }));
   };
 
   useEffect(() => {
@@ -56,16 +56,16 @@ const AddLinkToFolder = ({ title, text, variant }: ModalProps) => {
       <h3>{title}</h3>
       <S.FolderList>
         {data?.map((folder) => {
-          if (folder.id === currentFolderId) return null;
+          if (folder.id === currentFolder.id) return null;
           return (
             <S.FolderListItem
               key={folder.id}
-              $isActive={folder.name === selectedFolderForAddLink.folderName}
+              $isActive={folder.name === selectedFolderForAddLink.name}
               onClick={() => handleSelectedFolder(folder)}
             >
               <S.ItemName>{folder.name}</S.ItemName>
               <S.ItemLinkCount>{folder.link.count}개 링크</S.ItemLinkCount>
-              <S.CheckIcon $isActive={folder.name === selectedFolderForAddLink.folderName}>✓</S.CheckIcon>
+              <S.CheckIcon $isActive={folder.name === selectedFolderForAddLink.name}>✓</S.CheckIcon>
             </S.FolderListItem>
           );
         })}

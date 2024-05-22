@@ -28,9 +28,7 @@ const FolderPage = () => {
   };
 
   const getLinkFetch = () => {
-    folderId
-      ? dispatch(getLinkList({ userId, folderId: Number(folderId) }))
-      : dispatch(getAllLinkList(userId));
+    folderId ? dispatch(getLinkList({ userId, folderId: Number(folderId) })) : dispatch(getAllLinkList(userId));
   };
 
   useEffect(() => {
@@ -48,7 +46,11 @@ const FolderPage = () => {
         Search={<Search setSearchResult={setSearchResult} />}
         Folder={<Folder currentFolder={currentFolder} setCurrentFolder={setCurrentFolder} />}
         Card={
-          searchResult.length >= 1 ? <Card linkList={searchResult} /> : <Card linkList={data} />
+          searchResult.length >= 1 ? (
+            <Card linkList={searchResult} />
+          ) : (
+            <Card linkList={data} currentFolder={currentFolder} setCurrentFolder={setCurrentFolder} />
+          )
         }
       />
     </AppLayout>

@@ -6,34 +6,23 @@ import Image from "next/image";
 import { useAppDispatch } from "@/hooks/useApp";
 import { openModal } from "@/redux/reducers/modal";
 import { COMBINED_FOLDER_NAME } from "@/constants/strings";
+import { CurrentFolderType } from "@/pages/folder/[[...folderId]]";
 
 interface KebabProps {
   linkId: number;
   linkTitle: string;
   linkUrl: string;
-  currentFolder?: string;
-  setCurrentFolder?: React.Dispatch<React.SetStateAction<string>>;
-  currentFolderId?: number;
-  setCurrentFolderId?: React.Dispatch<React.SetStateAction<number>>;
+  currentFolder?: CurrentFolderType;
+  setCurrentFolder?: React.Dispatch<React.SetStateAction<CurrentFolderType>>;
   toggle: () => void;
   showKebabMenu: boolean;
 }
 
-const Kebab = ({
-  linkId,
-  linkTitle,
-  linkUrl,
-  currentFolder,
-  setCurrentFolder,
-  currentFolderId,
-  setCurrentFolderId,
-  toggle,
-  showKebabMenu,
-}: KebabProps) => {
+const Kebab = ({ linkId, linkTitle, linkUrl, currentFolder, setCurrentFolder, toggle, showKebabMenu }: KebabProps) => {
   const dispatch = useAppDispatch();
-  const currentLocation = useRouter();
+  const router = useRouter();
 
-  if (currentLocation.pathname !== "/folderPage" || currentFolder === COMBINED_FOLDER_NAME) {
+  if (!router.pathname.includes("folder") || currentFolder?.name === COMBINED_FOLDER_NAME) {
     return null;
   }
 
@@ -42,16 +31,16 @@ const Kebab = ({
     toggle();
   };
 
-  const onClickDeleteButton = () => {
+  const deleteLink = () => {
     dispatch(
       openModal({
         type: "deleteLink",
-        props: { linkId, linkTitle, currentFolder, currentFolderId },
+        props: { linkId, linkTitle, currentFolder },
       }),
     );
   };
 
-  const onClickAddLinkToFolderButton = () => {
+  const addLinkToFolder = () => {
     dispatch(
       openModal({
         type: "addLinkToFolder",
@@ -60,8 +49,6 @@ const Kebab = ({
           linkUrl,
           currentFolder,
           setCurrentFolder,
-          currentFolderId,
-          setCurrentFolderId,
         },
       }),
     );
@@ -72,10 +59,10 @@ const Kebab = ({
       <Image src={kebobIcon} alt='케밥 버튼 아이콘' style={{ width: "100%" }} />
       {showKebabMenu && (
         <S.ModalLayout>
-          <button type='button' onClick={onClickDeleteButton}>
+          <button type='button' onClick={deleteLink}>
             삭제하기
           </button>
-          <button type='button' onClick={onClickAddLinkToFolderButton}>
+          <button type='button' onClick={addLinkToFolder}>
             폴더 이동
           </button>
         </S.ModalLayout>
