@@ -4,8 +4,7 @@ import googleIcon from "@/assets/icons/google_icon.svg";
 import facebookIcon from "@/assets/icons/facebook_icon.svg";
 import * as S from "@/styles/signUp.styled";
 import Link from "next/link";
-import Button from "@/components/Button/Button";
-import Input from "@/components/Input/Input";
+import { Input, Button } from "@/components";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import { checkEmailAccess, signUpAccess, userInfoAccess } from "@/redux/actions/auth";
@@ -94,6 +93,7 @@ const SignUpPage = () => {
                   required: { value: true, message: INPUT_MSG.inputPw },
                   maxLength: { value: 20, message: INPUT_MSG.pwLength },
                   pattern: { value: ALPHANUMERIC_REGX, message: INPUT_MSG.wrongPwForm },
+                  deps: ["passwordCheck"],
                 }}
                 render={({ field, fieldState: { error } }) => (
                   <Input {...field} type='password' placeholder='******' error={error} />

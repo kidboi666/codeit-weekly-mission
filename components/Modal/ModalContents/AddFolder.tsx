@@ -30,7 +30,6 @@ const AddFolder = ({ title, text, variant }: ModalProps) => {
       dispatch(closeModal());
       if (res.meta.requestStatus === "fulfilled") {
         dispatch(openToast("addFolder"));
-        await dispatch(getFolder(userInfo.id));
       }
     }
   };

@@ -1,29 +1,27 @@
-import { useEffect, useRef, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import * as S from "@/styles/folderPage.styled";
-import Search from "@/components/Search/Search";
-import AddLink from "@/components/AddLink/AddLink";
-import Folder from "@/components/Folder/Folder";
-import AppLayout from "@/components/App/AppLayout";
+import { Folder, AddLink, Search, AppLayout } from "@/components";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
-import { useRouter } from "next/router";
-import { getFolder } from "@/redux/actions/folder";
 import { Link } from "@/services/types";
+import { getFolder } from "@/redux/actions/folder";
 import { getAllLinkList } from "@/redux/actions/link";
 import { COMBINED_FOLDER_NAME } from "@/constants/strings";
-import FolderLinkList from "./[id]";
+import FolderLinkList from "./[folderId]";
 
-const FolderPage = () => {
+interface FolderPageProps {
+  children: ReactNode;
+}
+
+const FolderPage = ({ children }: FolderPageProps) => {
   const [isInterSecting, setInterSecting] = useState(false);
   const [linkStorage, setLinkStorage] = useState<Link[]>([]);
   const [searchResult, setSearchResult] = useState<Link[]>([]);
   const [noSearchResult, setNoSearchResult] = useState(false);
   const [currentFolder, setCurrentFolder] = useState("");
   const [currentFolderId, setCurrentFolderId] = useState(0);
-  const { userInfo } = useAppSelector((state) => state.auth);
+  const userId = useAppSelector((state) => state.auth.userInfo.id);
   const linkData = useAppSelector((state) => state.link.data);
-  const folderDataLength = useAppSelector((state) => state.folder.data.length);
   const dispatch = useAppDispatch();
-  const router = useRouter();
   const targetRef = useRef<HTMLDivElement>();
 
   const callback = (entries: IntersectionObserverEntry[]) => {
@@ -54,12 +52,17 @@ const FolderPage = () => {
   }, [linkData, searchResult]);
 
   useEffect(() => {
-    const token = localStorage?.getItem("accessToken");
-    if (!token) router.push("/");
-    dispatch(getFolder(userInfo.id));
-    dispatch(getAllLinkList(userInfo.id));
+    dispatch(getFolder(userId));
+    dispatch(getAllLinkList(userId));
     setCurrentFolder(COMBINED_FOLDER_NAME);
-  }, [userInfo, folderDataLength]);
+  }, [userId]);
+
+  useEffect(() => {
+    if (searchResult.length >= 1) {
+      return setLinkStorage(searchResult);
+    }
+    setLinkStorage(linkData);
+  }, [linkData, searchResult]);
 
   return (
     <AppLayout>
@@ -79,12 +82,7 @@ const FolderPage = () => {
           />
         </S.FolderSection>
         <S.LinkSection>
-          <FolderLinkList
-            currentFolder={currentFolder}
-            setCurrentFolder={setCurrentFolder}
-            currentFolderId={currentFolderId}
-            setCurrentFolderId={setCurrentFolderId}
-          />
+          <FolderLinkList linkStorage={linkStorage} />
         </S.LinkSection>
       </S.FolderPageLayout>
       <S.FooterAddLink $animation={isInterSecting}>

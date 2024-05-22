@@ -1,7 +1,5 @@
-import Search from "@/components/Search/Search";
-import Card from "@/components/Card/Card";
+import { Search, Card, AppLayout } from "@/components";
 import * as S from "@/styles/sharedPage.styled";
-import AppLayout from "@/components/App/AppLayout";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Link } from "@/services/types";
@@ -68,9 +66,9 @@ const SharedPage = () => {
             <div>해당되는 링크가 없습니다.</div>
           ) : (
             linkStorage?.map((v) => (
-              <div key={v.id}>
+              <ul key={v.id}>
                 <Card link={v} />
-              </div>
+              </ul>
             ))
           )}
         </S.LinkSection>

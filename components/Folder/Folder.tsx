@@ -1,13 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { COMBINED_FOLDER_NAME } from "@/constants/strings";
-import { getAllLinkList, getLinkList } from "@/redux/actions/link";
-import FolderOptionButton from "@/components/FolderOptionButton/FolderOptionButton";
-import Button from "../Button/Button";
+import { FolderOptionButton, Button } from "@/components";
 import * as S from "./Folder.styled";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
-import { FolderList } from "@/services/types";
 import { openModal } from "@/redux/reducers/modal";
-import { useRouter } from "next/router";
 import Link from "next/link";
 
 interface FolderProps {
@@ -20,33 +16,24 @@ interface FolderProps {
 const Folder = ({ currentFolder, setCurrentFolder, currentFolderId, setCurrentFolderId }: FolderProps) => {
   const { data } = useAppSelector((state) => state.folder);
   const dispatch = useAppDispatch();
-  const router = useRouter();
 
-  const handleFetchLinkList = (folderId: number) => {
-    // router.push(`/folder/${folderId}`);
-    // dispatch(getLinkList({ userId: userId, folderId: folderItem.id }));
-    // setCurrentFolder(folderItem.name);
-    // setCurrentFolderId(folderItem.id);
+  const selectFolder = (folderName: string, folderId: number) => {
+    setCurrentFolder(folderName);
+    setCurrentFolderId(folderId);
   };
 
-  const handleFetchAllLinkList = () => {
-    // router.push("/folder/");
-    // dispatch(getAllLinkList(userId));
-    // setCurrentFolder(COMBINED_FOLDER_NAME);
+  const selectCombinedFolder = () => {
+    setCurrentFolder(COMBINED_FOLDER_NAME);
   };
-
-  // useEffect(() => {
-  //   handleFetchAllLinkList();
-  // }, []);
 
   return (
     <S.FolderLayout>
       <S.FolderContainer>
         <S.FolderBox>
-          <Link href='/folder/'>
+          <Link href='/folder'>
             <Button
               variant='folderButton'
-              onClick={() => handleFetchAllLinkList()}
+              onClick={() => selectCombinedFolder()}
               text={COMBINED_FOLDER_NAME}
               selected={currentFolder}
             />
@@ -55,7 +42,7 @@ const Folder = ({ currentFolder, setCurrentFolder, currentFolderId, setCurrentFo
             <Link key={folderItem.id} href={`/folder/${folderItem.id}`}>
               <Button
                 variant='folderButton'
-                onClick={() => handleFetchLinkList(folderItem.id)}
+                onClick={() => selectFolder(folderItem.name, folderItem.id)}
                 text={folderItem.name}
                 selected={currentFolder}
               />

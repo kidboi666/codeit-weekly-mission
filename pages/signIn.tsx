@@ -1,8 +1,8 @@
 import facebookIcon from "@/assets/icons/facebook_icon.svg";
 import googleIcon from "@/assets/icons/google_icon.svg";
 import logo from "@/assets/icons/logo.svg";
-import Button from "@/components/Button/Button";
-import Input from "@/components/Input/Input";
+import { Input, Button } from "@/components";
+import { ALPHANUMERIC_REGX, EMAIL_REGX, INPUT_MSG } from "@/constants/strings";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import { loginAccess, userInfoAccess } from "@/redux/actions/auth";
 import { openToast } from "@/redux/reducers/toast";
@@ -66,7 +66,14 @@ const SignInPage = () => {
               <Controller
                 name='email'
                 control={control}
-                render={({ field }) => <Input {...field} type='email' placeholder='codeit@codeit.kr' />}
+                rules={{
+                  required: { value: true, message: INPUT_MSG.inputEmail },
+                  maxLength: { value: 30, message: INPUT_MSG.emailLength },
+                  pattern: { value: EMAIL_REGX, message: INPUT_MSG.wrongEmailForm },
+                }}
+                render={({ field, fieldState: { error } }) => (
+                  <Input {...field} type='email' placeholder='codeit@codeit.kr' error={error} />
+                )}
               />
             </S.EmailContainer>
             <S.PasswordContainer>
@@ -74,7 +81,14 @@ const SignInPage = () => {
               <Controller
                 name='password'
                 control={control}
-                render={({ field }) => <Input {...field} type='password' placeholder='******' />}
+                rules={{
+                  required: { value: true, message: INPUT_MSG.inputPw },
+                  maxLength: { value: 20, message: INPUT_MSG.pwLength },
+                  pattern: { value: ALPHANUMERIC_REGX, message: INPUT_MSG.wrongPwForm },
+                }}
+                render={({ field, fieldState: { error } }) => (
+                  <Input {...field} type='password' placeholder='******' error={error} />
+                )}
               />
             </S.PasswordContainer>
             <Button variant='default' type='submit' text='로그인' />

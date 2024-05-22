@@ -1,6 +1,6 @@
 import { InputHTMLAttributes, useEffect, useState } from "react";
 import * as S from "./Input.styled";
-import Eye from "../Eye/Eye";
+import { Eye } from "@/components";
 import { FieldError } from "react-hook-form";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {

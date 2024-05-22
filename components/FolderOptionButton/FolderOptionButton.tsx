@@ -1,6 +1,6 @@
-import shareIcon from "../../assets/icons/share.svg";
-import penIcon from "../../assets/icons/pen.svg";
-import deleteIcon from "../../assets/icons/delete.svg";
+import shareIcon from "@/assets/icons/share.svg";
+import penIcon from "@/assets/icons/pen.svg";
+import deleteIcon from "@/assets/icons/delete.svg";
 import * as S from "./FolderOptionButton.styled";
 import React from "react";
 import Image from "next/image";

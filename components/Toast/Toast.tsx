@@ -2,14 +2,12 @@ import * as S from "./Toast.styled";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import { closeToast, putContents } from "@/redux/reducers/toast";
 import { TOAST_TYPES } from "./ToastTypes";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Toast = () => {
   const [isAnimation, setAnimation] = useState(false);
   const { contents, isOpen } = useAppSelector((state) => state.toast);
   const dispatch = useAppDispatch();
-
-  if (!isOpen) return null;
 
   const findToast = TOAST_TYPES.find((toast) => {
     if (toast.type === contents.type) {
@@ -23,15 +21,19 @@ const Toast = () => {
     setAnimation(false);
   };
 
-  setTimeout(() => {
-    closeButtonClickHandler();
-  }, 3000);
+  useEffect(() => {
+    setTimeout(() => {
+      closeButtonClickHandler();
+    }, 3000);
 
-  setTimeout(() => {
-    if (isOpen) {
-      setAnimation(true);
-    }
-  }, 100);
+    setTimeout(() => {
+      if (isOpen) {
+        setAnimation(true);
+      }
+    }, 100);
+  }, []);
+
+  if (!isOpen) return null;
 
   return (
     <S.ToastLayout $isAnimation={isAnimation}>
