@@ -19,12 +19,12 @@ const AddLink = ({ className }: AddLinkProps) => {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (data.length === 0) return dispatch(openToast("firstAction"));
+    if (data.length === 0) return dispatch(openToast({ type: "firstAction" }));
     if (linkUrl) {
       dispatch(openModal({ type: "addLinkToFolder", props: { linkUrl, setLinkUrl } }));
       return;
     }
-    dispatch(openToast("nothingValue"));
+    dispatch(openToast({ type: "nothingValue" }));
   };
 
   const onChangeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {

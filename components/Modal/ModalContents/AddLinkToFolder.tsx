@@ -39,9 +39,9 @@ const AddLinkToFolder = ({ title, text, variant }: ModalProps) => {
     }
 
     setLinkUrl("");
-    dispatch(openToast("addLink"));
+    dispatch(openToast({ type: "addLink" }));
 
-    if (currentFolder.name === COMBINED_FOLDER_NAME) {
+    if (currentFolder?.name === COMBINED_FOLDER_NAME) {
       return dispatch(getAllLinkList(userInfo.id));
     }
     dispatch(getLinkList({ userId: userInfo.id, folderId: currentFolder.id || selectedFolderForAddLink.id }));
