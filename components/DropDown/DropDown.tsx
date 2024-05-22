@@ -1,4 +1,3 @@
-import * as S from "./DropDown.styled";
 import { DROPDOWN_COMPONENTS, DropDownType } from "./DropDownType";
 
 interface DropDownProps {
@@ -6,9 +5,10 @@ interface DropDownProps {
   props?: Record<string, any>;
   isOpen: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
-const DropDown = ({ variant, props, isOpen, setOpen }: DropDownProps) => {
+const DropDown = ({ variant, props, isOpen, setOpen, onClick }: DropDownProps) => {
   const findDropDown = DROPDOWN_COMPONENTS.get(variant);
 
   if (!isOpen) return null;
@@ -16,9 +16,9 @@ const DropDown = ({ variant, props, isOpen, setOpen }: DropDownProps) => {
   const renderDropDown = findDropDown ? findDropDown({ ...props }) : "";
 
   return (
-    <S.Background onClick={() => setOpen(false)}>
-      <S.DropDownLayout onClick={(e) => e.stopPropagation()}>{renderDropDown}</S.DropDownLayout>
-    </S.Background>
+    <div onClick={() => setOpen(false)}>
+      <div onClick={(e) => e.stopPropagation()}>{renderDropDown}</div>
+    </div>
   );
 };
 

@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const AccountInfoLayout = styled.div`
   position: absolute;
-  top: 55px;
-  right: 50px;
+  top: 30px;
+  right: 0;
   width: 250px;
   border-radius: 10px;
   background-color: var(--gray5-color);

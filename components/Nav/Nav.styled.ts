@@ -37,11 +37,11 @@ export const LoginLayout = styled.div`
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  gap: 10px;
 
   > p {
     text-decoration: none;
     color: #000;
+    margin-right: 10px;
 
     @media (max-width: 767px) {
       display: none;

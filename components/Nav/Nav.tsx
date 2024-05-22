@@ -31,28 +31,30 @@ const Nav = () => {
   }, [pathname]);
 
   return (
-    <S.HeaderLayout $isShadow={isShadow}>
-      <S.LogoBox>
-        <Link href='/'>
-          <Image src={logo} alt='Linkbrary' style={{ width: "100%" }} />
-        </Link>
-      </S.LogoBox>
-      <S.LoginLayout>
-        {isLoggedIn ? (
-          <>
-            <p>{userInfo?.email}</p>
-            <S.ImageBox onClick={() => setOpen((prev) => !prev)}>
-              <Image fill src={userInfo?.imageSource} alt='프로필 이미지' />
-            </S.ImageBox>
-          </>
-        ) : (
-          <Link href='/signin'>
-            <Button variant='default' text='로그인' width='88px' />
+    <>
+      <S.HeaderLayout $isShadow={isShadow} onMouseLeave={() => setOpen(false)}>
+        <S.LogoBox>
+          <Link href='/'>
+            <Image src={logo} alt='Linkbrary' style={{ width: "100%" }} />
           </Link>
-        )}
-      </S.LoginLayout>
-      {isOpen && <DropDown variant='accountInfo' setOpen={setOpen} isOpen={isOpen} />}
-    </S.HeaderLayout>
+        </S.LogoBox>
+        <S.LoginLayout>
+          {isLoggedIn ? (
+            <>
+              <p>{userInfo?.email}</p>
+              <S.ImageBox onClick={() => setOpen((prev) => !prev)}>
+                <Image fill src={userInfo?.imageSource} alt='프로필 이미지' />
+              </S.ImageBox>
+            </>
+          ) : (
+            <Link href='/signin'>
+              <Button variant='default' text='로그인' width='88px' />
+            </Link>
+          )}
+          <DropDown variant='accountInfo' setOpen={setOpen} isOpen={isOpen} />
+        </S.LoginLayout>
+      </S.HeaderLayout>
+    </>
   );
 };
 
