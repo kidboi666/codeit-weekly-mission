@@ -24,14 +24,23 @@ const FolderPage = () => {
   const router = useRouter();
   const { folderId } = router.query;
 
-  useEffect(() => {
+  const getFolderFetch = () => {
     dispatch(getFolder(userId));
-    if (folderId) {
-      dispatch(getLinkList({ userId, folderId: Number(folderId) }));
-    } else {
-      dispatch(getAllLinkList(userId));
-    }
-  }, [userId, router]);
+  };
+
+  const getLinkFetch = () => {
+    folderId
+      ? dispatch(getLinkList({ userId, folderId: Number(folderId) }))
+      : dispatch(getAllLinkList(userId));
+  };
+
+  useEffect(() => {
+    if (userId) getFolderFetch();
+  }, [userId]);
+
+  useEffect(() => {
+    if (userId) getLinkFetch();
+  }, [router, userId]);
 
   return (
     <AppLayout>

@@ -30,7 +30,7 @@ const Card = ({
 
   return (
     <>
-      {linkList.map((link) => (
+      {linkList?.map((link) => (
         <S.CardLayout key={link.id} onMouseLeave={handleMouseLeave}>
           <S.CardLinkContainer href={link.url} target='_blank' rel='noreferrer'>
             <S.CardImgContainer>
