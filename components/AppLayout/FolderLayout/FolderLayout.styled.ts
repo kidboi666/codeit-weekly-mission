@@ -17,6 +17,15 @@ export const HeaderSection = styled.div<{ ref?: any }>`
   @media (max-width: 767px) {
     display: block;
   }
+  > ul {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 0 60px 0;
+  }
 `;
 
 export const FooterAddLink = styled.div<{ $animation: boolean }>`

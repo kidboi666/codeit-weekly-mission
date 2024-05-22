@@ -56,7 +56,7 @@ const AddLinkToFolder = ({ title, text, variant }: ModalProps) => {
       <h3>{title}</h3>
       <S.FolderList>
         {data?.map((folder) => {
-          if (folder.id === currentFolder.id) return null;
+          if (folder.id === currentFolder?.id) return null;
           return (
             <S.FolderListItem
               key={folder.id}

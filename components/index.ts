@@ -1,6 +1,7 @@
 import AddLink from "./AddLink/AddLink";
 import AppLayout from "./AppLayout/AppLayout";
 import FolderLayout from "./AppLayout/FolderLayout/FolderLayout";
+import SharedLayout from "./AppLayout/SharedLayout/SharedLayout";
 import Button from "./Button/Button";
 import Card from "./Card/Card";
 import CloseButton from "./CloseButton/CloseButton";
@@ -14,6 +15,7 @@ import KakaoButton from "./KakaoButton/KakaoButton";
 import Kebab from "./Kebab/Kebab";
 import Modal from "./Modal/Modal";
 import Nav from "./Nav/Nav";
+import Owner from "./Owner/Owner";
 import Search from "./Search/Search";
 import Spinner from "./Spinner/Spinner";
 import Star from "./Star/Star";
@@ -35,9 +37,11 @@ export {
   Kebab,
   Modal,
   Nav,
+  Owner,
   Search,
   Spinner,
   Star,
   Toast,
   FolderLayout,
+  SharedLayout,
 };

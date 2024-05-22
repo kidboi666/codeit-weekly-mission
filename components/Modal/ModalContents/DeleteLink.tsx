@@ -13,20 +13,18 @@ const DeleteLink = ({ title, text, variant }: ModalProps) => {
 
   const onClick = async () => {
     if (linkId) {
-      const res = await dispatch(deleteLink(linkId));
+      await dispatch(deleteLink(linkId));
       dispatch(closeModal());
-      if (res.meta.requestStatus === "fulfilled") {
-        dispatch(openToast({ type: "deleteLink" }));
-        if (currentFolder === COMBINED_FOLDER_NAME) {
-          return dispatch(getAllLinkList(userInfo.id));
-        }
-        dispatch(
-          getLinkList({
-            userId: userInfo.id,
-            folderId: currentFolder.id,
-          }),
-        );
+      dispatch(openToast({ type: "deleteLink" }));
+      if (currentFolder === COMBINED_FOLDER_NAME) {
+        return dispatch(getAllLinkList(userInfo.id));
       }
+      dispatch(
+        getLinkList({
+          userId: userInfo.id,
+          folderId: currentFolder.id,
+        }),
+      );
     }
   };
 

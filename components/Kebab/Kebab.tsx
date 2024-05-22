@@ -22,7 +22,7 @@ const Kebab = ({ linkId, linkTitle, linkUrl, currentFolder, setCurrentFolder, to
   const dispatch = useAppDispatch();
   const router = useRouter();
 
-  if (!router.pathname.includes("folder") || currentFolder?.name === COMBINED_FOLDER_NAME) {
+  if (!router.pathname.includes("/folder") || currentFolder?.name === COMBINED_FOLDER_NAME) {
     return null;
   }
 
