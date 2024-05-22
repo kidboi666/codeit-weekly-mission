@@ -8,12 +8,11 @@ import { ModalProps } from "../ModalTypes";
 
 const DeleteFolder = ({ title, text, variant }: ModalProps) => {
   const { userInfo } = useAppSelector((state) => state.auth);
-  const { currentFolder, currentFolderId } = useAppSelector((state) => state.modal.props) || {};
-  console.log(currentFolderId);
+  const { currentFolder } = useAppSelector((state) => state.modal.props) || {};
   const dispatch = useAppDispatch();
 
   const onClick = async () => {
-    const res = await dispatch(deleteFolder(currentFolderId));
+    const res = await dispatch(deleteFolder(currentFolder.id));
     dispatch(closeModal());
     if (res.meta.requestStatus === "fulfilled") {
       dispatch(openToast({ type: "deleteFolder" }));
@@ -25,7 +24,7 @@ const DeleteFolder = ({ title, text, variant }: ModalProps) => {
   return (
     <>
       <h3>{title}</h3>
-      <h4>{currentFolder}</h4>
+      <h4>{currentFolder.name}</h4>
       <Button variant={variant} text={text} width='100%' onClick={onClick} />
     </>
   );
