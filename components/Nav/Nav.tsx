@@ -23,7 +23,7 @@ const Nav = () => {
   };
 
   useEffect(() => {
-    if (pathname === "/folder") return;
+    if (pathname.includes("folder")) return;
 
     const scrollEvent = setInterval(() => {
       window.addEventListener("scroll", handleNavigation);
