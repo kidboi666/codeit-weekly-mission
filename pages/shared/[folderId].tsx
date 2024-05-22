@@ -25,7 +25,9 @@ const SharedPage = () => {
       if (resFolder.meta.requestStatus === "fulfilled") {
         const resUser = await dispatch(getSharedUserInfo(resFolder.payload[0].userId));
         if (folderId && resUser) {
-          await dispatch(getLinkList({ userId: resFolder.payload[0].userId, folderId: Number(folderId) }));
+          await dispatch(
+            getLinkList({ userId: resFolder.payload[0].userId, folderId: Number(folderId) }),
+          );
         }
       }
     }
@@ -58,18 +60,14 @@ const SharedPage = () => {
             </li>
           </S.OwnerLayoutList>
         </S.HeaderBox>
-        <Search setSearchResult={setSearchResult} setNoSearchResult={setNoSearchResult} />
+        <Search setSearchResult={setSearchResult} />
         <S.LinkSection>
           {noSearchResult ? (
             <div>검색 결과가 없습니다.</div>
           ) : linkStorage?.length === 0 ? (
             <div>해당되는 링크가 없습니다.</div>
           ) : (
-            linkStorage?.map((v) => (
-              <ul key={v.id}>
-                <Card link={v} />
-              </ul>
-            ))
+            <Card linkList={linkStorage} />
           )}
         </S.LinkSection>
       </S.SharedPageLayout>

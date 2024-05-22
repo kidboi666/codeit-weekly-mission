@@ -8,10 +8,9 @@ import { Link } from "@/services/types";
 
 interface SearchProps {
   setSearchResult: React.Dispatch<React.SetStateAction<Link[]>>;
-  setNoSearchResult: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Search = ({ setSearchResult, setNoSearchResult }: SearchProps) => {
+const Search = ({ setSearchResult }: SearchProps) => {
   const [searchBody, setSearchBody] = useState("");
   const [searchKeyword, setSearchKeyword] = useState("");
   const { data } = useAppSelector((state) => state.link);
@@ -28,7 +27,6 @@ const Search = ({ setSearchResult, setNoSearchResult }: SearchProps) => {
       );
     });
 
-    setNoSearchResult(result.length === 0);
     setSearchResult(result);
     setSearchKeyword(searchBody);
     setSearchBody("");
@@ -41,7 +39,6 @@ const Search = ({ setSearchResult, setNoSearchResult }: SearchProps) => {
   useEffect(() => {
     setSearchKeyword("");
     setSearchResult([]);
-    setNoSearchResult(false);
   }, [data]);
 
   return (
@@ -57,7 +54,9 @@ const Search = ({ setSearchResult, setNoSearchResult }: SearchProps) => {
             onChange={onChangeInputValue}
             variant='search'
           />
-          {searchBody && <S.StyledCloseButton variant='searchInput' onClick={() => setSearchBody("")} />}
+          {searchBody && (
+            <S.StyledCloseButton variant='searchInput' onClick={() => setSearchBody("")} />
+          )}
         </S.Form>
       </S.FormBox>
       {searchKeyword && (

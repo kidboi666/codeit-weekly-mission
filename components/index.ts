@@ -1,5 +1,6 @@
 import AddLink from "./AddLink/AddLink";
-import AppLayout from "./AppLayout";
+import AppLayout from "./AppLayout/AppLayout";
+import FolderLayout from "./AppLayout/FolderLayout/FolderLayout";
 import Button from "./Button/Button";
 import Card from "./Card/Card";
 import CloseButton from "./CloseButton/CloseButton";
@@ -38,4 +39,5 @@ export {
   Spinner,
   Star,
   Toast,
+  FolderLayout,
 };

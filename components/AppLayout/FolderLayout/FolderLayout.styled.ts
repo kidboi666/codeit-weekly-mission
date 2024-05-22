@@ -19,6 +19,25 @@ export const HeaderSection = styled.div<{ ref?: any }>`
   }
 `;
 
+export const FooterAddLink = styled.div<{ $animation: boolean }>`
+  position: fixed;
+  z-index: 40;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  transform: translateY(109px);
+  padding: 20px 0;
+  background-color: var(--gray5-color);
+  box-shadow: 0 10px 30px rgba(188, 188, 188, 0.3);
+  transition: transform 1s;
+
+  ${({ $animation }) =>
+    $animation &&
+    `
+    transform: translateY(0);
+  `};
+`;
+
 export const SearchSection = styled.div`
   @media (max-width: 767px) {
     width: 100%;
@@ -53,16 +72,15 @@ export const FolderSection = styled.div`
     }
   }
 `;
-
-export const LinkSection = styled.ul<{ $noneLinks?: boolean }>`
+export const LinkSection = styled.ul`
   display: grid;
-  min-width: ${({ $noneLinks }) => ($noneLinks ? "" : "325px")};
-  grid-template-columns: ${({ $noneLinks }) => ($noneLinks ? "repeat(1, 1fr)" : "repeat(3, 340px)")};
+  min-width: 325px;
+  grid-template-columns: repeat(3, 340px);
   gap: 25px 20px;
   margin-bottom: 100px;
 
   @media (max-width: 1124px) {
-    grid-template-columns: ${({ $noneLinks }) => ($noneLinks ? "repeat(1, 1fr)" : "repeat(2, 340px)")};
+    grid-template-columns: repeat(2, 340px);
     gap: 25px 24px;
   }
 
@@ -77,23 +95,4 @@ export const LinkSection = styled.ul<{ $noneLinks?: boolean }>`
       padding: 0 32.5px;
     }
   }
-`;
-
-export const FooterAddLink = styled.div<{ $animation: boolean }>`
-  position: fixed;
-  z-index: 40;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  transform: translateY(109px);
-  padding: 20px 0;
-  background-color: var(--gray5-color);
-  box-shadow: 0 10px 30px rgba(188, 188, 188, 0.3);
-  transition: transform 1s;
-
-  ${({ $animation }) =>
-    $animation &&
-    `
-    transform: translateY(0);
-  `};
 `;
