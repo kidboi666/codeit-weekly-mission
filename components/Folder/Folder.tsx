@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { COMBINED_FOLDER_NAME } from "@/constants/strings";
 import { FolderOptionButton, Button } from "@/components";
 import * as S from "./Folder.styled";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import { openModal } from "@/redux/reducers/modal";
-import { CurrentFolderType } from "@/pages/folder/[[folderId]]";
+import { CurrentFolderType } from "@/pages/folder/[[...folderId]]";
 import { useRouter } from "next/router";
 
 interface FolderProps {
@@ -26,6 +26,10 @@ const Folder = ({ currentFolder, setCurrentFolder }: FolderProps) => {
     setCurrentFolder({ name: COMBINED_FOLDER_NAME, id: 0 });
     router.push(`/folder`, undefined, { shallow: true });
   };
+
+  useEffect(() => {
+    selectCombinedFolder();
+  }, []);
 
   return (
     <S.FolderLayout>
