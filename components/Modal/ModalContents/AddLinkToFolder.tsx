@@ -11,7 +11,7 @@ import { getFolder } from "@/redux/actions/folder";
 import { COMBINED_FOLDER_NAME } from "@/constants/strings";
 
 const AddLinkToFolder = ({ title, text, variant }: ModalProps) => {
-  const [selectedFolderForAddLink, setSelectedFolderForAddLink] = useState({
+  const [selectedFolder, setSelectedFolder] = useState({
     name: "",
     id: 0,
   });
@@ -22,15 +22,16 @@ const AddLinkToFolder = ({ title, text, variant }: ModalProps) => {
   const dispatch = useAppDispatch();
 
   const handleSelectedFolder = (folderItem: FolderList) => {
-    setSelectedFolderForAddLink({
+    setSelectedFolder({
       name: folderItem.name,
       id: folderItem.id,
     });
   };
 
   const onClick = async () => {
-    await dispatch(postLink({ url: linkUrl, folderId: selectedFolderForAddLink.id }));
+    const res = await dispatch(postLink({ url: linkUrl, folderId: selectedFolder.id }));
     dispatch(closeModal());
+    if (res.meta.requestStatus === "rejected") return dispatch(openToast({ type: "rejectedAddLink" }));
 
     if (linkId) {
       await dispatch(deleteLink(linkId));
@@ -44,7 +45,7 @@ const AddLinkToFolder = ({ title, text, variant }: ModalProps) => {
     if (currentFolder?.name === COMBINED_FOLDER_NAME) {
       return dispatch(getAllLinkList(userInfo.id));
     }
-    dispatch(getLinkList({ userId: userInfo.id, folderId: currentFolder?.id || selectedFolderForAddLink?.id }));
+    dispatch(getLinkList({ userId: userInfo.id, folderId: currentFolder?.id || selectedFolder?.id }));
   };
 
   useEffect(() => {
@@ -60,12 +61,12 @@ const AddLinkToFolder = ({ title, text, variant }: ModalProps) => {
           return (
             <S.FolderListItem
               key={folder.id}
-              $isActive={folder.name === selectedFolderForAddLink.name}
+              $isActive={folder.name === selectedFolder.name}
               onClick={() => handleSelectedFolder(folder)}
             >
               <S.ItemName>{folder.name}</S.ItemName>
-              <S.ItemLinkCount>{folder.link.count}개 링크</S.ItemLinkCount>
-              <S.CheckIcon $isActive={folder.name === selectedFolderForAddLink.name}>✓</S.CheckIcon>
+              <S.ItemLinkCount>{folder.link?.count || "0"}개 링크</S.ItemLinkCount>
+              <S.CheckIcon $isActive={folder.name === selectedFolder.name}>✓</S.CheckIcon>
             </S.FolderListItem>
           );
         })}

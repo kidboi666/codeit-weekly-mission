@@ -27,8 +27,7 @@ const FolderOptionButton = ({ currentFolder, setCurrentFolder }: FolderOptionBut
                 openModal({
                   type: "shareFolder",
                   props: {
-                    currentFolderId: currentFolder.id,
-                    currentFolder: currentFolder.name,
+                    currentFolder,
                   },
                 }),
               )
@@ -43,8 +42,7 @@ const FolderOptionButton = ({ currentFolder, setCurrentFolder }: FolderOptionBut
                 openModal({
                   type: "changeName",
                   props: {
-                    currentFolderId: currentFolder.id,
-                    currentFolder: currentFolder.name,
+                    currentFolder,
                     setCurrentFolder,
                   },
                 }),
@@ -60,8 +58,7 @@ const FolderOptionButton = ({ currentFolder, setCurrentFolder }: FolderOptionBut
                 openModal({
                   type: "deleteFolder",
                   props: {
-                    currentFolderId: currentFolder.id,
-                    currentFolder: currentFolder.name,
+                    currentFolder,
                   },
                 }),
               )
