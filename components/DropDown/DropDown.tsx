@@ -17,7 +17,7 @@ const DropDown = ({ variant, props, isOpen, setOpen, onClick }: DropDownProps) =
 
   return (
     <div onClick={() => setOpen(false)}>
-      <div onClick={(e) => e.stopPropagation()}>{renderDropDown}</div>
+      <div onClick={onClick}>{renderDropDown}</div>
     </div>
   );
 };
