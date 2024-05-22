@@ -23,7 +23,7 @@ const ChangeName = ({ title, text, variant }: ModalProps) => {
       const res = await dispatch(putFolder({ folderName: folderName, folderId: currentFolderId }));
       dispatch(closeModal());
       if (res.meta.requestStatus === "fulfilled") {
-        dispatch(openToast("changeName"));
+        dispatch(openToast({ type: "changeName" }));
         await dispatch(getFolder(userInfo.id));
         setCurrentFolder(folderName);
       }

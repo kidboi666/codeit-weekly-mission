@@ -2,12 +2,12 @@ import * as S from "./Search.styled";
 import searchIcon from "../../assets/icons/search.svg";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import Input from "../Input/Input";
+import { Input } from "@/components";
 import { useAppSelector } from "@/hooks/useApp";
 import { Link } from "@/services/types";
 
 interface SearchProps {
-  setSearchResult: React.Dispatch<React.SetStateAction<Link[]>>;
+  setSearchResult: React.Dispatch<React.SetStateAction<Link[] | string>>;
 }
 
 const Search = ({ setSearchResult }: SearchProps) => {
@@ -27,7 +27,12 @@ const Search = ({ setSearchResult }: SearchProps) => {
       );
     });
 
-    setSearchResult(result);
+    if (result.length === 0) {
+      setSearchResult("검색 결과가 없습니다.");
+    } else {
+      setSearchResult(result);
+    }
+
     setSearchKeyword(searchBody);
     setSearchBody("");
   };

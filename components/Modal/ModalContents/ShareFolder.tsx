@@ -14,7 +14,7 @@ const ShareFolder = ({ title }: ModalProps) => {
 
   const onClick = () => {
     copyToClipboard(currentFolderId);
-    dispatch(openToast("copyUrl"));
+    dispatch(openToast({ type: "copyUrl" }));
   };
 
   return (

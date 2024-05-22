@@ -35,7 +35,7 @@ const AddLinkToFolder = ({ title, text, variant }: ModalProps) => {
     if (linkId) {
       await dispatch(deleteLink(linkId));
       await dispatch(getLinkList({ userId: userInfo.id, folderId: currentFolderId }));
-      return dispatch(openToast("moveLink"));
+      return dispatch(openToast({ type: "moveLink" }));
     }
 
     setLinkUrl("");

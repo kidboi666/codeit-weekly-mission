@@ -8,7 +8,7 @@ import Image from "next/image";
 import useToggle from "@/hooks/useToggle";
 
 interface CardProps {
-  linkList: Link[];
+  linkList: Link[] | string;
   currentFolder?: string;
   setCurrentFolder?: React.Dispatch<React.SetStateAction<string>>;
   currentFolderId?: number;
@@ -23,6 +23,10 @@ const Card = ({
   setCurrentFolderId,
 }: CardProps) => {
   const [showKebabMenu, toggle] = useToggle();
+
+  if (typeof linkList === "string") {
+    return <div>{linkList}</div>;
+  }
 
   const handleMouseLeave = () => {
     if (showKebabMenu) return toggle();

@@ -3,7 +3,6 @@ import { Folder, AddLink, Search, AppLayout, Card, FolderLayout } from "@/compon
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import { Link } from "@/services/types";
 import { getAllLinkList, getLinkList } from "@/redux/actions/link";
-import { COMBINED_FOLDER_NAME } from "@/constants/strings";
 import { getFolder } from "@/redux/actions/folder";
 import { useRouter } from "next/router";
 
@@ -13,9 +12,9 @@ export interface CurrentFolderType {
 }
 
 const FolderPage = () => {
-  const [searchResult, setSearchResult] = useState<Link[]>([]);
+  const [searchResult, setSearchResult] = useState<Link[] | string>([]);
   const [currentFolder, setCurrentFolder] = useState<CurrentFolderType>({
-    name: COMBINED_FOLDER_NAME,
+    name: "",
     id: 0,
   });
   const userId = useAppSelector((state) => state.auth.userInfo.id);

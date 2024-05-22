@@ -1,19 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 interface Props {
-  contents: {
-    type: string;
-    text: string;
-  };
+  type: any;
   isOpen: boolean;
+  props?: Record<string, any>;
 }
 
 const initialState: Props = {
-  contents: {
-    type: "",
-    text: "",
-  },
+  type: "",
   isOpen: false,
+  props: {},
 };
 
 const toastSlice = createSlice({
@@ -21,18 +17,18 @@ const toastSlice = createSlice({
   initialState,
   reducers: {
     openToast: (state, action) => {
-      state.contents.type = action.payload;
+      state.type = action.payload.type;
+      state.props = action.payload.props || {};
       state.isOpen = true;
     },
     closeToast: (state) => {
+      state.type = "";
+      state.props = {};
       state.isOpen = false;
-    },
-    putContents: (state, action) => {
-      state.contents = action.payload;
     },
   },
 });
 
-export const { openToast, closeToast, putContents } = toastSlice.actions;
+export const { openToast, closeToast } = toastSlice.actions;
 
 export default toastSlice.reducer;

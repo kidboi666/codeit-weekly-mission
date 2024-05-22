@@ -16,7 +16,7 @@ const DeleteFolder = ({ title, text, variant }: ModalProps) => {
     const res = await dispatch(deleteFolder(currentFolderId));
     dispatch(closeModal());
     if (res.meta.requestStatus === "fulfilled") {
-      dispatch(openToast("deleteFolder"));
+      dispatch(openToast({ type: "deleteFolder" }));
       dispatch(getFolder(userInfo.id));
       dispatch(getAllLinkList(userInfo.id));
     }

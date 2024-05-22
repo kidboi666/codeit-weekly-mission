@@ -16,7 +16,7 @@ const DeleteLink = ({ title, text, variant }: ModalProps) => {
       const res = await dispatch(deleteLink(linkId));
       dispatch(closeModal());
       if (res.meta.requestStatus === "fulfilled") {
-        dispatch(openToast("deleteLink"));
+        dispatch(openToast({ type: "deleteLink" }));
         if (currentFolder === COMBINED_FOLDER_NAME) {
           return dispatch(getAllLinkList(userInfo.id));
         }
