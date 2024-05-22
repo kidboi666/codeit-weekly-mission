@@ -44,7 +44,7 @@ const AddLinkToFolder = ({ title, text, variant }: ModalProps) => {
     if (currentFolder?.name === COMBINED_FOLDER_NAME) {
       return dispatch(getAllLinkList(userInfo.id));
     }
-    dispatch(getLinkList({ userId: userInfo.id, folderId: currentFolder.id || selectedFolderForAddLink.id }));
+    dispatch(getLinkList({ userId: userInfo.id, folderId: currentFolder?.id || selectedFolderForAddLink?.id }));
   };
 
   useEffect(() => {
