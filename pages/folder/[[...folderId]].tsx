@@ -18,7 +18,7 @@ const FolderPage = () => {
     id: 0,
   });
   const userId = useAppSelector((state) => state.auth.userInfo.id);
-  const { data } = useAppSelector((state) => state.link);
+  const { data: linkList } = useAppSelector((state) => state.link);
   const dispatch = useAppDispatch();
   const router = useRouter();
   const { folderId } = router.query;
@@ -49,7 +49,7 @@ const FolderPage = () => {
           searchResult.length >= 1 ? (
             <Card linkList={searchResult} />
           ) : (
-            <Card linkList={data} currentFolder={currentFolder} setCurrentFolder={setCurrentFolder} />
+            <Card linkList={linkList} currentFolder={currentFolder} setCurrentFolder={setCurrentFolder} />
           )
         }
       />

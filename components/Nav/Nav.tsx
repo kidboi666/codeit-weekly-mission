@@ -4,22 +4,17 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import * as S from "./Nav.styled";
 import logo from "@/assets/icons/logo.svg";
-import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
+import { useAppSelector } from "@/hooks/useApp";
 import { DropDown, Button } from "@/components";
-import { openDropDown } from "@/redux/reducers/dropDown";
 
 const Nav = () => {
   const [isShadow, setShadow] = useState(false);
+  const [isOpen, setOpen] = useState(false);
   const { isLoggedIn, userInfo } = useAppSelector((state) => state.auth);
-  const dispatch = useAppDispatch();
   const { pathname } = useRouter();
 
   const handleNavigation = () => {
     setShadow(window.scrollY > 30);
-  };
-
-  const handleAccountInfo = () => {
-    dispatch(openDropDown("accountInfo"));
   };
 
   useEffect(() => {
@@ -46,7 +41,7 @@ const Nav = () => {
         {isLoggedIn ? (
           <>
             <p>{userInfo?.email}</p>
-            <S.ImageBox onClick={handleAccountInfo}>
+            <S.ImageBox onClick={() => setOpen((prev) => !prev)}>
               <Image fill src={userInfo?.imageSource} alt='프로필 이미지' />
             </S.ImageBox>
           </>
@@ -56,7 +51,7 @@ const Nav = () => {
           </Link>
         )}
       </S.LoginLayout>
-      <DropDown />
+      {isOpen && <DropDown variant='accountInfo' setOpen={setOpen} isOpen={isOpen} />}
     </S.HeaderLayout>
   );
 };

@@ -5,7 +5,6 @@ import formatDate from "@/utils/formatDate";
 import { Star, Kebab } from "@/components";
 import { Link } from "@/services/types";
 import Image from "next/image";
-import useToggle from "@/hooks/useToggle";
 import { CurrentFolderType } from "@/pages/folder/[[...folderId]]";
 
 interface CardProps {
@@ -15,22 +14,16 @@ interface CardProps {
 }
 
 const Card = ({ linkList, currentFolder, setCurrentFolder }: CardProps) => {
-  const [showKebabMenu, toggle] = useToggle();
-
   if (typeof linkList === "string") {
     return <div>{linkList}</div>;
   } else if (linkList.length === 0) {
     return <div>해당되는 링크가 없습니다.</div>;
   }
 
-  const handleMouseLeave = () => {
-    if (showKebabMenu) return toggle();
-  };
-
   return (
     <>
       {linkList?.map((link) => (
-        <S.CardLayout key={link.id} onMouseLeave={handleMouseLeave}>
+        <S.CardLayout key={link.id}>
           <S.CardLinkContainer href={link.url} target='_blank' rel='noreferrer'>
             <S.CardImgContainer>
               <Star link={link} />
@@ -49,8 +42,6 @@ const Card = ({ linkList, currentFolder, setCurrentFolder }: CardProps) => {
                 linkUrl={link.url}
                 currentFolder={currentFolder}
                 setCurrentFolder={setCurrentFolder}
-                showKebabMenu={showKebabMenu}
-                toggle={toggle}
               />
               <S.CreatedDate>{calculateTime(link.createdAt)}</S.CreatedDate>
               <S.Title>{link.title}</S.Title>

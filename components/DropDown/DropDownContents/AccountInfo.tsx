@@ -1,7 +1,6 @@
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import * as S from "./AccountInfo.styled";
 import { logout } from "@/redux/reducers/auth";
-import { closeDropDown } from "@/redux/reducers/dropDown";
 
 const AccountInfo = () => {
   const { imageSource, name, email } = useAppSelector((state) => state.auth.userInfo);
@@ -9,7 +8,6 @@ const AccountInfo = () => {
 
   const onClick = () => {
     dispatch(logout());
-    dispatch(closeDropDown());
   };
   return (
     <S.AccountInfoLayout>
