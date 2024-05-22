@@ -2,23 +2,27 @@ import * as S from "./Card.styled";
 import blankLogo from "@/assets/icons/blank_logo.svg";
 import calculateTime from "@/utils/calculateTime";
 import formatDate from "@/utils/formatDate";
-import Star from "./Star";
+import Star from "@/components/Star/Star";
 import Kebab from "../Kebab/Kebab";
 import { Link } from "@/services/types";
 import Image from "next/image";
 import useToggle from "@/hooks/useToggle";
 
-interface Props {
+interface CardProps {
   link: Link;
+  currentFolder?: string;
+  setCurrentFolder?: React.Dispatch<React.SetStateAction<string>>;
+  currentFolderId?: number;
+  setCurrentFolderId?: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const Card: React.FC<Props> = ({ link }) => {
-  const [value, toggle] = useToggle();
+const Card = ({ link, currentFolder, setCurrentFolder, currentFolderId, setCurrentFolderId }: CardProps) => {
+  const [showKebabMenu, toggle] = useToggle();
   const timeDelta = formatDate(link.createdAt);
   const createdDate = calculateTime(link.createdAt);
 
   const handleMouseLeave = () => {
-    if (value) return toggle();
+    if (showKebabMenu) return toggle();
   };
 
   return (
@@ -39,7 +43,11 @@ const Card: React.FC<Props> = ({ link }) => {
             linkId={link.id}
             linkTitle={link.title}
             linkUrl={link.url}
-            value={value}
+            currentFolder={currentFolder}
+            setCurrentFolder={setCurrentFolder}
+            currentFolderId={currentFolderId}
+            setCurrentFolderId={setCurrentFolderId}
+            showKebabMenu={showKebabMenu}
             toggle={toggle}
           />
           <S.CreatedDate>{createdDate}</S.CreatedDate>

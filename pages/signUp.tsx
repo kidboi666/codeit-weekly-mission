@@ -20,7 +20,7 @@ interface Inputs {
 }
 
 const SignUp = () => {
-  const { isLoggedIn, accessToken } = useAppSelector((state) => state.auth);
+  const { isLoggedIn } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const router = useRouter();
   const { handleSubmit, control } = useForm<Inputs>({
@@ -46,12 +46,10 @@ const SignUp = () => {
   };
 
   useEffect(() => {
-    const localToken = localStorage.getItem("accessToken");
-    if (localToken) dispatch(userInfoAccess(localToken));
-  }, [accessToken]);
-
-  useEffect(() => {
-    if (isLoggedIn) router.push("/folderPage");
+    if (isLoggedIn) {
+      dispatch(userInfoAccess());
+      router.push("/folderPage");
+    }
   }, [isLoggedIn]);
 
   return (
@@ -66,7 +64,7 @@ const SignUp = () => {
           <p>
             이미 회원이신가요?
             <Link href='./signIn'>
-              <Button variant={"underBar"} text={"로그인 하기"} />
+              <Button variant='underBar' text='로그인 하기' />
             </Link>
           </p>
         </S.HeaderContainer>
@@ -77,14 +75,7 @@ const SignUp = () => {
               <Controller
                 name='email'
                 control={control}
-                render={({ field }) => (
-                  <Input
-                    variant={"sign"}
-                    {...field}
-                    type={"email"}
-                    placeholder={"codeit@codeit.kr"}
-                  />
-                )}
+                render={({ field }) => <Input {...field} type='email' placeholder='codeit@codeit.kr' />}
               />
             </S.EmailContainer>
             <S.PasswordContainer>
@@ -92,9 +83,7 @@ const SignUp = () => {
               <Controller
                 name='password'
                 control={control}
-                render={({ field }) => (
-                  <Input variant={"sign"} {...field} type={"password"} placeholder={"******"} />
-                )}
+                render={({ field }) => <Input {...field} type='password' placeholder='******' />}
               />
             </S.PasswordContainer>
             <S.PasswordRepeatContainer>
@@ -102,12 +91,10 @@ const SignUp = () => {
               <Controller
                 name='passwordCheck'
                 control={control}
-                render={({ field }) => (
-                  <Input variant={"sign"} {...field} type={"password"} placeholder={"******"} />
-                )}
+                render={({ field }) => <Input {...field} type='password' placeholder='******' />}
               />
             </S.PasswordRepeatContainer>
-            <Button variant={"default"} type='submit' text={"회원가입"} />
+            <Button variant='default' type='submit' text='회원가입' />
           </form>
         </S.SignContainer>
         <S.SocialContainer>

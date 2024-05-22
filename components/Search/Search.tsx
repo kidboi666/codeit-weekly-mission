@@ -1,21 +1,24 @@
 import * as S from "./Search.styled";
 import searchIcon from "../../assets/icons/search.svg";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { setSearchResult, setSearchKeyword, initializeSearch } from "@/redux/reducers/link";
 import Input from "../Input/Input";
-import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
+import { useAppSelector } from "@/hooks/useApp";
+import { Link } from "@/services/types";
 
-const Search: React.FC = () => {
+interface SearchProps {
+  setSearchResult: React.Dispatch<React.SetStateAction<Link[]>>;
+  setNoSearchResult: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Search = ({ setSearchResult, setNoSearchResult }: SearchProps) => {
   const [searchBody, setSearchBody] = useState("");
-  const { searchKeyword } = useAppSelector((state) => state.link);
+  const [searchKeyword, setSearchKeyword] = useState("");
   const { data } = useAppSelector((state) => state.link);
-  const dispatch = useAppDispatch();
 
   const onSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     if (!searchBody) return null;
-    dispatch(setSearchResult([]));
 
     const result = data.filter((link) => {
       return (
@@ -25,8 +28,9 @@ const Search: React.FC = () => {
       );
     });
 
-    dispatch(setSearchResult(result));
-    dispatch(setSearchKeyword(searchBody));
+    setNoSearchResult(result.length === 0);
+    setSearchResult(result);
+    setSearchKeyword(searchBody);
     setSearchBody("");
   };
 
@@ -35,7 +39,9 @@ const Search: React.FC = () => {
   };
 
   useEffect(() => {
-    dispatch(initializeSearch());
+    setSearchKeyword("");
+    setSearchResult([]);
+    setNoSearchResult(false);
   }, [data]);
 
   return (
@@ -43,15 +49,15 @@ const Search: React.FC = () => {
       <S.FormBox>
         <S.Form onSubmit={onSubmit}>
           <button>
-            <Image src={searchIcon} alt={"검색 돋보기 아이콘"} style={{ width: "100%" }} />
+            <Image src={searchIcon} alt='검색 돋보기 아이콘' style={{ width: "100%" }} />
           </button>
           <Input
             value={searchBody}
-            placeholder={"링크를 검색해 보세요."}
+            placeholder='링크를 검색해 보세요.'
             onChange={onChangeInputValue}
-            variant={"search"}
+            variant='search'
           />
-          {searchBody && <S.StyledCloseButton variant={"searchInput"} onClick={() => setSearchBody("")} />}
+          {searchBody && <S.StyledCloseButton variant='searchInput' onClick={() => setSearchBody("")} />}
         </S.Form>
       </S.FormBox>
       {searchKeyword && (

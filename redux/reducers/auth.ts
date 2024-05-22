@@ -12,8 +12,6 @@ import { API_MSG } from "@/constants/strings";
 interface Props {
   isLoggedIn: boolean;
   status: string;
-  accessToken: string;
-  refreshToken: string;
   userInfo: UserData;
   sharedUserInfo: UserData;
 }
@@ -31,8 +29,6 @@ const initialState: Props = {
   isLoggedIn: false,
   status: "",
   userInfo: { ...initialUserInfo },
-  accessToken: "",
-  refreshToken: "",
   sharedUserInfo: { ...initialUserInfo },
 };
 
@@ -42,8 +38,6 @@ const authSlice = createSlice({
   reducers: {
     logout: (state) => {
       state.isLoggedIn = false;
-      state.accessToken = "";
-      state.refreshToken = "";
       state.userInfo = initialUserInfo;
       localStorage.clear();
     },
@@ -55,8 +49,6 @@ const authSlice = createSlice({
       })
       .addCase(loginAccess.fulfilled, (state, action) => {
         state.isLoggedIn = true;
-        state.accessToken = action.payload.data.accessToken;
-        state.refreshToken = action.payload.data.refreshToken;
         localStorage.setItem("accessToken", action.payload.data.accessToken);
         localStorage.setItem("refreshToken", action.payload.data.refreshToken);
         state.status = API_MSG.FUL;
@@ -79,8 +71,6 @@ const authSlice = createSlice({
       })
       .addCase(signUpAccess.fulfilled, (state, action) => {
         state.isLoggedIn = true;
-        state.accessToken = action.payload.data.accessToken;
-        state.refreshToken = action.payload.data.refreshToken;
         localStorage.setItem("accessToken", action.payload.data.accessToken);
         localStorage.setItem("refreshToken", action.payload.data.refreshToken);
         state.status = API_MSG.FUL;

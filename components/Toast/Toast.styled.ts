@@ -47,6 +47,7 @@ export const CheckTextBox = styled.p`
   justify-content: center;
   padding: 0 20px 0 30px;
   color: inherite;
+  font-size: 14px;
 `;
 
 export const CloseIconButtonBox = styled.button`

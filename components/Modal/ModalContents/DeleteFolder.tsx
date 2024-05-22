@@ -1,23 +1,21 @@
 import Button from "@/components/Button/Button";
-import { COMBINED_FOLDER_NAME } from "@/constants/strings";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import { deleteFolder, getFolder } from "@/redux/actions/folder";
 import { getAllLinkList } from "@/redux/actions/link";
-import { setSelectedFolder } from "@/redux/reducers/folder";
 import { closeModal } from "@/redux/reducers/modal";
 import { openToast } from "@/redux/reducers/toast";
+import { ModalProps } from "../ModalTypes";
 
-const DeleteFolder: React.FC = () => {
+const DeleteFolder = ({ title, text, variant }: ModalProps) => {
   const { userInfo } = useAppSelector((state) => state.auth);
-  const accessToken = localStorage.getItem("accessToken");
-  const { selectedFolder, selectedFolderId } = useAppSelector((state) => state.folder);
-  const { text, variant } = useAppSelector((state) => state.modal.contents);
+  const { currentFolder, currentFolderId } = useAppSelector((state) => state.modal.props) || {};
+  console.log(currentFolderId);
   const dispatch = useAppDispatch();
 
   const onClick = async () => {
-    const res = await dispatch(deleteFolder({ accessToken, folderId: selectedFolderId }));
+    const res = await dispatch(deleteFolder(currentFolderId));
+    dispatch(closeModal());
     if (res.meta.requestStatus === "fulfilled") {
-      dispatch(closeModal());
       dispatch(openToast("deleteFolder"));
       dispatch(getFolder(userInfo.id));
       dispatch(getAllLinkList(userInfo.id));
@@ -26,8 +24,9 @@ const DeleteFolder: React.FC = () => {
 
   return (
     <>
-      <h4>{selectedFolder}</h4>
-      <Button variant={variant} text={text} width={"100%"} onClick={onClick} />
+      <h3>{title}</h3>
+      <h4>{currentFolder}</h4>
+      <Button variant={variant} text={text} width='100%' onClick={onClick} />
     </>
   );
 };

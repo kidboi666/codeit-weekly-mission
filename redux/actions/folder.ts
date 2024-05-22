@@ -1,67 +1,38 @@
-import { axiosInstance as axios } from "@/services/axiosInstace";
+import axiosInstance from "@/services/axiosInstace";
 import { FolderList } from "@/services/types";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import camelcaseKeys from "camelcase-keys";
 
 export const getFolder = createAsyncThunk<FolderList[], number>("folder/getFolder", async (id) => {
-  const { data } = await axios.get(`users/${id}/folders`);
+  const { data } = await axiosInstance.get(`users/${id}/folders`);
   return camelcaseKeys(data.data, { deep: true });
 });
 
-export const postFolder = createAsyncThunk<any, { folderName: string; token: string | null }>(
-  "folder/postFolder",
-  async ({ folderName, token }) => {
-    const { data } = await axios({
-      method: "post",
-      url: `folders`,
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      data: {
-        name: folderName,
-      },
-    });
-
-    return camelcaseKeys(data.data, { deep: true });
-  },
-);
+export const postFolder = createAsyncThunk<any, string>("folder/postFolder", async (folderName) => {
+  const { data } = await axiosInstance.post(`folders`, { name: folderName });
+  return camelcaseKeys(data.data, { deep: true });
+});
 
 export const getSharedFolder = createAsyncThunk<any, number>(
   "link/getSharedFolder",
   async (folderId) => {
-    const { data } = await axios.get(`folders/${folderId}`);
+    const { data } = await axiosInstance.get(`folders/${folderId}`);
     return camelcaseKeys(data.data, { deep: true });
   },
 );
 
-export const putFolder = createAsyncThunk<
-  any,
-  { folderName: string; folderId: number; accessToken: string | null }
->("folder/putFolder", async ({ folderName, folderId, accessToken }) => {
-  const { data } = await axios({
-    method: "put",
-    url: `folders/${folderId}`,
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-    data: {
-      name: folderName,
-    },
-  });
+export const putFolder = createAsyncThunk<any, { folderName: string; folderId: number }>(
+  "folder/putFolder",
+  async ({ folderName, folderId }) => {
+    const { data } = await axiosInstance.put(`folders/${folderId}`, { name: folderName });
+    return camelcaseKeys(data.data, { deep: true });
+  },
+);
 
-  return camelcaseKeys(data.data, { deep: true });
-});
-
-export const deleteFolder = createAsyncThunk<any, { folderId: number; accessToken: string | null }>(
+export const deleteFolder = createAsyncThunk<any, number>(
   "folder/deleteFolder",
-  async ({ folderId, accessToken }) => {
-    const { data } = await axios({
-      method: "delete",
-      url: `folders/${folderId}`,
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
+  async (folderId) => {
+    const { data } = await axiosInstance.delete(`folders/${folderId}`);
 
     return data;
   },

@@ -5,12 +5,12 @@ import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import { getFolder, putFolder } from "@/redux/actions/folder";
 import { closeModal } from "@/redux/reducers/modal";
 import { openToast } from "@/redux/reducers/toast";
+import { ModalProps } from "../ModalTypes";
 
-const ChangeName: React.FC = () => {
+const ChangeName = ({ title, text, variant }: ModalProps) => {
   const [folderName, setFolderName] = useState("");
   const { userInfo } = useAppSelector((state) => state.auth);
-  const { text, variant } = useAppSelector((state) => state.modal.contents);
-  const { selectedFolderId, selectedFolder } = useAppSelector((state) => state.folder);
+  const { currentFolder, currentFolderId, setCurrentFolder } = useAppSelector((state) => state.modal.props) || {};
   const dispatch = useAppDispatch();
 
   const onChangeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,22 +19,25 @@ const ChangeName: React.FC = () => {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const accessToken = localStorage.getItem("accessToken");
     if (folderName) {
-      const res = await dispatch(putFolder({ folderName: folderName, accessToken, folderId: selectedFolderId }));
+      const res = await dispatch(putFolder({ folderName: folderName, folderId: currentFolderId }));
+      dispatch(closeModal());
       if (res.meta.requestStatus === "fulfilled") {
-        dispatch(closeModal());
         dispatch(openToast("changeName"));
-        dispatch(getFolder(userInfo.id));
+        await dispatch(getFolder(userInfo.id));
+        setCurrentFolder(folderName);
       }
     }
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <Input value={folderName} onChange={onChangeInputValue} placeholder={selectedFolder} />
-      <Button variant={variant} text={text} type={"submit"} width={"100%"} />
-    </form>
+    <>
+      <h3>{title}</h3>
+      <form onSubmit={onSubmit}>
+        <Input value={folderName} onChange={onChangeInputValue} placeholder={currentFolder} />
+        <Button variant={variant} text={text} type='submit' width='100%' />
+      </form>
+    </>
   );
 };
 

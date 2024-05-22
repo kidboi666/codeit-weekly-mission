@@ -7,7 +7,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   width?: string;
 }
 
-const Input: React.FC<InputProps> = ({
+const Input = ({
   variant,
   width = "100%",
   value,
@@ -18,7 +18,7 @@ const Input: React.FC<InputProps> = ({
   disabled,
   onBlur,
   onChange,
-}) => {
+}: InputProps) => {
   const [error, setError] = useState("");
   const [isEye, setEye] = useState(false);
   const [transforemedType, setTransformedType] = useState(type);
@@ -33,16 +33,6 @@ const Input: React.FC<InputProps> = ({
   const changeInputType = () => {
     transforemedType === "password" ? setTransformedType("text") : setTransformedType("password");
   };
-  // const onBlur = (e: ChangeEvent<HTMLInputElement>) => {
-  //   if (e.target.type === "email") {
-  //     if (e.target.value.trim() === "") return setError(INPUT_MESSAGES.AUTH.ENTER_EMAIL);
-  //   }
-  //   if (e.target.type === "password" || e.target.type === "text") {
-  //     if (e.target.value.trim() === "") return setError(INPUT_MESSAGES.AUTH.ENTER_PW);
-  //   }
-
-  //   setError("");
-  // };
 
   useEffect(() => {
     processEye();

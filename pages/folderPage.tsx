@@ -9,14 +9,19 @@ import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import { useRouter } from "next/router";
 import { getFolder } from "@/redux/actions/folder";
 import { Link } from "@/services/types";
-import { initializeSelectedFolder } from "@/redux/reducers/folder";
 import { getAllLinkList } from "@/redux/actions/link";
+import { COMBINED_FOLDER_NAME } from "@/constants/strings";
 
 const FolderPage = () => {
   const [isInterSecting, setInterSecting] = useState(false);
   const [linkStorage, setLinkStorage] = useState<Link[]>([]);
-  const { userInfo, isLoggedIn } = useAppSelector((state) => state.auth);
-  const { data, searchResult, noSearchResult } = useAppSelector((state) => state.link);
+  const [searchResult, setSearchResult] = useState<Link[]>([]);
+  const [noSearchResult, setNoSearchResult] = useState(false);
+  const [currentFolder, setCurrentFolder] = useState("");
+  const [currentFolderId, setCurrentFolderId] = useState(0);
+  const { userInfo } = useAppSelector((state) => state.auth);
+  const linkData = useAppSelector((state) => state.link.data);
+  const folderDataLength = useAppSelector((state) => state.folder.data.length);
   const dispatch = useAppDispatch();
   const router = useRouter();
   const targetRef = useRef<HTMLDivElement>();
@@ -42,28 +47,19 @@ const FolderPage = () => {
   }, []);
 
   useEffect(() => {
-    const accessToken = localStorage?.getItem("accessToken");
-    if (!accessToken) {
-      router.push("/");
-    }
-  }, [isLoggedIn]);
-
-  useEffect(() => {
-    setLinkStorage(data);
-  }, [data]);
-
-  useEffect(() => {
     if (searchResult.length >= 1) {
-      setLinkStorage(searchResult);
+      return setLinkStorage(searchResult);
     }
-  }, [searchResult]);
+    setLinkStorage(linkData);
+  }, [linkData, searchResult]);
 
   useEffect(() => {
-    if (!userInfo.id) return;
+    const token = localStorage?.getItem("accessToken");
+    if (!token) router.push("/");
     dispatch(getFolder(userInfo.id));
     dispatch(getAllLinkList(userInfo.id));
-    dispatch(initializeSelectedFolder());
-  }, [userInfo]);
+    setCurrentFolder(COMBINED_FOLDER_NAME);
+  }, [userInfo, folderDataLength]);
 
   return (
     <AppLayout>
@@ -72,20 +68,31 @@ const FolderPage = () => {
           <AddLink />
         </S.HeaderSection>
         <S.SearchSection>
-          <Search />
+          <Search setSearchResult={setSearchResult} setNoSearchResult={setNoSearchResult} />
         </S.SearchSection>
         <S.FolderSection>
-          <Folder />
+          <Folder
+            currentFolder={currentFolder}
+            setCurrentFolder={setCurrentFolder}
+            currentFolderId={currentFolderId}
+            setCurrentFolderId={setCurrentFolderId}
+          />
         </S.FolderSection>
         <S.LinkSection>
           {noSearchResult ? (
-            <div>{"검색 결과가 없습니다."}</div>
+            <div>검색 결과가 없습니다.</div>
           ) : linkStorage?.length === 0 ? (
-            <div>{"해당되는 링크가 없습니다."}</div>
+            <div>저장된 링크가 없습니다.</div>
           ) : (
             linkStorage?.map((v) => (
               <div key={v.id}>
-                <Card link={v} />
+                <Card
+                  link={v}
+                  currentFolder={currentFolder}
+                  setCurrentFolder={setCurrentFolder}
+                  currentFolderId={currentFolderId}
+                  setCurrentFolderId={setCurrentFolderId}
+                />
               </div>
             ))
           )}

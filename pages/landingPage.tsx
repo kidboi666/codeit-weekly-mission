@@ -37,7 +37,7 @@ const LandingPage = () => {
         observer.unobserve(targetRef.current);
       }
     };
-  });
+  }, []);
 
   return (
     <S.LandingPageLayout>
@@ -51,7 +51,7 @@ const LandingPage = () => {
           </S.IntroWrap>
           <S.LinkBox>
             <Link href={isLoggedIn ? "/folderPage" : "/signUp"}>
-              <Button variant={"default"} text={"링크 추가하기"} width={"310px"} />
+              <Button variant='default' text='링크 추가하기' width='310px' />
             </Link>
           </S.LinkBox>
           <Image src={mainHeader} alt='' />

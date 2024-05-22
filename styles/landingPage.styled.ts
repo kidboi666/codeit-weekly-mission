@@ -67,9 +67,11 @@ export const IntroWrap = styled.div`
   span {
     font-size: 64px;
     font-weight: 700;
+    line-height: 80px;
 
-    @media (max-width: 1199px) {
-      font-size: 40px;
+    @media (max-width: 767px) {
+      font-size: 32px;
+      line-height: 42px;
     }
   }
 `;
@@ -110,6 +112,8 @@ export const CardBox = styled.div`
     grid-row: 2 / 3;
     font-size: 48px;
     font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.3px;
 
     @media (max-width: 1199px) {
       font-size: 40px;
@@ -118,6 +122,7 @@ export const CardBox = styled.div`
     }
 
     @media (max-width: 767px) {
+      font-size: 24px;
       align-self: start;
     }
   }

@@ -6,19 +6,21 @@ import linkIcon from "@/assets/icons/link.svg";
 import KakaoButton from "@/components/KakaoButton/KakaoButton";
 import * as S from "@/components/Modal/ModalContents/ShareFolder.styled";
 import { openToast } from "@/redux/reducers/toast";
+import { ModalProps } from "../ModalTypes";
 
-const ShareFolder: React.FC = () => {
-  const { selectedFolderId, selectedFolder } = useAppSelector((state) => state.folder);
+const ShareFolder = ({ title }: ModalProps) => {
+  const { currentFolderId, currentFolder } = useAppSelector((state) => state.modal.props) || {};
   const dispatch = useAppDispatch();
 
   const onClick = () => {
-    copyToClipboard(selectedFolderId);
+    copyToClipboard(currentFolderId);
     dispatch(openToast("copyUrl"));
   };
 
   return (
     <>
-      <h4>{selectedFolder}</h4>
+      <h3>{title}</h3>
+      <h4>{currentFolder}</h4>
       <S.ShareContainer>
         <KakaoButton />
         <div>

@@ -7,15 +7,13 @@ export const Input = styled.input<{ $variant?: string; width?: string; $error?: 
   box-sizing: border-box;
   border: 0;
   border-radius: 10px;
-  background-color: #f5f5f5;
   outline: none;
+  background-color: var(--white-color);
+  border: 1px solid var(--gray2-color);
 
-  ${({ $variant, $error }) =>
-    $variant === "sign" &&
-    `
-      background-color: var(--white-color);
-      border: 1px solid ${$error ? "var(--red-color)" : "var(--gray2-color)"};
-    `}
+  &:focus {
+    border: 1px solid var(--primary-color);
+  }
 
   ${({ $variant }) =>
     $variant === "search" &&
@@ -26,6 +24,10 @@ export const Input = styled.input<{ $variant?: string; width?: string; $error?: 
       border: none;
       background-color: #f5f5f5;
       border-radius: 10px;
+
+      &:focus {
+        border: none;
+      }
 
       @media (max-width: 1124px) {
         width: 700px;

@@ -1,11 +1,11 @@
-import { axiosInstance as axios } from "@/services/axiosInstace";
+import axiosInstance from "@/services/axiosInstace";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import camelcaseKeys from "camelcase-keys";
 
 export const loginAccess = createAsyncThunk<any, { email: string; password: string }>(
   "user/login",
   async ({ email, password }) => {
-    const { data } = await axios({
+    const { data } = await axiosInstance({
       method: "post",
       url: `sign-in`,
       data: {
@@ -19,21 +19,14 @@ export const loginAccess = createAsyncThunk<any, { email: string; password: stri
 );
 
 export const checkEmailAccess = createAsyncThunk<any, string>("user/checkEmail", async (email) => {
-  const { data } = await axios({
-    method: "post",
-    url: `check-email`,
-    data: {
-      email: email,
-    },
-  });
-
+  const { data } = await axiosInstance.post(`check-email`, { email: email });
   return data;
 });
 
 export const signUpAccess = createAsyncThunk<any, { email: string; password: string }>(
   "user/signUp",
   async ({ email, password }) => {
-    const { data } = await axios({
+    const { data } = await axiosInstance({
       method: "post",
       url: `sign-up`,
       data: {
@@ -46,25 +39,15 @@ export const signUpAccess = createAsyncThunk<any, { email: string; password: str
   },
 );
 
-export const userInfoAccess = createAsyncThunk<any, string | null>(
-  "user/userInfo",
-  async (token) => {
-    const { data } = await axios({
-      method: "get",
-      url: `users`,
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    return camelcaseKeys(data.data, { deep: true });
-  },
-);
+export const userInfoAccess = createAsyncThunk("user/userInfo", async () => {
+  const { data } = await axiosInstance.get(`users`);
+  return camelcaseKeys(data.data, { deep: true });
+});
 
 export const getSharedUserInfo = createAsyncThunk<any, number>(
   "link/getSharedUserInfo",
   async (userId) => {
-    const { data } = await axios.get(`users/${userId}`);
+    const { data } = await axiosInstance.get(`users/${userId}`);
     return camelcaseKeys(data.data, { deep: true });
   },
 );

@@ -4,28 +4,26 @@ import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import { deleteLink, getAllLinkList, getLinkList } from "@/redux/actions/link";
 import { closeModal } from "@/redux/reducers/modal";
 import { openToast } from "@/redux/reducers/toast";
+import { ModalProps } from "../ModalTypes";
 
-const DeleteLink: React.FC = () => {
+const DeleteLink = ({ title, text, variant }: ModalProps) => {
   const { userInfo } = useAppSelector((state) => state.auth);
-  const accessToken = localStorage.getItem("accessToken");
-  const { selectedLinkId, selectedLinkTitle } = useAppSelector((state) => state.link);
-  const { selectedFolder, selectedFolderId } = useAppSelector((state) => state.folder);
-  const { text, variant } = useAppSelector((state) => state.modal.contents);
+  const { linkId, linkTitle, currentFolder, currentFolderId } = useAppSelector((state) => state.modal.props) || {};
   const dispatch = useAppDispatch();
 
   const onClick = async () => {
-    if (selectedLinkId) {
-      const res = await dispatch(deleteLink({ linkId: selectedLinkId, accessToken }));
+    if (linkId) {
+      const res = await dispatch(deleteLink(linkId));
+      dispatch(closeModal());
       if (res.meta.requestStatus === "fulfilled") {
-        dispatch(closeModal());
         dispatch(openToast("deleteLink"));
-        if (selectedFolder === COMBINED_FOLDER_NAME) {
+        if (currentFolder === COMBINED_FOLDER_NAME) {
           return dispatch(getAllLinkList(userInfo.id));
         }
         dispatch(
           getLinkList({
             userId: userInfo.id,
-            folderId: selectedFolderId,
+            folderId: currentFolderId,
           }),
         );
       }
@@ -34,8 +32,9 @@ const DeleteLink: React.FC = () => {
 
   return (
     <>
-      <h4>{selectedLinkTitle}</h4>
-      <Button variant={variant} text={text} width={"100%"} onClick={onClick} />
+      <h3>{title}</h3>
+      <h4>{linkTitle}</h4>
+      <Button variant={variant} text={text} width='100%' onClick={onClick} />
     </>
   );
 };

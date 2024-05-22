@@ -6,11 +6,11 @@ import * as S from "./Nav.styled";
 import logo from "@/assets/icons/logo.svg";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import Button from "../Button/Button";
-import { userInfoAccess } from "@/redux/actions/auth";
 import DropDown from "../DropDown/DropDown";
 import { openDropDown } from "@/redux/reducers/dropDown";
+import { userInfoAccess } from "@/redux/actions/auth";
 
-const Nav: React.FC = () => {
+const Nav = () => {
   const [isShadow, setShadow] = useState(false);
   const { isLoggedIn, userInfo } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
@@ -38,10 +38,7 @@ const Nav: React.FC = () => {
   }, [pathname]);
 
   useEffect(() => {
-    const localToken = localStorage?.getItem("accessToken");
-    if (localToken) {
-      dispatch(userInfoAccess(localToken));
-    }
+    dispatch(userInfoAccess());
   }, []);
 
   return (
@@ -61,7 +58,7 @@ const Nav: React.FC = () => {
           </>
         ) : (
           <Link href='/signIn'>
-            <Button variant={"default"} text={"로그인"} width={"88px"} />
+            <Button variant='default' text='로그인' width='88px' />
           </Link>
         )}
       </S.LoginLayout>
