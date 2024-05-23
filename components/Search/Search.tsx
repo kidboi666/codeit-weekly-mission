@@ -8,11 +8,12 @@ import { Link } from "@/services/types";
 
 interface SearchProps {
   setSearchResult: React.Dispatch<React.SetStateAction<Link[] | string>>;
+  searchKeyword: string;
+  setSearchKeyword: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const Search = ({ setSearchResult }: SearchProps) => {
+const Search = ({ setSearchResult, searchKeyword, setSearchKeyword }: SearchProps) => {
   const [searchBody, setSearchBody] = useState("");
-  const [searchKeyword, setSearchKeyword] = useState("");
   const { data } = useAppSelector((state) => state.link);
 
   const onSubmit = (e: React.SyntheticEvent) => {
@@ -59,9 +60,7 @@ const Search = ({ setSearchResult }: SearchProps) => {
             onChange={onChangeInputValue}
             variant='search'
           />
-          {searchBody && (
-            <S.StyledCloseButton variant='searchInput' onClick={() => setSearchBody("")} />
-          )}
+          {searchBody && <S.StyledCloseButton variant='searchInput' onClick={() => setSearchBody("")} />}
         </S.Form>
       </S.FormBox>
       {searchKeyword && (
