@@ -9,6 +9,7 @@ import { getLinkList } from "@/redux/actions/link";
 
 const SharedPage = () => {
   const [searchResult, setSearchResult] = useState<Link[] | string>([]);
+  const [searchKeyword, setSearchKeyword] = useState("");
   const { data } = useAppSelector((state) => state.link);
   const { sharedUserInfo } = useAppSelector((state) => state.auth);
   const { sharedFolder } = useAppSelector((state) => state.folder);
@@ -36,7 +37,9 @@ const SharedPage = () => {
             folderName={sharedFolder.name}
           />
         }
-        Search={<Search setSearchResult={setSearchResult} />}
+        Search={
+          <Search setSearchResult={setSearchResult} searchKeyword={searchKeyword} setSearchKeyword={setSearchKeyword} />
+        }
         Card={searchResult.length >= 1 ? <Card linkList={searchResult} /> : <Card linkList={data} />}
       />
     </AppLayout>

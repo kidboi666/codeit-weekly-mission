@@ -13,7 +13,7 @@ interface FolderProps {
 }
 
 const Folder = ({ currentFolder, setCurrentFolder }: FolderProps) => {
-  const { data } = useAppSelector((state) => state.folder);
+  const { data: folderList } = useAppSelector((state) => state.folder);
   const dispatch = useAppDispatch();
   const router = useRouter();
 
@@ -36,26 +36,29 @@ const Folder = ({ currentFolder, setCurrentFolder }: FolderProps) => {
       <S.FolderContainer>
         <S.FolderBox>
           <Button
-            variant='folderButton'
+            variant="folderButton"
             onClick={() => selectCombinedFolder()}
             text={COMBINED_FOLDER_NAME}
             selected={currentFolder?.name}
           />
-          {data.map((folderItem) => (
+          {folderList.map((folder) => (
             <Button
-              key={folderItem.id}
-              variant='folderButton'
-              onClick={() => selectFolder(folderItem.name, folderItem.id)}
-              text={folderItem.name}
+              key={folder.id}
+              variant="folderButton"
+              onClick={() => selectFolder(folder.name, folder.id)}
+              text={folder.name}
               selected={currentFolder?.name}
             />
           ))}
           <div onClick={() => dispatch(openModal({ type: "addFolder" }))}>
-            <Button variant='addFolder' text='폴더 추가 +' />
+            <Button variant="addFolder" text="폴더 추가 +" />
           </div>
         </S.FolderBox>
       </S.FolderContainer>
-      <FolderOptionButton currentFolder={currentFolder} setCurrentFolder={setCurrentFolder} />
+      <FolderOptionButton
+        currentFolder={currentFolder}
+        setCurrentFolder={setCurrentFolder}
+      />
     </S.FolderLayout>
   );
 };

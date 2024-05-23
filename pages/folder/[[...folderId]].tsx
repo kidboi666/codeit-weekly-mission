@@ -49,7 +49,7 @@ const FolderPage = () => {
         }
         Folder={<Folder currentFolder={currentFolder} setCurrentFolder={setCurrentFolder} />}
         Card={
-          searchResult.length >= 1 ? (
+          searchKeyword && searchResult.length >= 1 ? (
             <Card linkList={searchResult} />
           ) : (
             <Card linkList={linkList} currentFolder={currentFolder} setCurrentFolder={setCurrentFolder} />
