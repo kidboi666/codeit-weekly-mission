@@ -2,11 +2,10 @@ import * as S from "./Card.styled";
 import blankLogo from "@/assets/icons/blank_logo.svg";
 import calculateTime from "@/utils/calculateTime";
 import formatDate from "@/utils/formatDate";
-import { Star, Kebab, DropDown } from "@/components";
+import { Star, Kebab } from "@/components";
 import { Link } from "@/services/types";
 import Image from "next/image";
 import { CurrentFolderType } from "@/pages/folder/[[...folderId]]";
-import { useState } from "react";
 
 interface CardProps {
   linkList: Link[] | string;
