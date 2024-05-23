@@ -1,8 +1,8 @@
 import facebookIcon from "@/assets/icons/facebook_icon.svg";
 import googleIcon from "@/assets/icons/google_icon.svg";
 import logo from "@/assets/icons/logo.svg";
-import Button from "@/components/Button/Button";
-import Input from "@/components/Input/Input";
+import { Input, Button } from "@/components";
+import { ALPHANUMERIC_REGX, EMAIL_REGX, INPUT_MSG } from "@/constants/strings";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import { loginAccess, userInfoAccess } from "@/redux/actions/auth";
 import { openToast } from "@/redux/reducers/toast";
@@ -18,7 +18,7 @@ interface Inputs {
   password: string;
 }
 
-const SignIn = () => {
+const SignInPage = () => {
   const { isLoggedIn } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -40,7 +40,7 @@ const SignIn = () => {
   };
 
   useEffect(() => {
-    if (isLoggedIn) router.push("/folderPage");
+    if (isLoggedIn) router.push("/folder");
   }, [isLoggedIn]);
 
   return (
@@ -54,7 +54,7 @@ const SignIn = () => {
           </Link>
           <p>
             회원이 아니신가요?
-            <Link href='/signUp'>
+            <Link href='/signup'>
               <Button variant='underBar' text='회원 가입하기' />
             </Link>
           </p>
@@ -66,7 +66,14 @@ const SignIn = () => {
               <Controller
                 name='email'
                 control={control}
-                render={({ field }) => <Input {...field} type='email' placeholder='codeit@codeit.kr' />}
+                rules={{
+                  required: { value: true, message: INPUT_MSG.inputEmail },
+                  maxLength: { value: 30, message: INPUT_MSG.emailLength },
+                  pattern: { value: EMAIL_REGX, message: INPUT_MSG.wrongEmailForm },
+                }}
+                render={({ field, fieldState: { error } }) => (
+                  <Input {...field} type='email' placeholder='codeit@codeit.kr' error={error} />
+                )}
               />
             </S.EmailContainer>
             <S.PasswordContainer>
@@ -74,7 +81,14 @@ const SignIn = () => {
               <Controller
                 name='password'
                 control={control}
-                render={({ field }) => <Input {...field} type='password' placeholder='******' />}
+                rules={{
+                  required: { value: true, message: INPUT_MSG.inputPw },
+                  maxLength: { value: 20, message: INPUT_MSG.pwLength },
+                  pattern: { value: ALPHANUMERIC_REGX, message: INPUT_MSG.wrongPwForm },
+                }}
+                render={({ field, fieldState: { error } }) => (
+                  <Input {...field} type='password' placeholder='******' error={error} />
+                )}
               />
             </S.PasswordContainer>
             <Button variant='default' type='submit' text='로그인' />
@@ -98,4 +112,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignInPage;

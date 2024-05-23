@@ -9,18 +9,18 @@ import { openToast } from "@/redux/reducers/toast";
 import { ModalProps } from "../ModalTypes";
 
 const ShareFolder = ({ title }: ModalProps) => {
-  const { currentFolderId, currentFolder } = useAppSelector((state) => state.modal.props) || {};
+  const { currentFolder } = useAppSelector((state) => state.modal.props) || {};
   const dispatch = useAppDispatch();
 
   const onClick = () => {
-    copyToClipboard(currentFolderId);
-    dispatch(openToast("copyUrl"));
+    copyToClipboard(currentFolder.id);
+    dispatch(openToast({ type: "copyUrl" }));
   };
 
   return (
     <>
       <h3>{title}</h3>
-      <h4>{currentFolder}</h4>
+      <h4>{currentFolder.name}</h4>
       <S.ShareContainer>
         <KakaoButton />
         <div>

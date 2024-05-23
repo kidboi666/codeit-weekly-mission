@@ -5,7 +5,7 @@ import { API_MSG } from "@/constants/strings";
 
 interface Props {
   data: Link[];
-  status: string;
+  status: any;
 }
 
 const initialState: Props = {

@@ -1,10 +1,12 @@
 import { InputHTMLAttributes, useEffect, useState } from "react";
 import * as S from "./Input.styled";
-import Eye from "../Eye/Eye";
+import { Eye } from "@/components";
+import { FieldError } from "react-hook-form";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   variant?: string;
   width?: string;
+  error?: FieldError;
 }
 
 const Input = ({
@@ -18,8 +20,9 @@ const Input = ({
   disabled,
   onBlur,
   onChange,
+  error,
+  ...field
 }: InputProps) => {
-  const [error, setError] = useState("");
   const [isEye, setEye] = useState(false);
   const [transforemedType, setTransformedType] = useState(type);
 
@@ -52,13 +55,14 @@ const Input = ({
         disabled={disabled}
         onBlur={onBlur}
         onChange={onChange}
+        {...field}
       />
       {isEye && (
         <S.EyeSection>
           <Eye onClick={changeInputType} />
         </S.EyeSection>
       )}
-      {error && <S.ErrorMessage>{error}</S.ErrorMessage>}
+      {error && <S.ErrorMessage>{error.message}</S.ErrorMessage>}
     </>
   );
 };

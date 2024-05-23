@@ -1,85 +1,43 @@
-import React from "react";
-import kebobIcon from "../../assets/icons/kebab.svg";
+import React, { useState } from "react";
+import kebobIcon from "@/assets/icons/kebab.svg";
 import * as S from "./Kebab.styled";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import { useAppDispatch } from "@/hooks/useApp";
-import { openModal } from "@/redux/reducers/modal";
 import { COMBINED_FOLDER_NAME } from "@/constants/strings";
+import { CurrentFolderType } from "@/pages/folder/[[...folderId]]";
+import { DropDown } from "@/components";
 
 interface KebabProps {
+  currentFolder?: CurrentFolderType;
+  setCurrentFolder?: React.Dispatch<React.SetStateAction<CurrentFolderType>>;
   linkId: number;
   linkTitle: string;
   linkUrl: string;
-  currentFolder?: string;
-  setCurrentFolder?: React.Dispatch<React.SetStateAction<string>>;
-  currentFolderId?: number;
-  setCurrentFolderId?: React.Dispatch<React.SetStateAction<number>>;
-  toggle: () => void;
-  showKebabMenu: boolean;
 }
 
-const Kebab = ({
-  linkId,
-  linkTitle,
-  linkUrl,
-  currentFolder,
-  setCurrentFolder,
-  currentFolderId,
-  setCurrentFolderId,
-  toggle,
-  showKebabMenu,
-}: KebabProps) => {
-  const dispatch = useAppDispatch();
-  const currentLocation = useRouter();
+const Kebab = ({ currentFolder, setCurrentFolder, linkId, linkTitle, linkUrl }: KebabProps) => {
+  const router = useRouter();
+  const [isOpen, setOpen] = useState(false);
 
-  if (currentLocation.pathname !== "/folderPage" || currentFolder === COMBINED_FOLDER_NAME) {
+  if (!router.pathname.includes("/folder") || currentFolder?.name === COMBINED_FOLDER_NAME) {
     return null;
   }
 
-  const onClickKebabButton = (e: React.MouseEvent<HTMLDivElement>) => {
+  const onClickKebab = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
-    toggle();
-  };
-
-  const onClickDeleteButton = () => {
-    dispatch(
-      openModal({
-        type: "deleteLink",
-        props: { linkId, linkTitle, currentFolder, currentFolderId },
-      }),
-    );
-  };
-
-  const onClickAddLinkToFolderButton = () => {
-    dispatch(
-      openModal({
-        type: "addLinkToFolder",
-        props: {
-          linkId,
-          linkUrl,
-          currentFolder,
-          setCurrentFolder,
-          currentFolderId,
-          setCurrentFolderId,
-        },
-      }),
-    );
+    setOpen((prev) => !prev);
   };
 
   return (
-    <S.KebabLayout onClick={onClickKebabButton}>
+    <S.KebabLayout onClick={onClickKebab} onMouseLeave={() => setOpen(false)}>
       <Image src={kebobIcon} alt='케밥 버튼 아이콘' style={{ width: "100%" }} />
-      {showKebabMenu && (
-        <S.ModalLayout>
-          <button type='button' onClick={onClickDeleteButton}>
-            삭제하기
-          </button>
-          <button type='button' onClick={onClickAddLinkToFolderButton}>
-            폴더 이동
-          </button>
-        </S.ModalLayout>
-      )}
+      <DropDown
+        variant='editCard'
+        isOpen={isOpen}
+        setOpen={setOpen}
+        onClick={onClickKebab}
+        props={{ linkId, linkTitle, linkUrl, currentFolder, setCurrentFolder }}
+      />
     </S.KebabLayout>
   );
 };

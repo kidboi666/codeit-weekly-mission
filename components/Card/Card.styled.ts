@@ -84,3 +84,8 @@ export const TimeStamp = styled.p`
   font-size: 14px;
   color: #666666;
 `;
+
+export const DropDownBox = styled.div`
+  top: 0;
+  right: 0;
+`;

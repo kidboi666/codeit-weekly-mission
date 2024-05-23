@@ -11,40 +11,41 @@ import { getFolder } from "@/redux/actions/folder";
 import { COMBINED_FOLDER_NAME } from "@/constants/strings";
 
 const AddLinkToFolder = ({ title, text, variant }: ModalProps) => {
-  const [selectedFolderForAddLink, setSelectedFolderForAddLink] = useState({
-    folderName: "",
-    folderId: 0,
+  const [selectedFolder, setSelectedFolder] = useState({
+    name: "",
+    id: 0,
   });
   const { data } = useAppSelector((state) => state.folder);
   const { linkUrl, setLinkUrl } = useAppSelector((state) => state.modal.props) || {};
-  const { linkId, currentFolderId, currentFolder } = useAppSelector((state) => state.modal.props) || {};
+  const { linkId, currentFolder } = useAppSelector((state) => state.modal.props) || {};
   const { userInfo } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
 
   const handleSelectedFolder = (folderItem: FolderList) => {
-    setSelectedFolderForAddLink({
-      folderName: folderItem.name,
-      folderId: folderItem.id,
+    setSelectedFolder({
+      name: folderItem.name,
+      id: folderItem.id,
     });
   };
 
   const onClick = async () => {
-    await dispatch(postLink({ url: linkUrl, folderId: selectedFolderForAddLink.folderId }));
+    const res = await dispatch(postLink({ url: linkUrl, folderId: selectedFolder.id }));
     dispatch(closeModal());
+    if (res.meta.requestStatus === "rejected") return dispatch(openToast({ type: "rejectedAddLink" }));
 
     if (linkId) {
       await dispatch(deleteLink(linkId));
-      await dispatch(getLinkList({ userId: userInfo.id, folderId: currentFolderId }));
-      return dispatch(openToast("moveLink"));
+      await dispatch(getLinkList({ userId: userInfo.id, folderId: currentFolder.id }));
+      return dispatch(openToast({ type: "moveLink" }));
     }
 
     setLinkUrl("");
-    dispatch(openToast("addLink"));
+    dispatch(openToast({ type: "addLink" }));
 
-    if (currentFolder === COMBINED_FOLDER_NAME) {
+    if (currentFolder?.name === COMBINED_FOLDER_NAME) {
       return dispatch(getAllLinkList(userInfo.id));
     }
-    dispatch(getLinkList({ userId: userInfo.id, folderId: currentFolderId || selectedFolderForAddLink.folderId }));
+    dispatch(getLinkList({ userId: userInfo.id, folderId: currentFolder?.id || selectedFolder?.id }));
   };
 
   useEffect(() => {
@@ -56,16 +57,16 @@ const AddLinkToFolder = ({ title, text, variant }: ModalProps) => {
       <h3>{title}</h3>
       <S.FolderList>
         {data?.map((folder) => {
-          if (folder.id === currentFolderId) return null;
+          if (folder.id === currentFolder?.id) return null;
           return (
             <S.FolderListItem
               key={folder.id}
-              $isActive={folder.name === selectedFolderForAddLink.folderName}
+              $isActive={folder.name === selectedFolder.name}
               onClick={() => handleSelectedFolder(folder)}
             >
               <S.ItemName>{folder.name}</S.ItemName>
-              <S.ItemLinkCount>{folder.link.count}개 링크</S.ItemLinkCount>
-              <S.CheckIcon $isActive={folder.name === selectedFolderForAddLink.folderName}>✓</S.CheckIcon>
+              <S.ItemLinkCount>{folder.link?.count || "0"}개 링크</S.ItemLinkCount>
+              <S.CheckIcon $isActive={folder.name === selectedFolder.name}>✓</S.CheckIcon>
             </S.FolderListItem>
           );
         })}

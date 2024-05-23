@@ -4,14 +4,14 @@ import googleIcon from "@/assets/icons/google_icon.svg";
 import facebookIcon from "@/assets/icons/facebook_icon.svg";
 import * as S from "@/styles/signUp.styled";
 import Link from "next/link";
-import Button from "@/components/Button/Button";
-import Input from "@/components/Input/Input";
+import { Input, Button } from "@/components";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import { checkEmailAccess, signUpAccess, userInfoAccess } from "@/redux/actions/auth";
 import { useRouter } from "next/router";
 import { openToast } from "@/redux/reducers/toast";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { ALPHANUMERIC_REGX, EMAIL_REGX, INPUT_MSG } from "@/constants/strings";
 
 interface Inputs {
   email: string;
@@ -19,7 +19,7 @@ interface Inputs {
   passwordCheck: string;
 }
 
-const SignUp = () => {
+const SignUpPage = () => {
   const { isLoggedIn } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -33,7 +33,6 @@ const SignUp = () => {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     if (data.password !== data.passwordCheck) return dispatch(openToast("diffrentPassword"));
-    if (data.password.length < 6) return dispatch(openToast("wrongPasswordForm"));
     if (data.email && data.password) {
       const res = await dispatch(checkEmailAccess(data.email));
 
@@ -48,7 +47,7 @@ const SignUp = () => {
   useEffect(() => {
     if (isLoggedIn) {
       dispatch(userInfoAccess());
-      router.push("/folderPage");
+      router.push("/folder");
     }
   }, [isLoggedIn]);
 
@@ -63,7 +62,7 @@ const SignUp = () => {
           </Link>
           <p>
             이미 회원이신가요?
-            <Link href='./signIn'>
+            <Link href='./signin'>
               <Button variant='underBar' text='로그인 하기' />
             </Link>
           </p>
@@ -75,7 +74,14 @@ const SignUp = () => {
               <Controller
                 name='email'
                 control={control}
-                render={({ field }) => <Input {...field} type='email' placeholder='codeit@codeit.kr' />}
+                rules={{
+                  required: { value: true, message: INPUT_MSG.inputEmail },
+                  maxLength: { value: 30, message: INPUT_MSG.emailLength },
+                  pattern: { value: EMAIL_REGX, message: INPUT_MSG.wrongEmailForm },
+                }}
+                render={({ field, fieldState: { error } }) => (
+                  <Input {...field} type='email' placeholder='codeit@codeit.kr' error={error} />
+                )}
               />
             </S.EmailContainer>
             <S.PasswordContainer>
@@ -83,7 +89,15 @@ const SignUp = () => {
               <Controller
                 name='password'
                 control={control}
-                render={({ field }) => <Input {...field} type='password' placeholder='******' />}
+                rules={{
+                  required: { value: true, message: INPUT_MSG.inputPw },
+                  maxLength: { value: 20, message: INPUT_MSG.pwLength },
+                  pattern: { value: ALPHANUMERIC_REGX, message: INPUT_MSG.wrongPwForm },
+                  deps: ["passwordCheck"],
+                }}
+                render={({ field, fieldState: { error } }) => (
+                  <Input {...field} type='password' placeholder='******' error={error} />
+                )}
               />
             </S.PasswordContainer>
             <S.PasswordRepeatContainer>
@@ -91,7 +105,14 @@ const SignUp = () => {
               <Controller
                 name='passwordCheck'
                 control={control}
-                render={({ field }) => <Input {...field} type='password' placeholder='******' />}
+                rules={{
+                  required: { value: true, message: INPUT_MSG.inputPw },
+                  maxLength: { value: 20, message: INPUT_MSG.pwLength },
+                  pattern: { value: ALPHANUMERIC_REGX, message: INPUT_MSG.wrongPwForm },
+                }}
+                render={({ field, fieldState: { error } }) => (
+                  <Input {...field} type='password' placeholder='******' error={error} />
+                )}
               />
             </S.PasswordRepeatContainer>
             <Button variant='default' type='submit' text='회원가입' />
@@ -115,4 +136,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default SignUpPage;

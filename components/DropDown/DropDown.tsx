@@ -1,28 +1,24 @@
-import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
-import * as S from "./DropDown.styled";
-import { closeDropDown } from "@/redux/reducers/dropDown";
-import { DROPDOWN_TYPES } from "./DropDownType";
+import { DROPDOWN_COMPONENTS, DropDownType } from "./DropDownType";
 
-const DropDown = () => {
-  const { isOpen, contents } = useAppSelector((state) => state.dropDown);
-  const dispatch = useAppDispatch();
+interface DropDownProps {
+  variant: DropDownType;
+  props?: Record<string, any>;
+  isOpen: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
+}
+
+const DropDown = ({ variant, props, isOpen, setOpen, onClick }: DropDownProps) => {
+  const findDropDown = DROPDOWN_COMPONENTS.get(variant);
 
   if (!isOpen) return null;
 
-  const findDropDown = DROPDOWN_TYPES.find((dropDown) => {
-    if (dropDown.contents.type === contents.type) {
-      return dropDown;
-    }
-  });
-
-  const dropDownRender = () => {
-    return findDropDown?.component;
-  };
+  const renderDropDown = findDropDown ? findDropDown({ ...props }) : "";
 
   return (
-    <S.Background onClick={() => dispatch(closeDropDown())}>
-      <S.DropDownLayout onClick={(e) => e.stopPropagation()}>{dropDownRender()}</S.DropDownLayout>
-    </S.Background>
+    <div onClick={() => setOpen(false)}>
+      <div onClick={onClick}>{renderDropDown}</div>
+    </div>
   );
 };
 

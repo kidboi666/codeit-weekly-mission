@@ -1,11 +1,12 @@
+import { FieldError } from "react-hook-form";
 import styled from "styled-components";
 
-export const Input = styled.input<{ $variant?: string; width?: string; $error?: string }>`
+export const Input = styled.input<{ $variant?: string; width?: string; $error?: FieldError }>`
   ${({ width }) => `width: ${width}`};
   position: relative;
   padding: 15px 15px 15px 15px;
   box-sizing: border-box;
-  border: 0;
+  border: ${({ $error }) => ($error?.message ? "var(--red-color)" : "0")};
   border-radius: 10px;
   outline: none;
   background-color: var(--white-color);

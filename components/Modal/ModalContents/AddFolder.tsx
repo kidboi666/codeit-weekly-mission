@@ -1,7 +1,7 @@
 import Button from "@/components/Button/Button";
 import Input from "@/components/Input/Input";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
-import { getFolder, postFolder } from "@/redux/actions/folder";
+import { postFolder } from "@/redux/actions/folder";
 import { closeModal } from "@/redux/reducers/modal";
 import { openToast } from "@/redux/reducers/toast";
 import { useState } from "react";
@@ -9,7 +9,6 @@ import { ModalProps } from "../ModalTypes";
 
 const AddFolder = ({ title, text, variant }: ModalProps) => {
   const [folderName, setFolderName] = useState("");
-  const { userInfo } = useAppSelector((state) => state.auth);
   const { data } = useAppSelector((state) => state.folder);
   const dispatch = useAppDispatch();
 
@@ -19,7 +18,7 @@ const AddFolder = ({ title, text, variant }: ModalProps) => {
 
   const checkForDuplicates = () => {
     const result = data.some((folder) => folder.name === folderName);
-    if (result) dispatch(openToast("duplicateFolderName"));
+    if (result) dispatch(openToast({ type: "duplicateFolderName" }));
     return result;
   };
 
@@ -29,8 +28,7 @@ const AddFolder = ({ title, text, variant }: ModalProps) => {
       const res = await dispatch(postFolder(folderName));
       dispatch(closeModal());
       if (res.meta.requestStatus === "fulfilled") {
-        dispatch(openToast("addFolder"));
-        await dispatch(getFolder(userInfo.id));
+        dispatch(openToast({ type: "addFolder" }));
       }
     }
   };

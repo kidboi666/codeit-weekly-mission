@@ -1,38 +1,34 @@
 import React, { useEffect } from "react";
 import { COMBINED_FOLDER_NAME } from "@/constants/strings";
-import { getAllLinkList, getLinkList } from "@/redux/actions/link";
-import FolderOptionButton from "@/components/FolderOptionButton/FolderOptionButton";
-import Button from "../Button/Button";
+import { FolderOptionButton, Button } from "@/components";
 import * as S from "./Folder.styled";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
-import { FolderList } from "@/services/types";
 import { openModal } from "@/redux/reducers/modal";
+import { CurrentFolderType } from "@/pages/folder/[[...folderId]]";
+import { useRouter } from "next/router";
 
 interface FolderProps {
-  currentFolder: string;
-  setCurrentFolder: React.Dispatch<React.SetStateAction<string>>;
-  currentFolderId: number;
-  setCurrentFolderId: React.Dispatch<React.SetStateAction<number>>;
+  currentFolder: CurrentFolderType;
+  setCurrentFolder: React.Dispatch<React.SetStateAction<CurrentFolderType>>;
 }
 
-const Folder = ({ currentFolder, setCurrentFolder, currentFolderId, setCurrentFolderId }: FolderProps) => {
+const Folder = ({ currentFolder, setCurrentFolder }: FolderProps) => {
   const { data } = useAppSelector((state) => state.folder);
-  const userId = useAppSelector((state) => state.auth.userInfo.id);
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
-  const handleFetchLinkList = (folderItem: FolderList) => {
-    dispatch(getLinkList({ userId: userId, folderId: folderItem.id }));
-    setCurrentFolder(folderItem.name);
-    setCurrentFolderId(folderItem.id);
+  const selectFolder = (folderName: string, folderId: number) => {
+    setCurrentFolder({ name: folderName, id: folderId });
+    router.push(`/folder/${folderId}`, undefined, { shallow: true });
   };
 
-  const handleFetchAllLinkList = () => {
-    dispatch(getAllLinkList(userId));
-    setCurrentFolder(COMBINED_FOLDER_NAME);
+  const selectCombinedFolder = () => {
+    setCurrentFolder({ name: COMBINED_FOLDER_NAME, id: 0 });
+    router.push(`/folder`, undefined, { shallow: true });
   };
 
   useEffect(() => {
-    handleFetchAllLinkList();
+    selectCombinedFolder();
   }, []);
 
   return (
@@ -41,17 +37,17 @@ const Folder = ({ currentFolder, setCurrentFolder, currentFolderId, setCurrentFo
         <S.FolderBox>
           <Button
             variant='folderButton'
-            onClick={() => handleFetchAllLinkList()}
+            onClick={() => selectCombinedFolder()}
             text={COMBINED_FOLDER_NAME}
-            selected={currentFolder}
+            selected={currentFolder?.name}
           />
           {data.map((folderItem) => (
             <Button
               key={folderItem.id}
               variant='folderButton'
-              onClick={() => handleFetchLinkList(folderItem)}
+              onClick={() => selectFolder(folderItem.name, folderItem.id)}
               text={folderItem.name}
-              selected={currentFolder}
+              selected={currentFolder?.name}
             />
           ))}
           <div onClick={() => dispatch(openModal({ type: "addFolder" }))}>
@@ -59,11 +55,7 @@ const Folder = ({ currentFolder, setCurrentFolder, currentFolderId, setCurrentFo
           </div>
         </S.FolderBox>
       </S.FolderContainer>
-      <FolderOptionButton
-        currentFolder={currentFolder}
-        setCurrentFolder={setCurrentFolder}
-        currentFolderId={currentFolderId}
-      />
+      <FolderOptionButton currentFolder={currentFolder} setCurrentFolder={setCurrentFolder} />
     </S.FolderLayout>
   );
 };
