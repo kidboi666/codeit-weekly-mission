@@ -22,38 +22,43 @@ const AddLinkToFolder = ({ title, text, variant }: ModalProps) => {
   const dispatch = useAppDispatch();
 
   const handleSelectedFolder = (folderItem: FolderList) => {
-    /** 이동하려는 폴더 정보를 저장하는 함수 */
     setSelectedFolder({
       name: folderItem.name,
       id: folderItem.id,
     });
   };
 
-  const onClickAddLink = async () => {
+  const handleLinkAddition = async () => {
     const res = await dispatch(postLink({ url: linkUrl, folderId: selectedFolder.id }));
     dispatch(closeModal());
-
-    /** 링크 추가 요청이 실패시 */
-    if (res.meta.requestStatus === "rejected") {
-      return dispatch(openToast({ type: "rejectedAddLink" }));
-    }
-
-    /** 링크 추가가 아니라 링크 이동일시 */
-    if (linkId && currentFolder && res.meta.requestStatus === "fulfilled") {
-      await dispatch(deleteLink(linkId)); // 이동 완료되었다면 현재 폴더에서 해당 링크 삭제
-      await dispatch(getLinkList({ userId: userInfo.id, folderId: currentFolder.id })); // 현재 폴더 링크 리스트 다시 요청
-      return dispatch(openToast({ type: "moveLink" }));
-    }
-
+    if (res.meta.requestStatus === "rejected") dispatch(openToast({ type: "rejectedAddLink" }));
     setLinkUrl("");
     dispatch(openToast({ type: "addLink" }));
+    refreshLinkList();
+  };
 
-    /** 현재 화면에 출력중인 폴더가 전체 폴더라면 */
-    if (currentFolder?.name === COMBINED_FOLDER_NAME) {
-      return dispatch(getAllLinkList(userInfo.id));
+  const handleLinkMove = async () => {
+    await dispatch(postLink({ url: linkUrl, folderId: selectedFolder.id }));
+    dispatch(closeModal());
+    await dispatch(deleteLink(linkId)); // 이동 완료되었다면 현재 폴더에서 해당 링크 삭제
+    dispatch(openToast({ type: "moveLink" }));
+    refreshLinkList();
+  };
+
+  const refreshLinkList = () => {
+    if (linkId && currentFolder) {
+      dispatch(getLinkList({ userId: userInfo.id, folderId: currentFolder?.id }));
+    } else if (currentFolder?.name === COMBINED_FOLDER_NAME) {
+      dispatch(getAllLinkList(userInfo.id));
     }
+  };
 
-    dispatch(getLinkList({ userId: userInfo.id, folderId: currentFolder?.id }));
+  const onClickAddLink = () => {
+    if (linkId && currentFolder) {
+      handleLinkMove();
+    } else {
+      handleLinkAddition();
+    }
   };
 
   useEffect(() => {
