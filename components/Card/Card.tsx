@@ -2,9 +2,9 @@ import * as S from "./Card.styled";
 import blankLogo from "@/assets/icons/blank_logo.svg";
 import calculateTime from "@/utils/calculateTime";
 import formatDate from "@/utils/formatDate";
-import { Star, Kebab } from "@/components";
 import { Link } from "@/services/types";
 import Image from "next/image";
+import { Star, Kebab } from "@/components";
 import { CurrentFolderType } from "@/pages/folder/[[...folderId]]";
 
 interface CardProps {
@@ -31,7 +31,11 @@ const Card = ({ linkList, currentFolder, setCurrentFolder }: CardProps) => {
                 <S.CardImg src={link.imageSource} alt={link.title} />
               ) : (
                 <S.BlankImgBox>
-                  <Image src={blankLogo} alt={link.title} style={{ width: "100%" }} />
+                  <Image
+                    src={blankLogo}
+                    alt={link.title}
+                    style={{ width: "100%" }}
+                  />
                 </S.BlankImgBox>
               )}
             </S.CardImgContainer>

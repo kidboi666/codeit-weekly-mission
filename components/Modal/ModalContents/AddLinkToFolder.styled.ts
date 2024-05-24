@@ -15,8 +15,10 @@ export const FolderListItem = styled.div<{ $isActive?: boolean }>`
   border-radius: 8px;
   line-height: 24px;
   cursor: pointer;
-  background-color: ${({ $isActive }) => ($isActive ? "var(--gray5-color)" : "var(--white-color)")};
-  color: ${({ $isActive }) => ($isActive ? "var(--primary-color)" : "var(--black-color)")};
+  background-color: ${({ $isActive }) =>
+    $isActive ? "var(--gray5-color)" : "var(--white-color)"};
+  color: ${({ $isActive }) =>
+    $isActive ? "var(--primary-color)" : "var(--black-color)"};
 
   &:hover {
     background-color: var(--gray5-color);

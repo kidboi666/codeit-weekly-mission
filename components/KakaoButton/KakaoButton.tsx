@@ -24,7 +24,8 @@ const KakaoButton = () => {
       content: {
         title: "Linkbrary",
         description: "위클리미션",
-        imageUrl: "https://5rolling.netlify.app/static/media/logo.c1f18ffcdc76df4e2e28b644ee3ae6fb.svg",
+        imageUrl:
+          "https://5rolling.netlify.app/static/media/logo.c1f18ffcdc76df4e2e28b644ee3ae6fb.svg",
         link: {
           mobileWebUrl: realUrl,
           webUrl: realUrl,

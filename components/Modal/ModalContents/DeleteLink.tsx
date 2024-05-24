@@ -8,7 +8,8 @@ import { ModalProps } from "../ModalTypes";
 
 const DeleteLink = ({ title, text, variant }: ModalProps) => {
   const { userInfo } = useAppSelector((state) => state.auth);
-  const { linkId, linkTitle, currentFolder } = useAppSelector((state) => state.modal.props) || {};
+  const { linkId, linkTitle, currentFolder } =
+    useAppSelector((state) => state.modal.props) || {};
   const dispatch = useAppDispatch();
 
   const onClick = async () => {
@@ -16,7 +17,7 @@ const DeleteLink = ({ title, text, variant }: ModalProps) => {
       await dispatch(deleteLink(linkId));
       dispatch(closeModal());
       dispatch(openToast({ type: "deleteLink" }));
-      if (currentFolder === COMBINED_FOLDER_NAME) {
+      if (currentFolder.name === COMBINED_FOLDER_NAME) {
         return dispatch(getAllLinkList(userInfo.id));
       }
       dispatch(

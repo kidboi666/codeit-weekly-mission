@@ -7,7 +7,11 @@ import Link from "next/link";
 import { Input, Button } from "@/components";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
-import { checkEmailAccess, signUpAccess, userInfoAccess } from "@/redux/actions/auth";
+import {
+  checkEmailAccess,
+  signUpAccess,
+  userInfoAccess,
+} from "@/redux/actions/auth";
 import { useRouter } from "next/router";
 import { openToast } from "@/redux/reducers/toast";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
@@ -32,7 +36,9 @@ const SignUpPage = () => {
   });
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    if (data.password !== data.passwordCheck) return dispatch(openToast("diffrentPassword"));
+    if (data.password !== data.passwordCheck) {
+      return dispatch(openToast("diffrentPassword"));
+    }
     if (data.email && data.password) {
       const res = await dispatch(checkEmailAccess(data.email));
 
@@ -77,10 +83,18 @@ const SignUpPage = () => {
                 rules={{
                   required: { value: true, message: INPUT_MSG.inputEmail },
                   maxLength: { value: 30, message: INPUT_MSG.emailLength },
-                  pattern: { value: EMAIL_REGX, message: INPUT_MSG.wrongEmailForm },
+                  pattern: {
+                    value: EMAIL_REGX,
+                    message: INPUT_MSG.wrongEmailForm,
+                  },
                 }}
                 render={({ field, fieldState: { error } }) => (
-                  <Input {...field} type='email' placeholder='codeit@codeit.kr' error={error} />
+                  <Input
+                    {...field}
+                    type='email'
+                    placeholder='codeit@codeit.kr'
+                    error={error}
+                  />
                 )}
               />
             </S.EmailContainer>
@@ -92,11 +106,19 @@ const SignUpPage = () => {
                 rules={{
                   required: { value: true, message: INPUT_MSG.inputPw },
                   maxLength: { value: 20, message: INPUT_MSG.pwLength },
-                  pattern: { value: ALPHANUMERIC_REGX, message: INPUT_MSG.wrongPwForm },
+                  pattern: {
+                    value: ALPHANUMERIC_REGX,
+                    message: INPUT_MSG.wrongPwForm,
+                  },
                   deps: ["passwordCheck"],
                 }}
                 render={({ field, fieldState: { error } }) => (
-                  <Input {...field} type='password' placeholder='******' error={error} />
+                  <Input
+                    {...field}
+                    type='password'
+                    placeholder='******'
+                    error={error}
+                  />
                 )}
               />
             </S.PasswordContainer>
@@ -108,10 +130,18 @@ const SignUpPage = () => {
                 rules={{
                   required: { value: true, message: INPUT_MSG.inputPw },
                   maxLength: { value: 20, message: INPUT_MSG.pwLength },
-                  pattern: { value: ALPHANUMERIC_REGX, message: INPUT_MSG.wrongPwForm },
+                  pattern: {
+                    value: ALPHANUMERIC_REGX,
+                    message: INPUT_MSG.wrongPwForm,
+                  },
                 }}
                 render={({ field, fieldState: { error } }) => (
-                  <Input {...field} type='password' placeholder='******' error={error} />
+                  <Input
+                    {...field}
+                    type='password'
+                    placeholder='******'
+                    error={error}
+                  />
                 )}
               />
             </S.PasswordRepeatContainer>

@@ -24,10 +24,18 @@ const Footer = () => {
           <a href='https://www.facebook.com/' target='_blank' rel='noreferrer'>
             <Image src={facebook} alt='facebook' />
           </a>
-          <a href='https://twitter.com/?lang=ko' target='_blank' rel='noreferrer'>
+          <a
+            href='https://twitter.com/?lang=ko'
+            target='_blank'
+            rel='noreferrer'
+          >
             <Image src={twitter} alt='twitter' />
           </a>
-          <a href='https://www.youtube.com/?gl=KR&hl=ko' target='_blank' rel='noreferrer'>
+          <a
+            href='https://www.youtube.com/?gl=KR&hl=ko'
+            target='_blank'
+            rel='noreferrer'
+          >
             <Image src={youtube} alt='youtube' />
           </a>
           <a href='https://www.instagram.com/' target='_blank' rel='noreferrer'>

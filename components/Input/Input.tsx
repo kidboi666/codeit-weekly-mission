@@ -34,7 +34,9 @@ const Input = ({
   };
 
   const changeInputType = () => {
-    transforemedType === "password" ? setTransformedType("text") : setTransformedType("password");
+    transforemedType === "password"
+      ? setTransformedType("text")
+      : setTransformedType("password");
   };
 
   useEffect(() => {

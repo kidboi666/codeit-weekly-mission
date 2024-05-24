@@ -19,8 +19,16 @@ const SharedPage = () => {
 
   const fetchSharePageData = async () => {
     const resFolder = await dispatch(getSharedFolder(Number(folderId)));
-    const resUser = await dispatch(getSharedUserInfo(resFolder.payload[0].userId));
-    if (folderId && resUser) dispatch(getLinkList({ userId: resFolder.payload[0].userId, folderId: Number(folderId) }));
+    const resUser = await dispatch(
+      getSharedUserInfo(resFolder.payload[0].userId),
+    );
+    if (folderId && resUser)
+      dispatch(
+        getLinkList({
+          userId: resFolder.payload[0].userId,
+          folderId: Number(folderId),
+        }),
+      );
   };
 
   useEffect(() => {
@@ -38,9 +46,19 @@ const SharedPage = () => {
           />
         }
         Search={
-          <Search setSearchResult={setSearchResult} searchKeyword={searchKeyword} setSearchKeyword={setSearchKeyword} />
+          <Search
+            setSearchResult={setSearchResult}
+            searchKeyword={searchKeyword}
+            setSearchKeyword={setSearchKeyword}
+          />
         }
-        Card={searchResult.length >= 1 ? <Card linkList={searchResult} /> : <Card linkList={data} />}
+        Card={
+          searchResult.length >= 1 ? (
+            <Card linkList={searchResult} />
+          ) : (
+            <Card linkList={data} />
+          )
+        }
       />
     </AppLayout>
   );

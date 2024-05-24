@@ -10,7 +10,8 @@ import { ModalProps } from "../ModalTypes";
 const ChangeName = ({ title, text, variant }: ModalProps) => {
   const [folderName, setFolderName] = useState("");
   const { userInfo } = useAppSelector((state) => state.auth);
-  const { currentFolder, setCurrentFolder } = useAppSelector((state) => state.modal.props) || {};
+  const { currentFolder, setCurrentFolder } =
+    useAppSelector((state) => state.modal.props) || {};
   const dispatch = useAppDispatch();
 
   const onChangeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,7 +33,11 @@ const ChangeName = ({ title, text, variant }: ModalProps) => {
     <>
       <h3>{title}</h3>
       <form onSubmit={onSubmit}>
-        <Input value={folderName} onChange={onChangeInputValue} placeholder={currentFolder.name} />
+        <Input
+          value={folderName}
+          onChange={onChangeInputValue}
+          placeholder={currentFolder.name}
+        />
         <Button variant={variant} text={text} type='submit' width='100%' />
       </form>
     </>

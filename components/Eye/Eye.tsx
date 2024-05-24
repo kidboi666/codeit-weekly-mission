@@ -15,7 +15,13 @@ const Eye = ({ onClick }: EyeProps) => {
     onClick();
   };
 
-  return <Image src={value ? eyeOn : eyeOff} onClick={onClickHandler} alt='비밀번호 표시 아이콘' />;
+  return (
+    <Image
+      src={value ? eyeOn : eyeOff}
+      onClick={onClickHandler}
+      alt='비밀번호 표시 아이콘'
+    />
+  );
 };
 
 export default Eye;

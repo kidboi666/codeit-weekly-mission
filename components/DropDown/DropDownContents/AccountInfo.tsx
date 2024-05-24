@@ -3,7 +3,9 @@ import * as S from "./AccountInfo.styled";
 import { logout } from "@/redux/reducers/auth";
 
 const AccountInfo = () => {
-  const { imageSource, name, email } = useAppSelector((state) => state.auth.userInfo);
+  const { imageSource, name, email } = useAppSelector(
+    (state) => state.auth.userInfo,
+  );
   const dispatch = useAppDispatch();
 
   const onClick = () => {

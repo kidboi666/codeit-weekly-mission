@@ -1,5 +1,12 @@
 import { useEffect, useState } from "react";
-import { Folder, AddLink, Search, AppLayout, Card, FolderLayout } from "@/components";
+import {
+  Folder,
+  AddLink,
+  Search,
+  AppLayout,
+  Card,
+  FolderLayout,
+} from "@/components";
 import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
 import { Link } from "@/services/types";
 import { getAllLinkList, getLinkList } from "@/redux/actions/link";
@@ -29,7 +36,9 @@ const FolderPage = () => {
   };
 
   const fetchLinkList = () => {
-    folderId ? dispatch(getLinkList({ userId, folderId: Number(folderId) })) : dispatch(getAllLinkList(userId));
+    folderId
+      ? dispatch(getLinkList({ userId, folderId: Number(folderId) }))
+      : dispatch(getAllLinkList(userId));
   };
 
   useEffect(() => {
@@ -45,14 +54,27 @@ const FolderPage = () => {
       <FolderLayout
         AddLink={<AddLink />}
         Search={
-          <Search setSearchResult={setSearchResult} searchKeyword={searchKeyword} setSearchKeyword={setSearchKeyword} />
+          <Search
+            setSearchResult={setSearchResult}
+            searchKeyword={searchKeyword}
+            setSearchKeyword={setSearchKeyword}
+          />
         }
-        Folder={<Folder currentFolder={currentFolder} setCurrentFolder={setCurrentFolder} />}
+        Folder={
+          <Folder
+            currentFolder={currentFolder}
+            setCurrentFolder={setCurrentFolder}
+          />
+        }
         Card={
           searchKeyword && searchResult.length >= 1 ? (
             <Card linkList={searchResult} />
           ) : (
-            <Card linkList={linkList} currentFolder={currentFolder} setCurrentFolder={setCurrentFolder} />
+            <Card
+              linkList={linkList}
+              currentFolder={currentFolder}
+              setCurrentFolder={setCurrentFolder}
+            />
           )
         }
       />

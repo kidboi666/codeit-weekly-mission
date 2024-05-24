@@ -11,7 +11,13 @@ export interface EditCardProps {
   setCurrentFolder?: React.Dispatch<React.SetStateAction<CurrentFolderType>>;
 }
 
-const EditCard = ({ linkId, linkTitle, linkUrl, currentFolder, setCurrentFolder }: EditCardProps) => {
+const EditCard = ({
+  linkId,
+  linkTitle,
+  linkUrl,
+  currentFolder,
+  setCurrentFolder,
+}: EditCardProps) => {
   const dispatch = useAppDispatch();
 
   const deleteLink = () => {

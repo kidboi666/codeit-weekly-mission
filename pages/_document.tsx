@@ -1,10 +1,19 @@
-import Document, { Html, Head, Main, NextScript, DocumentContext } from "next/document";
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentContext,
+} from "next/document";
 import { ServerStyleSheet } from "styled-components";
 
 const MyDocument = () => (
   <Html lang='ko'>
     <Head>
-      <link rel='stylesheet' href={"https://cdn.jsdelivr.net/npm/pretendard@2/pretendard.css"} />
+      <link
+        rel='stylesheet'
+        href={"https://cdn.jsdelivr.net/npm/pretendard@2/pretendard.css"}
+      />
     </Head>
     <body>
       <Main />

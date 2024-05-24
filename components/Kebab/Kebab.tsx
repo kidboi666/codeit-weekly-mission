@@ -15,11 +15,20 @@ interface KebabProps {
   linkUrl: string;
 }
 
-const Kebab = ({ currentFolder, setCurrentFolder, linkId, linkTitle, linkUrl }: KebabProps) => {
+const Kebab = ({
+  currentFolder,
+  setCurrentFolder,
+  linkId,
+  linkTitle,
+  linkUrl,
+}: KebabProps) => {
   const router = useRouter();
   const [isOpen, setOpen] = useState(false);
 
-  if (!router.pathname.includes("/folder") || currentFolder?.name === COMBINED_FOLDER_NAME) {
+  if (
+    !router.pathname.includes("/folder") ||
+    currentFolder?.name === COMBINED_FOLDER_NAME
+  ) {
     return null;
   }
 
@@ -30,7 +39,11 @@ const Kebab = ({ currentFolder, setCurrentFolder, linkId, linkTitle, linkUrl }: 
 
   return (
     <S.KebabLayout onClick={onClickKebab} onMouseLeave={() => setOpen(false)}>
-      <Image src={kebobIcon} alt='케밥 버튼 아이콘' style={{ width: "100%" }} />
+      <Image
+        src={kebobIcon}
+        alt='케밥 버튼 아이콘'
+        style={{ width: "100%" }}
+      />
       <DropDown
         variant='editCard'
         isOpen={isOpen}
