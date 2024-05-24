@@ -1,5 +1,5 @@
 import * as S from "@/src/styles/landingPage.styled";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import mainHeader from "@/public/images/main_header.png";
 import mainLink from "@/public/images/main_link.png";
 import mainFolder from "@/public/images/main_folder.png";
@@ -10,6 +10,40 @@ import { AppLayout, Button } from "@/src/components";
 import { useAppSelector } from "@/src/hooks/useApp";
 import { useEffect, useRef, useState } from "react";
 import OverviewCard from "../components/OverviewCard/OverviewCard";
+
+const descriptionList = [
+  {
+    gradient: "link",
+    span: "원하는 링크",
+    lastH1: "를 저장하세요",
+    p: "나중에 읽고 싶은 글, 다시 보고 싶은 영상, 사고 싶은 옷, 기억하고 싶은 모든 것을 한 공간에 저장하세요.",
+    imgSrc: mainLink,
+  },
+  {
+    gradient: "folder",
+    firstH1: "링크를 폴더로",
+    span: "관리",
+    lasH1: "하세요.",
+    p: "나만의 폴더를 무제한으로 만들고 다양하게 활용할 수 있습니다.",
+    imgSrc: mainFolder,
+  },
+  {
+    gradient: "share",
+    firstH1: "저장한 링크를",
+    span: "공유",
+    lastH1: "해 보세요.",
+    p: "여러 링크를 폴더에 담고 공유할 수 있습니다. 가족, 친구, 동료들에게 쉽고 빠르게 링크를 공유해 보세요.",
+    imgSrc: mainShare,
+  },
+  {
+    gradient: "sns",
+    firstH1: "저장한 링크를",
+    span: "검색",
+    lastH1: "해 보세요.",
+    p: "중요한 정보들을 검색으로 쉽게 찾아보세요.",
+    imgSrc: mainSns,
+  },
+];
 
 const LandingPage = () => {
   const [isInterSecting, setInterSecting] = useState(false);
@@ -63,38 +97,19 @@ const LandingPage = () => {
           </S.HeaderBox>
         </S.HeaderContainer>
         <S.SectionCotainer>
-          <OverviewCard
-            span='원하는 링크'
-            lastH1='를 저장하세요'
-            gradient='link'
-            p='나중에 읽고 싶은 글, 다시 보고 싶은 영상, 사고 싶은 옷, 기억하고
-            싶은 모든 것을 한 공간에 저장하세요.'
-            imgSrc={mainLink}
-          />
-          <OverviewCard
-            firstH1='링크를 폴더로'
-            span='관리'
-            lastH1='하세요.'
-            gradient='folder'
-            p='나만의 폴더를 무제한으로 만들고 다양하게 활용할 수 있습니다.'
-            imgSrc={mainFolder}
-          />
-          <OverviewCard
-            firstH1='저장한 링크를'
-            span='공유'
-            lastH1='해 보세요'
-            gradient='share'
-            p='여러 링크를 폴더에 담고 공유할 수 있습니다. 가족, 친구, 동료들에게 쉽고 빠르게 링크를 공유해 보세요.'
-            imgSrc={mainShare}
-          />
-          <OverviewCard
-            firstH1='저장한 링크를'
-            span='검색'
-            lastH1='해 보세요.'
-            gradient='sns'
-            p='중요한 정보들을 검색으로 쉽게 찾아보세요.'
-            imgSrc={mainSns}
-          />
+          {descriptionList.map((v, i) => (
+            <div key={i}>
+              <OverviewCard
+                firstH1={v.firstH1 || ""}
+                span={v.span}
+                lastH1={v.lastH1}
+                gradient={v.gradient}
+                p={v.p}
+                imgSrc={v.imgSrc}
+                odd={!!(i % 2)}
+              />
+            </div>
+          ))}
         </S.SectionCotainer>
       </S.LandingPageLayout>
     </AppLayout>

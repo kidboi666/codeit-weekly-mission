@@ -8,6 +8,7 @@ interface OverviewCardProps {
   firstH1?: string;
   lastH1?: string;
   gradient: string;
+  odd: boolean;
 }
 
 const OverviewCard = ({
@@ -17,12 +18,13 @@ const OverviewCard = ({
   firstH1,
   lastH1,
   gradient,
+  odd,
 }: OverviewCardProps) => {
   const classNames = `text_gradient ${gradient}_gradient`;
 
   return (
     <S.CardContainer>
-      <S.InnerBox>
+      <S.InnerBox $odd={odd}>
         <h1>
           {firstH1 || ""}
           <span className={classNames}>{` ${span}`}</span>

@@ -8,13 +8,9 @@ export const CardContainer = styled.div`
   @media (max-width: 767px) {
     padding: 40px 32px;
   }
-
-  &:nth-child(even) div div {
-    grid-column: 1 / 2;
-  }
 `;
 
-export const InnerBox = styled.div`
+export const InnerBox = styled.div<{ $odd: boolean }>`
   width: 998px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -63,8 +59,13 @@ export const InnerBox = styled.div`
     grid-column: 2 / -1;
     grid-row: 1 / -1;
 
+    ${({ $odd }) =>
+      $odd &&
+      `
+        grid-column: 1 / 2;
+      `}
+
     @media (max-width: 1199px) {
-      grid-column: 2 / -1;
       grid-row: 1 / span 4;
     }
 
