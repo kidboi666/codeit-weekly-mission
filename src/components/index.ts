@@ -20,6 +20,7 @@ import Search from "./Search/Search";
 import Spinner from "./Spinner/Spinner";
 import Star from "./Star/Star";
 import Toast from "./Toast/Toast";
+import OverviewCard from "./OverviewCard/OverviewCard";
 
 export {
   AddLink,
@@ -44,4 +45,5 @@ export {
   Toast,
   FolderLayout,
   SharedLayout,
+  OverviewCard,
 };

@@ -10,7 +10,7 @@ export const CardContainer = styled.div`
   }
 `;
 
-export const InnerBox = styled.div<{ $odd: boolean }>`
+export const InnerBox = styled.div<{ $isEven: boolean }>`
   width: 998px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -59,11 +59,11 @@ export const InnerBox = styled.div<{ $odd: boolean }>`
     grid-column: 2 / -1;
     grid-row: 1 / -1;
 
-    ${({ $odd }) =>
-      $odd &&
+    ${({ $isEven }) =>
+      $isEven &&
       `
         grid-column: 1 / 2;
-      `}
+    `}
 
     @media (max-width: 1199px) {
       grid-row: 1 / span 4;

@@ -15,10 +15,10 @@ export const HeaderLayout = styled.div<{ $isShadow?: boolean }>`
   ${({ $isShadow }) =>
     $isShadow &&
     `
-  box-shadow: 0 10px 30px rgba(188, 188, 188, 0.3);
-  position: sticky;
-  transition: box-shadow 0.3s;
-  border-bottom: 1px solid #e2ebfa;
+      box-shadow: 0 10px 30px rgba(188, 188, 188, 0.3);
+      position: sticky;
+      transition: box-shadow 0.3s;
+      border-bottom: 1px solid #e2ebfa;
   `}
 
   @media (max-width: 1124px) {

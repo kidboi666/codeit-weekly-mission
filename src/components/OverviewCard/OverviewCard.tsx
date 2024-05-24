@@ -8,7 +8,7 @@ interface OverviewCardProps {
   firstH1?: string;
   lastH1?: string;
   gradient: string;
-  odd: boolean;
+  isEven: boolean;
 }
 
 const OverviewCard = ({
@@ -18,13 +18,13 @@ const OverviewCard = ({
   firstH1,
   lastH1,
   gradient,
-  odd,
+  isEven,
 }: OverviewCardProps) => {
   const classNames = `text_gradient ${gradient}_gradient`;
 
   return (
     <S.CardContainer>
-      <S.InnerBox $odd={odd}>
+      <S.InnerBox $isEven={isEven}>
         <h1>
           {firstH1 || ""}
           <span className={classNames}>{` ${span}`}</span>

@@ -1,15 +1,14 @@
 import * as S from "@/src/styles/landingPage.styled";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import mainHeader from "@/public/images/main_header.png";
 import mainLink from "@/public/images/main_link.png";
 import mainFolder from "@/public/images/main_folder.png";
 import mainShare from "@/public/images/main_share.png";
 import mainSns from "@/public/images/main_sns.png";
 import Link from "next/link";
-import { AppLayout, Button } from "@/src/components";
+import { AppLayout, Button, OverviewCard } from "@/src/components";
 import { useAppSelector } from "@/src/hooks/useApp";
 import { useEffect, useRef, useState } from "react";
-import OverviewCard from "../components/OverviewCard/OverviewCard";
 
 const descriptionList = [
   {
@@ -62,7 +61,6 @@ const LandingPage = () => {
 
   useEffect(() => {
     const observer = new IntersectionObserver(callback);
-
     if (targetRef.current) {
       observer.observe(targetRef.current);
     }
@@ -106,7 +104,7 @@ const LandingPage = () => {
                 gradient={v.gradient}
                 p={v.p}
                 imgSrc={v.imgSrc}
-                odd={!!(i % 2)}
+                isEven={!!(i % 2)}
               />
             </div>
           ))}
