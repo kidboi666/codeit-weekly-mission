@@ -5,6 +5,7 @@ import { closeModal } from "@/src/store/reducers/modal";
 import { openToast } from "@/src/store/reducers/toast";
 import { useState } from "react";
 import { ModalProps } from "../ModalTypes";
+import { FolderList } from "@/src/services/types";
 
 const AddFolder = ({ title, text, variant }: ModalProps) => {
   const [folderName, setFolderName] = useState("");
@@ -16,7 +17,9 @@ const AddFolder = ({ title, text, variant }: ModalProps) => {
   };
 
   const checkForDuplicates = () => {
-    const result = folderList.some((folder) => folder.name === folderName);
+    const result = folderList.some(
+      (folder: FolderList) => folder.name === folderName,
+    );
     if (result) dispatch(openToast({ type: "duplicateFolderName" }));
     return result;
   };

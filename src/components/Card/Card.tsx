@@ -16,7 +16,7 @@ interface CardProps {
 const Card = ({ linkList, currentFolder, setCurrentFolder }: CardProps) => {
   if (typeof linkList === "string") {
     return <div>{linkList}</div>;
-  } else if (linkList.length === 0) {
+  } else if (linkList?.length === 0) {
     return <div>해당되는 링크가 없습니다.</div>;
   }
 

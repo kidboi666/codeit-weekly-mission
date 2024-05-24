@@ -52,7 +52,7 @@ const FolderPage = () => {
   return (
     <AppLayout>
       <FolderLayout
-        AddLink={<AddLink />}
+        AddLink={<AddLink currentFolder={currentFolder} />}
         Search={
           <Search
             setSearchResult={setSearchResult}

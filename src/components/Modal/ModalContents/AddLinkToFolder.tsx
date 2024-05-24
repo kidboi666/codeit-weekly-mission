@@ -21,10 +21,9 @@ const AddLinkToFolder = ({ title, text, variant }: ModalProps) => {
     id: 0,
   });
   const { data: folderList } = useAppSelector((state) => state.folder);
-  const { linkUrl, setLinkUrl } =
+  const { linkUrl, setLinkUrl, currentFolder } =
     useAppSelector((state) => state.modal.props) || {};
-  const { linkId, currentFolder } =
-    useAppSelector((state) => state.modal.props) || {};
+  const { linkId } = useAppSelector((state) => state.modal.props) || {};
   const { userInfo } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
 
@@ -57,17 +56,24 @@ const AddLinkToFolder = ({ title, text, variant }: ModalProps) => {
   };
 
   const refreshLinkList = () => {
-    if (linkId && currentFolder) {
-      dispatch(
-        getLinkList({ userId: userInfo.id, folderId: currentFolder?.id }),
-      );
-    } else if (currentFolder?.name === COMBINED_FOLDER_NAME) {
+    if (currentFolder.name === COMBINED_FOLDER_NAME) {
+      // 현재 보여지는 폴더가 전체 폴더일때 새로고침
       dispatch(getAllLinkList(userInfo.id));
+    } else if (selectedFolder.name === currentFolder.name) {
+      // 현재 보여지는 폴더에 링크 추가시 새로고침
+      dispatch(
+        getLinkList({ userId: userInfo.id, folderId: selectedFolder.id }),
+      );
+    } else if (linkId) {
+      // 폴더 이동시 새로고침
+      dispatch(
+        getLinkList({ userId: userInfo.id, folderId: currentFolder.id }),
+      );
     }
   };
 
   const onClickAddLink = () => {
-    if (linkId && currentFolder) {
+    if (linkId) {
       handleLinkMove();
     } else {
       handleLinkAddition();
@@ -82,8 +88,8 @@ const AddLinkToFolder = ({ title, text, variant }: ModalProps) => {
     <>
       <h3>{title}</h3>
       <S.FolderList>
-        {folderList?.map((folder) => {
-          if (folder.id === currentFolder?.id) return null;
+        {folderList?.map((folder: FolderList) => {
+          if (folder.id === currentFolder?.id && linkId) return null;
           return (
             <S.FolderListItem
               key={folder.id}

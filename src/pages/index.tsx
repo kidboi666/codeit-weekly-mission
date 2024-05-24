@@ -9,6 +9,7 @@ import Link from "next/link";
 import { AppLayout, Button } from "@/src/components";
 import { useAppSelector } from "@/src/hooks/useApp";
 import { useEffect, useRef, useState } from "react";
+import OverviewCard from "../components/OverviewCard/OverviewCard";
 
 const LandingPage = () => {
   const [isInterSecting, setInterSecting] = useState(false);
@@ -62,73 +63,38 @@ const LandingPage = () => {
           </S.HeaderBox>
         </S.HeaderContainer>
         <S.SectionCotainer>
-          <S.CardContainer>
-            <S.CardBox>
-              <h1>
-                <span className='text_gradient link_gradient'>
-                  {" "}
-                  원하는 링크
-                </span>
-                를&nbsp;
-                <S.Break />
-                저장하세요.
-              </h1>
-              <p>
-                나중에 읽고 싶은 글, 다시 보고 싶은 영상, 사고 싶은 옷, 기억하고
-                싶은 모든 것을 한 공간에 저장하세요.
-              </p>
-              <div>
-                <Image src={mainLink} alt='' />
-              </div>
-            </S.CardBox>
-          </S.CardContainer>
-          <S.CardContainer>
-            <S.CardBox>
-              <h1>
-                링크를 폴더로
-                <S.Break />
-                <span className='text_gradient folder_gradient'> 관리</span>
-                하세요.
-              </h1>
-              <p>
-                나만의 폴더를 무제한으로 만들고 다양하게 활용할 수 있습니다.
-              </p>
-              <div>
-                <Image src={mainFolder} alt='' />
-              </div>
-            </S.CardBox>
-          </S.CardContainer>
-          <S.CardContainer>
-            <S.CardBox>
-              <h1>
-                저장한 링크를
-                <S.Break />
-                <span className='text_gradient share_gradient'> 공유</span>해
-                보세요.
-              </h1>
-              <p>
-                여러 링크를 폴더에 담고 공유할 수 있습니다. 가족, 친구,
-                동료들에게 쉽고 빠르게 링크를 공유해 보세요.
-              </p>
-              <div>
-                <Image src={mainShare} alt='' />
-              </div>
-            </S.CardBox>
-          </S.CardContainer>
-          <S.CardContainer>
-            <S.CardBox>
-              <h1>
-                저장한 링크를
-                <S.Break />
-                <span className='text_gradient sns_gradient'> 검색</span>해
-                보세요.
-              </h1>
-              <p>중요한 정보들을 검색으로 쉽게 찾아보세요.</p>
-              <div>
-                <Image src={mainSns} alt='' />
-              </div>
-            </S.CardBox>
-          </S.CardContainer>
+          <OverviewCard
+            span='원하는 링크'
+            lastH1='를 저장하세요'
+            gradient='link'
+            p='나중에 읽고 싶은 글, 다시 보고 싶은 영상, 사고 싶은 옷, 기억하고
+            싶은 모든 것을 한 공간에 저장하세요.'
+            imgSrc={mainLink}
+          />
+          <OverviewCard
+            firstH1='링크를 폴더로'
+            span='관리'
+            lastH1='하세요.'
+            gradient='folder'
+            p='나만의 폴더를 무제한으로 만들고 다양하게 활용할 수 있습니다.'
+            imgSrc={mainFolder}
+          />
+          <OverviewCard
+            firstH1='저장한 링크를'
+            span='공유'
+            lastH1='해 보세요'
+            gradient='share'
+            p='여러 링크를 폴더에 담고 공유할 수 있습니다. 가족, 친구, 동료들에게 쉽고 빠르게 링크를 공유해 보세요.'
+            imgSrc={mainShare}
+          />
+          <OverviewCard
+            firstH1='저장한 링크를'
+            span='검색'
+            lastH1='해 보세요.'
+            gradient='sns'
+            p='중요한 정보들을 검색으로 쉽게 찾아보세요.'
+            imgSrc={mainSns}
+          />
         </S.SectionCotainer>
       </S.LandingPageLayout>
     </AppLayout>

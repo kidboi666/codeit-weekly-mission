@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "@/src/hooks/useApp";
 import { openModal } from "@/src/store/reducers/modal";
 import { CurrentFolderType } from "@/src/pages/folder/[[...folderId]]";
 import { useRouter } from "next/router";
+import { FolderList } from "@/src/services/types";
 
 interface FolderProps {
   currentFolder: CurrentFolderType;
@@ -41,7 +42,7 @@ const Folder = ({ currentFolder, setCurrentFolder }: FolderProps) => {
             text={COMBINED_FOLDER_NAME}
             selected={currentFolder?.name}
           />
-          {folderList.map((folder) => (
+          {folderList.map((folder: FolderList) => (
             <Button
               key={folder.id}
               variant='folderButton'

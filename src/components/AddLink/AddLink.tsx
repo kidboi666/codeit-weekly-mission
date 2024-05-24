@@ -1,27 +1,33 @@
 import * as S from "./AddLink.styled";
 import LinkIcon from "@/public/icons/link.svg";
-import { useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { Button, Input } from "@/src/components";
 import { useAppDispatch, useAppSelector } from "@/src/hooks/useApp";
 import { openModal } from "@/src/store/reducers/modal";
 import { openToast } from "@/src/store/reducers/toast";
+import { CurrentFolderType } from "@/src/pages/folder/[[...folderId]]";
 
 interface AddLinkProps {
   className?: string;
+  currentFolder: CurrentFolderType;
 }
 
-const AddLink = ({ className }: AddLinkProps) => {
+const AddLink = ({ className, currentFolder }: AddLinkProps) => {
   const [linkUrl, setLinkUrl] = useState("");
-  const { data } = useAppSelector((state) => state.folder);
+  const { data: folderList } = useAppSelector((state) => state.folder);
   const dispatch = useAppDispatch();
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (data.length === 0) return dispatch(openToast({ type: "firstAction" }));
+    if (folderList.length === 0)
+      return dispatch(openToast({ type: "firstAction" }));
     if (linkUrl) {
       return dispatch(
-        openModal({ type: "addLinkToFolder", props: { linkUrl, setLinkUrl } }),
+        openModal({
+          type: "addLinkToFolder",
+          props: { linkUrl, setLinkUrl, currentFolder },
+        }),
       );
     }
     dispatch(openToast({ type: "nothingValue" }));
