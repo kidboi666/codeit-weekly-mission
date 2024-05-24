@@ -1,0 +1,16 @@
+
+GET http://localhost:3000/api/memo
+
+###
+
+POST http://localhost:3000/api/memo
+Content-Type: application/json
+
+{
+  "title": "와 쥐새끼",
+  "content": "테스트용"
+}
+
+###
+
+GET http://localhost:3000/api/memo/66508fc8f399ed78acfae9e0
