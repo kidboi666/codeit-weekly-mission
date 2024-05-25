@@ -7,7 +7,7 @@ import Image from "next/image";
 import { COMBINED_FOLDER_NAME } from "@/src/constants/strings";
 import { useAppDispatch } from "@/src/hooks/useApp";
 import { openModal } from "@/src/store/reducers/modal";
-import { CurrentFolderType } from "@/src/pages/folder/[[...folderId]]";
+import { CurrentFolderType } from "@/pages/folder/[[...folderId]]";
 
 interface FolderOptionButtonProps {
   currentFolder: CurrentFolderType;

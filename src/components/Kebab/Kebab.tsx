@@ -4,7 +4,7 @@ import * as S from "./Kebab.styled";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { COMBINED_FOLDER_NAME } from "@/src/constants/strings";
-import { CurrentFolderType } from "@/src/pages/folder/[[...folderId]]";
+import { CurrentFolderType } from "@/pages/folder/[[...folderId]]";
 import { DropDown } from "@/src/components";
 
 interface KebabProps {

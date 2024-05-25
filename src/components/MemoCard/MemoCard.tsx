@@ -5,7 +5,7 @@ import formatDate from "@/src/utils/formatDate";
 import { Link } from "@/src/types";
 import Image from "next/image";
 import { Star, Kebab } from "@/src/components";
-import { CurrentFolderType } from "@/src/pages/folder/[[...folderId]]";
+import { CurrentFolderType } from "@/pages/folder/[[...folderId]]";
 
 interface MemoCardProps {
   linkList: Link[] | string;

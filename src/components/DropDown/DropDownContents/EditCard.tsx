@@ -1,7 +1,7 @@
 import { useAppDispatch } from "@/src/hooks/useApp";
 import * as S from "./EditCard.styled";
 import { openModal } from "@/src/store/reducers/modal";
-import { CurrentFolderType } from "@/src/pages/folder/[[...folderId]]";
+import { CurrentFolderType } from "@/pages/folder/[[...folderId]]";
 
 export interface EditCardProps {
   linkId?: number;
