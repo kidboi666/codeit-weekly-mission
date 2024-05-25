@@ -8,7 +8,7 @@ interface OwnerProps {
 
 const Owner = ({ profileImage, userName, folderName }: OwnerProps) => {
   return (
-    <S.OwnerLayout>
+    <S.OwnerList>
       <li>
         <S.OwnerImg src={profileImage} alt='프로필 이미지' />
       </li>
@@ -18,7 +18,7 @@ const Owner = ({ profileImage, userName, folderName }: OwnerProps) => {
       <li>
         <S.Star>{folderName}</S.Star>
       </li>
-    </S.OwnerLayout>
+    </S.OwnerList>
   );
 };
 

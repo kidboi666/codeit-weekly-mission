@@ -8,6 +8,8 @@
 
 # testing
 /coverage
+/backend
+/src/pages/api
 
 # next.js
 /.next/

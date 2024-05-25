@@ -11,6 +11,7 @@ const AccountInfo = () => {
   const onClick = () => {
     dispatch(logout());
   };
+
   return (
     <S.AccountInfoLayout>
       <S.InfoSection>

@@ -41,7 +41,7 @@ const SignInPage = () => {
       if (res.meta.requestStatus === "fulfilled") {
         return dispatch(userInfoAccess());
       }
-      return dispatch(openToast("wrongAccount"));
+      return dispatch(openToast({ type: "wrongAccount" }));
     }
   };
 

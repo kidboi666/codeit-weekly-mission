@@ -18,13 +18,13 @@ const Search = ({
   setSearchKeyword,
 }: SearchProps) => {
   const [searchBody, setSearchBody] = useState("");
-  const { data } = useAppSelector((state) => state.link);
+  const { data: linkList } = useAppSelector((state) => state.link);
 
   const onSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     if (!searchBody) return null;
 
-    const result = data.filter((link) => {
+    const result = linkList.filter((link) => {
       return (
         link.title?.toLowerCase().includes(searchBody.toLowerCase()) ||
         link.url?.toLowerCase().includes(searchBody.toLowerCase()) ||
@@ -49,7 +49,7 @@ const Search = ({
   useEffect(() => {
     setSearchKeyword("");
     setSearchResult([]);
-  }, [data]);
+  }, [linkList]);
 
   return (
     <S.SearchLayout>

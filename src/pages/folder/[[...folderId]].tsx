@@ -42,7 +42,7 @@ const FolderPage = () => {
   };
 
   useEffect(() => {
-    if (userId) fetchFolderList();
+    userId ? fetchFolderList() : router.push("/signin");
   }, [userId]);
 
   useEffect(() => {
