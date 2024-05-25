@@ -2,7 +2,7 @@ import Image from "next/image";
 import logo from "@/public/icons/logo.svg";
 import googleIcon from "@/public/icons/google_icon.svg";
 import facebookIcon from "@/public/icons/facebook_icon.svg";
-import * as S from "@/src/styles/signUp.styled";
+import * as S from "@/src/styles/signup.styled";
 import Link from "next/link";
 import { Input, Button } from "@/src/components";
 import { useEffect } from "react";
@@ -41,7 +41,7 @@ const SignUpPage = () => {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     if (data.password !== data.passwordCheck) {
-      return dispatch(openToast("diffrentPassword"));
+      return dispatch(openToast({ type: "diffrentPassword" }));
     }
     if (data.email && data.password) {
       const res = await dispatch(checkEmailAccess(data.email));
@@ -49,9 +49,9 @@ const SignUpPage = () => {
       if (res.meta.requestStatus === "fulfilled") {
         return dispatch(signUpAccess(data));
       }
-      return dispatch(openToast("emailAlreadyExists"));
+      return dispatch(openToast({ type: "emailAlreadyExists" }));
     }
-    dispatch(openToast("wrongAccount"));
+    dispatch(openToast({ type: "wrongAccount" }));
   };
 
   useEffect(() => {
