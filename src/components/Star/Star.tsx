@@ -4,7 +4,7 @@ import * as S from "./Star.styled";
 import useToggle from "@/src/hooks/useToggle";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import { Link } from "@/src/services/types";
+import { Link } from "@/src/types";
 import { useAppDispatch } from "@/src/hooks/useApp";
 import { openToast } from "@/src/store/reducers/toast";
 

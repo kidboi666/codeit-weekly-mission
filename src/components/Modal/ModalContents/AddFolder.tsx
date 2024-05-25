@@ -5,7 +5,7 @@ import { closeModal } from "@/src/store/reducers/modal";
 import { openToast } from "@/src/store/reducers/toast";
 import { useState } from "react";
 import { ModalProps } from "../ModalTypes";
-import { FolderList } from "@/src/services/types";
+import { FolderList } from "@/src/types";
 
 const AddFolder = ({ title, text, variant }: ModalProps) => {
   const [folderName, setFolderName] = useState("");

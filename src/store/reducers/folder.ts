@@ -1,4 +1,4 @@
-import { FolderList, SharedFolder } from "@/src/services/types";
+import { FolderList, SharedFolder } from "@/src/types";
 import { createSlice } from "@reduxjs/toolkit";
 import {
   deleteFolder,

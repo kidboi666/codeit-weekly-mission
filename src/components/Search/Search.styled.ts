@@ -29,20 +29,19 @@ export const SearchLayout = styled.div`
 `;
 
 export const StyledInput = styled(Input)`
-    width: 1060px;
-    padding: 15px 15px 15px 45px;
-    box-sizing: border-box;
-    border: none;
-    background-color: #f5f5f5;
-    border-radius: 10px;
+  width: 1060px;
+  padding: 15px 15px 15px 45px;
+  box-sizing: border-box;
+  border: none;
+  background-color: #f5f5f5;
+  border-radius: 10px;
 
-    @media (max-width: 1124px) {
-      width: 700px;
-    }
+  @media (max-width: 1124px) {
+    width: 700px;
+  }
 
-    @media (max-width: 767px) {
-      width: 100%;
-    }
+  @media (max-width: 767px) {
+    width: 100%;
   }
 `;
 

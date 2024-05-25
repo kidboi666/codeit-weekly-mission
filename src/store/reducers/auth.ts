@@ -6,7 +6,7 @@ import {
   signUpAccess,
   userInfoAccess,
 } from "@/src/store/actions/auth";
-import { UserData } from "@/src/services/types";
+import { UserData } from "@/src/types";
 import { API_MSG } from "@/src/constants/strings";
 
 interface Props {

@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from "@/src/hooks/useApp";
 import { openModal } from "@/src/store/reducers/modal";
 import { CurrentFolderType } from "@/src/pages/folder/[[...folderId]]";
 import { useRouter } from "next/router";
-import { FolderList } from "@/src/services/types";
+import { FolderList } from "@/src/types";
 
 interface FolderProps {
   currentFolder: CurrentFolderType;

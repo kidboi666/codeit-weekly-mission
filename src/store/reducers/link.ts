@@ -1,4 +1,4 @@
-import { Link } from "@/src/services/types";
+import { Link } from "@/src/types";
 import { createSlice } from "@reduxjs/toolkit";
 import {
   getLinkList,

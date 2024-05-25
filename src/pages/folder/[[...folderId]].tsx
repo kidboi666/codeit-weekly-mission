@@ -8,7 +8,7 @@ import {
   FolderLayout,
 } from "@/src/components";
 import { useAppDispatch, useAppSelector } from "@/src/hooks/useApp";
-import { Link } from "@/src/services/types";
+import { Link } from "@/src/types";
 import { getAllLinkList, getLinkList } from "@/src/store/actions/link";
 import { getFolder } from "@/src/store/actions/folder";
 import { useRouter } from "next/router";

@@ -1,7 +1,7 @@
 import { Search, Card, AppLayout, Owner, SharedLayout } from "@/src/components";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { Link } from "@/src/services/types";
+import { Link } from "@/src/types";
 import { useAppDispatch, useAppSelector } from "@/src/hooks/useApp";
 import { getSharedFolder } from "@/src/store/actions/folder";
 import { getSharedUserInfo } from "@/src/store/actions/auth";

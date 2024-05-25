@@ -1,5 +1,5 @@
 import axiosInstance from "@/src/services/axiosInstace";
-import { FolderList } from "@/src/services/types";
+import { FolderList } from "@/src/types";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import camelcaseKeys from "camelcase-keys";
 

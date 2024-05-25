@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { Input } from "@/src/components";
 import { useAppSelector } from "@/src/hooks/useApp";
-import { Link } from "@/src/services/types";
+import { Link } from "@/src/types";
 
 interface SearchProps {
   setSearchResult: React.Dispatch<React.SetStateAction<Link[] | string>>;

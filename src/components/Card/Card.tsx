@@ -2,7 +2,7 @@ import * as S from "./Card.styled";
 import blankLogo from "@/public/icons/blank_logo.svg";
 import calculateTime from "@/src/utils/calculateTime";
 import formatDate from "@/src/utils/formatDate";
-import { Link } from "@/src/services/types";
+import { Link } from "@/src/types";
 import Image from "next/image";
 import { Star, Kebab } from "@/src/components";
 import { CurrentFolderType } from "@/src/pages/folder/[[...folderId]]";

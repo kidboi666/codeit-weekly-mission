@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from "@/src/hooks/useApp";
 import * as S from "./AddLinkToFolder.styled";
 import { Button } from "@/src/components/";
-import { FolderList } from "@/src/services/types";
+import { FolderList } from "@/src/types";
 import { closeModal } from "@/src/store/reducers/modal";
 import { openToast } from "@/src/store/reducers/toast";
 import { ModalProps } from "../ModalTypes";
