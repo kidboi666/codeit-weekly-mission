@@ -12,6 +12,11 @@ interface ButtonProps {
   onClick?: (e: React.MouseEvent) => void;
 }
 
+/**
+ *
+ * @param {string} variant primary, secondary, outlined
+ */
+
 const Button = ({
   variant = "default",
   width,

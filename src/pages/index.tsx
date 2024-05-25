@@ -1,4 +1,4 @@
-import * as S from "@/src/styles/landingPage.styled";
+import * as S from "@/src/styles/landing.styled";
 import Image from "next/image";
 import mainHeader from "@/public/images/main_header.png";
 import mainLink from "@/public/images/main_link.png";

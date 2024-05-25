@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const Button = styled.button<{ $variant: string; $isActive?: boolean; $width?: string }>`
+export const Button = styled.button<{
+  $variant: string;
+  $isActive?: boolean;
+  $width?: string;
+}>`
   ${({ $width }) => `width: ${$width}`};
   border-radius: 8px;
   border: none;
@@ -104,7 +108,9 @@ export const Button = styled.button<{ $variant: string; $isActive?: boolean; $wi
       padding: 8px 12px;
       border: 1px solid var(--primary-color);
       border-radius: 5px;
-      background-color: ${$isActive ? "var(--primary-color)" : "var(--white-color)"};
+      background-color: ${
+        $isActive ? "var(--primary-color)" : "var(--white-color)"
+      };
       color: ${$isActive ? "var(--white-color)" : "var(--black-color)"};
       cursor: pointer;
 

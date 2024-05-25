@@ -10,7 +10,7 @@ import {
 import { useAppDispatch, useAppSelector } from "@/src/hooks/useApp";
 import { loginAccess, userInfoAccess } from "@/src/store/actions/auth";
 import { openToast } from "@/src/store/reducers/toast";
-import * as S from "@/src/styles/signIn.styled";
+import * as S from "@/src/styles/signin.styled";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
