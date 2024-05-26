@@ -36,7 +36,7 @@ const MemoPage = () => {
   return (
     <AppLayout>
       <MemoLayout
-        AddLink={<AddLink disabled={true} />}
+        AddLink={<AddLink />}
         Search={
           <Search
             setSearchKeyword={setSearchKeyword}
