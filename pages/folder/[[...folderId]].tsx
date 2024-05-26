@@ -12,10 +12,6 @@ import { Link } from "@/src/types";
 import { getAllLinkList, getLinkList } from "@/src/store/actions/link";
 import { getFolder } from "@/src/store/actions/folder";
 import { useRouter } from "next/router";
-import {
-  initCurrentFolder,
-  setCurrentFolder,
-} from "@/src/store/reducers/folder";
 
 export interface CurrentFolderType {
   name: string;
@@ -25,7 +21,10 @@ export interface CurrentFolderType {
 const FolderPage = () => {
   const [searchResult, setSearchResult] = useState<Link[] | string>([]);
   const [searchKeyword, setSearchKeyword] = useState("");
-  const userId = useAppSelector((state) => state.auth.userInfo.id);
+  const {
+    userInfo: { id: userId },
+    isLoggedIn,
+  } = useAppSelector((state) => state.auth);
   const { data: linkList } = useAppSelector((state) => state.link);
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -42,7 +41,8 @@ const FolderPage = () => {
   };
 
   useEffect(() => {
-    userId ? fetchFolderList() : router.push("/signin");
+    if (!isLoggedIn) router.push("/");
+    if (userId) fetchFolderList();
   }, [userId]);
 
   useEffect(() => {
