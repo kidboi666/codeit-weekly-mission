@@ -4,10 +4,16 @@ const axiosInstance = axios.create({
   baseURL: "https://bootcamp-api.codeit.kr/api/",
 });
 
+export const memoInstance = axios.create({
+  baseURL: "https://data.mongodb-api.com/app/data-jmvkswg/endpoint/data/v1/",
+});
+
 const refreshAccessToken = async () => {
   try {
     const refreshToken = localStorage.getItem("refreshToken");
-    const res = await axiosInstance.post(`refresh-token`, { refresh_token: refreshToken });
+    const res = await axiosInstance.post(`refresh-token`, {
+      refresh_token: refreshToken,
+    });
     const { data } = res.data;
     localStorage.setItem("accessToken", data.accessToken);
     localStorage.setItem("refreshToken", data.refreshToken);

@@ -28,6 +28,11 @@ const Folder = ({ currentFolder, setCurrentFolder }: FolderProps) => {
     router.push(`/folder`, undefined, { shallow: true });
   };
 
+  const selectMemo = () => {
+    setCurrentFolder({ name: "메모장", id: 1 });
+    router.push(`/folder/1`, undefined, { shallow: true });
+  };
+
   useEffect(() => {
     selectCombinedFolder();
   }, []);
@@ -54,6 +59,12 @@ const Folder = ({ currentFolder, setCurrentFolder }: FolderProps) => {
           <div onClick={() => dispatch(openModal({ type: "addFolder" }))}>
             <Button variant='addFolder' text='폴더 추가 +' />
           </div>
+          <Button
+            variant='folderButton'
+            text='메모장'
+            onClick={() => selectMemo()}
+            selected={currentFolder.name}
+          />
         </S.FolderBox>
       </S.FolderContainer>
       <FolderOptionButton
