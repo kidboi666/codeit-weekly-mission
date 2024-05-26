@@ -7,7 +7,7 @@ export const FolderPageLayout = styled.main`
   align-items: center;
 `;
 
-export const MemoFormSection = styled.div<{ ref?: any }>`
+export const HeaderSection = styled.div<{ ref?: any }>`
   width: 100%;
   background-color: var(--gray5-color);
   display: flex;
@@ -17,6 +17,7 @@ export const MemoFormSection = styled.div<{ ref?: any }>`
   @media (max-width: 767px) {
     display: block;
   }
+
   > ul {
     width: 100%;
     display: flex;
@@ -27,7 +28,6 @@ export const MemoFormSection = styled.div<{ ref?: any }>`
     padding: 20px 0 60px 0;
   }
 `;
-
 export const FooterAddLink = styled.div<{ $animation: boolean }>`
   position: fixed;
   z-index: 40;

@@ -40,8 +40,12 @@ const folderSlice = createSlice({
   initialState,
   reducers: {
     setCurrentFolder: (state, action) => {
-      state.currentFolder.id = action.payload.id;
-      state.currentFolder.name = action.payload.name;
+      state.currentFolder.id = action.payload?.id;
+      state.currentFolder.name = action.payload?.name;
+    },
+    initCurrentFolder: (state) => {
+      state.currentFolder.id = 0;
+      state.currentFolder.name = COMBINED_FOLDER_NAME;
     },
   },
   extraReducers: (builder) => {
@@ -97,6 +101,6 @@ const folderSlice = createSlice({
   },
 });
 
-export const { setCurrentFolder } = folderSlice.actions;
+export const { setCurrentFolder, initCurrentFolder } = folderSlice.actions;
 
 export default folderSlice.reducer;

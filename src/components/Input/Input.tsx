@@ -21,6 +21,7 @@ const Input = ({
   onBlur,
   onChange,
   error,
+  readOnly = false,
   ...field
 }: InputProps) => {
   const [isEye, setEye] = useState(false);
@@ -48,13 +49,13 @@ const Input = ({
       <S.Input
         $variant={variant}
         $error={error}
+        disabled={disabled}
         width={width}
         value={value}
         name={name}
         type={transforemedType}
         placeholder={placeholder}
         className={className}
-        disabled={disabled}
         onBlur={onBlur}
         onChange={onChange}
         {...field}

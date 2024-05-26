@@ -1,7 +1,12 @@
 import { FieldError } from "react-hook-form";
 import styled from "styled-components";
 
-export const Input = styled.input<{ $variant?: string; width?: string; $error?: FieldError }>`
+export const Input = styled.input<{
+  $variant?: string;
+  width?: string;
+  $error?: FieldError;
+  $disabled?: boolean;
+}>`
   ${({ width }) => `width: ${width}`};
   position: relative;
   padding: 15px 15px 15px 15px;
@@ -46,7 +51,7 @@ export const Input = styled.input<{ $variant?: string; width?: string; $error?: 
       width: 800px;
       height: 69px;
       padding: 16px 20px 16px 45px;
-      border: 1px solid var(--primary-color);
+      border:  1px solid var(--primary-color);
       outline: none;
 
       @media (max-width: 1124px) {

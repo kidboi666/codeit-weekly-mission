@@ -12,6 +12,10 @@ import { Link } from "@/src/types";
 import { getAllLinkList, getLinkList } from "@/src/store/actions/link";
 import { getFolder } from "@/src/store/actions/folder";
 import { useRouter } from "next/router";
+import {
+  initCurrentFolder,
+  setCurrentFolder,
+} from "@/src/store/reducers/folder";
 
 export interface CurrentFolderType {
   name: string;

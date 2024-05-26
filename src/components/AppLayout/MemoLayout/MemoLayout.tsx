@@ -5,11 +5,13 @@ interface MemoLayoutProps {
   Search: ReactNode;
   Folder: ReactNode;
   Memo: ReactNode;
+  AddLink: ReactNode;
 }
 
-const MemoLayout = ({ Search, Folder, Memo }: MemoLayoutProps) => {
+const MemoLayout = ({ AddLink, Search, Folder, Memo }: MemoLayoutProps) => {
   return (
     <S.FolderPageLayout>
+      <S.HeaderSection>{AddLink}</S.HeaderSection>
       <S.SearchSection>{Search}</S.SearchSection>
       <S.FolderSection>{Folder}</S.FolderSection>
       <S.LinkSection>{Memo}</S.LinkSection>
