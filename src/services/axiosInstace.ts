@@ -5,7 +5,7 @@ const axiosInstance = axios.create({
 });
 
 export const memoInstance = axios.create({
-  baseURL: "https://data.mongodb-api.com/app/data-jmvkswg/endpoint/data/v1/",
+  baseURL: "http://localhost:3000/api/",
 });
 
 const refreshAccessToken = async () => {

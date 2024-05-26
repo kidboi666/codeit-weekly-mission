@@ -1,17 +1,22 @@
 import { AppLayout, Folder, MemoLayout, Search } from "@/src/components";
 import MemoCard from "@/src/components/MemoCard/MemoCard";
+import { useAppDispatch } from "@/src/hooks/useApp";
+import { getMemo } from "@/src/store/actions/memo";
 import { Link } from "@/src/types";
-import { useState } from "react";
-import { CurrentFolderType } from "@/pages/folder/[[...folderId]]";
+import { useEffect, useState } from "react";
 
 const MemoPage = () => {
   const [searchResult, setSearchResult] = useState<Link[] | string>([]);
   const [searchKeyword, setSearchKeyword] = useState("");
-  const [currentFolder, setCurrentFolder] = useState<CurrentFolderType>({
-    name: "",
-    id: 0,
-  });
+  const dispatch = useAppDispatch();
 
+  const fetchMemoList = async () => {
+    dispatch(getMemo());
+  };
+
+  useEffect(() => {
+    fetchMemoList();
+  }, []);
   return (
     <AppLayout>
       <MemoLayout
@@ -22,12 +27,7 @@ const MemoPage = () => {
             searchKeyword={searchKeyword}
           />
         }
-        Folder={
-          <Folder
-            currentFolder={currentFolder}
-            setCurrentFolder={setCurrentFolder}
-          />
-        }
+        Folder={<Folder />}
         Memo={<MemoCard />}
       />
     </AppLayout>

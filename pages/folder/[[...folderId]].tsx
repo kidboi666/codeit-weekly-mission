@@ -21,10 +21,6 @@ export interface CurrentFolderType {
 const FolderPage = () => {
   const [searchResult, setSearchResult] = useState<Link[] | string>([]);
   const [searchKeyword, setSearchKeyword] = useState("");
-  const [currentFolder, setCurrentFolder] = useState<CurrentFolderType>({
-    name: "",
-    id: 0,
-  });
   const userId = useAppSelector((state) => state.auth.userInfo.id);
   const { data: linkList } = useAppSelector((state) => state.link);
   const dispatch = useAppDispatch();
@@ -52,7 +48,7 @@ const FolderPage = () => {
   return (
     <AppLayout>
       <FolderLayout
-        AddLink={<AddLink currentFolder={currentFolder} />}
+        AddLink={<AddLink />}
         Search={
           <Search
             setSearchResult={setSearchResult}
@@ -60,21 +56,12 @@ const FolderPage = () => {
             setSearchKeyword={setSearchKeyword}
           />
         }
-        Folder={
-          <Folder
-            currentFolder={currentFolder}
-            setCurrentFolder={setCurrentFolder}
-          />
-        }
+        Folder={<Folder />}
         Card={
           searchKeyword && searchResult.length >= 1 ? (
             <Card linkList={searchResult} />
           ) : (
-            <Card
-              linkList={linkList}
-              currentFolder={currentFolder}
-              setCurrentFolder={setCurrentFolder}
-            />
+            <Card linkList={linkList} />
           )
         }
       />

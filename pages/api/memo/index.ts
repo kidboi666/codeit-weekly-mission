@@ -11,7 +11,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       return res.status(200).send(newMemo);
     case "GET":
       const foundMemo = await Memo.find();
-      return res.status(200).send(foundMemo);
+      return res.status(200).send({ data: foundMemo });
     default:
       return res
         .status(405)

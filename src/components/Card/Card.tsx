@@ -5,15 +5,12 @@ import formatDate from "@/src/utils/formatDate";
 import { Link } from "@/src/types";
 import Image from "next/image";
 import { Star, Kebab } from "@/src/components";
-import { CurrentFolderType } from "@/pages/folder/[[...folderId]]";
 
 interface CardProps {
   linkList: Link[] | string;
-  currentFolder?: CurrentFolderType;
-  setCurrentFolder?: React.Dispatch<React.SetStateAction<CurrentFolderType>>;
 }
 
-const Card = ({ linkList, currentFolder, setCurrentFolder }: CardProps) => {
+const Card = ({ linkList }: CardProps) => {
   if (typeof linkList === "string") {
     return <div>{linkList}</div>;
   } else if (linkList?.length === 0) {
@@ -44,8 +41,6 @@ const Card = ({ linkList, currentFolder, setCurrentFolder }: CardProps) => {
                 linkId={link.id}
                 linkTitle={link.title}
                 linkUrl={link.url}
-                currentFolder={currentFolder}
-                setCurrentFolder={setCurrentFolder}
               />
               <S.CreatedDate>{calculateTime(link.createdAt)}</S.CreatedDate>
               <S.Title>{link.title}</S.Title>

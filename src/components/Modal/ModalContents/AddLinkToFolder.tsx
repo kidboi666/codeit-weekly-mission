@@ -20,8 +20,10 @@ const AddLinkToFolder = ({ title, text, variant }: ModalProps) => {
     name: "",
     id: 0,
   });
-  const { data: folderList } = useAppSelector((state) => state.folder);
-  const { linkUrl, setLinkUrl, currentFolder } =
+  const { data: folderList, currentFolder } = useAppSelector(
+    (state) => state.folder,
+  );
+  const { linkUrl, setLinkUrl } =
     useAppSelector((state) => state.modal.props) || {};
   const { linkId } = useAppSelector((state) => state.modal.props) || {};
   const { userInfo } = useAppSelector((state) => state.auth);

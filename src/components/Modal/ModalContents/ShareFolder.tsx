@@ -9,7 +9,7 @@ import { openToast } from "@/src/store/reducers/toast";
 import { ModalProps } from "../ModalTypes";
 
 const ShareFolder = ({ title }: ModalProps) => {
-  const { currentFolder } = useAppSelector((state) => state.modal.props) || {};
+  const { currentFolder } = useAppSelector((state) => state.folder) || {};
   const dispatch = useAppDispatch();
 
   const onClick = () => {

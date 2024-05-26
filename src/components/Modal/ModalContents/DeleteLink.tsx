@@ -12,8 +12,9 @@ import { ModalProps } from "../ModalTypes";
 
 const DeleteLink = ({ title, text, variant }: ModalProps) => {
   const { userInfo } = useAppSelector((state) => state.auth);
-  const { linkId, linkTitle, currentFolder } =
+  const { linkId, linkTitle } =
     useAppSelector((state) => state.modal.props) || {};
+  const { currentFolder } = useAppSelector((state) => state.folder);
   const dispatch = useAppDispatch();
 
   const onClick = async () => {

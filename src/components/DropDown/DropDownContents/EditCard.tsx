@@ -7,24 +7,16 @@ export interface EditCardProps {
   linkId?: number;
   linkTitle?: string;
   linkUrl?: string;
-  currentFolder?: CurrentFolderType;
-  setCurrentFolder?: React.Dispatch<React.SetStateAction<CurrentFolderType>>;
 }
 
-const EditCard = ({
-  linkId,
-  linkTitle,
-  linkUrl,
-  currentFolder,
-  setCurrentFolder,
-}: EditCardProps) => {
+const EditCard = ({ linkId, linkTitle, linkUrl }: EditCardProps) => {
   const dispatch = useAppDispatch();
 
   const deleteLink = () => {
     dispatch(
       openModal({
         type: "deleteLink",
-        props: { linkId, linkTitle, currentFolder },
+        props: { linkId, linkTitle },
       }),
     );
   };
@@ -33,12 +25,7 @@ const EditCard = ({
     dispatch(
       openModal({
         type: "addLinkToFolder",
-        props: {
-          linkId,
-          linkUrl,
-          currentFolder,
-          setCurrentFolder,
-        },
+        props: { linkId, linkUrl },
       }),
     );
   };

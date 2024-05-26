@@ -8,7 +8,7 @@ import { ModalProps } from "../ModalTypes";
 
 const DeleteFolder = ({ title, text, variant }: ModalProps) => {
   const { userInfo } = useAppSelector((state) => state.auth);
-  const { currentFolder } = useAppSelector((state) => state.modal.props) || {};
+  const { currentFolder } = useAppSelector((state) => state.folder) || {};
   const dispatch = useAppDispatch();
 
   const onClick = async () => {

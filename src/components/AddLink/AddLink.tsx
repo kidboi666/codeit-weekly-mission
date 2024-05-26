@@ -10,12 +10,13 @@ import { CurrentFolderType } from "@/pages/folder/[[...folderId]]";
 
 interface AddLinkProps {
   className?: string;
-  currentFolder: CurrentFolderType;
 }
 
-const AddLink = ({ className, currentFolder }: AddLinkProps) => {
+const AddLink = ({ className }: AddLinkProps) => {
   const [linkUrl, setLinkUrl] = useState("");
-  const { data: folderList } = useAppSelector((state) => state.folder);
+  const { data: folderList, currentFolder } = useAppSelector(
+    (state) => state.folder,
+  );
   const dispatch = useAppDispatch();
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {

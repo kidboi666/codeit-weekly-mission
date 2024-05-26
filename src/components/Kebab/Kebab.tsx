@@ -4,26 +4,19 @@ import * as S from "./Kebab.styled";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { COMBINED_FOLDER_NAME } from "@/src/constants/strings";
-import { CurrentFolderType } from "@/pages/folder/[[...folderId]]";
 import { DropDown } from "@/src/components";
+import { useAppSelector } from "@/src/hooks/useApp";
 
 interface KebabProps {
-  currentFolder?: CurrentFolderType;
-  setCurrentFolder?: React.Dispatch<React.SetStateAction<CurrentFolderType>>;
   linkId: number;
   linkTitle: string;
   linkUrl: string;
 }
 
-const Kebab = ({
-  currentFolder,
-  setCurrentFolder,
-  linkId,
-  linkTitle,
-  linkUrl,
-}: KebabProps) => {
+const Kebab = ({ linkId, linkTitle, linkUrl }: KebabProps) => {
   const router = useRouter();
   const [isOpen, setOpen] = useState(false);
+  const { currentFolder } = useAppSelector((state) => state.folder);
 
   if (
     !router.pathname.includes("/folder") ||
@@ -45,7 +38,7 @@ const Kebab = ({
         isOpen={isOpen}
         setOpen={setOpen}
         onClick={onClickKebab}
-        props={{ linkId, linkTitle, linkUrl, currentFolder, setCurrentFolder }}
+        props={{ linkId, linkTitle, linkUrl }}
       />
     </S.KebabLayout>
   );
