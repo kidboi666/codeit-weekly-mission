@@ -11,7 +11,7 @@ const MemoCard = () => {
       {memoList?.map((memo: Memo) => (
         <S.CardLayout key={memo.id}>
           <S.CardContainer>
-            <S.CloseButtonStyled variant={"searchInput"} />
+            <S.CloseButtonStyled variant={"outlined"} />
             <S.Title>{memo.title}</S.Title>
             <S.Content>{memo.content}</S.Content>
             <S.CreatedDate>{calculateTime(memo.createdAt)}</S.CreatedDate>

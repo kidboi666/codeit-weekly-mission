@@ -10,14 +10,23 @@ export const CloseButton = styled.div<{ $variant: string }>`
   height: 24px;
   border-radius: 50%;
   cursor: pointer;
+
   ${({ $variant }) =>
     $variant === "modal" &&
     `
-  background-color: #e7effb;
+    background-color: #e7effb;
   `}
+
   ${({ $variant }) =>
     $variant === "searchInput" &&
     `
-  background-color: #ccd5e3;
+    background-color: #ccd5e3;
+  `}
+
+
+  ${({ $variant }) =>
+    $variant === "outlined" &&
+    `
+    background-color: #fff
   `}
 `;
