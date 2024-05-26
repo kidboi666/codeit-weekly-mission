@@ -8,7 +8,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   switch (req.method) {
     case "PATCH":
-      return;
+      const updatedMemo = await Memo.findByIdAndUpdate(id, req.body, {
+        new: true,
+      });
+      return res.status(200).send(updatedMemo);
     case "GET":
       const memo = await Memo.findById(id);
       return res.status(200).send(memo);

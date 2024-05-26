@@ -36,7 +36,7 @@ const MemoForm = ({ variant, title, text }: ModalProps) => {
       <h3>{title}</h3>
       <form onSubmit={onSubmit}>
         <label htmlFor='title'>제목</label>
-        <Input
+        <S.MemoTitleBox
           variant='outlined'
           name='title'
           onChange={handleChangeFormBody}
