@@ -6,6 +6,7 @@ import DeleteFolder from "@/src/components/Modal/ModalContents/DeleteFolder";
 import DeleteLink from "@/src/components/Modal/ModalContents/DeleteLink";
 import { ReactNode } from "react";
 import DeleteMemo from "./ModalContents/DeleteMemo";
+import MemoForm from "./ModalContents/MemoForm";
 
 export interface ModalProps {
   title?: string;
@@ -20,7 +21,8 @@ type ModalType =
   | "shareFolder"
   | "deleteFolder"
   | "deleteLink"
-  | "deleteMemo";
+  | "deleteMemo"
+  | "newMemoForm";
 
 export const MODAL_COMPONENTS: Map<ModalType, ReactNode> = new Map<
   ModalType,
@@ -78,6 +80,15 @@ export const MODAL_COMPONENTS: Map<ModalType, ReactNode> = new Map<
       title='메모 삭제'
       text='삭제하기'
       variant='deleteLink'
+    />,
+  ],
+  [
+    "newMemoForm",
+    <MemoForm
+      key='memoForm'
+      title='메모 추가'
+      text='추가하기'
+      variant='default'
     />,
   ],
   ["shareFolder", <ShareFolder key='shareFolder' title='폴더 공유' />],

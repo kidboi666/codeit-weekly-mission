@@ -2,7 +2,6 @@ import { useAppDispatch, useAppSelector } from "@/src/hooks/useApp";
 import * as S from "./MemoCard.styled";
 import calculateTime from "@/src/utils/calculateTime";
 import { Memo } from "@/src/types";
-import { deleteMemo } from "@/src/store/actions/memo";
 import { openModal } from "@/src/store/reducers/modal";
 
 const MemoCard = () => {

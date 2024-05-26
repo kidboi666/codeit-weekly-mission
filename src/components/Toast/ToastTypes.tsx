@@ -16,7 +16,8 @@ type ToastType =
   | "duplicateFolderName"
   | "firstAction"
   | "pendingTask"
-  | "deleteMemo";
+  | "deleteMemo"
+  | "postMemo";
 
 export const TOAST_COMPONENTS: Map<ToastType, { text: string; warn: boolean }> =
   new Map<ToastType, { text: string; warn: boolean }>([
@@ -29,6 +30,7 @@ export const TOAST_COMPONENTS: Map<ToastType, { text: string; warn: boolean }> =
     ["changeName", { text: "폴더 이름이 변경 되었습니다.", warn: false }],
     ["loginSuccess", { text: "로그인 성공!", warn: false }],
     ["deleteMemo", { text: "메모가 삭제되었습니다.", warn: false }],
+    ["postMemo", { text: "메모가 추가되었습니다.", warn: false }],
     ["rejectedAddLink", { text: "주소가 올바르지 않습니다.", warn: true }],
     ["nothingValue", { text: "주소를 입력하세요.", warn: true }],
     [

@@ -7,8 +7,8 @@ POST http://localhost:3000/api/memo
 Content-Type: application/json
 
 {
-  "title": "메모 테스트",
-  "content": "테스트용"
+  "title": "이걸로 하면",
+  "content": "괜찮은데 왜 뭐가 문제야"
 }
 
 ###

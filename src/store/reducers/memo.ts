@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getMemo } from "../actions/memo";
+import { getMemo, postMemo } from "../actions/memo";
 import { API_MSG } from "@/src/constants/strings";
 
 const initialState = {
@@ -17,12 +17,19 @@ const memoSlice = createSlice({
         state.status = API_MSG.PEN;
       })
       .addCase(getMemo.fulfilled, (state, action) => {
-        // state.title = action.payload.title;
-        // state.content = action.payload.content;
         state.data = action.payload;
         state.status = API_MSG.FUL;
       })
       .addCase(getMemo.rejected, (state, action) => {
+        state.status = API_MSG.REJ;
+      })
+      .addCase(postMemo.pending, (state, action) => {
+        state.status = API_MSG.PEN;
+      })
+      .addCase(postMemo.fulfilled, (state, action) => {
+        state.status = API_MSG.FUL;
+      })
+      .addCase(postMemo.rejected, (state, action) => {
         state.status = API_MSG.REJ;
       });
   },

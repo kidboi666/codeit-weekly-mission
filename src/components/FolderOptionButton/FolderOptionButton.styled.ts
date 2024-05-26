@@ -51,11 +51,3 @@ export const OptionBox = styled.div`
     width: 18px;
   }
 `;
-
-export const ToastContainer = styled.div`
-  position: fixed;
-  bottom: 70px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 70;
-`;

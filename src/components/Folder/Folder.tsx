@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { COMBINED_FOLDER_NAME } from "@/src/constants/strings";
 import { FolderOptionButton, Button } from "@/src/components";
 import * as S from "./Folder.styled";
@@ -60,10 +60,7 @@ const Folder = () => {
           />
         </S.FolderBox>
       </S.FolderContainer>
-      <FolderOptionButton
-        currentFolder={currentFolder}
-        setCurrentFolder={setCurrentFolder}
-      />
+      <FolderOptionButton />
     </S.FolderLayout>
   );
 };

@@ -17,6 +17,7 @@ export const HeaderSection = styled.div<{ ref?: any }>`
   @media (max-width: 767px) {
     display: block;
   }
+
   > ul {
     width: 100%;
     display: flex;

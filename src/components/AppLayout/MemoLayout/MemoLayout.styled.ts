@@ -7,7 +7,7 @@ export const FolderPageLayout = styled.main`
   align-items: center;
 `;
 
-export const HeaderSection = styled.div<{ ref?: any }>`
+export const MemoFormSection = styled.div<{ ref?: any }>`
   width: 100%;
   background-color: var(--gray5-color);
   display: flex;
@@ -81,6 +81,7 @@ export const FolderSection = styled.div`
     }
   }
 `;
+
 export const LinkSection = styled.ul`
   display: grid;
   min-width: 325px;

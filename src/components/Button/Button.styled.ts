@@ -127,7 +127,7 @@ export const Button = styled.button<{
       line-height: 0;
       height: 35px;
       background-color: ${$isActive ? "#f8ca59" : "var(--white-color)"};
-      color: ${$isActive ? "var(--white-color)" : "var(--black-color)"};
+      color: ${$isActive ? "var(--white-color)" : "#f8ca59"};
 
       &:hover {
         background-color: #f8ca59;

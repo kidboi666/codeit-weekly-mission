@@ -6,7 +6,6 @@ import { Button, Input } from "@/src/components";
 import { useAppDispatch, useAppSelector } from "@/src/hooks/useApp";
 import { openModal } from "@/src/store/reducers/modal";
 import { openToast } from "@/src/store/reducers/toast";
-import { CurrentFolderType } from "@/pages/folder/[[...folderId]]";
 
 interface AddLinkProps {
   className?: string;
