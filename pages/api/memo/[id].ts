@@ -14,7 +14,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       return res.status(200).send(memo);
     case "DELETE":
       await Memo.findByIdAndDelete(id);
-      return res.status(204);
+      return res.status(204).end();
   }
 };
 

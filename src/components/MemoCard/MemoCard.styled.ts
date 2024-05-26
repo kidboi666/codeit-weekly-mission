@@ -8,10 +8,7 @@ export const CardLayout = styled.li`
   overflow: hidden;
   cursor: pointer;
   padding: 15px 20px;
-
-  &:hover {
-    background-color: var(--gray5-color);
-  }
+  background-color: var(--gray5-color);
 `;
 
 export const CardContainer = styled.div`
