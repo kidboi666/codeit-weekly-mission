@@ -4,32 +4,29 @@ import { FolderOptionButton, Button } from "@/src/components";
 import * as S from "./Folder.styled";
 import { useAppDispatch, useAppSelector } from "@/src/hooks/useApp";
 import { openModal } from "@/src/store/reducers/modal";
-import { CurrentFolderType } from "@/pages/folder/[[...folderId]]";
 import { useRouter } from "next/router";
 import { FolderList } from "@/src/types";
+import { setCurrentFolder } from "@/src/store/reducers/folder";
 
-interface FolderProps {
-  currentFolder: CurrentFolderType;
-  setCurrentFolder: React.Dispatch<React.SetStateAction<CurrentFolderType>>;
-}
-
-const Folder = ({ currentFolder, setCurrentFolder }: FolderProps) => {
-  const { data: folderList } = useAppSelector((state) => state.folder);
+const Folder = () => {
   const dispatch = useAppDispatch();
+  const { data: folderList, currentFolder } = useAppSelector(
+    (state) => state.folder,
+  );
   const router = useRouter();
 
   const selectFolder = (folderName: string, folderId: number) => {
-    setCurrentFolder({ name: folderName, id: folderId });
+    dispatch(setCurrentFolder({ name: folderName, id: folderId }));
     router.push(`/folder/${folderId}`, undefined, { shallow: true });
   };
 
   const selectCombinedFolder = () => {
-    setCurrentFolder({ name: COMBINED_FOLDER_NAME, id: 0 });
+    dispatch(setCurrentFolder({ name: COMBINED_FOLDER_NAME, id: 0 }));
     router.push(`/folder`, undefined, { shallow: true });
   };
 
   const selectMemo = () => {
-    setCurrentFolder({ name: "메모장", id: 1 });
+    dispatch(setCurrentFolder({ name: "메모장", id: 1 }));
     router.push(`/memo`, undefined, { shallow: true });
   };
 
