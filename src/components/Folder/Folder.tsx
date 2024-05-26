@@ -60,7 +60,7 @@ const Folder = ({ currentFolder, setCurrentFolder }: FolderProps) => {
             <Button variant='addFolder' text='폴더 추가 +' />
           </div>
           <Button
-            variant='folderButton'
+            variant='memoButton'
             text='메모장'
             onClick={() => selectMemo()}
             selected={currentFolder.name}

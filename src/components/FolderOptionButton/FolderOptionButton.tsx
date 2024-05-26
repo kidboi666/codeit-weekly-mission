@@ -39,22 +39,23 @@ const FolderOptionButton = ({
   return (
     <S.FolderOptionButtonLayout>
       <S.SelectedFolder>{currentFolder?.name}</S.SelectedFolder>
-      {currentFolder?.name !== COMBINED_FOLDER_NAME && (
-        <S.OptionContainer>
-          <S.OptionBox onClick={handleShareFolder}>
-            <Image src={shareIcon} alt={"공유버튼"} />
-            공유
-          </S.OptionBox>
-          <S.OptionBox onClick={handleChangeName}>
-            <Image src={penIcon} alt={"이름변경버튼"} />
-            이름 변경
-          </S.OptionBox>
-          <S.OptionBox onClick={handleDeleteFolder}>
-            <Image src={deleteIcon} alt={"삭제버튼"} />
-            삭제
-          </S.OptionBox>
-        </S.OptionContainer>
-      )}
+      {currentFolder?.name !== COMBINED_FOLDER_NAME &&
+        currentFolder?.name !== "메모장" && (
+          <S.OptionContainer>
+            <S.OptionBox onClick={handleShareFolder}>
+              <Image src={shareIcon} alt={"공유버튼"} />
+              공유
+            </S.OptionBox>
+            <S.OptionBox onClick={handleChangeName}>
+              <Image src={penIcon} alt={"이름변경버튼"} />
+              이름 변경
+            </S.OptionBox>
+            <S.OptionBox onClick={handleDeleteFolder}>
+              <Image src={deleteIcon} alt={"삭제버튼"} />
+              삭제
+            </S.OptionBox>
+          </S.OptionContainer>
+        )}
     </S.FolderOptionButtonLayout>
   );
 };

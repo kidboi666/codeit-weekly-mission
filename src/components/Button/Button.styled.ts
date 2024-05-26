@@ -119,4 +119,19 @@ export const Button = styled.button<{
         color: var(--white-color);
       }
     `}
+
+    ${({ $variant, $isActive }) =>
+    $variant === "memoButton" &&
+    `
+      border: 1px solid #F8CA59;
+      line-height: 0;
+      height: 35px;
+      background-color: ${$isActive ? "#f8ca59" : "var(--white-color)"};
+      color: ${$isActive ? "var(--white-color)" : "var(--black-color)"};
+
+      &:hover {
+        background-color: #f8ca59;
+        color: var(--white-color);
+      }
+    `}
 `;
