@@ -7,7 +7,7 @@ import {
   postFolder,
   putFolder,
 } from "@/src/store/actions/folder";
-import { API_MSG } from "@/src/constants/strings";
+import { API_MSG, COMBINED_FOLDER_NAME } from "@/src/constants/strings";
 
 const initialSharedFolder = {
   id: 0,
@@ -20,17 +20,30 @@ const initialSharedFolder = {
 const initialState: {
   data: FolderList[];
   status: string;
+  currentFolder: {
+    id: number;
+    name: string;
+  };
   sharedFolder: SharedFolder;
 } = {
   data: [],
   status: "",
+  currentFolder: {
+    id: 0,
+    name: COMBINED_FOLDER_NAME,
+  },
   sharedFolder: { ...initialSharedFolder },
 };
 
 const folderSlice = createSlice({
   name: "folder",
   initialState,
-  reducers: {},
+  reducers: {
+    setCurrentFolder: (state, action) => {
+      state.currentFolder.id = action.payload.id;
+      state.currentFolder.name = action.payload.name;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getFolder.pending, (state) => {
@@ -84,6 +97,6 @@ const folderSlice = createSlice({
   },
 });
 
-export const {} = folderSlice.actions;
+export const { setCurrentFolder } = folderSlice.actions;
 
 export default folderSlice.reducer;
