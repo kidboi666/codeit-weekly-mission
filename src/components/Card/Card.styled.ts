@@ -69,7 +69,7 @@ export const CreatedDate = styled.p`
   -webkit-box-orient: vertical;
   overflow: hidden;
   font-size: 13px;
-  color: #666;
+  color: #666666;
 `;
 
 export const Title = styled.p`

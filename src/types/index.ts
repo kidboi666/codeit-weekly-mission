@@ -52,3 +52,12 @@ export interface SharedFolder {
   userId: number;
   favorite: boolean;
 }
+
+export interface Memo {
+  id: number;
+  title: string;
+  content: string;
+  createdAt: string;
+  updatedAt: string;
+  v: number;
+}

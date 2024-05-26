@@ -17,6 +17,7 @@ const MemoPage = () => {
   useEffect(() => {
     fetchMemoList();
   }, []);
+
   return (
     <AppLayout>
       <MemoLayout

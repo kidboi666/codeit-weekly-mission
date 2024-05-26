@@ -3,7 +3,7 @@ import { getMemo } from "../actions/memo";
 import { API_MSG } from "@/src/constants/strings";
 
 const initialState = {
-  data: {},
+  data: [],
   status: "",
 };
 
