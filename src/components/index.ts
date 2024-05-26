@@ -2,6 +2,7 @@ import AddLink from "./AddLink/AddLink";
 import AppLayout from "./AppLayout/AppLayout";
 import FolderLayout from "./AppLayout/FolderLayout/FolderLayout";
 import SharedLayout from "./AppLayout/SharedLayout/SharedLayout";
+import MemoLayout from "./AppLayout/MemoLayout/MemoLayout";
 import Button from "./Button/Button";
 import Card from "./Card/Card";
 import CloseButton from "./CloseButton/CloseButton";
@@ -46,4 +47,5 @@ export {
   FolderLayout,
   SharedLayout,
   OverviewCard,
+  MemoLayout,
 };

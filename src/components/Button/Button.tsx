@@ -5,7 +5,7 @@ interface ButtonProps {
   variant?: string;
   width?: string;
   text?: string;
-  selected?: string;
+  selected?: string | number;
   className?: string;
   disabled?: boolean;
   type?: "submit" | "button";

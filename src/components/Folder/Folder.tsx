@@ -30,12 +30,8 @@ const Folder = ({ currentFolder, setCurrentFolder }: FolderProps) => {
 
   const selectMemo = () => {
     setCurrentFolder({ name: "메모장", id: 1 });
-    router.push(`/folder/1`, undefined, { shallow: true });
+    router.push(`/memo`, undefined, { shallow: true });
   };
-
-  useEffect(() => {
-    selectCombinedFolder();
-  }, []);
 
   return (
     <S.FolderLayout>
