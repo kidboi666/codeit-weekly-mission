@@ -6,6 +6,7 @@ import { getPaper, postPaper } from "@/src/store/actions/paper";
 import { closeModal } from "@/src/store/reducers/modal";
 import { openToast } from "@/src/store/reducers/toast";
 import { ModalProps } from "../ModalTypes";
+import ColorOption from "../../ColorOption/ColorOption";
 
 const PaperForm = ({ variant, title, text }: ModalProps) => {
   const dispatch = useAppDispatch();
@@ -14,18 +15,12 @@ const PaperForm = ({ variant, title, text }: ModalProps) => {
     content: "",
     background: "blue",
   });
+  const colorVariation = ["blue", "green", "yellow", "silver"];
 
   const handleChangeFormBody = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormBody({
       ...formBody,
       [e.target["name"]]: e.target.value,
-    });
-  };
-
-  const handleChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setFormBody({
-      ...formBody,
-      background: e.target.value,
     });
   };
 
@@ -47,20 +42,27 @@ const PaperForm = ({ variant, title, text }: ModalProps) => {
     <>
       <h3>{title}</h3>
       <form onSubmit={onSubmit}>
-        <label htmlFor='title'>제목</label>
         <S.PaperTitleBox
           variant='outlined'
           name='title'
           onChange={handleChangeFormBody}
+          placeholder='제목'
         />
-        <label htmlFor='content'>내용</label>
-        <S.PaperContentBox name='content' onChange={handleChangeFormBody} />
-        <select onChange={handleChangeSelect}>
-          <option value='blue'>파란색</option>
-          <option value='yellow'>노란색</option>
-          <option value='green'>초록색</option>
-          <option value='silver'>은색</option>
-        </select>
+        <S.PaperContentBox
+          name='content'
+          onChange={handleChangeFormBody}
+          placeholder='내용'
+        />
+        <S.ColorOptionContainer>
+          {colorVariation.map((color) => (
+            <ColorOption
+              key={color}
+              background={color}
+              formBody={formBody}
+              setFormBody={setFormBody}
+            />
+          ))}
+        </S.ColorOptionContainer>
         <Button variant={variant} text={text} width='100%' type='submit' />
       </form>
     </>

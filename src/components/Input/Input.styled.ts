@@ -76,6 +76,7 @@ export const EyeSection = styled.div`
     z-index: 10;
   }
 `;
+
 export const ErrorMessage = styled.div`
   margin-top: 6px;
   color: red;
