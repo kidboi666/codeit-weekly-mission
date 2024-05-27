@@ -26,16 +26,20 @@ const PaperForm = ({ variant, title, text }: ModalProps) => {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await dispatch(
-      postPaper({
-        title: formBody.title,
-        content: formBody.content,
-        background: formBody.background,
-      }),
-    );
-    dispatch(closeModal());
-    dispatch(openToast({ type: "postPaper" }));
-    await dispatch(getPaper());
+    if (formBody.title && formBody.content) {
+      await dispatch(
+        postPaper({
+          title: formBody.title,
+          content: formBody.content,
+          background: formBody.background,
+        }),
+      );
+      dispatch(closeModal());
+      dispatch(openToast({ type: "postPaper" }));
+      await dispatch(getPaper());
+    } else {
+      dispatch(openToast({ type: "wrongPaper" }));
+    }
   };
 
   return (
