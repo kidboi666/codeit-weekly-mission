@@ -9,7 +9,7 @@ import {
 import { useAppDispatch, useAppSelector } from "@/src/hooks/useApp";
 import { getFolder } from "@/src/store/actions/folder";
 import { getPaper } from "@/src/store/actions/paper";
-import { Link } from "@/src/types";
+import { Link, Paper } from "@/src/types";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -17,7 +17,9 @@ const PaperPage = () => {
   const [searchResult, setSearchResult] = useState<Link[] | string>([]);
   const [searchKeyword, setSearchKeyword] = useState("");
   const { id: userId } = useAppSelector((state) => state.auth.userInfo);
+  const { data: paperList } = useAppSelector((state) => state.paper);
   const dispatch = useAppDispatch();
+
   const router = useRouter();
 
   const fetchPaperList = async () => {
@@ -45,7 +47,9 @@ const PaperPage = () => {
           />
         }
         Folder={<Folder />}
-        Paper={<PaperCard />}
+        Paper={paperList.map((paper: Paper) => (
+          <PaperCard key={paper.id} paper={paper} />
+        ))}
       />
     </AppLayout>
   );

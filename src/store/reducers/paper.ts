@@ -1,8 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getPaper, postPaper } from "../actions/paper";
 import { API_MSG } from "@/src/constants/strings";
+import { Paper } from "@/src/types";
 
-const initialState = {
+interface Props {
+  data: Paper[];
+  status: string;
+}
+
+const initialState: Props = {
   data: [],
   status: "",
 };
