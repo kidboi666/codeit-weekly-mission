@@ -26,7 +26,7 @@ const Folder = () => {
   };
 
   const selectPaper = () => {
-    dispatch(setCurrentFolder({ name: "페이퍼", id: 1 }));
+    dispatch(setCurrentFolder({ name: "페이퍼📝", id: 1 }));
     router.push(`/paper`, undefined, { shallow: true });
   };
 
@@ -54,7 +54,7 @@ const Folder = () => {
           </div>
           <Button
             variant='paperButton'
-            text='페이퍼'
+            text='페이퍼📝'
             onClick={() => selectPaper()}
             selected={currentFolder.name}
           />
