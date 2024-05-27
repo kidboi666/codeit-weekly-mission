@@ -1,9 +1,9 @@
 
-GET http://localhost:3000/api/memo
+GET https://codeit-weekly-mission.vercel.app/api/memo
 
 ###
 
-POST http://localhost:3000/api/memo
+POST https://codeit-weekly-mission.vercel.app/api/memo
 Content-Type: application/json
 
 {
