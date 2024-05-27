@@ -13,7 +13,7 @@ const DeletePaper = ({ title, text, variant }: ModalProps) => {
   const onClick = async () => {
     await dispatch(deletePaper(paperId));
     dispatch(closeModal());
-    openToast({ type: "deletePaper" });
+    dispatch(openToast({ type: "deletePaper" }));
     await dispatch(getPaper());
   };
 

@@ -25,7 +25,7 @@ const PaperCard = () => {
               onClick={() =>
                 dispatch(
                   openModal({
-                    type: "deletepaper",
+                    type: "deletePaper",
                     props: { paperTitle: paper.title, paperId: paper.id },
                   }),
                 )
