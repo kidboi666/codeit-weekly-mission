@@ -30,7 +30,7 @@ export const ModalContainer = styled.div`
   border-radius: 15px;
   border: 1px solid var(--gray3-color);
   background-color: var(--white-color);
-  z-index: 60;
+  z-index: 110;
 
   > h3 {
     position: relative;

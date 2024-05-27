@@ -83,25 +83,29 @@ export const FolderSection = styled.div`
   }
 `;
 export const LinkSection = styled.ul`
-  display: grid;
-  min-width: 325px;
-  grid-template-columns: repeat(3, 340px);
-  gap: 25px 20px;
-  margin-bottom: 100px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
 
-  @media (max-width: 1124px) {
-    grid-template-columns: repeat(2, 340px);
-    gap: 25px 24px;
-  }
+  > div {
+    display: grid;
+    min-width: 325px;
+    grid-template-columns: repeat(3, 340px);
+    gap: 25px 20px;
+    margin-bottom: 100px;
 
-  @media (max-width: 767px) {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    margin-bottom: 60px;
+    @media (max-width: 1124px) {
+      grid-template-columns: repeat(2, 340px);
+      gap: 25px 24px;
+    }
 
-    > div {
+    @media (max-width: 767px) {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 60px;
       padding: 0 32.5px;
     }
   }

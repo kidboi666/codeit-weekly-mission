@@ -14,7 +14,9 @@ const PaperLayout = ({ AddLink, Search, Folder, Paper }: PaperLayoutProps) => {
       <S.HeaderSection>{AddLink}</S.HeaderSection>
       <S.SearchSection>{Search}</S.SearchSection>
       <S.FolderSection>{Folder}</S.FolderSection>
-      <S.LinkSection>{Paper}</S.LinkSection>
+      <S.LinkSection>
+        <div>{Paper}</div>
+      </S.LinkSection>
     </S.PaperPageLayout>
   );
 };
