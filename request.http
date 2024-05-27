@@ -3,6 +3,10 @@ GET https://codeit-weekly-mission.vercel.app/api/memo
 
 ###
 
+GET http://localhost:3000/memo
+
+###
+
 POST https://codeit-weekly-mission.vercel.app/api/memo
 Content-Type: application/json
 
@@ -13,4 +17,4 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:3000/api/memo/66508fc8f399ed78acfae9e0
+GET http://localhost:3000/memo

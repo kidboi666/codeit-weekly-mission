@@ -12,7 +12,7 @@ const MemoForm = ({ variant, title, text }: ModalProps) => {
   const [formBody, setFormBody] = useState({
     title: "",
     content: "",
-    background: "",
+    background: "blue",
   });
 
   const handleChangeFormBody = (e: React.ChangeEvent<HTMLInputElement>) => {
