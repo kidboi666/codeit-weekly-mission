@@ -37,8 +37,8 @@ export const Title = styled.p<{ $showContent: boolean }>`
   display: ${({ $showContent }) => ($showContent ? "block" : "-webkit-box")};
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
-  width: 80%;
   overflow: hidden;
+  margin-right: 38px;
   line-height: 24px;
   color: #fff;
 `;
