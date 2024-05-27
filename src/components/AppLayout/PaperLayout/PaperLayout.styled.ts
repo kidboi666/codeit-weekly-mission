@@ -93,7 +93,7 @@ export const LinkSection = styled.ul`
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
-    gap: 25px 20px;
+    gap: 20px 20px;
     flex-wrap: wrap;
     margin-bottom: 100px;
 

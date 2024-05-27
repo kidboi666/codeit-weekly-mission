@@ -21,6 +21,7 @@ const PaperCard = ({ paper }: PaperCardProps) => {
     <S.CardLayout
       $background={changeColor(paper.background)}
       onClick={() => setShowContent((prev) => !prev)}
+      onMouseLeave={() => setShowContent(false)}
     >
       <S.CardContainer>
         <S.CloseButtonStyled
