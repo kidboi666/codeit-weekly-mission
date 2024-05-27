@@ -21,6 +21,7 @@ const PaperCard = ({ paper }: PaperCardProps) => {
     <S.CardLayout
       $background={changeColor(paper.background)}
       onClick={() => setShowContent((prev) => !prev)}
+      onMouseLeave={() => setShowContent(false)}
     >
       <S.CardContainer>
         <S.CloseButtonStyled
@@ -36,7 +37,11 @@ const PaperCard = ({ paper }: PaperCardProps) => {
         />
         <S.Title $showContent={showContent}>{paper.title}</S.Title>
         <S.Content $showContent={showContent}>{paper.content}</S.Content>
-        <S.TimeStamp>{calculateTime(paper.createdAt)}</S.TimeStamp>
+        {showContent ? (
+          <S.TimeStamp>{calculateTime(paper.createdAt)}</S.TimeStamp>
+        ) : (
+          <S.TimeStamp>{paper.name}</S.TimeStamp>
+        )}
       </S.CardContainer>
     </S.CardLayout>
   );

@@ -1,7 +1,4 @@
 import styled from "styled-components";
-import Input from "../../Input/Input";
-
-export const PaperTitleBox = styled(Input)``;
 
 export const PaperContentBox = styled.textarea<{ onChange: any }>`
   width: 100%;

@@ -4,6 +4,7 @@ import CloseButton from "../CloseButton/CloseButton";
 export const CardLayout = styled.li<{
   $background: string;
 }>`
+  min-width: 58px;
   position: relative;
   border-radius: 20px;
   box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.1);
@@ -36,8 +37,8 @@ export const Title = styled.p<{ $showContent: boolean }>`
   display: ${({ $showContent }) => ($showContent ? "block" : "-webkit-box")};
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
-  width: 80%;
   overflow: hidden;
+  margin-right: 38px;
   line-height: 24px;
   color: #fff;
 `;

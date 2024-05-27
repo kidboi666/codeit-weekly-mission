@@ -1,4 +1,4 @@
-import { Button } from "@/src/components";
+import { Button, Input } from "@/src/components";
 import * as S from "./PaperForm.styled";
 import { useState } from "react";
 import { useAppDispatch } from "@/src/hooks/useApp";
@@ -11,6 +11,7 @@ import ColorOption from "../../ColorOption/ColorOption";
 const PaperForm = ({ variant, title, text }: ModalProps) => {
   const dispatch = useAppDispatch();
   const [formBody, setFormBody] = useState({
+    name: "",
     title: "",
     content: "",
     background: "blue",
@@ -26,9 +27,10 @@ const PaperForm = ({ variant, title, text }: ModalProps) => {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (formBody.title && formBody.content) {
+    if (formBody.title && formBody.content && formBody.name) {
       await dispatch(
         postPaper({
+          name: formBody.name,
           title: formBody.title,
           content: formBody.content,
           background: formBody.background,
@@ -46,7 +48,13 @@ const PaperForm = ({ variant, title, text }: ModalProps) => {
     <>
       <h3>{title}</h3>
       <form onSubmit={onSubmit}>
-        <S.PaperTitleBox
+        <Input
+          variant='outlined'
+          name='name'
+          onChange={handleChangeFormBody}
+          placeholder='글쓴이'
+        />
+        <Input
           variant='outlined'
           name='title'
           onChange={handleChangeFormBody}
