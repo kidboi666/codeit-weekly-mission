@@ -39,12 +39,12 @@ const FolderOptionButton = () => {
           </S.OptionBox>
         </S.OptionContainer>
       )}
-      {router.pathname === "/memo" && (
+      {router.pathname === "/paper" && (
         <S.OptionContainer>
           <S.OptionBox
-            onClick={() => dispatch(openModal({ type: "newMemoForm" }))}
+            onClick={() => dispatch(openModal({ type: "newPaperForm" }))}
           >
-            ✚ 새 메모
+            ✚ 새 글
           </S.OptionBox>
         </S.OptionContainer>
       )}

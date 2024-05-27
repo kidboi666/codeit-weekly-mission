@@ -5,7 +5,7 @@ import linkReducer from "@/src/store/reducers/link";
 import authReducer from "@/src/store/reducers/auth";
 import modalReducer from "@/src/store/reducers/modal";
 import toastReducer from "@/src/store/reducers/toast";
-import memoReducer from "@/src/store/reducers/memo";
+import paperReducer from "@/src/store/reducers/paper";
 
 const store = configureStore({
   reducer: {
@@ -14,7 +14,7 @@ const store = configureStore({
     auth: authReducer,
     modal: modalReducer,
     toast: toastReducer,
-    memo: memoReducer,
+    paper: paperReducer,
   },
 });
 

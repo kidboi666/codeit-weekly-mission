@@ -4,7 +4,7 @@ const axiosInstance = axios.create({
   baseURL: "https://bootcamp-api.codeit.kr/api/",
 });
 
-export const memoInstance = axios.create({
+export const paperInstance = axios.create({
   baseURL: "https://codeit-weekly-mission.vercel.app/api/",
 });
 

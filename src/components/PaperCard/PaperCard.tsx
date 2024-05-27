@@ -1,11 +1,11 @@
 import { useAppDispatch, useAppSelector } from "@/src/hooks/useApp";
-import * as S from "./MemoCard.styled";
+import * as S from "./PaperCard.styled";
 import calculateTime from "@/src/utils/calculateTime";
-import { Memo } from "@/src/types";
+import { Paper } from "@/src/types";
 import { openModal } from "@/src/store/reducers/modal";
 
-const MemoCard = () => {
-  const { data: memoList } = useAppSelector((state) => state.memo);
+const PaperCard = () => {
+  const { data: paperList } = useAppSelector((state) => state.paper);
   const dispatch = useAppDispatch();
 
   const changeColor = (color: string) => {
@@ -14,23 +14,26 @@ const MemoCard = () => {
 
   return (
     <>
-      {memoList?.map((memo: Memo) => (
-        <S.CardLayout key={memo.id} $background={changeColor(memo.background)}>
+      {paperList?.map((paper: Paper) => (
+        <S.CardLayout
+          key={paper.id}
+          $background={changeColor(paper.background)}
+        >
           <S.CardContainer>
             <S.CloseButtonStyled
               variant={"outlined"}
               onClick={() =>
                 dispatch(
                   openModal({
-                    type: "deleteMemo",
-                    props: { memoTitle: memo.title, memoId: memo.id },
+                    type: "deletepaper",
+                    props: { paperTitle: paper.title, paperId: paper.id },
                   }),
                 )
               }
             />
-            <S.Title>{memo.title}</S.Title>
-            <S.Content>{memo.content}</S.Content>
-            <S.CreatedDate>{calculateTime(memo.createdAt)}</S.CreatedDate>
+            <S.Title>{paper.title}</S.Title>
+            <S.Content>{paper.content}</S.Content>
+            <S.CreatedDate>{calculateTime(paper.createdAt)}</S.CreatedDate>
           </S.CardContainer>
         </S.CardLayout>
       ))}
@@ -38,4 +41,4 @@ const MemoCard = () => {
   );
 };
 
-export default MemoCard;
+export default PaperCard;

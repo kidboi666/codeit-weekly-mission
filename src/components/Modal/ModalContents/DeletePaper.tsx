@@ -1,29 +1,29 @@
 import { useAppDispatch, useAppSelector } from "@/src/hooks/useApp";
-import Button from "../../Button/Button";
+import { Button } from "@/src/components";
 import { ModalProps } from "../ModalTypes";
-import { deleteMemo, getMemo } from "@/src/store/actions/memo";
+import { deletePaper, getPaper } from "@/src/store/actions/paper";
 import { openToast } from "@/src/store/reducers/toast";
 import { closeModal } from "@/src/store/reducers/modal";
 
-const DeleteMemo = ({ title, text, variant }: ModalProps) => {
-  const { memoId, memoTitle } =
+const DeletePaper = ({ title, text, variant }: ModalProps) => {
+  const { paperId, paperTitle } =
     useAppSelector((state) => state.modal.props) || {};
   const dispatch = useAppDispatch();
 
   const onClick = async () => {
-    await dispatch(deleteMemo(memoId));
+    await dispatch(deletePaper(paperId));
     dispatch(closeModal());
-    openToast({ type: "deleteMemo" });
-    await dispatch(getMemo());
+    openToast({ type: "deletePaper" });
+    await dispatch(getPaper());
   };
 
   return (
     <>
       <h3>{title}</h3>
-      <h4>{memoTitle}</h4>
+      <h4>{paperTitle}</h4>
       <Button variant={variant} text={text} width='100%' onClick={onClick} />
     </>
   );
 };
 
-export default DeleteMemo;
+export default DeletePaper;

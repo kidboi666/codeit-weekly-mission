@@ -1,29 +1,21 @@
 import dbConnect from "@/backend/config";
-import Memo from "@/backend/models/memo";
+import Paper from "@/backend/models/paper";
 import cors from "@/backend/middlewares/cors";
 import { NextApiRequest, NextApiResponse } from "next";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   cors(req, res, async () => {
     await dbConnect();
-    const { id } = req.query;
 
     switch (req.method) {
-      case "PATCH":
-        const updatedMemo = await Memo.findByIdAndUpdate(id, req.body, {
-          new: true,
-        });
-        res.status(200).send(updatedMemo);
+      case "POST":
+        const newPaper = await Paper.create(req.body);
+        res.status(200).send(newPaper);
         break;
 
       case "GET":
-        const foundMemo = await Memo.findById(id);
-        res.status(200).send(foundMemo);
-        break;
-
-      case "DELETE":
-        await Memo.findByIdAndDelete(id);
-        res.status(204).end();
+        const foundPaper = await Paper.find();
+        res.status(200).send({ data: foundPaper });
         break;
 
       default:
