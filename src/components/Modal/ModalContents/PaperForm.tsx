@@ -27,7 +27,7 @@ const PaperForm = ({ variant, title, text }: ModalProps) => {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (formBody.title && formBody.content) {
+    if (formBody.title && formBody.content && formBody.name) {
       await dispatch(
         postPaper({
           name: formBody.name,
