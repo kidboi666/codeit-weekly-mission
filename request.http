@@ -3,7 +3,7 @@ GET https://codeit-weekly-mission.vercel.app/api/memo
 
 ###
 
-GET http://localhost:3000/memo
+GET http://localhost:3000/api/memo
 
 ###
 

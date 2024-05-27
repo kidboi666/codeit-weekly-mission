@@ -1,34 +1,36 @@
 import dbConnect from "@/backend/config";
 import Memo from "@/backend/models/memo";
 import cors from "@/backend/middlewares/cors";
-import { createRouter } from "next-connect";
 import { NextApiRequest, NextApiResponse } from "next";
 
-const handler = createRouter<NextApiRequest, NextApiResponse>();
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+  cors(req, res, async () => {
+    await dbConnect();
+    const { id } = req.query;
 
-handler.use(cors);
+    switch (req.method) {
+      case "PATCH":
+        const updatedMemo = await Memo.findByIdAndUpdate(id, req.body, {
+          new: true,
+        });
+        res.status(200).send(updatedMemo);
+        break;
 
-handler.patch(async (req, res) => {
-  await dbConnect();
-  const { id } = req.query;
-  const updatedMemo = await Memo.findByIdAndUpdate(id, req.body, {
-    new: true,
+      case "GET":
+        const foundMemo = await Memo.findById(id);
+        res.status(200).send(foundMemo);
+        break;
+
+      case "DELETE":
+        await Memo.findByIdAndDelete(id);
+        res.status(204).end();
+        break;
+
+      default:
+        res.status(404).send("Not Found");
+        break;
+    }
   });
-  res.status(200).send(updatedMemo);
-});
-
-handler.get(async (req, res) => {
-  await dbConnect();
-  const { id } = req.query;
-  const memo = await Memo.findById(id);
-  res.status(200).send(memo);
-});
-
-handler.delete(async (req, res) => {
-  await dbConnect();
-  const { id } = req.query;
-  await Memo.findByIdAndDelete(id);
-  res.status(204).end();
-});
+};
 
 export default handler;

@@ -4,20 +4,26 @@ import cors from "@/backend/middlewares/cors";
 import { createRouter } from "next-connect";
 import { NextApiRequest, NextApiResponse } from "next";
 
-const handler = createRouter<NextApiRequest, NextApiResponse>();
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+  cors(req, res, async () => {
+    await dbConnect();
 
-handler.use(cors);
+    switch (req.method) {
+      case "POST":
+        const newMemo = await Memo.create(req.body);
+        res.status(200).send(newMemo);
+        break;
 
-handler.post(async (req, res) => {
-  await dbConnect();
-  const newMemo = await Memo.create(req.body);
-  res.status(200).send(newMemo);
-});
+      case "GET":
+        const foundMemo = await Memo.find();
+        res.status(200).send({ data: foundMemo });
+        break;
 
-handler.get(async (req, res) => {
-  await dbConnect();
-  const foundMemo = await Memo.find();
-  res.status(200).send({ data: foundMemo });
-});
+      default:
+        res.status(404).send("Not Found");
+        break;
+    }
+  });
+};
 
 export default handler;
