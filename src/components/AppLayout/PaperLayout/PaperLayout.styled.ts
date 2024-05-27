@@ -105,6 +105,8 @@ export const LinkSection = styled.ul`
       width: 100%;
       justify-content: flex-start;
       padding: 0 32.5px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 `;

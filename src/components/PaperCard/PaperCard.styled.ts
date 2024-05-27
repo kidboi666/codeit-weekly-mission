@@ -4,8 +4,6 @@ import CloseButton from "../CloseButton/CloseButton";
 export const CardLayout = styled.li<{
   $background: string;
 }>`
-  max-width: 40%;
-  min-width: 15%;
   position: relative;
   border-radius: 20px;
   box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.1);
