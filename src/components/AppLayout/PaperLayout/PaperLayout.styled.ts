@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const FolderPageLayout = styled.main`
+export const PaperPageLayout = styled.main`
   display: flex;
   flex-direction: column;
   justify-content: center;

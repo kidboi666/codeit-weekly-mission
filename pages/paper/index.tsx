@@ -2,31 +2,31 @@ import {
   AddLink,
   AppLayout,
   Folder,
-  MemoLayout,
+  PaperLayout,
   Search,
+  PaperCard,
 } from "@/src/components";
-import MemoCard from "@/src/components/MemoCard/MemoCard";
 import { useAppDispatch, useAppSelector } from "@/src/hooks/useApp";
 import { getFolder } from "@/src/store/actions/folder";
-import { getMemo } from "@/src/store/actions/memo";
+import { getPaper } from "@/src/store/actions/paper";
 import { Link } from "@/src/types";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-const MemoPage = () => {
+const PaperPage = () => {
   const [searchResult, setSearchResult] = useState<Link[] | string>([]);
   const [searchKeyword, setSearchKeyword] = useState("");
   const { id: userId } = useAppSelector((state) => state.auth.userInfo);
   const dispatch = useAppDispatch();
   const router = useRouter();
 
-  const fetchMemoList = async () => {
-    dispatch(getMemo());
+  const fetchPaperList = async () => {
+    dispatch(getPaper());
     dispatch(getFolder(userId));
   };
 
   useEffect(() => {
-    if (userId) fetchMemoList();
+    if (userId) fetchPaperList();
   }, [userId]);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const MemoPage = () => {
 
   return (
     <AppLayout>
-      <MemoLayout
+      <PaperLayout
         AddLink={<AddLink />}
         Search={
           <Search
@@ -45,10 +45,10 @@ const MemoPage = () => {
           />
         }
         Folder={<Folder />}
-        Memo={<MemoCard />}
+        Paper={<PaperCard />}
       />
     </AppLayout>
   );
 };
 
-export default MemoPage;
+export default PaperPage;

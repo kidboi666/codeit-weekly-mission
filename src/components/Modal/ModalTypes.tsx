@@ -5,8 +5,8 @@ import AddLinkToFolder from "@/src/components/Modal/ModalContents/AddLinkToFolde
 import DeleteFolder from "@/src/components/Modal/ModalContents/DeleteFolder";
 import DeleteLink from "@/src/components/Modal/ModalContents/DeleteLink";
 import { ReactNode } from "react";
-import DeleteMemo from "./ModalContents/DeleteMemo";
-import MemoForm from "./ModalContents/MemoForm";
+import DeletePaper from "./ModalContents/DeletePaper";
+import PaperForm from "./ModalContents/PaperForm";
 
 export interface ModalProps {
   title?: string;
@@ -21,8 +21,8 @@ type ModalType =
   | "shareFolder"
   | "deleteFolder"
   | "deleteLink"
-  | "deleteMemo"
-  | "newMemoForm";
+  | "deletePaper"
+  | "newPaperForm";
 
 export const MODAL_COMPONENTS: Map<ModalType, ReactNode> = new Map<
   ModalType,
@@ -74,19 +74,19 @@ export const MODAL_COMPONENTS: Map<ModalType, ReactNode> = new Map<
     />,
   ],
   [
-    "deleteMemo",
-    <DeleteMemo
-      key='deleteMemo'
-      title='메모 삭제'
+    "deletePaper",
+    <DeletePaper
+      key='deletePaper'
+      title='페이퍼 삭제'
       text='삭제하기'
       variant='deleteLink'
     />,
   ],
   [
-    "newMemoForm",
-    <MemoForm
-      key='memoForm'
-      title='메모 추가'
+    "newPaperForm",
+    <PaperForm
+      key='paperForm'
+      title='페이퍼 추가'
       text='추가하기'
       variant='default'
     />,

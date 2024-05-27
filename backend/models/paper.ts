@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const memoSchema = new mongoose.Schema(
+const paperSchema = new mongoose.Schema(
   {
     title: { type: String, required: true, default: "" },
     content: { type: String, required: true, default: "" },
@@ -15,6 +15,6 @@ const memoSchema = new mongoose.Schema(
   },
 );
 
-const Memo = mongoose.models["Memo"] || mongoose.model("Memo", memoSchema);
+const Paper = mongoose.models["Paper"] || mongoose.model("Paper", paperSchema);
 
-export default Memo;
+export default Paper;

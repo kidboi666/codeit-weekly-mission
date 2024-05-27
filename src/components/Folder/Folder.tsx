@@ -25,9 +25,9 @@ const Folder = () => {
     router.push(`/folder`, undefined, { shallow: true });
   };
 
-  const selectMemo = () => {
-    dispatch(setCurrentFolder({ name: "메모장", id: 1 }));
-    router.push(`/memo`, undefined, { shallow: true });
+  const selectPaper = () => {
+    dispatch(setCurrentFolder({ name: "페이퍼", id: 1 }));
+    router.push(`/paper`, undefined, { shallow: true });
   };
 
   return (
@@ -53,9 +53,9 @@ const Folder = () => {
             <Button variant='addFolder' text='폴더 추가 +' />
           </div>
           <Button
-            variant='memoButton'
-            text='메모장'
-            onClick={() => selectMemo()}
+            variant='paperButton'
+            text='페이퍼'
+            onClick={() => selectPaper()}
             selected={currentFolder.name}
           />
         </S.FolderBox>

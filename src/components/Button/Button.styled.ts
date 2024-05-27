@@ -121,7 +121,7 @@ export const Button = styled.button<{
     `}
 
     ${({ $variant, $isActive }) =>
-    $variant === "memoButton" &&
+    $variant === "paperButton" &&
     `
       border: 1px solid #F8CA59;
       line-height: 0;

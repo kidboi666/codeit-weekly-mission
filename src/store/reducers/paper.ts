@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getMemo, postMemo } from "../actions/memo";
+import { getPaper, postPaper } from "../actions/paper";
 import { API_MSG } from "@/src/constants/strings";
 
 const initialState = {
@@ -7,32 +7,32 @@ const initialState = {
   status: "",
 };
 
-const memoSlice = createSlice({
-  name: "memo",
+const paperSlice = createSlice({
+  name: "paper",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getMemo.pending, (state) => {
+      .addCase(getPaper.pending, (state) => {
         state.status = API_MSG.PEN;
       })
-      .addCase(getMemo.fulfilled, (state, action) => {
+      .addCase(getPaper.fulfilled, (state, action) => {
         state.data = action.payload;
         state.status = API_MSG.FUL;
       })
-      .addCase(getMemo.rejected, (state) => {
+      .addCase(getPaper.rejected, (state) => {
         state.status = API_MSG.REJ;
       })
-      .addCase(postMemo.pending, (state) => {
+      .addCase(postPaper.pending, (state) => {
         state.status = API_MSG.PEN;
       })
-      .addCase(postMemo.fulfilled, (state) => {
+      .addCase(postPaper.fulfilled, (state) => {
         state.status = API_MSG.FUL;
       })
-      .addCase(postMemo.rejected, (state) => {
+      .addCase(postPaper.rejected, (state) => {
         state.status = API_MSG.REJ;
       });
   },
 });
 
-export default memoSlice.reducer;
+export default paperSlice.reducer;

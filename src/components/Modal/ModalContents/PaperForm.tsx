@@ -1,13 +1,13 @@
-import { Button, Input } from "@/src/components";
-import * as S from "./MemoForm.styled";
+import { Button } from "@/src/components";
+import * as S from "./PaperForm.styled";
 import { useState } from "react";
 import { useAppDispatch } from "@/src/hooks/useApp";
-import { getMemo, postMemo } from "@/src/store/actions/memo";
+import { getPaper, postPaper } from "@/src/store/actions/paper";
 import { closeModal } from "@/src/store/reducers/modal";
 import { openToast } from "@/src/store/reducers/toast";
 import { ModalProps } from "../ModalTypes";
 
-const MemoForm = ({ variant, title, text }: ModalProps) => {
+const PaperForm = ({ variant, title, text }: ModalProps) => {
   const dispatch = useAppDispatch();
   const [formBody, setFormBody] = useState({
     title: "",
@@ -32,15 +32,15 @@ const MemoForm = ({ variant, title, text }: ModalProps) => {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await dispatch(
-      postMemo({
+      postPaper({
         title: formBody.title,
         content: formBody.content,
         background: formBody.background,
       }),
     );
     dispatch(closeModal());
-    dispatch(openToast({ type: "postMemo" }));
-    await dispatch(getMemo());
+    dispatch(openToast({ type: "postPaper" }));
+    await dispatch(getPaper());
   };
 
   return (
@@ -48,13 +48,13 @@ const MemoForm = ({ variant, title, text }: ModalProps) => {
       <h3>{title}</h3>
       <form onSubmit={onSubmit}>
         <label htmlFor='title'>제목</label>
-        <S.MemoTitleBox
+        <S.PaperTitleBox
           variant='outlined'
           name='title'
           onChange={handleChangeFormBody}
         />
         <label htmlFor='content'>내용</label>
-        <S.MemoContentBox name='content' onChange={handleChangeFormBody} />
+        <S.PaperContentBox name='content' onChange={handleChangeFormBody} />
         <select onChange={handleChangeSelect}>
           <option value='blue'>파란색</option>
           <option value='yellow'>노란색</option>
@@ -67,4 +67,4 @@ const MemoForm = ({ variant, title, text }: ModalProps) => {
   );
 };
 
-export default MemoForm;
+export default PaperForm;

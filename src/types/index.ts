@@ -53,7 +53,7 @@ export interface SharedFolder {
   favorite: boolean;
 }
 
-export interface Memo {
+export interface Paper {
   id: number;
   title: string;
   content: string;

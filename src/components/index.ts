@@ -2,7 +2,7 @@ import AddLink from "./AddLink/AddLink";
 import AppLayout from "./AppLayout/AppLayout";
 import FolderLayout from "./AppLayout/FolderLayout/FolderLayout";
 import SharedLayout from "./AppLayout/SharedLayout/SharedLayout";
-import MemoLayout from "./AppLayout/MemoLayout/MemoLayout";
+import PaperLayout from "./AppLayout/PaperLayout/PaperLayout";
 import Button from "./Button/Button";
 import Card from "./Card/Card";
 import CloseButton from "./CloseButton/CloseButton";
@@ -22,6 +22,7 @@ import Spinner from "./Spinner/Spinner";
 import Star from "./Star/Star";
 import Toast from "./Toast/Toast";
 import OverviewCard from "./OverviewCard/OverviewCard";
+import PaperCard from "./PaperCard/PaperCard";
 
 export {
   AddLink,
@@ -47,5 +48,6 @@ export {
   FolderLayout,
   SharedLayout,
   OverviewCard,
-  MemoLayout,
+  PaperLayout,
+  PaperCard,
 };
