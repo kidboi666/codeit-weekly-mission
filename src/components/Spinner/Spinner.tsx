@@ -8,11 +8,13 @@ const Spinner = () => {
   const folderStatus = useAppSelector((state) => state.folder.status);
   const linkStatus = useAppSelector((state) => state.link.status);
   const authStatus = useAppSelector((state) => state.auth.status);
+  const paperStatus = useAppSelector((state) => state.paper.status);
 
   const turningPoint =
     folderStatus !== API_MSG.PEN &&
     linkStatus !== API_MSG.PEN &&
-    authStatus !== API_MSG.PEN;
+    authStatus !== API_MSG.PEN &&
+    paperStatus !== API_MSG.PEN;
   if (turningPoint) return;
 
   return (

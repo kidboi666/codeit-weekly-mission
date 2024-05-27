@@ -17,7 +17,8 @@ type ToastType =
   | "firstAction"
   | "pendingTask"
   | "deletePaper"
-  | "postPaper";
+  | "postPaper"
+  | "wrongPaper";
 
 export const TOAST_COMPONENTS: Map<ToastType, { text: string; warn: boolean }> =
   new Map<ToastType, { text: string; warn: boolean }>([
@@ -52,4 +53,5 @@ export const TOAST_COMPONENTS: Map<ToastType, { text: string; warn: boolean }> =
       { text: "폴더가 없다면 먼저 폴더를 생성해주세요.", warn: true },
     ],
     ["pendingTask", { text: "미구현 기능 입니다.", warn: true }],
+    ["wrongPaper", { text: "제목과 내용을 입력하세요.", warn: true }],
   ]);

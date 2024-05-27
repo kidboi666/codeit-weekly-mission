@@ -38,7 +38,9 @@ const FolderLayout = ({ AddLink, Search, Folder, Card }: FolderLayoutProps) => {
         <S.HeaderSection ref={targetRef}>{AddLink}</S.HeaderSection>
         <S.SearchSection>{Search}</S.SearchSection>
         <S.FolderSection>{Folder}</S.FolderSection>
-        <S.LinkSection>{Card}</S.LinkSection>
+        <S.LinkSection>
+          <div>{Card}</div>
+        </S.LinkSection>
       </S.FolderPageLayout>
       <S.FooterAddLink $animation={isInterSecting}>{AddLink}</S.FooterAddLink>
     </>
