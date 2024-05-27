@@ -4,7 +4,11 @@ const memoSchema = new mongoose.Schema(
   {
     title: { type: String, required: true, default: "" },
     content: { type: String, required: true, default: "" },
-    background: { type: String, required: true, default: "var(--gray5-color)" },
+    background: {
+      type: String,
+      required: true,
+      default: "yellow",
+    },
   },
   {
     timestamps: true,

@@ -5,7 +5,7 @@ const axiosInstance = axios.create({
 });
 
 export const memoInstance = axios.create({
-  baseURL: "http://localhost:3000/api/",
+  baseURL: "https://codeit-weekly-mission.vercel.app/api/",
 });
 
 const refreshAccessToken = async () => {

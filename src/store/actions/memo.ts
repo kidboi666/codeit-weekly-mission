@@ -17,11 +17,12 @@ export const deleteMemo = createAsyncThunk<any, number>(
 
 export const postMemo = createAsyncThunk<
   any,
-  { title: string; content: string }
->("memo/postMemo", async ({ title, content }) => {
+  { title: string; content: string; background: string }
+>("memo/postMemo", async ({ title, content, background }) => {
   const { data } = await memoInstance.post(`memo`, {
     title: title,
     content: content,
+    background: background,
   });
 
   return camelcaseKeys(data.data, { deep: true });

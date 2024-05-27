@@ -1,5 +1,5 @@
 import { AppProps } from "next/app";
-import GlobalStyle from "@/src/styles/global.styled";
+import GlobalStyle from "@/src/styles";
 import Head from "next/head";
 import wrapper from "@/src/store/index";
 import { Provider } from "react-redux";
