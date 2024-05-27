@@ -13,10 +13,12 @@ export const CardLayout = styled.li<{
   cursor: pointer;
   padding: 15px 20px;
   background-color: ${({ $background }) => $background};
-  transition: all 0.2s;
+  transition: all 0.3s;
 
   &:hover {
-    transform: scale(1.025);
+    transform: translateY(-10px);
+    box-shadow: 0px 20px 25px 0px rgba(0, 0, 0, 0.1);
+    z-index: 10;
   }
 `;
 
