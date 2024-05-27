@@ -34,7 +34,7 @@ const PaperCard = ({ paper }: PaperCardProps) => {
             )
           }
         />
-        <S.Title>{paper.title}</S.Title>
+        <S.Title $showContent={showContent}>{paper.title}</S.Title>
         <S.Content $showContent={showContent}>{paper.content}</S.Content>
         <S.TimeStamp>{calculateTime(paper.createdAt)}</S.TimeStamp>
       </S.CardContainer>

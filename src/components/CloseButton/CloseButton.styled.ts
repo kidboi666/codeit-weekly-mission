@@ -27,6 +27,9 @@ export const CloseButton = styled.div<{ $variant: string }>`
   ${({ $variant }) =>
     $variant === "outlined" &&
     `
-    background-color: #fff
+    transition: transform 0.3s;
+    &:hover {
+      transform: rotate(45deg);
+    }
   `}
 `;

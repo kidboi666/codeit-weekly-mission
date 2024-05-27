@@ -32,10 +32,11 @@ export const CloseButtonStyled = styled(CloseButton)`
   right: 20px;
 `;
 
-export const Title = styled.p`
-  display: -webkit-box;
+export const Title = styled.p<{ $showContent: boolean }>`
+  display: ${({ $showContent }) => ($showContent ? "block" : "-webkit-box")};
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
+  width: 80%;
   overflow: hidden;
   line-height: 24px;
   color: #fff;

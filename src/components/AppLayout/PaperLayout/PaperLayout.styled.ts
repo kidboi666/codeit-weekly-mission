@@ -85,7 +85,8 @@ export const FolderSection = styled.div`
 export const LinkSection = styled.ul`
   width: 1060px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   gap: 25px 20px;
   flex-wrap: wrap;
   margin-bottom: 100px;
