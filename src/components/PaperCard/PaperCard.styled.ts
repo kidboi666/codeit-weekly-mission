@@ -4,13 +4,20 @@ import CloseButton from "../CloseButton/CloseButton";
 export const CardLayout = styled.li<{
   $background: string;
 }>`
+  max-width: 40%;
+  min-width: 15%;
   position: relative;
   border-radius: 20px;
-  box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.08);
+  box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   cursor: pointer;
   padding: 15px 20px;
   background-color: ${({ $background }) => $background};
+  transition: all 0.2s;
+
+  &:hover {
+    transform: scale(1.025);
+  }
 `;
 
 export const CardContainer = styled.div`
