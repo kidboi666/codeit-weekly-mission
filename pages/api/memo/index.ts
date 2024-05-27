@@ -1,22 +1,23 @@
 import dbConnect from "@/backend/config";
 import Memo from "@/backend/models/memo";
+import cors from "@/backend/middlewares/cors";
+import { createRouter } from "next-connect";
 import { NextApiRequest, NextApiResponse } from "next";
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  await dbConnect();
+const handler = createRouter<NextApiRequest, NextApiResponse>();
 
-  switch (req.method) {
-    case "POST":
-      const newMemo = await Memo.create(req.body);
-      return res.status(200).send(newMemo);
-    case "GET":
-      const foundMemo = await Memo.find();
-      return res.status(200).send({ data: foundMemo });
-    default:
-      return res
-        .status(405)
-        .send({ message: `Method ${req.method} Not Allowed` });
-  }
-};
+handler.use(cors);
+
+handler.post(async (req, res) => {
+  await dbConnect();
+  const newMemo = await Memo.create(req.body);
+  res.status(200).send(newMemo);
+});
+
+handler.get(async (req, res) => {
+  await dbConnect();
+  const foundMemo = await Memo.find();
+  res.status(200).send({ data: foundMemo });
+});
 
 export default handler;
