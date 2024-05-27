@@ -12,10 +12,10 @@ const GlobalColor = css`
     --gray4-color: #e7effb;
     --gray5-color: #f0f6ff;
 
-    --blue1-color: #8ecae6;
-    --blue2-color: #219ebc;
-    --blue3-color: #023047;
-    --yellow-color: #ffb703;
+    --blue-color: #8eb5f4;
+    --green-color: #88c995;
+    --silver-color: #ccd5e3;
+    --yellow-color: #f8ca59;
   }
 `;
 

@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import CloseButton from "../CloseButton/CloseButton";
 
-export const CardLayout = styled.li`
+export const CardLayout = styled.li<{ $background: string }>`
   position: relative;
   border-radius: 20px;
   box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.08);
   overflow: hidden;
   cursor: pointer;
   padding: 15px 20px;
-  background-color: var(--gray5-color);
+  background-color: ${({ $background }) => $background};
 `;
 
 export const CardContainer = styled.div`

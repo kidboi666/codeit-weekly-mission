@@ -12,6 +12,7 @@ const MemoForm = ({ variant, title, text }: ModalProps) => {
   const [formBody, setFormBody] = useState({
     title: "",
     content: "",
+    background: "",
   });
 
   const handleChangeFormBody = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,10 +22,21 @@ const MemoForm = ({ variant, title, text }: ModalProps) => {
     });
   };
 
+  const handleChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setFormBody({
+      ...formBody,
+      background: e.target.value,
+    });
+  };
+
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await dispatch(
-      postMemo({ title: formBody.title, content: formBody.content }),
+      postMemo({
+        title: formBody.title,
+        content: formBody.content,
+        background: formBody.background,
+      }),
     );
     dispatch(closeModal());
     dispatch(openToast({ type: "postMemo" }));
@@ -43,6 +55,12 @@ const MemoForm = ({ variant, title, text }: ModalProps) => {
         />
         <label htmlFor='content'>내용</label>
         <S.MemoContentBox name='content' onChange={handleChangeFormBody} />
+        <select onChange={handleChangeSelect}>
+          <option value='blue'>파란색</option>
+          <option value='yellow'>노란색</option>
+          <option value='green'>초록색</option>
+          <option value='silver'>은색</option>
+        </select>
         <Button variant={variant} text={text} width='100%' type='submit' />
       </form>
     </>

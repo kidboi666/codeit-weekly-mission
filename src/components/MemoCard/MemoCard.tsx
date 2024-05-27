@@ -8,10 +8,14 @@ const MemoCard = () => {
   const { data: memoList } = useAppSelector((state) => state.memo);
   const dispatch = useAppDispatch();
 
+  const changeColor = (color: string) => {
+    return `var(--${color}-color)`;
+  };
+
   return (
     <>
       {memoList?.map((memo: Memo) => (
-        <S.CardLayout key={memo.id}>
+        <S.CardLayout key={memo.id} $background={changeColor(memo.background)}>
           <S.CardContainer>
             <S.CloseButtonStyled
               variant={"outlined"}
