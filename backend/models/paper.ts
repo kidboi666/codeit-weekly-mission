@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const paperSchema = new mongoose.Schema(
   {
+    name: { type: String, required: true, default: "" },
     title: { type: String, required: true, default: "" },
     content: { type: String, required: true, default: "" },
     background: {

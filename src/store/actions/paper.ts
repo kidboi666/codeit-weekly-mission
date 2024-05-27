@@ -17,9 +17,10 @@ export const deletePaper = createAsyncThunk<any, number>(
 
 export const postPaper = createAsyncThunk<
   any,
-  { title: string; content: string; background: string }
->("paper/postPaper", async ({ title, content, background }) => {
+  { name: string; title: string; content: string; background: string }
+>("paper/postPaper", async ({ name, title, content, background }) => {
   const { data } = await paperInstance.post(`paper`, {
+    name: name,
     title: title,
     content: content,
     background: background,
