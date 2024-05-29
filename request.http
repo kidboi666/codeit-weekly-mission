@@ -1,0 +1,20 @@
+
+GET https://codeit-weekly-mission.vercel.app/api/paper
+
+###
+
+GET http://localhost:3000/api/paper
+
+###
+
+POST https://codeit-weekly-mission.vercel.app/api/paper
+Content-Type: application/json
+
+{
+  "title": "이걸로 하면",
+  "content": "괜찮은데 왜 뭐가 문제야"
+}
+
+###
+
+GET http://localhost:3000/memo

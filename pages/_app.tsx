@@ -1,15 +1,14 @@
 import { AppProps } from "next/app";
-import GlobalStyle from "@/styles/global.styled";
+import GlobalStyle from "@/src/styles";
 import Head from "next/head";
-import wrapper from "@/redux/store";
+import wrapper from "@/src/store/index";
 import { Provider } from "react-redux";
-import Modal from "@/components/Modal/Modal";
-import Toast from "@/components/Toast/Toast";
-import Spinner from "@/components/Spinner/Spinner";
+import { Modal, Toast, Spinner } from "@/src/components";
 import Script from "next/script";
 
-const App = ({ Component, ...rest }: AppProps) => {
+const LinkBrary = ({ Component, ...rest }: AppProps) => {
   const { store, props } = wrapper.useWrappedStore(rest);
+
   return (
     <>
       <Script
@@ -31,4 +30,4 @@ const App = ({ Component, ...rest }: AppProps) => {
   );
 };
 
-export default App;
+export default LinkBrary;
