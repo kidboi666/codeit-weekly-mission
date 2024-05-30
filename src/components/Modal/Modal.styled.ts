@@ -1,10 +1,14 @@
 import styled, { createGlobalStyle } from "styled-components";
 import CloseButton from "../CloseButton/CloseButton";
 
-export const ScrollLock = createGlobalStyle`
+export const ScrollLock = createGlobalStyle<{ $hasScrollbar: boolean }>`
   body {
     overflow: hidden;
-    padding-right: 18px;
+    ${({ $hasScrollbar }) =>
+      $hasScrollbar &&
+      `
+    padding-right: 14px;
+    `}
   }
 `;
 

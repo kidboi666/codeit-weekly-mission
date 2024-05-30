@@ -140,6 +140,20 @@ const GlobalReset = css`
     text-decoration: none;
     color: #000;
   }
+
+  body::-webkit-scrollbar {
+    width: 14px;
+    height: 14px;
+  }
+
+  body::-webkit-scrollbar-thumb {
+    background: var(--gray3-color);
+    border-radius: 20px;
+  }
+
+  body::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
+  }
 `;
 
 export default GlobalReset;
