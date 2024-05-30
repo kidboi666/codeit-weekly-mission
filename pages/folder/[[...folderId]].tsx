@@ -43,11 +43,11 @@ const FolderPage = () => {
   useEffect(() => {
     if (!isLoggedIn) router.push("/");
     if (userId) fetchFolderList();
-  }, [userId]);
+  }, [userId, isLoggedIn]);
 
   useEffect(() => {
     if (userId) fetchLinkList();
-  }, [router, userId]);
+  }, [folderId, userId]);
 
   return (
     <AppLayout>

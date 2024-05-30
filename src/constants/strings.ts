@@ -19,5 +19,10 @@ export const INPUT_MSG = {
   diffrentPw: "비밀번호가 일치하지 않아요.",
 };
 
+export const CARD_SECTION_MSG = {
+  searchDataNotFound: "검색 결과가 없습니다.",
+  dataNotFound: "해당되는 링크가 없습니다.",
+};
+
 export const EMAIL_REGX = /^[A-Za-z0-9._-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/i;
 export const ALPHANUMERIC_REGX = /[0-9a-zA-Z]{8,20}$/;

@@ -50,7 +50,7 @@ export const MODAL_COMPONENTS: Map<ModalType, ReactNode> = new Map<
     "addLinkToFolder",
     <AddLinkToFolder
       key='addLink'
-      title='폴더에 추가'
+      title='폴더 이동'
       text='추가하기'
       variant='default'
     />,

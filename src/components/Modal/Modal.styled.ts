@@ -4,7 +4,9 @@ import CloseButton from "../CloseButton/CloseButton";
 export const ScrollLock = createGlobalStyle`
   body {
     overflow: hidden;
-  }`;
+    padding-right: 18px;
+  }
+`;
 
 export const ModalLayout = styled.div`
   position: fixed;

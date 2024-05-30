@@ -140,8 +140,6 @@ const GlobalReset = css`
     text-decoration: none;
     color: #000;
   }
-
-  /* --------- color constants --------- */
 `;
 
 export default GlobalReset;

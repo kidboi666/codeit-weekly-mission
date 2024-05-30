@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Input } from "@/src/components";
 import { useAppSelector } from "@/src/hooks/useApp";
 import { Link } from "@/src/types";
+import { CARD_SECTION_MSG } from "@/src/constants/strings";
 
 interface SearchProps {
   setSearchResult: React.Dispatch<React.SetStateAction<Link[] | string>>;
@@ -33,7 +34,7 @@ const Search = ({
     });
 
     if (result.length === 0) {
-      setSearchResult("검색 결과가 없습니다.");
+      setSearchResult(CARD_SECTION_MSG.searchDataNotFound);
     } else {
       setSearchResult(result);
     }
