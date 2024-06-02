@@ -56,7 +56,6 @@ const SignUpPage = () => {
 
   useEffect(() => {
     if (isLoggedIn) {
-      dispatch(userInfoAccess());
       router.push("/folder");
     }
   }, [isLoggedIn]);

@@ -12,13 +12,18 @@ import { Link } from "@/src/types";
 import { getAllLinkList, getLinkList } from "@/src/store/actions/link";
 import { getFolder } from "@/src/store/actions/folder";
 import { useRouter } from "next/router";
+import { userInfoAccess } from "@/src/store/actions/auth";
 
 export interface CurrentFolderType {
   name: string;
   id: number;
 }
 
-const FolderPage = () => {
+interface FolderPageProps {
+  whatContext: any;
+}
+
+const FolderPage = ({ whatContext }: FolderPageProps) => {
   const [searchResult, setSearchResult] = useState<Link[] | string>([]);
   const [searchKeyword, setSearchKeyword] = useState("");
   const {
@@ -26,12 +31,22 @@ const FolderPage = () => {
     isLoggedIn,
   } = useAppSelector((state) => state.auth);
   const { data: linkList } = useAppSelector((state) => state.link);
+  const { data: folderList } = useAppSelector((state) => state.folder);
   const dispatch = useAppDispatch();
   const router = useRouter();
   const { folderId } = router.query;
 
+  const initPage = async () => {
+    const token = localStorage.getItem("accessToken");
+    if (token && !isLoggedIn) {
+      await dispatch(userInfoAccess());
+    } else {
+      router.push("/");
+    }
+  };
+
   const fetchFolderList = () => {
-    dispatch(getFolder(userId));
+    folderList.length === 0 && dispatch(getFolder(userId));
   };
 
   const fetchLinkList = () => {
@@ -41,13 +56,16 @@ const FolderPage = () => {
   };
 
   useEffect(() => {
-    if (!isLoggedIn) router.push("/");
-    if (userId) fetchFolderList();
-  }, [userId, isLoggedIn]);
+    if (isLoggedIn) {
+      fetchFolderList();
+    } else {
+      initPage();
+    }
+  }, [isLoggedIn]);
 
   useEffect(() => {
-    if (userId) fetchLinkList();
-  }, [folderId, userId]);
+    if (isLoggedIn) fetchLinkList();
+  }, [folderId, isLoggedIn]);
 
   return (
     <AppLayout>

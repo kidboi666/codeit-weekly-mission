@@ -23,7 +23,7 @@ export const checkEmailAccess = createAsyncThunk<any, string>(
   async (email) => {
     const { data } = await axiosInstance.post(`check-email`, { email: email });
     return data;
-  },
+  }
 );
 
 export const signUpAccess = createAsyncThunk<
@@ -52,5 +52,5 @@ export const getSharedUserInfo = createAsyncThunk<any, number>(
   async (userId) => {
     const { data } = await axiosInstance.get(`users/${userId}`);
     return camelcaseKeys(data.data, { deep: true });
-  },
+  }
 );

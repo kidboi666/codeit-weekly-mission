@@ -26,15 +26,16 @@ const refreshAccessToken = async () => {
 
 axiosInstance.interceptors.request.use(
   async (config) => {
-    const accessToken = localStorage.getItem("accessToken");
-    if (accessToken) {
+    if (config.headers["include-access-token"]) {
+      const accessToken = localStorage.getItem("accessToken");
       config.headers.Authorization = `Bearer ${accessToken}`;
+      delete config.headers["include-access-token"];
     }
     return config;
   },
   (error) => {
     return Promise.reject(error);
-  },
+  }
 );
 
 axiosInstance.interceptors.response.use(
@@ -52,7 +53,7 @@ axiosInstance.interceptors.response.use(
       }
     }
     return Promise.reject(error);
-  },
+  }
 );
 
 export default axiosInstance;

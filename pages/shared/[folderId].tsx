@@ -1,40 +1,48 @@
 import { Search, Card, AppLayout, Owner, SharedLayout } from "@/src/components";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import { Link } from "@/src/types";
-import { useAppDispatch, useAppSelector } from "@/src/hooks/useApp";
+import { useState } from "react";
+import { Link, SharedFolder, UserData } from "@/src/types";
 import { getSharedFolder } from "@/src/store/actions/folder";
 import { getSharedUserInfo } from "@/src/store/actions/auth";
 import { getLinkList } from "@/src/store/actions/link";
+import wrapper from "@/src/store";
 
-const SharedPage = () => {
+interface SharedPageProps {
+  sharedUserInfo: UserData;
+  sharedFolder: SharedFolder;
+  linkList: Link[];
+}
+
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) => async (context) => {
+    const { folderId } = context.query;
+    const folder = await store.dispatch(getSharedFolder(Number(folderId)));
+    await store.dispatch(getSharedUserInfo(folder?.payload[0]?.userId));
+    await store.dispatch(
+      getLinkList({
+        userId: folder?.payload[0]?.userId,
+        folderId: Number(folderId),
+      })
+    );
+
+    const state = store.getState();
+
+    return {
+      props: {
+        sharedUserInfo: state.auth.sharedUserInfo,
+        sharedFolder: state.folder.sharedFolder,
+        linkList: state.link.data,
+      },
+    };
+  }
+);
+
+const SharedPage = ({
+  sharedUserInfo,
+  sharedFolder,
+  linkList,
+}: SharedPageProps) => {
   const [searchResult, setSearchResult] = useState<Link[] | string>([]);
   const [searchKeyword, setSearchKeyword] = useState("");
-  const { data } = useAppSelector((state) => state.link);
-  const { sharedUserInfo } = useAppSelector((state) => state.auth);
-  const { sharedFolder } = useAppSelector((state) => state.folder);
-  const dispatch = useAppDispatch();
-  const router = useRouter();
-  const { folderId } = router.query;
-
-  const fetchSharePageData = async () => {
-    const resFolder = await dispatch(getSharedFolder(Number(folderId)));
-    const resUser = await dispatch(
-      getSharedUserInfo(resFolder.payload[0].userId),
-    );
-    if (folderId && resUser)
-      dispatch(
-        getLinkList({
-          userId: resFolder.payload[0].userId,
-          folderId: Number(folderId),
-        }),
-      );
-  };
-
-  useEffect(() => {
-    if (folderId) fetchSharePageData();
-  }, [folderId]);
-
   return (
     <AppLayout>
       <SharedLayout
@@ -56,7 +64,7 @@ const SharedPage = () => {
           searchResult.length >= 1 ? (
             <Card linkList={searchResult} />
           ) : (
-            <Card linkList={data} />
+            <Card linkList={linkList} />
           )
         }
       />
