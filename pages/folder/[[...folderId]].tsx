@@ -9,7 +9,7 @@ import {
 } from "@/src/components";
 import { useAppDispatch, useAppSelector } from "@/src/hooks/useApp";
 import { Link } from "@/src/types";
-import { getAllLinkList, getLinkList } from "@/src/store/actions/link";
+import { getLinkList } from "@/src/store/actions/link";
 import { getFolder } from "@/src/store/actions/folder";
 import { useRouter } from "next/router";
 import { userInfoAccess } from "@/src/store/actions/auth";
@@ -19,11 +19,7 @@ export interface CurrentFolderType {
   id: number;
 }
 
-interface FolderPageProps {
-  whatContext: any;
-}
-
-const FolderPage = ({ whatContext }: FolderPageProps) => {
+const FolderPage = () => {
   const [searchResult, setSearchResult] = useState<Link[] | string>([]);
   const [searchKeyword, setSearchKeyword] = useState("");
   const {
@@ -50,9 +46,7 @@ const FolderPage = ({ whatContext }: FolderPageProps) => {
   };
 
   const fetchLinkList = () => {
-    folderId
-      ? dispatch(getLinkList({ userId, folderId: Number(folderId) }))
-      : dispatch(getAllLinkList(userId));
+    dispatch(getLinkList({ userId, folderId: Number(folderId) }));
   };
 
   useEffect(() => {

@@ -14,7 +14,10 @@ export const getFolder = createAsyncThunk<FolderList[], number>(
 export const postFolder = createAsyncThunk<any, string>(
   "folder/postFolder",
   async (folderName) => {
-    const { data } = await axiosInstance.post(`folders`, { name: folderName });
+    const { data } = await axiosInstance.post(`folders`, {
+      headers: { "include-access-token": true },
+      body: { name: folderName },
+    });
     return camelcaseKeys(data.data, { deep: true });
   }
 );
@@ -32,7 +35,10 @@ export const putFolder = createAsyncThunk<
   { folderName: string; folderId: number }
 >("folder/putFolder", async ({ folderName, folderId }) => {
   const { data } = await axiosInstance.put(`folders/${folderId}`, {
-    name: folderName,
+    headers: { "include-access-token": true },
+    body: {
+      name: folderName,
+    },
   });
   return camelcaseKeys(data.data, { deep: true });
 });
@@ -40,7 +46,9 @@ export const putFolder = createAsyncThunk<
 export const deleteFolder = createAsyncThunk<any, number>(
   "folder/deleteFolder",
   async (folderId) => {
-    const { data } = await axiosInstance.delete(`folders/${folderId}`);
+    const { data } = await axiosInstance.delete(`folders/${folderId}`, {
+      headers: { "include-access-token": true },
+    });
 
     return data;
   }

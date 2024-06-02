@@ -43,7 +43,9 @@ export const signUpAccess = createAsyncThunk<
 });
 
 export const userInfoAccess = createAsyncThunk("user/userInfo", async () => {
-  const { data } = await axiosInstance.get(`users`);
+  const { data } = await axiosInstance.get(`users`, {
+    headers: { "include-access-token": true },
+  });
   return camelcaseKeys(data.data, { deep: true });
 });
 

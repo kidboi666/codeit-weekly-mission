@@ -2,7 +2,6 @@ import { Link } from "@/src/types";
 import { createSlice } from "@reduxjs/toolkit";
 import {
   getLinkList,
-  getAllLinkList,
   postLink,
   deleteLink,
   putFavoriteLink,
@@ -33,16 +32,6 @@ const linkSlice = createSlice({
         state.status = API_MSG.FUL;
       })
       .addCase(getLinkList.rejected, (state, action) => {
-        state.status = API_MSG.REJ;
-      })
-      .addCase(getAllLinkList.pending, (state, action) => {
-        state.status = API_MSG.PEN;
-      })
-      .addCase(getAllLinkList.fulfilled, (state, action) => {
-        state.data = action.payload;
-        state.status = API_MSG.FUL;
-      })
-      .addCase(getAllLinkList.rejected, (state, action) => {
         state.status = API_MSG.REJ;
       })
       .addCase(postLink.pending, (state, action) => {

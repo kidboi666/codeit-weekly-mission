@@ -6,20 +6,14 @@ import camelcaseKeys from "camelcase-keys";
 export const getLinkList = createAsyncThunk<
   Link[],
   { userId: number; folderId: number }
->("link/getLinkList", async ({ userId, folderId }) => {
+>("link/getLinkList", async (params) => {
   const { data } = await axiosInstance.get(
-    `users/${userId}/links?folderId=${folderId}`,
+    `users/${params.userId}/links${
+      params.folderId ? `?folderId=${params.folderId}` : ""
+    }`
   );
   return camelcaseKeys(data.data, { deep: true });
 });
-
-export const getAllLinkList = createAsyncThunk<Link[], number>(
-  "link/getLink",
-  async (userId) => {
-    const { data } = await axiosInstance.get(`users/${userId}/links`);
-    return camelcaseKeys(data.data, { deep: true });
-  },
-);
 
 export const postLink = createAsyncThunk<
   any,
@@ -28,6 +22,7 @@ export const postLink = createAsyncThunk<
   const { data } = await axiosInstance({
     method: "post",
     url: `links`,
+    headers: { "include-access-token": true },
     data: {
       url: url,
       folderId: folderId,
@@ -39,9 +34,11 @@ export const postLink = createAsyncThunk<
 export const deleteLink = createAsyncThunk<any, number>(
   "link/deleteLink",
   async (linkId) => {
-    const { data } = await axiosInstance.delete(`links/${linkId}`);
+    const { data } = await axiosInstance.delete(`links/${linkId}`, {
+      headers: { "include-access-token": true },
+    });
     return data;
-  },
+  }
 );
 
 export const putFavoriteLink = createAsyncThunk<any, number>(
@@ -49,9 +46,10 @@ export const putFavoriteLink = createAsyncThunk<any, number>(
   async (linkId) => {
     const { data } = await axiosInstance({
       method: "put",
+      headers: { "include-access-token": true },
       url: `https://bootcamp-api.codeit.kr/docs/linkbrary/v1/links/${linkId}`,
     });
 
     return data;
-  },
+  }
 );

@@ -23,7 +23,6 @@ export const getServerSideProps = wrapper.getServerSideProps(
         folderId: Number(folderId),
       })
     );
-
     const state = store.getState();
 
     return {
