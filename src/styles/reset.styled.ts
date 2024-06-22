@@ -1,4 +1,4 @@
-import { css } from "styled-components";
+import { css } from 'styled-components'
 
 const GlobalReset = css`
   /* ------- Reset css ------- */
@@ -110,7 +110,7 @@ const GlobalReset = css`
 
   body {
     line-height: 1;
-    font-family: "Pretendard";
+    font-family: 'Pretendard';
   }
 
   ol,
@@ -127,7 +127,7 @@ const GlobalReset = css`
   blockquote:after,
   q:before,
   q:after {
-    content: "";
+    content: '';
     content: none;
   }
 
@@ -141,7 +141,19 @@ const GlobalReset = css`
     color: #000;
   }
 
-  /* --------- color constants --------- */
-`;
+  body::-webkit-scrollbar {
+    width: 14px;
+    height: 14px;
+  }
 
-export default GlobalReset;
+  body::-webkit-scrollbar-thumb {
+    background: var(--gray3-color);
+    border-radius: 20px;
+  }
+
+  body::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
+  }
+`
+
+export default GlobalReset

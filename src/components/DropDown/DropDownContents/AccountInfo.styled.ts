@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const AccountInfoLayout = styled.div`
   position: absolute;
@@ -9,7 +9,7 @@ export const AccountInfoLayout = styled.div`
   background-color: var(--gray5-color);
   box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.1);
   font-size: 14px;
-`;
+`
 
 export const InfoSection = styled.div`
   display: flex;
@@ -19,7 +19,6 @@ export const InfoSection = styled.div`
   color: var(--gray1-color);
 
   > img {
-    width: 30px;
     border-radius: 50%;
   }
 
@@ -29,7 +28,7 @@ export const InfoSection = styled.div`
     justify-content: space-between;
     font-weight: 600;
   }
-`;
+`
 
 export const MenuList = styled.ul`
   padding: 8px 0;
@@ -52,4 +51,4 @@ export const MenuList = styled.ul`
       }
     }
   }
-`;
+`

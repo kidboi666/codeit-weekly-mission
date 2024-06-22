@@ -1,9 +1,11 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components'
 
 const animationStyle = css<{ $animation: boolean }>`
   transform: translateY(100px);
   opacity: 0.1;
-  transition: transform 2s ease, opacity 2s ease;
+  transition:
+    transform 2s ease,
+    opacity 2s ease;
 
   ${({ $animation }) =>
     $animation &&
@@ -11,7 +13,7 @@ const animationStyle = css<{ $animation: boolean }>`
   opacity: 1;
   transform: translateY(0);
 `}
-`;
+`
 
 export const LandingPageLayout = styled.div`
   width: 100%;
@@ -34,12 +36,12 @@ export const LandingPageLayout = styled.div`
     color: transparent;
     background-clip: text;
   }
-`;
+`
 // main_header_wrap
 export const HeaderContainer = styled.div`
   background-color: var(--gray5-color);
   padding: 28px 32px 0;
-`;
+`
 // main_header
 export const HeaderBox = styled.div<{ $animation: boolean; ref?: any }>`
   display: flex;
@@ -58,7 +60,7 @@ export const HeaderBox = styled.div<{ $animation: boolean; ref?: any }>`
       height: 100%;
     }
   }
-`;
+`
 // intro_wrap
 export const IntroWrap = styled.div`
   margin-bottom: 40px;
@@ -74,16 +76,16 @@ export const IntroWrap = styled.div`
       line-height: 42px;
     }
   }
-`;
+`
 
 export const LinkBox = styled.div`
   margin-bottom: 40px;
-`;
-//section
+`
+// section
 export const SectionCotainer = styled.div`
   box-shadow: 0 -15px 40px 20px var(--gray4-color);
   padding: 70px 0;
-`;
+`
 // card
 export const CardContainer = styled.div`
   padding: 50px 0;
@@ -97,7 +99,7 @@ export const CardContainer = styled.div`
   &:nth-child(even) div div {
     grid-column: 1 / 2;
   }
-`;
+`
 
 // card_item , section_link
 export const CardBox = styled.div`
@@ -175,10 +177,10 @@ export const CardBox = styled.div`
     width: 100%;
     gap: 20px;
   }
-`;
+`
 
 export const Break = styled.br`
   @media (max-width: 767px) {
     display: none;
   }
-`;
+`

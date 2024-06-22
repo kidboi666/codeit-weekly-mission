@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const ShareContainer = styled.div`
   display: grid;
@@ -17,7 +17,7 @@ export const ShareContainer = styled.div`
       line-height: 15px;
     }
   }
-`;
+`
 
 export const ToastContainer = styled.div`
   position: fixed;
@@ -25,4 +25,4 @@ export const ToastContainer = styled.div`
   left: 50%;
   transform: translateX(-50%);
   z-index: 70;
-`;
+`

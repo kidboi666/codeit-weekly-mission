@@ -1,17 +1,17 @@
-import { InputHTMLAttributes, useEffect, useState } from "react";
-import * as S from "./Input.styled";
-import { Eye } from "@/src/components";
-import { FieldError } from "react-hook-form";
+import { InputHTMLAttributes, useEffect, useState } from 'react'
+import { Eye } from '@/src/components'
+import { FieldError } from 'react-hook-form'
+import * as S from './Input.styled'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  variant?: string;
-  width?: string;
-  error?: FieldError;
+  variant?: string
+  width?: string
+  error?: FieldError
 }
 
 const Input = ({
   variant,
-  width = "100%",
+  width = '100%',
   value,
   name,
   type,
@@ -21,28 +21,30 @@ const Input = ({
   onBlur,
   onChange,
   error,
-  readOnly = false,
   ...field
 }: InputProps) => {
-  const [isEye, setEye] = useState(false);
-  const [transforemedType, setTransformedType] = useState(type);
+  const [isEye, setEye] = useState(false)
+  const [transforemedType, setTransformedType] = useState(type)
 
   const processEye = () => {
-    if (type === "password") {
-      return setEye(true);
+    if (type === 'password') {
+      setEye(true)
+    } else {
+      setEye(false)
     }
-    setEye(false);
-  };
+  }
 
   const changeInputType = () => {
-    transforemedType === "password"
-      ? setTransformedType("text")
-      : setTransformedType("password");
-  };
+    if (transforemedType === 'password') {
+      setTransformedType('text')
+    } else {
+      setTransformedType('password')
+    }
+  }
 
   useEffect(() => {
-    processEye();
-  }, []);
+    processEye()
+  }, [])
 
   return (
     <>
@@ -67,7 +69,7 @@ const Input = ({
       )}
       {error && <S.ErrorMessage>{error.message}</S.ErrorMessage>}
     </>
-  );
-};
+  )
+}
 
-export default Input;
+export default Input

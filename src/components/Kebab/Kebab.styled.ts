@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const KebabLayout = styled.div`
   position: absolute;
@@ -7,4 +7,4 @@ export const KebabLayout = styled.div`
   top: 15px;
   right: 20px;
   z-index: 20;
-`;
+`

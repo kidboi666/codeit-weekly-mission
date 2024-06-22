@@ -1,57 +1,43 @@
-import axiosInstance from "@/src/services/axiosInstace";
-import { Link } from "@/src/types";
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import camelcaseKeys from "camelcase-keys";
+import axios from '@/src/services/axiosInstance'
+import { createAsyncThunk } from '@reduxjs/toolkit'
+import camelcaseKeys from 'camelcase-keys'
+import { Link } from '@/src/types'
 
-export const getLinkList = createAsyncThunk<
-  Link[],
-  { userId: number; folderId: number }
->("link/getLinkList", async ({ userId, folderId }) => {
-  const { data } = await axiosInstance.get(
-    `users/${userId}/links?folderId=${folderId}`,
-  );
-  return camelcaseKeys(data.data, { deep: true });
-});
+export const getLinkList = createAsyncThunk('link/getLinkList', async (folderId: number) => {
+  const { data } = await axios.get(`folders/${folderId ? `${folderId}` : ''}/links`)
+  return camelcaseKeys(data, { deep: true })
+})
 
-export const getAllLinkList = createAsyncThunk<Link[], number>(
-  "link/getLink",
-  async (userId) => {
-    const { data } = await axiosInstance.get(`users/${userId}/links`);
-    return camelcaseKeys(data.data, { deep: true });
+export const getAllLinkList = createAsyncThunk('link/getAllLinkList', async () => {
+  const { data } = await axios.get(`links`, {
+    headers: { 'include-access-token': true },
+  })
+  return camelcaseKeys(data, { deep: true })
+})
+
+export const postLink = createAsyncThunk<Link, { url: string; folderId: number }>(
+  'link/postLink',
+  async ({ url, folderId }) => {
+    const { data } = await axios.post(`links`, {
+      headers: { 'include-access-token': true },
+      url,
+      folderId,
+    })
+    return camelcaseKeys(data, { deep: true })
   },
-);
+)
 
-export const postLink = createAsyncThunk<
-  any,
-  { url: string; folderId: number }
->("link/postLink", async ({ url, folderId }) => {
-  const { data } = await axiosInstance({
-    method: "post",
-    url: `links`,
-    data: {
-      url: url,
-      folderId: folderId,
-    },
-  });
-  return camelcaseKeys(data.data, { deep: true });
-});
+export const deleteLink = createAsyncThunk<null, number>('link/deleteLink', async (linkId) => {
+  const { data } = await axios.delete(`links/${linkId}`, {
+    headers: { 'include-access-token': true },
+  })
+  return data
+})
 
-export const deleteLink = createAsyncThunk<any, number>(
-  "link/deleteLink",
-  async (linkId) => {
-    const { data } = await axiosInstance.delete(`links/${linkId}`);
-    return data;
-  },
-);
+export const putFavoriteLink = createAsyncThunk<any, number>('link/putFavorite', async (linkId) => {
+  const { data } = await axios.put(`links/${linkId}`, {
+    headers: { 'include-access-token': true },
+  })
 
-export const putFavoriteLink = createAsyncThunk<any, number>(
-  "link/putFavorite",
-  async (linkId) => {
-    const { data } = await axiosInstance({
-      method: "put",
-      url: `https://bootcamp-api.codeit.kr/docs/linkbrary/v1/links/${linkId}`,
-    });
-
-    return data;
-  },
-);
+  return data
+})

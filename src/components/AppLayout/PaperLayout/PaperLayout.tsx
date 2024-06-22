@@ -1,11 +1,11 @@
-import { ReactNode } from "react";
-import * as S from "./PaperLayout.styled";
+import { ReactNode } from 'react'
+import * as S from './PaperLayout.styled'
 
 interface PaperLayoutProps {
-  Search: ReactNode;
-  Folder: ReactNode;
-  Paper: ReactNode;
-  AddLink: ReactNode;
+  Search: ReactNode
+  Folder: ReactNode
+  Paper: ReactNode
+  AddLink: ReactNode
 }
 
 const PaperLayout = ({ AddLink, Search, Folder, Paper }: PaperLayoutProps) => {
@@ -18,7 +18,7 @@ const PaperLayout = ({ AddLink, Search, Folder, Paper }: PaperLayoutProps) => {
         <div>{Paper}</div>
       </S.LinkSection>
     </S.PaperPageLayout>
-  );
-};
+  )
+}
 
-export default PaperLayout;
+export default PaperLayout

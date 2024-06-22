@@ -1,14 +1,14 @@
-import Image, { StaticImageData } from "next/image";
-import * as S from "./OverviewCard.styled";
+import Image, { StaticImageData } from 'next/image'
+import * as S from './OverviewCard.styled'
 
 interface OverviewCardProps {
-  span: string;
-  p: string;
-  imgSrc: StaticImageData;
-  firstH1?: string;
-  lastH1?: string;
-  gradient: string;
-  isEven: boolean;
+  span: string
+  p: string
+  imgSrc: StaticImageData
+  firstH1?: string
+  lastH1?: string
+  gradient: string
+  isEven?: boolean
 }
 
 const OverviewCard = ({
@@ -20,23 +20,23 @@ const OverviewCard = ({
   gradient,
   isEven,
 }: OverviewCardProps) => {
-  const classNames = `text_gradient ${gradient}_gradient`;
+  const classNames = `text_gradient ${gradient}_gradient`
 
   return (
     <S.CardContainer>
       <S.InnerBox $isEven={isEven}>
         <h1>
-          {firstH1 || ""}
+          {firstH1 || ''}
           <span className={classNames}>{` ${span}`}</span>
-          {lastH1 || ""}
+          {lastH1 || ''}
         </h1>
         <p>{p}</p>
         <div>
-          <Image src={imgSrc} alt='' />
+          <Image src={imgSrc} alt="" />
         </div>
       </S.InnerBox>
     </S.CardContainer>
-  );
-};
+  )
+}
 
-export default OverviewCard;
+export default OverviewCard

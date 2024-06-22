@@ -1,11 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const PaperPageLayout = styled.main`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
+`
 
 export const HeaderSection = styled.div<{ ref?: any }>`
   width: 100%;
@@ -27,7 +27,7 @@ export const HeaderSection = styled.div<{ ref?: any }>`
     gap: 10px;
     padding: 20px 0 60px 0;
   }
-`;
+`
 export const FooterAddLink = styled.div<{ $animation: boolean }>`
   position: fixed;
   z-index: 40;
@@ -45,13 +45,13 @@ export const FooterAddLink = styled.div<{ $animation: boolean }>`
     `
     transform: translateY(0);
   `};
-`;
+`
 
 export const SearchSection = styled.div`
   @media (max-width: 767px) {
     width: 100%;
   }
-`;
+`
 
 export const SearchResultSection = styled.div`
   width: 100%;
@@ -63,7 +63,7 @@ export const SearchResultSection = styled.div`
   > span:last-child {
     color: var(--gray2-color);
   }
-`;
+`
 
 export const FolderSection = styled.div`
   width: 100%;
@@ -80,7 +80,7 @@ export const FolderSection = styled.div`
       padding: 0 32.5px;
     }
   }
-`;
+`
 
 export const LinkSection = styled.ul`
   width: 100%;
@@ -109,4 +109,4 @@ export const LinkSection = styled.ul`
       grid-template-columns: repeat(2, 1fr);
     }
   }
-`;
+`

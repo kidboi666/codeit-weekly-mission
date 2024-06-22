@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components'
 
 export const SignInLayout = styled.div`
   background-color: var(--gray5-color);
@@ -10,14 +10,14 @@ export const SignInLayout = styled.div`
   @media (max-width: 767px) {
     width: 100%;
   }
-`;
+`
 
 export const SignInContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 400px;
-`;
+`
 
 export const HeaderContainer = styled.div`
   display: flex;
@@ -38,13 +38,13 @@ export const HeaderContainer = styled.div`
     align-items: center;
     gap: 8px;
   }
-`;
+`
 
 export const ImgBox = styled.div`
   position: relative;
   width: 210px;
   height: 38px;
-`;
+`
 
 export const SignContainer = styled.div`
   > form {
@@ -52,7 +52,7 @@ export const SignContainer = styled.div`
     flex-direction: column;
     padding: 0 32px;
   }
-`;
+`
 const signSectionStyle = css`
   position: relative;
   display: flex;
@@ -62,17 +62,17 @@ const signSectionStyle = css`
     margin-bottom: 12px;
     font-size: 14px;
   }
-`;
+`
 
 export const EmailContainer = styled.div`
   ${signSectionStyle}
   margin-bottom: 24px;
-`;
+`
 
 export const PasswordContainer = styled.div`
   ${signSectionStyle}
   margin-bottom: 30px;
-`;
+`
 
 export const SocialContainer = styled.div`
   padding: 0 32px;
@@ -98,4 +98,4 @@ export const SocialContainer = styled.div`
       gap: 16px;
     }
   }
-`;
+`

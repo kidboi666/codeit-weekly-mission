@@ -1,22 +1,22 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const SharedPageLayout = styled.main`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
+`
 
 export const OwnerSection = styled.ul`
   width: 100%;
   background-color: var(--gray5-color);
-`;
+`
 
 export const SearchSection = styled.div`
   @media (max-width: 767px) {
     width: 100%;
   }
-`;
+`
 
 export const SearchResultSection = styled.div`
   width: 100%;
@@ -28,7 +28,7 @@ export const SearchResultSection = styled.div`
   > span:last-child {
     color: var(--gray2-color);
   }
-`;
+`
 
 export const LinkSection = styled.ul`
   display: grid;
@@ -53,4 +53,4 @@ export const LinkSection = styled.ul`
       padding: 0 32.5px;
     }
   }
-`;
+`

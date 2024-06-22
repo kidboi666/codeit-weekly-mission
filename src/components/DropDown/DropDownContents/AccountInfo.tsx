@@ -1,21 +1,20 @@
-import { useAppDispatch, useAppSelector } from "@/src/hooks/useApp";
-import * as S from "./AccountInfo.styled";
-import { logout } from "@/src/store/reducers/auth";
+import { useAppDispatch, useAppSelector } from '@/src/hooks/useApp'
+import { logout } from '@/src/store/reducers/auth'
+import Image from 'next/image'
+import * as S from './AccountInfo.styled'
 
 const AccountInfo = () => {
-  const { imageSource, name, email } = useAppSelector(
-    (state) => state.auth.userInfo,
-  );
-  const dispatch = useAppDispatch();
+  const { imageSource, name, email } = useAppSelector((state) => state.auth.userInfo)
+  const dispatch = useAppDispatch()
 
   const onClick = () => {
-    dispatch(logout());
-  };
+    dispatch(logout())
+  }
 
   return (
     <S.AccountInfoLayout>
       <S.InfoSection>
-        <img src={imageSource} alt={"프로필 이미지"} />
+        <Image width={30} height={30} src={imageSource} alt="프로필 이미지" />
         <div>
           <p>{name}</p>
           <p>{email}</p>
@@ -30,7 +29,7 @@ const AccountInfo = () => {
         </li>
       </S.MenuList>
     </S.AccountInfoLayout>
-  );
-};
+  )
+}
 
-export default AccountInfo;
+export default AccountInfo

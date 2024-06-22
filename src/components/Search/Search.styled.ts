@@ -1,11 +1,11 @@
-import styled from "styled-components";
-import CloseButton from "../CloseButton/CloseButton";
-import Input from "../Input/Input";
+import styled from 'styled-components'
+import CloseButton from '../CloseButton/CloseButton'
+import Input from '../Input/Input'
 
 export const FormBox = styled.div`
   margin: 40px 0;
   padding: 0 32.5px;
-`;
+`
 
 export const Form = styled.form`
   position: relative;
@@ -20,13 +20,13 @@ export const Form = styled.form`
     transform: translateY(-10.25px);
     background-color: #f5f5f5;
   }
-`;
+`
 
 export const SearchLayout = styled.div`
   @media (max-width: 767px) {
     width: 100%;
   }
-`;
+`
 
 export const StyledInput = styled(Input)`
   width: 1060px;
@@ -43,7 +43,7 @@ export const StyledInput = styled(Input)`
   @media (max-width: 767px) {
     width: 100%;
   }
-`;
+`
 
 export const SearchResultSection = styled.div`
   margin-bottom: 40px;
@@ -54,10 +54,10 @@ export const SearchResultSection = styled.div`
   > span:last-child {
     color: var(--gray2-color);
   }
-`;
+`
 
 export const StyledCloseButton = styled(CloseButton)`
   top: 50%;
   right: 10px;
   transform: translateY(-12px);
-`;
+`

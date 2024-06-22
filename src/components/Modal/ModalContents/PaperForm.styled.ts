@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const PaperContentBox = styled.textarea<{ onChange: any }>`
   width: 100%;
@@ -15,10 +15,10 @@ export const PaperContentBox = styled.textarea<{ onChange: any }>`
   &:focus {
     border: 1px solid var(--primary-color);
   }
-`;
+`
 
 export const ColorOptionContainer = styled.div`
   display: flex;
   gap: 15px;
   margin: 20px 0;
-`;
+`

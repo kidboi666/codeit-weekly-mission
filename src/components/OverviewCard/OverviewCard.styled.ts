@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const CardContainer = styled.div`
   padding: 50px 0;
@@ -8,9 +8,9 @@ export const CardContainer = styled.div`
   @media (max-width: 767px) {
     padding: 40px 32px;
   }
-`;
+`
 
-export const InnerBox = styled.div<{ $isEven: boolean }>`
+export const InnerBox = styled.div<{ $isEven?: boolean }>`
   width: 998px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -93,10 +93,10 @@ export const InnerBox = styled.div<{ $isEven: boolean }>`
     width: 100%;
     gap: 20px;
   }
-`;
+`
 
 export const Break = styled.br`
   @media (max-width: 767px) {
     display: none;
   }
-`;
+`

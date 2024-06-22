@@ -1,21 +1,21 @@
-import { useAppDispatch } from "@/src/hooks/useApp";
-import * as S from "./PaperCard.styled";
-import calculateTime from "@/src/utils/calculateTime";
-import { Paper } from "@/src/types";
-import { openModal } from "@/src/store/reducers/modal";
-import { useState } from "react";
+import { useAppDispatch } from '@/src/hooks/useApp'
+import calculateTime from '@/src/utils/calculateTime'
+import { Paper } from '@/src/types'
+import { openModal } from '@/src/store/reducers/modal'
+import { useState } from 'react'
+import * as S from './PaperCard.styled'
 
 interface PaperCardProps {
-  paper: Paper;
+  paper: Paper
 }
 
 const PaperCard = ({ paper }: PaperCardProps) => {
-  const [showContent, setShowContent] = useState(false);
-  const dispatch = useAppDispatch();
+  const [showContent, setShowContent] = useState(false)
+  const dispatch = useAppDispatch()
 
   const changeColor = (color: string) => {
-    return `var(--${color}-color)`;
-  };
+    return `var(--${color}-color)`
+  }
 
   return (
     <S.CardLayout
@@ -25,11 +25,11 @@ const PaperCard = ({ paper }: PaperCardProps) => {
     >
       <S.CardContainer>
         <S.CloseButtonStyled
-          variant={"outlined"}
+          variant="outlined"
           onClick={() =>
             dispatch(
               openModal({
-                type: "deletePaper",
+                type: 'deletePaper',
                 props: { paperTitle: paper.title, paperId: paper.id },
               }),
             )
@@ -44,7 +44,7 @@ const PaperCard = ({ paper }: PaperCardProps) => {
         )}
       </S.CardContainer>
     </S.CardLayout>
-  );
-};
+  )
+}
 
-export default PaperCard;
+export default PaperCard

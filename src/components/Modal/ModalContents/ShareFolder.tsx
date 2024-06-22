@@ -1,21 +1,21 @@
-import { useAppDispatch, useAppSelector } from "@/src/hooks/useApp";
-import Image from "next/image";
-import copyToClipboard from "@/src/utils/copyToClipboard";
-import facebookIcon from "@/public/icons/facebook_icon.svg";
-import linkIcon from "@/public/icons/link.svg";
-import { KakaoButton } from "@/src/components";
-import * as S from "@/src/components/Modal/ModalContents/ShareFolder.styled";
-import { openToast } from "@/src/store/reducers/toast";
-import { ModalProps } from "../ModalTypes";
+import { useAppDispatch, useAppSelector } from '@/src/hooks/useApp'
+import Image from 'next/image'
+import copyToClipboard from '@/src/utils/copyToClipboard'
+import facebookIcon from '@/public/icons/facebook_icon.svg'
+import linkIcon from '@/public/icons/link.svg'
+import { KakaoButton } from '@/src/components'
+import * as S from '@/src/components/Modal/ModalContents/ShareFolder.styled'
+import { openToast } from '@/src/store/reducers/toast'
+import { ModalProps } from '../ModalTypes'
 
 const ShareFolder = ({ title }: ModalProps) => {
-  const { currentFolder } = useAppSelector((state) => state.folder) || {};
-  const dispatch = useAppDispatch();
+  const { currentFolder } = useAppSelector((state) => state.folder) || {}
+  const dispatch = useAppDispatch()
 
   const onClick = () => {
-    copyToClipboard(currentFolder.id);
-    dispatch(openToast({ type: "copyUrl" }));
-  };
+    copyToClipboard(currentFolder.id)
+    dispatch(openToast({ type: 'copyUrl' }))
+  }
 
   return (
     <>
@@ -33,7 +33,7 @@ const ShareFolder = ({ title }: ModalProps) => {
         </div>
       </S.ShareContainer>
     </>
-  );
-};
+  )
+}
 
-export default ShareFolder;
+export default ShareFolder

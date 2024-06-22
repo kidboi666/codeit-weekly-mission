@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const ToastLayout = styled.div<{ $isAnimation: boolean }>`
   display: grid;
@@ -23,7 +23,7 @@ export const ToastLayout = styled.div<{ $isAnimation: boolean }>`
     opacity: 1;
     transform: translate(-168px, -45px);
   `}
-`;
+`
 
 export const CheckContainer = styled.div<{ $backgroundColor?: boolean }>`
   display: flex;
@@ -39,7 +39,7 @@ export const CheckContainer = styled.div<{ $backgroundColor?: boolean }>`
     `
     background-color: var(--red-color);
   `};
-`;
+`
 
 export const CheckTextBox = styled.p`
   display: flex;
@@ -48,7 +48,7 @@ export const CheckTextBox = styled.p`
   padding: 0 20px 0 30px;
   color: inherite;
   font-size: 14px;
-`;
+`
 
 export const CloseIconButtonBox = styled.button`
   border: 0;
@@ -59,4 +59,4 @@ export const CloseIconButtonBox = styled.button`
   &:hover {
     transform: rotate(90deg);
   }
-`;
+`

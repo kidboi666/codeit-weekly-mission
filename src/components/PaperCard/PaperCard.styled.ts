@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import CloseButton from "../CloseButton/CloseButton";
+import styled from 'styled-components'
+import CloseButton from '../CloseButton/CloseButton'
 
 export const CardLayout = styled.li<{
-  $background: string;
+  $background: string
 }>`
   min-width: 58px;
   position: relative;
@@ -19,44 +19,44 @@ export const CardLayout = styled.li<{
     box-shadow: 0px 20px 25px 0px rgba(0, 0, 0, 0.1);
     z-index: 10;
   }
-`;
+`
 
 export const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
-`;
+`
 
 export const CloseButtonStyled = styled(CloseButton)`
   position: absolute;
   top: 15px;
   right: 20px;
-`;
+`
 
 export const Title = styled.p<{ $showContent: boolean }>`
-  display: ${({ $showContent }) => ($showContent ? "block" : "-webkit-box")};
+  display: ${({ $showContent }) => ($showContent ? 'block' : '-webkit-box')};
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
   margin-right: 38px;
   line-height: 24px;
   color: #fff;
-`;
+`
 
 export const Content = styled.p<{ $showContent: boolean }>`
-  display: ${({ $showContent }) => ($showContent ? "block" : "-webkit-box")};
+  display: ${({ $showContent }) => ($showContent ? 'block' : '-webkit-box')};
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
   font-size: 14px;
   color: #fff;
-`;
+`
 export const TimeStamp = styled.p`
   font-size: 14px;
   color: #fff;
-`;
+`
 
 export const DropDownBox = styled.div`
   top: 0;
   right: 0;
-`;
+`

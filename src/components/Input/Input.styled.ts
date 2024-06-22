@@ -1,17 +1,17 @@
-import { FieldError } from "react-hook-form";
-import styled from "styled-components";
+import { FieldError } from 'react-hook-form'
+import styled from 'styled-components'
 
 export const Input = styled.input<{
-  $variant?: string;
-  width?: string;
-  $error?: FieldError;
-  $disabled?: boolean;
+  $variant?: string
+  width?: string
+  $error?: FieldError
+  $disabled?: boolean
 }>`
   ${({ width }) => `width: ${width}`};
   position: relative;
   padding: 15px 15px 15px 15px;
   box-sizing: border-box;
-  border: ${({ $error }) => ($error?.message ? "var(--red-color)" : "0")};
+  border: ${({ $error }) => ($error?.message ? 'var(--red-color)' : '0')};
   border-radius: 10px;
   outline: none;
   background-color: var(--white-color);
@@ -22,7 +22,7 @@ export const Input = styled.input<{
   }
 
   ${({ $variant }) =>
-    $variant === "search" &&
+    $variant === 'search' &&
     `
       width: 1060px;
       padding: 15px 15px 15px 45px;
@@ -45,7 +45,7 @@ export const Input = styled.input<{
     `}
 
   ${({ $variant }) =>
-    $variant === "addLink" &&
+    $variant === 'addLink' &&
     `
       background-color: var(--white-color);
       width: 800px;
@@ -64,7 +64,7 @@ export const Input = styled.input<{
         padding: 8px 10px 8px 45px;
       }
     `}
-`;
+`
 
 export const EyeSection = styled.div`
   > img {
@@ -75,10 +75,10 @@ export const EyeSection = styled.div`
     cursor: pointer;
     z-index: 10;
   }
-`;
+`
 
 export const ErrorMessage = styled.div`
   margin-top: 6px;
   color: red;
   font-size: 14px;
-`;
+`
