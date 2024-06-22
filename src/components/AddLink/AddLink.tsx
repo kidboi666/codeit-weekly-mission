@@ -1,4 +1,3 @@
-import * as S from './AddLink.styled'
 import LinkIcon from '@/public/icons/link.svg'
 import React, { useState } from 'react'
 import Image from 'next/image'
@@ -6,6 +5,7 @@ import { Button, Input } from '@/src/components'
 import { useAppDispatch, useAppSelector } from '@/src/hooks/useApp'
 import { openModal } from '@/src/store/reducers/modal'
 import { openToast } from '@/src/store/reducers/toast'
+import * as S from './AddLink.styled'
 
 interface AddLinkProps {
   className?: string

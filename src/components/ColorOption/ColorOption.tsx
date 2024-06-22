@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import checkicon from '@/public/icons/check.svg'
-import React from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 import * as S from './ColorOption.styled'
 
 interface ColorOptionProps {
@@ -10,7 +10,7 @@ interface ColorOptionProps {
     content: string
     background: string
   }
-  setFormBody: React.Dispatch<React.SetStateAction<any>>
+  setFormBody: Dispatch<SetStateAction<any>>
 }
 
 const ColorOption = ({ background, formBody, setFormBody }: ColorOptionProps) => {

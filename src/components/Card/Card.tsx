@@ -25,7 +25,7 @@ const Card = ({ linkList }: CardProps) => {
       <S.CardLayout key={link.id}>
         <S.CardLinkContainer href={link.url} target="_blank" rel="noreferrer">
           <S.CardImgContainer>
-            <Star link={link} />
+            <Star />
             {link.imageSource ? (
               <S.CardImg src={link.imageSource} alt={link.title} />
             ) : (

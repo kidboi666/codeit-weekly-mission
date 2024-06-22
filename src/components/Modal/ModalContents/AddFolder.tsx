@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from '@/src/hooks/useApp'
 import { postFolder } from '@/src/store/actions/folder'
 import { closeModal } from '@/src/store/reducers/modal'
 import { openToast } from '@/src/store/reducers/toast'
-import { useState } from 'react'
+import { ChangeEvent, FormEvent, useState } from 'react'
 import { FolderList } from '@/src/types'
 import { ModalProps } from '../ModalTypes'
 
@@ -12,7 +12,7 @@ const AddFolder = ({ title, text, variant }: ModalProps) => {
   const { data: folderList } = useAppSelector((state) => state.folder)
   const dispatch = useAppDispatch()
 
-  const onChangeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeInputValue = (e: ChangeEvent<HTMLInputElement>) => {
     setFolderName(e.target.value)
   }
 
@@ -22,7 +22,7 @@ const AddFolder = ({ title, text, variant }: ModalProps) => {
     return result
   }
 
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (folderName && !checkForDuplicates()) {
       await dispatch(postFolder(folderName))

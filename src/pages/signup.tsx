@@ -64,7 +64,7 @@ const SignUpPage = () => {
           </Link>
           <p>
             이미 회원이신가요?
-            <Link href="./signin">
+            <Link href="/signin">
               <Button variant="underBar" text="로그인 하기" />
             </Link>
           </p>

@@ -4,7 +4,7 @@ import { NextHandler } from 'next-connect'
 const allowedOrigins = ['http://localhost:3000', 'https://codeit-weekly-mission.vercel.app']
 
 const cors = (req: NextApiRequest, res: NextApiResponse, next: NextHandler) => {
-  const origin = req.headers.origin
+  const { origin } = req.headers
 
   if (origin && allowedOrigins.includes(origin)) {
     res.setHeader('Access-Control-Allow-Origin', origin)

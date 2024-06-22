@@ -33,11 +33,9 @@ const Nav = () => {
 
   return (
     <S.HeaderLayout $isShadow={isShadow} onMouseLeave={() => setOpen(false)}>
-      <S.LogoBox>
-        <Link href="/">
-          <Image src={logo} alt="Linkbrary" style={{ width: '100%' }} />
-        </Link>
-      </S.LogoBox>
+      <Link href="/">
+        <Image src={logo} alt="Linkbrary" width={133} height={24} />
+      </Link>
       <S.LoginLayout>
         {isLoggedIn ? (
           <>

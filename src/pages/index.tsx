@@ -1,4 +1,3 @@
-import * as S from '@/src/styles/landing.styled'
 import Image from 'next/image'
 import mainHeader from '@/public/images/main_header.png'
 import mainLink from '@/public/images/main_link.png'
@@ -9,6 +8,7 @@ import Link from 'next/link'
 import { AppLayout, Button, OverviewCard } from '@/src/components'
 import { useAppSelector } from '@/src/hooks/useApp'
 import { useEffect, useRef, useState } from 'react'
+import * as S from '@/src/styles/landing.styled'
 
 const LandingPage = () => {
   const [isInterSecting, setInterSecting] = useState(false)

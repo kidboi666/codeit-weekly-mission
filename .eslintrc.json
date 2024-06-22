@@ -37,6 +37,7 @@
     "react/function-component-definition": [2, {
       "namedComponents": "arrow-function"
     }],
+    "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/naming-convention": [
       "error",
       {

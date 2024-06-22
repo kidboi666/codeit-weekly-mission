@@ -1,8 +1,8 @@
-import * as S from './Modal.styled'
 import { useAppDispatch, useAppSelector } from '@/src/hooks/useApp'
+import { useEffect, useState } from 'react'
 import { closeModal } from '@/src/store/reducers/modal'
 import { MODAL_COMPONENTS } from './ModalTypes'
-import { useEffect, useState } from 'react'
+import * as S from './Modal.styled'
 
 const Modal = () => {
   const { type, isOpen } = useAppSelector((state) => state.modal)

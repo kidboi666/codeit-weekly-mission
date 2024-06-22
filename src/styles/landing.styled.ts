@@ -81,7 +81,7 @@ export const IntroWrap = styled.div`
 export const LinkBox = styled.div`
   margin-bottom: 40px;
 `
-//section
+// section
 export const SectionCotainer = styled.div`
   box-shadow: 0 -15px 40px 20px var(--gray4-color);
   padding: 70px 0;

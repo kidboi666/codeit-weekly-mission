@@ -1,9 +1,9 @@
-import * as S from './Footer.styled'
 import facebook from '@/public/icons/fill_facebook_icon.svg'
 import twitter from '@/public/icons/fill_twitter_icon.svg'
 import youtube from '@/public/icons/fill_youtube_icon.svg'
 import instagram from '@/public/icons/fill_instagram_icon.svg'
 import Image from 'next/image'
+import * as S from './Footer.styled'
 
 const Footer = () => {
   return (

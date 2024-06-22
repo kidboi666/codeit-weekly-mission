@@ -1,5 +1,5 @@
 import { Button, Input } from '@/src/components'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useAppDispatch, useAppSelector } from '@/src/hooks/useApp'
 import { getFolder, putFolder } from '@/src/store/actions/folder'
 import { closeModal } from '@/src/store/reducers/modal'

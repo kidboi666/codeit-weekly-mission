@@ -19,7 +19,6 @@ export const InfoSection = styled.div`
   color: var(--gray1-color);
 
   > img {
-    width: 30px;
     border-radius: 50%;
   }
 
