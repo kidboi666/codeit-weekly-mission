@@ -1,7 +1,12 @@
-// eslint-disable-next-line import/newline-after-import
+/* eslint-disable @typescript-eslint/no-shadow */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable no-multi-assign */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable no-var */
+/* eslint-disable vars-on-top */
 import mongoose from 'mongoose'
+
 declare global {
-  // eslint-disable-next-line no-var,vars-on-top,@typescript-eslint/no-explicit-any
   var mongoose: any // This must be a `var` and not a `let / const`
 }
 
@@ -14,11 +19,9 @@ if (!MONGODB_URI) {
 let cached = global.mongoose
 
 if (!cached) {
-  // eslint-disable-next-line no-multi-assign
   cached = global.mongoose = { conn: null, promise: null }
 }
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
 async function dbConnect() {
   if (cached.conn) {
     return cached.conn
@@ -27,7 +30,6 @@ async function dbConnect() {
     const opts = {
       bufferCommands: false,
     }
-    // eslint-disable-next-line @typescript-eslint/no-shadow
     cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
       return mongoose
     })
