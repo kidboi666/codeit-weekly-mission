@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const FolderOptionButtonLayout = styled.div`
   width: 1060px;
@@ -14,13 +14,13 @@ export const FolderOptionButtonLayout = styled.div`
     flex-direction: column;
     width: 100%;
   }
-`;
+`
 
 export const SelectedFolder = styled.h1`
   align-self: flex-start;
   font-size: 24px;
   font-weight: 400;
-`;
+`
 
 export const OptionContainer = styled.div`
   display: flex;
@@ -31,7 +31,7 @@ export const OptionContainer = styled.div`
   @media (max-width: 767px) {
     align-self: flex-end;
   }
-`;
+`
 
 export const OptionBox = styled.div`
   display: flex;
@@ -40,7 +40,9 @@ export const OptionBox = styled.div`
   cursor: pointer;
   padding: 5px 8px;
   border-radius: 8px;
-  transition: color 0.3s, background 0.3s;
+  transition:
+    color 0.3s,
+    background 0.3s;
 
   &:hover {
     background-color: var(--primary-color);
@@ -50,4 +52,4 @@ export const OptionBox = styled.div`
   > img {
     width: 18px;
   }
-`;
+`

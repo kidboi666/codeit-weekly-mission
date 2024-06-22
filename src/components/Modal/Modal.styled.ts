@@ -1,5 +1,5 @@
-import styled, { createGlobalStyle } from "styled-components";
-import CloseButton from "../CloseButton/CloseButton";
+import styled, { createGlobalStyle } from 'styled-components'
+import CloseButton from '../CloseButton/CloseButton'
 
 export const ScrollLock = createGlobalStyle<{ $hasScrollbar: boolean }>`
   body {
@@ -10,7 +10,7 @@ export const ScrollLock = createGlobalStyle<{ $hasScrollbar: boolean }>`
     padding-right: 14px;
     `}
   }
-`;
+`
 
 export const ModalLayout = styled.div`
   position: fixed;
@@ -23,7 +23,7 @@ export const ModalLayout = styled.div`
   align-items: center;
   background-color: rgba(0, 0, 0, 0.2);
   z-index: 100;
-`;
+`
 
 export const ModalContainer = styled.div`
   position: relative;
@@ -55,9 +55,9 @@ export const ModalContainer = styled.div`
   & input {
     margin-bottom: 15px;
   }
-`;
+`
 
 export const StyledCloseButton = styled(CloseButton)`
   top: 16px;
   right: 16px;
-`;
+`

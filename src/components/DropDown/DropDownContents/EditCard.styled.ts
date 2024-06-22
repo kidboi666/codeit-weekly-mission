@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const EditCardLayout = styled.div`
   position: absolute;
@@ -20,4 +20,4 @@ export const EditCardLayout = styled.div`
       color: var(--primary-color);
     }
   }
-`;
+`

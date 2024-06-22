@@ -1,25 +1,25 @@
-import * as S from "./Button.styled";
-import React from "react";
+import React from 'react'
+import * as S from './Button.styled'
 
 interface ButtonProps {
-  variant?: string;
-  width?: string;
-  text?: string;
-  selected?: string | number;
-  className?: string;
-  disabled?: boolean;
-  type?: "submit" | "button";
-  onClick?: (e: React.MouseEvent) => void;
+  variant?: string
+  width?: string
+  text?: string
+  selected?: string | number
+  className?: string
+  disabled?: boolean
+  type?: 'submit' | 'button'
+  onClick?: (e: React.MouseEvent) => void
 }
 
 const Button = ({
-  variant = "default",
+  variant = 'default',
   width,
   text,
   selected,
   className,
   disabled,
-  type = "button",
+  type = 'button',
   onClick,
 }: ButtonProps) => {
   return (
@@ -34,7 +34,7 @@ const Button = ({
     >
       <p>{text}</p>
     </S.Button>
-  );
-};
+  )
+}
 
-export default Button;
+export default Button

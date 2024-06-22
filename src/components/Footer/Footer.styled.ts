@@ -1,10 +1,10 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const FooterLayout = styled.footer`
   position: relative;
   background-color: var(--black-color);
   z-index: 50;
-`;
+`
 
 export const FooterBox = styled.div`
   padding: 32px 104px 108px;
@@ -30,13 +30,13 @@ export const FooterBox = styled.div`
     gap: 60px 0;
     padding: 32px;
   }
-`;
+`
 
 export const CopyrightBox = styled.div`
   @media (max-width: 767px) {
     grid-row: 2 / -1;
   }
-`;
+`
 
 export const PrivacyBox = styled.div`
   display: flex;
@@ -52,7 +52,7 @@ export const PrivacyBox = styled.div`
     justify-self: start;
     gap: 30px;
   }
-`;
+`
 
 export const SnsContainer = styled.div`
   display: flex;
@@ -66,4 +66,4 @@ export const SnsContainer = styled.div`
   @media (max-width: 767px) {
     justify-self: end;
   }
-`;
+`

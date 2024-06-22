@@ -1,8 +1,8 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const ColorOptionLayout = styled.div<{
-  $isActive: boolean;
-  $background: string;
+  $isActive: boolean
+  $background: string
 }>`
   width: 100%;
   position: relative;
@@ -12,7 +12,7 @@ export const ColorOptionLayout = styled.div<{
   transition: transform 0.3s;
 
   > div {
-    display: ${({ $isActive }) => ($isActive ? "flex" : "none")};
+    display: ${({ $isActive }) => ($isActive ? 'flex' : 'none')};
     z-index: 100;
   }
 
@@ -21,7 +21,7 @@ export const ColorOptionLayout = styled.div<{
   }
 
   ${({ $background }) => {
-    if ($background.includes("http")) {
+    if ($background.includes('http')) {
       return `
       background-image: url(${$background});
       background-size: cover;
@@ -35,18 +35,18 @@ export const ColorOptionLayout = styled.div<{
         height: 100%;
         background-color: rgba(0, 0, 0, 0.2);
       }
-      `;
+      `
     }
     return `
     background-color:${$background};
     border: 1px solid rgba(0, 0, 0, 0.08);
-    `;
+    `
   }}
 
   @media (max-width: 768px) {
     width: 100%;
   }
-`;
+`
 
 export const IconBox = styled.div`
   display: flex;
@@ -55,4 +55,4 @@ export const IconBox = styled.div`
   height: 44px;
   background-color: var(--gray-500);
   border-radius: 50%;
-`;
+`

@@ -1,42 +1,45 @@
-import mongoose from "mongoose";
+// eslint-disable-next-line import/newline-after-import
+import mongoose from 'mongoose'
 declare global {
-  var mongoose: any; // This must be a `var` and not a `let / const`
+  // eslint-disable-next-line no-var,vars-on-top,@typescript-eslint/no-explicit-any
+  var mongoose: any // This must be a `var` and not a `let / const`
 }
 
-const MONGODB_URI = process.env.MONGODB_URI!;
+const MONGODB_URI = process.env.MONGODB_URI!
 
 if (!MONGODB_URI) {
-  throw new Error(
-    "Please define the MONGODB_URI environment variable inside .env.local",
-  );
+  throw new Error('Please define the MONGODB_URI environment variable inside .env.local')
 }
 
-let cached = global.mongoose;
+let cached = global.mongoose
 
 if (!cached) {
-  cached = global.mongoose = { conn: null, promise: null };
+  // eslint-disable-next-line no-multi-assign
+  cached = global.mongoose = { conn: null, promise: null }
 }
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 async function dbConnect() {
   if (cached.conn) {
-    return cached.conn;
+    return cached.conn
   }
   if (!cached.promise) {
     const opts = {
       bufferCommands: false,
-    };
+    }
+    // eslint-disable-next-line @typescript-eslint/no-shadow
     cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
-      return mongoose;
-    });
+      return mongoose
+    })
   }
   try {
-    cached.conn = await cached.promise;
+    cached.conn = await cached.promise
   } catch (e) {
-    cached.promise = null;
-    throw e;
+    cached.promise = null
+    throw e
   }
 
-  return cached.conn;
+  return cached.conn
 }
 
-export default dbConnect;
+export default dbConnect

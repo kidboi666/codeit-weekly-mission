@@ -1,10 +1,10 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const FolderLayout = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
-`;
+`
 
 export const FolderContainer = styled.div`
   width: 1060px;
@@ -20,10 +20,10 @@ export const FolderContainer = styled.div`
     width: 100%;
     justify-content: flex-start;
   }
-`;
+`
 
 export const FolderBox = styled.div`
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
-`;
+`

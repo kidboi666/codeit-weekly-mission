@@ -1,37 +1,35 @@
-import { Button, Input } from "@/src/components";
-import { useAppDispatch, useAppSelector } from "@/src/hooks/useApp";
-import { postFolder } from "@/src/store/actions/folder";
-import { closeModal } from "@/src/store/reducers/modal";
-import { openToast } from "@/src/store/reducers/toast";
-import { useState } from "react";
-import { ModalProps } from "../ModalTypes";
-import { FolderList } from "@/src/types";
+import { Button, Input } from '@/src/components'
+import { useAppDispatch, useAppSelector } from '@/src/hooks/useApp'
+import { postFolder } from '@/src/store/actions/folder'
+import { closeModal } from '@/src/store/reducers/modal'
+import { openToast } from '@/src/store/reducers/toast'
+import { useState } from 'react'
+import { FolderList } from '@/src/types'
+import { ModalProps } from '../ModalTypes'
 
 const AddFolder = ({ title, text, variant }: ModalProps) => {
-  const [folderName, setFolderName] = useState("");
-  const { data: folderList } = useAppSelector((state) => state.folder);
-  const dispatch = useAppDispatch();
+  const [folderName, setFolderName] = useState('')
+  const { data: folderList } = useAppSelector((state) => state.folder)
+  const dispatch = useAppDispatch()
 
   const onChangeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFolderName(e.target.value);
-  };
+    setFolderName(e.target.value)
+  }
 
   const checkForDuplicates = () => {
-    const result = folderList.some(
-      (folder: FolderList) => folder.name === folderName,
-    );
-    if (result) dispatch(openToast({ type: "duplicateFolderName" }));
-    return result;
-  };
+    const result = folderList.some((folder: FolderList) => folder.name === folderName)
+    if (result) dispatch(openToast({ type: 'duplicateFolderName' }))
+    return result
+  }
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    e.preventDefault()
     if (folderName && !checkForDuplicates()) {
-      await dispatch(postFolder(folderName));
-      dispatch(closeModal());
-      dispatch(openToast({ type: "addFolder" }));
+      await dispatch(postFolder(folderName))
+      dispatch(closeModal())
+      dispatch(openToast({ type: 'addFolder' }))
     }
-  };
+  }
 
   return (
     <>
@@ -40,13 +38,13 @@ const AddFolder = ({ title, text, variant }: ModalProps) => {
         <Input
           value={folderName}
           onChange={onChangeInputValue}
-          placeholder='생성할 폴더 이름'
-          width='100%'
+          placeholder="생성할 폴더 이름"
+          width="100%"
         />
-        <Button variant={variant} text={text} type='submit' width='100%' />
+        <Button variant={variant} text={text} type="submit" width="100%" />
       </form>
     </>
-  );
-};
+  )
+}
 
-export default AddFolder;
+export default AddFolder

@@ -1,68 +1,79 @@
-import { Link } from "@/src/types";
-import { createSlice } from "@reduxjs/toolkit";
+/* eslint-disable no-param-reassign */
+import { Link } from '@/src/types'
+import { createSlice } from '@reduxjs/toolkit'
 import {
   getLinkList,
   postLink,
   deleteLink,
   putFavoriteLink,
-} from "@/src/store/actions/link";
-import { API_MSG } from "@/src/constants/strings";
+  getAllLinkList,
+} from '@/src/store/actions/link'
+import { API_MSG } from '@/src/constants/strings'
 
 interface Props {
-  data: Link[];
-  status: any;
+  data: Link[]
+  status: string
 }
 
 const initialState: Props = {
   data: [],
-  status: "",
-};
+  status: '',
+}
 
 const linkSlice = createSlice({
-  name: "link",
+  name: 'link',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getLinkList.pending, (state, action) => {
-        state.status = API_MSG.PEN;
+      .addCase(getLinkList.pending, (state) => {
+        state.status = API_MSG.PEN
       })
       .addCase(getLinkList.fulfilled, (state, action) => {
-        state.data = action.payload;
-        state.status = API_MSG.FUL;
+        state.data = action.payload
+        state.status = API_MSG.FUL
       })
-      .addCase(getLinkList.rejected, (state, action) => {
-        state.status = API_MSG.REJ;
+      .addCase(getLinkList.rejected, (state) => {
+        state.status = API_MSG.REJ
       })
-      .addCase(postLink.pending, (state, action) => {
-        state.status = API_MSG.PEN;
+      .addCase(getAllLinkList.pending, (state) => {
+        state.status = API_MSG.PEN
       })
-      .addCase(postLink.fulfilled, (state, action) => {
-        state.status = API_MSG.FUL;
+      .addCase(getAllLinkList.fulfilled, (state, action) => {
+        state.data = action.payload
+        state.status = API_MSG.FUL
       })
-      .addCase(postLink.rejected, (state, action) => {
-        state.status = API_MSG.REJ;
+      .addCase(getAllLinkList.rejected, (state) => {
+        state.status = API_MSG.REJ
       })
-      .addCase(deleteLink.pending, (state, action) => {
-        state.status = API_MSG.PEN;
+      .addCase(postLink.pending, (state) => {
+        state.status = API_MSG.PEN
       })
-      .addCase(deleteLink.fulfilled, (state, action) => {
-        state.status = API_MSG.FUL;
+      .addCase(postLink.fulfilled, (state) => {
+        state.status = API_MSG.FUL
       })
-      .addCase(deleteLink.rejected, (state, action) => {
-        state.status = API_MSG.REJ;
+      .addCase(postLink.rejected, (state) => {
+        state.status = API_MSG.REJ
       })
-      .addCase(putFavoriteLink.pending, (state, action) => {
-        state.status = API_MSG.PEN;
+      .addCase(deleteLink.pending, (state) => {
+        state.status = API_MSG.PEN
       })
-      .addCase(putFavoriteLink.fulfilled, (state, action) => {
-        state.status = API_MSG.FUL;
+      .addCase(deleteLink.fulfilled, (state) => {
+        state.status = API_MSG.FUL
       })
-      .addCase(putFavoriteLink.rejected, (state, action) => {
-        state.status = API_MSG.REJ;
-      });
+      .addCase(deleteLink.rejected, (state) => {
+        state.status = API_MSG.REJ
+      })
+      .addCase(putFavoriteLink.pending, (state) => {
+        state.status = API_MSG.PEN
+      })
+      .addCase(putFavoriteLink.fulfilled, (state) => {
+        state.status = API_MSG.FUL
+      })
+      .addCase(putFavoriteLink.rejected, (state) => {
+        state.status = API_MSG.REJ
+      })
   },
-});
+})
 
-export const {} = linkSlice.actions;
-export default linkSlice.reducer;
+export default linkSlice.reducer

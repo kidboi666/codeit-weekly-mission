@@ -1,34 +1,35 @@
-import { createSlice } from "@reduxjs/toolkit";
+/* eslint-disable no-param-reassign */
+import { createSlice } from '@reduxjs/toolkit'
 
 interface Props {
-  type: any;
-  isOpen: boolean;
-  props?: Record<string, any>;
+  type: any
+  isOpen: boolean
+  props?: Record<string, any>
 }
 
 const initialState: Props = {
-  type: "",
+  type: '',
   isOpen: false,
   props: {},
-};
+}
 
 const toastSlice = createSlice({
-  name: "toast",
+  name: 'toast',
   initialState,
   reducers: {
     openToast: (state, action) => {
-      state.type = action.payload.type;
-      state.props = action.payload.props || {};
-      state.isOpen = true;
+      state.type = action.payload.type
+      state.props = action.payload.props || {}
+      state.isOpen = true
     },
     closeToast: (state) => {
-      state.type = "";
-      state.props = {};
-      state.isOpen = false;
+      state.type = ''
+      state.props = {}
+      state.isOpen = false
     },
   },
-});
+})
 
-export const { openToast, closeToast } = toastSlice.actions;
+export const { openToast, closeToast } = toastSlice.actions
 
-export default toastSlice.reducer;
+export default toastSlice.reducer

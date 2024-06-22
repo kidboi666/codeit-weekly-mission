@@ -1,21 +1,22 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose'
 
 const paperSchema = new mongoose.Schema(
   {
-    name: { type: String, required: true, default: "" },
-    title: { type: String, required: true, default: "" },
-    content: { type: String, required: true, default: "" },
+    name: { type: String, required: true, default: '' },
+    title: { type: String, required: true, default: '' },
+    content: { type: String, required: true, default: '' },
     background: {
       type: String,
       required: true,
-      default: "yellow",
+      default: 'yellow',
     },
   },
   {
     timestamps: true,
   },
-);
+)
 
-const Paper = mongoose.models["Paper"] || mongoose.model("Paper", paperSchema);
+// eslint-disable-next-line @typescript-eslint/dot-notation
+const Paper = mongoose.models['Paper'] || mongoose.model('Paper', paperSchema)
 
-export default Paper;
+export default Paper

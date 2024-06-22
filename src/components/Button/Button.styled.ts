@@ -1,9 +1,9 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Button = styled.button<{
-  $variant: string;
-  $isActive?: boolean;
-  $width?: string;
+  $variant: string
+  $isActive?: boolean
+  $width?: string
 }>`
   ${({ $width }) => `width: ${$width}`};
   border-radius: 8px;
@@ -15,7 +15,7 @@ export const Button = styled.button<{
   transition: all 0.3s;
 
   ${({ $variant }) =>
-    $variant === "addFolder" &&
+    $variant === 'addFolder' &&
     `
       height: 35px;
       background-color: var(--white-color);
@@ -50,7 +50,7 @@ export const Button = styled.button<{
     `}
 
   ${({ $variant }) =>
-    $variant === "addLink" &&
+    $variant === 'addLink' &&
     `
       position: absolute;
       padding: 10px 16px;
@@ -69,7 +69,7 @@ export const Button = styled.button<{
   `}
 
   ${({ $variant }) =>
-    ($variant === "deleteFolder" || $variant === "deleteLink") &&
+    ($variant === 'deleteFolder' || $variant === 'deleteLink') &&
     `
       padding: 16px 20px;
       background-color: var(--red-color);
@@ -78,7 +78,7 @@ export const Button = styled.button<{
     `}
 
   ${({ $variant }) =>
-    $variant === "default" &&
+    $variant === 'default' &&
     `
       padding: 16px 20px;
       background-image: linear-gradient(270deg, #6ae3fe, var(--primary-color));
@@ -91,7 +91,7 @@ export const Button = styled.button<{
     `}
 
   ${({ $variant }) =>
-    $variant === "underBar" &&
+    $variant === 'underBar' &&
     `
       padding: 0;
       background-color: var(--gray5-color);
@@ -101,17 +101,15 @@ export const Button = styled.button<{
     `}
     
   ${({ $variant, $isActive }) =>
-    $variant === "folderButton" &&
+    $variant === 'folderButton' &&
     `
       line-height: 0;
       height: 35px;
       padding: 8px 12px;
       border: 1px solid var(--primary-color);
       border-radius: 5px;
-      background-color: ${
-        $isActive ? "var(--primary-color)" : "var(--white-color)"
-      };
-      color: ${$isActive ? "var(--white-color)" : "var(--black-color)"};
+      background-color: ${$isActive ? 'var(--primary-color)' : 'var(--white-color)'};
+      color: ${$isActive ? 'var(--white-color)' : 'var(--black-color)'};
       cursor: pointer;
 
       &:hover {
@@ -121,17 +119,17 @@ export const Button = styled.button<{
     `}
 
     ${({ $variant, $isActive }) =>
-    $variant === "paperButton" &&
+    $variant === 'paperButton' &&
     `
       border: 1px solid #F8CA59;
       line-height: 0;
       height: 35px;
-      background-color: ${$isActive ? "#f8ca59" : "var(--white-color)"};
-      color: ${$isActive ? "var(--white-color)" : "#f8ca59"};
+      background-color: ${$isActive ? '#f8ca59' : 'var(--white-color)'};
+      color: ${$isActive ? 'var(--white-color)' : '#f8ca59'};
 
       &:hover {
         background-color: #f8ca59;
         color: var(--white-color);
       }
     `}
-`;
+`

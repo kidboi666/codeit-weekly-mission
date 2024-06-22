@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes } from 'styled-components'
 
 export const SpinnerLayout = styled.div`
   position: fixed;
@@ -10,7 +10,7 @@ export const SpinnerLayout = styled.div`
   justify-content: center;
   align-items: center;
   transition: all 0.2s;
-`;
+`
 
 const rotate = keyframes`
 0% {
@@ -20,7 +20,7 @@ const rotate = keyframes`
 100% {
   transform: rotate(360deg);
 }
-`;
+`
 
 export const SpinnerBox = styled.div`
   position: fixed;
@@ -34,7 +34,7 @@ export const SpinnerBox = styled.div`
   box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
   background-color: var(--primary-color);
-`;
+`
 
 export const Spinner = styled.div`
   > img {
@@ -42,4 +42,4 @@ export const Spinner = styled.div`
     width: 25px;
     height: 25px;
   }
-`;
+`

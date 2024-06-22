@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const CloseButton = styled.div<{ $variant: string }>`
   position: absolute;
@@ -12,24 +12,24 @@ export const CloseButton = styled.div<{ $variant: string }>`
   cursor: pointer;
 
   ${({ $variant }) =>
-    $variant === "modal" &&
+    $variant === 'modal' &&
     `
     background-color: #e7effb;
   `}
 
   ${({ $variant }) =>
-    $variant === "searchInput" &&
+    $variant === 'searchInput' &&
     `
     background-color: #ccd5e3;
   `}
 
 
   ${({ $variant }) =>
-    $variant === "outlined" &&
+    $variant === 'outlined' &&
     `
     transition: transform 0.3s;
     &:hover {
       transform: rotate(45deg);
     }
   `}
-`;
+`

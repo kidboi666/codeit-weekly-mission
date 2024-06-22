@@ -1,39 +1,33 @@
-import * as S from "./Modal.styled";
-import { useAppDispatch, useAppSelector } from "@/src/hooks/useApp";
-import { closeModal } from "@/src/store/reducers/modal";
-import { MODAL_COMPONENTS } from "./ModalTypes";
-import { useEffect, useState } from "react";
+import * as S from './Modal.styled'
+import { useAppDispatch, useAppSelector } from '@/src/hooks/useApp'
+import { closeModal } from '@/src/store/reducers/modal'
+import { MODAL_COMPONENTS } from './ModalTypes'
+import { useEffect, useState } from 'react'
 
 const Modal = () => {
-  const { type, isOpen } = useAppSelector((state) => state.modal);
-  const [hasScrollbar, setHasScrollbar] = useState(false);
-  const dispatch = useAppDispatch();
+  const { type, isOpen } = useAppSelector((state) => state.modal)
+  const [hasScrollbar, setHasScrollbar] = useState(false)
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
-    setHasScrollbar(
-      document.documentElement.scrollHeight >
-        document.documentElement.clientHeight,
-    );
-  }, [isOpen]);
+    setHasScrollbar(document.documentElement.scrollHeight > document.documentElement.clientHeight)
+  }, [isOpen])
 
-  const findModal = MODAL_COMPONENTS.get(type);
+  const findModal = MODAL_COMPONENTS.get(type)
 
-  if (!isOpen || !findModal) return null;
+  if (!isOpen || !findModal) return null
 
   return (
     <>
       <S.ScrollLock $hasScrollbar={hasScrollbar} />
       <S.ModalLayout onClick={() => dispatch(closeModal())}>
         <S.ModalContainer onClick={(e) => e.stopPropagation()}>
-          <S.StyledCloseButton
-            variant='modal'
-            onClick={() => dispatch(closeModal())}
-          />
+          <S.StyledCloseButton variant="modal" onClick={() => dispatch(closeModal())} />
           {findModal}
         </S.ModalContainer>
       </S.ModalLayout>
     </>
-  );
-};
+  )
+}
 
-export default Modal;
+export default Modal

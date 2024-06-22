@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const CardImg = styled.img`
   display: block;
@@ -6,7 +6,7 @@ export const CardImg = styled.img`
   height: 100%;
   object-fit: cover;
   transition: all 0.5s;
-`;
+`
 
 export const ImgContainer = styled.div`
   position: relative;
@@ -15,7 +15,7 @@ export const ImgContainer = styled.div`
   height: 100%;
   object-fit: cover;
   transition: all 0.5s;
-`;
+`
 
 export const CardDescriptionContainer = styled.div`
   padding: 15px 20px;
@@ -23,7 +23,7 @@ export const CardDescriptionContainer = styled.div`
   position: relative;
   flex-direction: column;
   justify-content: space-between;
-`;
+`
 
 export const CardLayout = styled.li`
   position: relative;
@@ -39,7 +39,7 @@ export const CardLayout = styled.li`
   &:hover ${CardDescriptionContainer} {
     background-color: var(--gray5-color);
   }
-`;
+`
 
 export const CardLinkContainer = styled.a`
   display: grid;
@@ -49,7 +49,7 @@ export const CardLinkContainer = styled.a`
   @media (max-width: 767px) {
     grid-template-rows: 192px 135px;
   }
-`;
+`
 
 export const CardImgContainer = styled.div`
   display: flex;
@@ -57,11 +57,11 @@ export const CardImgContainer = styled.div`
   align-items: center;
   overflow: hidden;
   background-color: #dddfff;
-`;
+`
 
 export const BlankImgBox = styled.div`
   width: 200px;
-`;
+`
 
 export const CreatedDate = styled.p`
   display: -webkit-box;
@@ -70,7 +70,7 @@ export const CreatedDate = styled.p`
   overflow: hidden;
   font-size: 13px;
   color: #666666;
-`;
+`
 
 export const Title = styled.p`
   display: -webkit-box;
@@ -78,14 +78,14 @@ export const Title = styled.p`
   -webkit-box-orient: vertical;
   overflow: hidden;
   line-height: 24px;
-`;
+`
 
 export const TimeStamp = styled.p`
   font-size: 14px;
   color: #666666;
-`;
+`
 
 export const DropDownBox = styled.div`
   top: 0;
   right: 0;
-`;
+`
