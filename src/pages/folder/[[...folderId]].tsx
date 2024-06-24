@@ -6,16 +6,38 @@ import { getAllLinkList, getLinkList } from '@/src/services/link'
 import { getFolder } from '@/src/services/folder'
 import { useRouter } from 'next/router'
 import { userInfoAccess } from '@/src/services/auth'
+import { useQuery } from '@tanstack/react-query'
 
 const FolderPage = () => {
   const [searchResult, setSearchResult] = useState<Link[] | string>([])
   const [searchKeyword, setSearchKeyword] = useState('')
   const { isLoggedIn } = useAppSelector((state) => state.auth)
-  const { data: linkList } = useAppSelector((state) => state.link)
-  const { currentFolder } = useAppSelector((state) => state.folder)
   const dispatch = useAppDispatch()
   const router = useRouter()
   const { folderId } = router.query
+  const {
+    data: folderList,
+    isPending: folderPending,
+    error: folderError,
+  } = useQuery({
+    queryKey: ['folders'],
+    queryFn: getFolder,
+    staleTime: 60 * 1000,
+    gcTime: 60 * 1000 * 10,
+  })
+  const {
+    data: linkList,
+    isPending: linkPending,
+    error: linkError,
+  } = useQuery({
+    queryKey: ['links', folderId],
+    queryFn: () => {
+      if (!folderId) {
+        return getAllLinkList()
+      }
+      return getLinkList(Number(folderId))
+    },
+  })
 
   const initPage = async () => {
     const token = localStorage.getItem('accessToken')
@@ -26,29 +48,11 @@ const FolderPage = () => {
     }
   }
 
-  const fetchFolderList = async () => {
-    await dispatch(getFolder())
-  }
-
-  const fetchLinkList = async () => {
-    if (currentFolder.id === 0) {
-      await dispatch(getAllLinkList())
-    } else {
-      await dispatch(getLinkList(Number(folderId)))
-    }
-  }
-
   useEffect(() => {
-    if (isLoggedIn) {
-      fetchFolderList()
-    } else {
+    if (!isLoggedIn) {
       initPage()
     }
   }, [isLoggedIn])
-
-  useEffect(() => {
-    if (isLoggedIn) fetchLinkList()
-  }, [folderId, isLoggedIn])
 
   return (
     <AppLayout>
@@ -61,12 +65,12 @@ const FolderPage = () => {
             setSearchKeyword={setSearchKeyword}
           />
         }
-        Folder={<Folder />}
+        Folder={<Folder folderList={folderList} isPending={folderPending} error={folderError} />}
         Card={
           searchKeyword && searchResult.length >= 1 ? (
-            <Card linkList={searchResult} />
+            <Card linkList={searchResult} isPending={linkPending} error={linkError} />
           ) : (
-            <Card linkList={linkList} />
+            <Card linkList={linkList} isPending={linkPending} error={linkError} />
           )
         }
       />

@@ -9,9 +9,11 @@ import * as S from './Card.styled'
 
 interface CardProps {
   linkList: Link[] | string
+  isPending: boolean
+  error: Error | null
 }
 
-const Card = ({ linkList }: CardProps) => {
+const Card = ({ linkList, isPending, error }: CardProps) => {
   if (linkList === CARD_SECTION_MSG.searchDataNotFound) {
     return <div>{CARD_SECTION_MSG.searchDataNotFound}</div>
   }

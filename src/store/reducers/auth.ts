@@ -9,10 +9,12 @@ import {
 } from '@/src/services/auth'
 import { UserData } from '@/src/types'
 import { API_MSG } from '@/src/constants/strings'
+import { AxiosError } from 'axios'
 
 interface Props {
   isLoggedIn: boolean
   status: string
+  error: AxiosError | null
   userInfo: UserData
   sharedUserInfo: UserData
 }
@@ -28,7 +30,8 @@ const initialUserInfo = {
 
 const initialState: Props = {
   isLoggedIn: false,
-  status: '',
+  status: 'idle',
+  error: null,
   userInfo: { ...initialUserInfo },
   sharedUserInfo: { ...initialUserInfo },
 }

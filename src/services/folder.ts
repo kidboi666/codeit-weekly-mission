@@ -24,13 +24,18 @@ export const postFolder = createAsyncThunk<any, string>('folder/postFolder', asy
   return camelcaseKeys(data, { deep: true })
 })
 
-export const getSharedFolder = createAsyncThunk<any, number>(
-  'link/getSharedFolder',
-  async (folderId) => {
-    const { data } = await axios.get(`folders/${folderId}`)
-    return camelcaseKeys(data, { deep: true })
-  },
-)
+// export const getSharedFolder = createAsyncThunk<any, number>(
+//   'link/getSharedFolder',
+//   async (folderId) => {
+//     const { data } = await axios.get(`folders/${folderId}`)
+//     return camelcaseKeys(data, { deep: true })
+//   },
+// )
+
+export const getSharedFolder = async (folderId: number) => {
+  const { data } = await axios.get(`folders/${folderId}`)
+  return camelcaseKeys(data, { deep: true })
+}
 
 export const putFolder = createAsyncThunk<any, { folderName: string; folderId: number }>(
   'folder/putFolder',

@@ -5,6 +5,7 @@ import { getSharedFolder } from '@/src/services/folder'
 import { getSharedUserInfo } from '@/src/services/auth'
 import { getLinkList } from '@/src/services/link'
 import wrapper from '@/src/store'
+import { useQuery } from '@tanstack/react-query'
 
 interface SharedPageProps {
   sharedUserInfo: UserData
@@ -12,9 +13,10 @@ interface SharedPageProps {
   linkList: Link[]
 }
 
-export const getServerSideProps = wrapper.getServerSideProps((store) => async (context) => {
+export const getServerSideProps = async (context) => {
   const { folderId } = context.query
-  const folder = await store.dispatch(getSharedFolder(Number(folderId)))
+
+  await getSharedFolder(Number(folderId))
   await store.dispatch(getSharedUserInfo(folder?.payload[0]?.userId))
   await store.dispatch(getLinkList(Number(folderId)))
   const state = store.getState()

@@ -8,9 +8,15 @@ import { FolderList } from '@/src/types'
 import { setCurrentFolder } from '@/src/store/reducers/folder'
 import * as S from './Folder.styled'
 
-const Folder = () => {
+interface FolderProps {
+  folderList: FolderList[]
+  isPending: boolean
+  error: Error | null
+}
+
+const Folder = ({ folderList, error, isPending }: FolderProps) => {
   const dispatch = useAppDispatch()
-  const { data: folderList, currentFolder } = useAppSelector((state) => state.folder)
+  const { currentFolder } = useAppSelector((state) => state.folder)
   const router = useRouter()
 
   const selectFolder = (folderName: string, folderId: number) => {

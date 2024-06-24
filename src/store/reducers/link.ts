@@ -26,35 +26,35 @@ const linkSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getLinkList.pending, (state) => {
-        state.status = API_MSG.PEN
-      })
-      .addCase(getLinkList.fulfilled, (state, action) => {
-        state.data = action.payload
-        state.status = API_MSG.FUL
-      })
-      .addCase(getLinkList.rejected, (state) => {
-        state.status = API_MSG.REJ
-      })
-      .addCase(getAllLinkList.pending, (state) => {
-        state.status = API_MSG.PEN
-      })
-      .addCase(getAllLinkList.fulfilled, (state, action) => {
-        state.data = action.payload
-        state.status = API_MSG.FUL
-      })
-      .addCase(getAllLinkList.rejected, (state) => {
-        state.status = API_MSG.REJ
-      })
-      .addCase(postLink.pending, (state) => {
-        state.status = API_MSG.PEN
-      })
-      .addCase(postLink.fulfilled, (state) => {
-        state.status = API_MSG.FUL
-      })
-      .addCase(postLink.rejected, (state) => {
-        state.status = API_MSG.REJ
-      })
+      // .addCase(getLinkList.pending, (state) => {
+      //   state.status = API_MSG.PEN
+      // })
+      // .addCase(getLinkList.fulfilled, (state, action) => {
+      //   state.data = action.payload
+      //   state.status = API_MSG.FUL
+      // })
+      // .addCase(getLinkList.rejected, (state) => {
+      //   state.status = API_MSG.REJ
+      // })
+      // .addCase(getAllLinkList.pending, (state) => {
+      //   state.status = API_MSG.PEN
+      // })
+      // .addCase(getAllLinkList.fulfilled, (state, action) => {
+      //   state.data = action.payload
+      //   state.status = API_MSG.FUL
+      // })
+      // .addCase(getAllLinkList.rejected, (state) => {
+      //   state.status = API_MSG.REJ
+      // })
+      // .addCase(postLink.pending, (state) => {
+      //   state.status = API_MSG.PEN
+      // })
+      // .addCase(postLink.fulfilled, (state) => {
+      //   state.status = API_MSG.FUL
+      // })
+      // .addCase(postLink.rejected, (state) => {
+      //   state.status = API_MSG.REJ
+      // })
       .addCase(deleteLink.pending, (state) => {
         state.status = API_MSG.PEN
       })
