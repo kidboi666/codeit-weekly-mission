@@ -6,10 +6,10 @@ import { useState } from 'react'
 import * as S from './PaperCard.styled'
 
 interface PaperCardProps {
-  paper: Paper
+  paperList: Paper[]
 }
 
-const PaperCard = ({ paper }: PaperCardProps) => {
+const PaperCard = ({ paperList }: PaperCardProps) => {
   const [showContent, setShowContent] = useState(false)
   const dispatch = useAppDispatch()
 
@@ -17,8 +17,9 @@ const PaperCard = ({ paper }: PaperCardProps) => {
     return `var(--${color}-color)`
   }
 
-  return (
+  return paperList.map((paper) => (
     <S.CardLayout
+      key={paper.id}
       $background={changeColor(paper.background)}
       onClick={() => setShowContent((prev) => !prev)}
       onMouseLeave={() => setShowContent(false)}
@@ -44,7 +45,7 @@ const PaperCard = ({ paper }: PaperCardProps) => {
         )}
       </S.CardContainer>
     </S.CardLayout>
-  )
+  ))
 }
 
 export default PaperCard

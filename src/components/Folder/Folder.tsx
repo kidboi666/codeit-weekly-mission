@@ -10,11 +10,9 @@ import * as S from './Folder.styled'
 
 interface FolderProps {
   folderList: FolderList[]
-  isPending: boolean
-  error: Error | null
 }
 
-const Folder = ({ folderList, error, isPending }: FolderProps) => {
+const Folder = ({ folderList }: FolderProps) => {
   const dispatch = useAppDispatch()
   const { currentFolder } = useAppSelector((state) => state.folder)
   const router = useRouter()

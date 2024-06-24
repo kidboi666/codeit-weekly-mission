@@ -65,14 +65,18 @@ const FolderPage = () => {
             setSearchKeyword={setSearchKeyword}
           />
         }
-        Folder={<Folder folderList={folderList} isPending={folderPending} error={folderError} />}
+        Folder={<Folder folderList={folderList} />}
         Card={
           searchKeyword && searchResult.length >= 1 ? (
-            <Card linkList={searchResult} isPending={linkPending} error={linkError} />
+            <Card linkList={searchResult} />
           ) : (
-            <Card linkList={linkList} isPending={linkPending} error={linkError} />
+            <Card linkList={linkList} />
           )
         }
+        linkPending={linkPending}
+        linkError={linkError}
+        folderPending={folderPending}
+        folderError={folderError}
       />
     </AppLayout>
   )

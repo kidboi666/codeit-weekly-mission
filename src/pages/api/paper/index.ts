@@ -16,7 +16,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
       case 'GET': {
         const foundPaper = await Paper.find()
-        res.status(200).send({ data: foundPaper })
+        res.status(200).send(foundPaper)
         break
       }
 

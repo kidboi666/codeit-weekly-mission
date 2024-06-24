@@ -2,11 +2,11 @@ import { paperInstance } from '@/src/services/axiosInstance'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import camelcaseKeys from 'camelcase-keys'
 
-export const getPaper = createAsyncThunk<any>('paper/getPapers', async () => {
+export const getPaper = async () => {
   const { data } = await paperInstance.get(`paper`)
 
   return camelcaseKeys(data.data, { deep: true })
-})
+}
 
 export const deletePaper = createAsyncThunk<any, number>('paper/deletePaper', async (paperId) => {
   await paperInstance.delete(`paper/${paperId}`)

@@ -27,7 +27,6 @@ const LinkBrary = ({ Component, ...rest }: AppProps) => {
           <GlobalStyle />
           <Modal />
           <Toast />
-          <Spinner />
           <Component {...props.pageProps} />
           <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
