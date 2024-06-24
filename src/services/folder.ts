@@ -2,12 +2,19 @@ import axios from '@/src/services/axiosInstance'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import camelcaseKeys from 'camelcase-keys'
 
-export const getFolder = createAsyncThunk('folder/getFolder', async () => {
+// export const getFolder = createAsyncThunk('folder/getFolder', async () => {
+//   const { data } = await axios.get(`folders`, {
+//     headers: { 'include-access-token': true },
+//   })
+//   return camelcaseKeys(data, { deep: true })
+// })
+
+export const getFolder = async () => {
   const { data } = await axios.get(`folders`, {
     headers: { 'include-access-token': true },
   })
   return camelcaseKeys(data, { deep: true })
-})
+}
 
 export const postFolder = createAsyncThunk<any, string>('folder/postFolder', async (folderName) => {
   const { data } = await axios.post(`folders`, {
