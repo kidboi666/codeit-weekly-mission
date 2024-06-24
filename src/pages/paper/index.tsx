@@ -1,13 +1,13 @@
 import { AddLink, AppLayout, Folder, PaperLayout, Search, PaperCard } from '@/src/components'
 import { useAppDispatch, useAppSelector } from '@/src/hooks/useApp'
-import { getFolder } from '@/src/store/actions/folder'
-import { getPaper } from '@/src/store/actions/paper'
+import { getFolder } from '@/src/services/folder'
+import { getPaper } from '@/src/services/paper'
 import { Link, Paper } from '@/src/types'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
 const PaperPage = () => {
-  const [, setSearchResult] = useState<Link[] | string>([])
+  const [searchResult, setSearchResult] = useState<Link[] | string>([])
   const [searchKeyword, setSearchKeyword] = useState('')
   const { id: userId } = useAppSelector((state) => state.auth.userInfo)
   const { data: paperList } = useAppSelector((state) => state.paper)

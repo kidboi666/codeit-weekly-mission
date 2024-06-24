@@ -2,7 +2,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { API_MSG } from '@/src/constants/strings'
 import { Paper } from '@/src/types'
-import { getPaper, postPaper } from '../actions/paper'
+import { getPaper, postPaper } from '../../services/paper'
 
 interface Props {
   data: Paper[]

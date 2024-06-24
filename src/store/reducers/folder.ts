@@ -7,7 +7,7 @@ import {
   getSharedFolder,
   postFolder,
   putFolder,
-} from '@/src/store/actions/folder'
+} from '@/src/services/folder'
 import { API_MSG, COMBINED_FOLDER_NAME } from '@/src/constants/strings'
 
 const initialSharedFolder = {

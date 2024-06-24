@@ -27,6 +27,7 @@ export interface Link {
   title: string
   imageSource: string
   description: string
+  favorite: boolean
   createdAt: string
   updatedAt?: string
   folderId?: number

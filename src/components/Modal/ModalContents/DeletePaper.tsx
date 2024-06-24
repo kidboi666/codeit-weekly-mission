@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from '@/src/hooks/useApp'
 import { Button } from '@/src/components'
-import { deletePaper, getPaper } from '@/src/store/actions/paper'
+import { deletePaper, getPaper } from '@/src/services/paper'
 import { openToast } from '@/src/store/reducers/toast'
 import { closeModal } from '@/src/store/reducers/modal'
 import { ModalProps } from '../ModalTypes'

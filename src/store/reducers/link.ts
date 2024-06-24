@@ -7,7 +7,7 @@ import {
   deleteLink,
   putFavoriteLink,
   getAllLinkList,
-} from '@/src/store/actions/link'
+} from '@/src/services/link'
 import { API_MSG } from '@/src/constants/strings'
 
 interface Props {

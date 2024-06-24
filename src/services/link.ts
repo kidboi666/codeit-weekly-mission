@@ -34,10 +34,14 @@ export const deleteLink = createAsyncThunk<null, number>('link/deleteLink', asyn
   return data
 })
 
-export const putFavoriteLink = createAsyncThunk<any, number>('link/putFavorite', async (linkId) => {
-  const { data } = await axios.put(`links/${linkId}`, {
-    headers: { 'include-access-token': true },
-  })
+export const putFavoriteLink = createAsyncThunk<any, { linkId: number; favorite: boolean }>(
+  'link/putFavorite',
+  async ({ linkId, favorite }) => {
+    const { data } = await axios.put(`links/${linkId}`, {
+      headers: { 'include-access-token': true },
+      favorite,
+    })
 
-  return data
-})
+    return data
+  },
+)

@@ -1,6 +1,6 @@
 import { Button, Input } from '@/src/components'
 import { useAppDispatch, useAppSelector } from '@/src/hooks/useApp'
-import { postFolder } from '@/src/store/actions/folder'
+import { postFolder } from '@/src/services/folder'
 import { closeModal } from '@/src/store/reducers/modal'
 import { openToast } from '@/src/store/reducers/toast'
 import { ChangeEvent, FormEvent, useState } from 'react'

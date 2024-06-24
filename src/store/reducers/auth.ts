@@ -6,7 +6,7 @@ import {
   loginAccess,
   signUpAccess,
   userInfoAccess,
-} from '@/src/store/actions/auth'
+} from '@/src/services/auth'
 import { UserData } from '@/src/types'
 import { API_MSG } from '@/src/constants/strings'
 

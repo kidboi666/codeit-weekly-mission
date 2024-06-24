@@ -1,7 +1,7 @@
 import { Button } from '@/src/components'
 import { COMBINED_FOLDER_NAME } from '@/src/constants/strings'
 import { useAppDispatch, useAppSelector } from '@/src/hooks/useApp'
-import { deleteLink, getAllLinkList, getLinkList } from '@/src/store/actions/link'
+import { deleteLink, getAllLinkList, getLinkList } from '@/src/services/link'
 import { closeModal } from '@/src/store/reducers/modal'
 import { openToast } from '@/src/store/reducers/toast'
 import { ModalProps } from '../ModalTypes'

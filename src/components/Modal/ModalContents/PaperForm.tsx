@@ -1,7 +1,7 @@
 import { Button, Input } from '@/src/components'
 import React, { useState } from 'react'
 import { useAppDispatch } from '@/src/hooks/useApp'
-import { getPaper, postPaper } from '@/src/store/actions/paper'
+import { getPaper, postPaper } from '@/src/services/paper'
 import { closeModal } from '@/src/store/reducers/modal'
 import { openToast } from '@/src/store/reducers/toast'
 import { ModalProps } from '../ModalTypes'

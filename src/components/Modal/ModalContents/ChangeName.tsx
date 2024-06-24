@@ -1,7 +1,7 @@
 import { Button, Input } from '@/src/components'
 import React, { useState } from 'react'
 import { useAppDispatch, useAppSelector } from '@/src/hooks/useApp'
-import { getFolder, putFolder } from '@/src/store/actions/folder'
+import { getFolder, putFolder } from '@/src/services/folder'
 import { closeModal } from '@/src/store/reducers/modal'
 import { openToast } from '@/src/store/reducers/toast'
 import { setCurrentFolder } from '@/src/store/reducers/folder'

@@ -1,9 +1,9 @@
 import { Search, Card, AppLayout, Owner, SharedLayout } from '@/src/components'
 import { useState } from 'react'
 import { Link, SharedFolder, UserData } from '@/src/types'
-import { getSharedFolder } from '@/src/store/actions/folder'
-import { getSharedUserInfo } from '@/src/store/actions/auth'
-import { getLinkList } from '@/src/store/actions/link'
+import { getSharedFolder } from '@/src/services/folder'
+import { getSharedUserInfo } from '@/src/services/auth'
+import { getLinkList } from '@/src/services/link'
 import wrapper from '@/src/store'
 
 interface SharedPageProps {

@@ -2,15 +2,10 @@ import { useEffect, useState } from 'react'
 import { Folder, AddLink, Search, AppLayout, Card, FolderLayout } from '@/src/components'
 import { useAppDispatch, useAppSelector } from '@/src/hooks/useApp'
 import { Link } from '@/src/types'
-import { getAllLinkList, getLinkList } from '@/src/store/actions/link'
-import { getFolder } from '@/src/store/actions/folder'
+import { getAllLinkList, getLinkList } from '@/src/services/link'
+import { getFolder } from '@/src/services/folder'
 import { useRouter } from 'next/router'
-import { userInfoAccess } from '@/src/store/actions/auth'
-
-export interface CurrentFolderType {
-  name: string
-  id: number
-}
+import { userInfoAccess } from '@/src/services/auth'
 
 const FolderPage = () => {
   const [searchResult, setSearchResult] = useState<Link[] | string>([])
