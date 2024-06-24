@@ -1,24 +1,43 @@
-import { useAppDispatch, useAppSelector } from '@/src/hooks/useApp'
+import { useAppSelector } from '@/src/hooks/useApp'
 import { Button } from '@/src/components/'
 import { FolderList } from '@/src/types'
-import { closeModal } from '@/src/store/reducers/modal'
-import { openToast } from '@/src/store/reducers/toast'
-import { useEffect, useState } from 'react'
-import { getFolder } from '@/src/services/folder'
-import { COMBINED_FOLDER_NAME } from '@/src/constants/strings'
-import { deleteLink, getAllLinkList, getLinkList, postLink } from '@/src/services/link'
+import { FormEvent, useState } from 'react'
+import { postLink } from '@/src/services/link'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import useHandleFetch from '@/src/hooks/useHandleFetch'
 import * as S from './AddLinkToFolder.styled'
-import { ModalProps } from '../ModalTypes'
 
-const AddLinkToFolder = ({ title, text, variant }: ModalProps) => {
+interface AddLinkToFolderProps {
+  linkUrl: string
+  setLinkUrl: (linkUrl: string) => void
+  folderList: FolderList[]
+  linkId?: number
+}
+
+const AddLinkToFolder = ({ linkUrl, setLinkUrl, folderList, linkId = 0 }: AddLinkToFolderProps) => {
+  const { currentFolder } = useAppSelector((state) => state.folder)
   const [selectedFolder, setSelectedFolder] = useState({
     name: '',
     id: 0,
   })
-  const { data: folderList, currentFolder } = useAppSelector((state) => state.folder)
-  const { linkUrl, setLinkUrl } = useAppSelector((state) => state.modal.props) || {}
-  const { linkId } = useAppSelector((state) => state.modal.props) || {}
-  const dispatch = useAppDispatch()
+  const [handleSuccess, handleError] = useHandleFetch()
+  const queryClient = useQueryClient()
+  const postLinkMutation = useMutation({
+    mutationFn: (newLink: { url: string; folderId: number }) => postLink(newLink),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['links'] })
+      // if (currentFolder.id === 0) {
+      //   // 현재 보여지는 폴더가 전체 폴더일때 새로고침
+      //   getAllLinkList()
+      // } else if (selectedFolder.id === currentFolder.id) {
+      //   // 현재 보여지는 폴더에 링크 추가시 새로고침
+      //   getLinkList(selectedFolder.id)
+      // } else if (linkId) {
+      //   // 폴더 이동시 새로고침
+      //   getLinkList(currentFolder.id)
+      // }
+    },
+  })
 
   const handleSelectedFolder = (folderItem: FolderList) => {
     setSelectedFolder({
@@ -27,53 +46,20 @@ const AddLinkToFolder = ({ title, text, variant }: ModalProps) => {
     })
   }
 
-  const refreshLinkList = () => {
-    if (currentFolder.name === COMBINED_FOLDER_NAME) {
-      // 현재 보여지는 폴더가 전체 폴더일때 새로고침
-      dispatch(getAllLinkList())
-    } else if (selectedFolder.name === currentFolder.name) {
-      // 현재 보여지는 폴더에 링크 추가시 새로고침
-      dispatch(getLinkList(selectedFolder.id))
-    } else if (linkId) {
-      // 폴더 이동시 새로고침
-      dispatch(getLinkList(currentFolder.id))
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    try {
+      postLinkMutation.mutate({ url: linkUrl, folderId: selectedFolder.id })
+      handleSuccess('링크가 추가되었습니다.')
+      setLinkUrl('')
+    } catch (err) {
+      handleError(err)
     }
   }
-
-  const handleLinkAddition = async () => {
-    const res = await dispatch(postLink({ url: linkUrl, folderId: selectedFolder.id }))
-    dispatch(closeModal())
-    if (res.meta.requestStatus === 'rejected') {
-      return dispatch(openToast({ type: 'rejectedAddLink' }))
-    }
-    setLinkUrl('')
-    dispatch(openToast({ type: 'addLink' }))
-    return refreshLinkList()
-  }
-
-  const handleLinkMove = async () => {
-    await dispatch(postLink({ url: linkUrl, folderId: selectedFolder.id }))
-    await dispatch(deleteLink(linkId))
-    dispatch(closeModal())
-    dispatch(openToast({ type: 'moveLink' }))
-    refreshLinkList()
-  }
-
-  const onClickAddLink = () => {
-    if (linkId) {
-      handleLinkMove()
-    } else {
-      handleLinkAddition()
-    }
-  }
-
-  useEffect(() => {
-    dispatch(getFolder())
-  }, [])
 
   return (
-    <>
-      <h3>{title}</h3>
+    <form onSubmit={handleSubmit}>
+      <h3>폴더 이동</h3>
       <S.FolderList>
         {folderList?.map((folder: FolderList) => {
           if (folder.id === currentFolder?.id && linkId) return null
@@ -90,8 +76,8 @@ const AddLinkToFolder = ({ title, text, variant }: ModalProps) => {
           )
         })}
       </S.FolderList>
-      <Button variant={variant} text={text} width="100%" onClick={onClickAddLink} />
-    </>
+      <Button variant="default" text="추가하기" width="100%" type="submit" />
+    </form>
   )
 }
 

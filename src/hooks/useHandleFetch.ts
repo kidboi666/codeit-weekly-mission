@@ -2,21 +2,23 @@ import { useAppDispatch } from '@/src/hooks/useApp'
 import { closeModal } from '@/src/store/reducers/modal'
 import { openToast } from '@/src/store/reducers/toast'
 
+type handleFunctionArg = Error | string | unknown
+
 const useHandleFetch = () => {
   const dispatch = useAppDispatch()
 
-  const handleSuccess = (toastMessage: string) => {
+  const handleSuccess = (toastMessage: handleFunctionArg) => {
     dispatch(closeModal())
     dispatch(openToast(toastMessage))
   }
 
-  const handleError = (toastMessage: Error | string) => {
+  const handleError = (error: handleFunctionArg) => {
     dispatch(closeModal())
-    if (toastMessage instanceof Error) {
+    if (error instanceof Error) {
       // eslint-disable-next-line no-console
-      console.log(toastMessage)
+      console.log(error)
     } else {
-      dispatch(openToast(toastMessage))
+      dispatch(openToast(error))
     }
   }
 

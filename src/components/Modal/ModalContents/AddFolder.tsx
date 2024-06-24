@@ -12,7 +12,7 @@ const AddFolder = () => {
   const AddFolderMutation = useMutation({
     mutationFn: (newFolder: string) => postFolder(newFolder),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['folders'] })
+      queryClient.invalidateQueries()
     },
   })
 

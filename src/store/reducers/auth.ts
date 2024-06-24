@@ -53,9 +53,8 @@ const authSlice = createSlice({
       })
       .addCase(loginAccess.fulfilled, (state, action) => {
         state.isLoggedIn = true
-        const { accessToken, refreshToken } = action.payload.data
-        localStorage.setItem('accessToken', accessToken)
-        localStorage.setItem('refreshToken', refreshToken)
+        localStorage.setItem('accessToken', action.payload.data.accessToken)
+        localStorage.setItem('refreshToken', action.payload.data.refreshToken)
         state.status = API_MSG.FUL
       })
       .addCase(loginAccess.rejected, (state) => {

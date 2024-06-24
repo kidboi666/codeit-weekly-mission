@@ -3,18 +3,18 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import camelcaseKeys from 'camelcase-keys'
 
 export const getFolder = async () => {
-  const { data } = await axios.get(`folders`, {
-    headers: { 'include-access-token': true },
-  })
+  const { data } = await axios.get(`folders`)
   return camelcaseKeys(data, { deep: true })
 }
 
 export const postFolder = async (name: string) => {
-  return axios.post(`folders`, { headers: { 'include-access-token': true }, name })
+  return axios.post(`folders`, { name })
 }
 
 export const getSharedFolder = async (folderId: number) => {
-  const { data } = await axios.get(`folders/${folderId}`)
+  const { data } = await axios.get(`folders/${folderId}`, {
+    headers: { 'exclude-access-token': true },
+  })
   return camelcaseKeys(data, { deep: true })
 }
 
@@ -22,7 +22,6 @@ export const putFolder = createAsyncThunk<any, { folderName: string; folderId: n
   'folder/putFolder',
   async ({ folderName, folderId }) => {
     const { data } = await axios.put(`folders/${folderId}`, {
-      headers: { 'include-access-token': true },
       name: folderName,
     })
     return camelcaseKeys(data.data, { deep: true })
@@ -30,8 +29,5 @@ export const putFolder = createAsyncThunk<any, { folderName: string; folderId: n
 )
 
 export const deleteFolder = async (folderId: number) => {
-  const result = axios.delete(`folders/${folderId}`, {
-    headers: { 'include-access-token': true },
-  })
-  return result
+  return axios.delete(`folders/${folderId}`)
 }

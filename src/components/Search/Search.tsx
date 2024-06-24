@@ -8,14 +8,14 @@ import { CARD_SECTION_MSG } from '@/src/constants/strings'
 import * as S from './Search.styled'
 
 interface SearchProps {
+  linkList: Link[]
   setSearchResult: Dispatch<SetStateAction<Link[] | string>>
   searchKeyword: string
   setSearchKeyword: Dispatch<SetStateAction<string>>
 }
 
-const Search = ({ setSearchResult, searchKeyword, setSearchKeyword }: SearchProps) => {
+const Search = ({ linkList, setSearchResult, searchKeyword, setSearchKeyword }: SearchProps) => {
   const [searchBody, setSearchBody] = useState('')
-  const { data: linkList } = useAppSelector((state) => state.link)
 
   const onSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault()

@@ -25,11 +25,12 @@ const refreshAccessToken = async () => {
 axiosInstance.interceptors.request.use(
   async (config) => {
     const newConfig = { ...config }
-    if (newConfig.headers['include-access-token']) {
-      delete newConfig.headers['include-access-token']
-      const accessToken = localStorage.getItem('accessToken')
-      newConfig.headers.Authorization = `Bearer ${accessToken}`
+    if (newConfig.headers['exclude-access-token']) {
+      delete newConfig.headers['exclude-access-token']
+      return newConfig
     }
+    const accessToken = localStorage.getItem('accessToken')
+    newConfig.headers.Authorization = `Bearer ${accessToken}`
     return newConfig
   },
   (error) => {

@@ -45,6 +45,7 @@ const SharedPage = ({ sharedUserInfo, sharedFolder, linkList }: SharedPageProps)
         }
         Search={
           <Search
+            linkList={linkList}
             setSearchResult={setSearchResult}
             searchKeyword={searchKeyword}
             setSearchKeyword={setSearchKeyword}
