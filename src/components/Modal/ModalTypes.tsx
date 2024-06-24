@@ -8,12 +8,6 @@ import { ReactNode } from 'react'
 import DeletePaper from './ModalContents/DeletePaper'
 import PaperForm from './ModalContents/PaperForm'
 
-export interface ModalProps {
-  title?: string
-  text?: string
-  variant?: string
-}
-
 type ModalType =
   | 'changeName'
   | 'addFolder'
@@ -29,14 +23,9 @@ export const MODAL_COMPONENTS: Map<ModalType, ReactNode> = new Map<ModalType, Re
     'changeName',
     <ChangeName key="changeName" title="폴더 이름 변경" text="변경하기" variant="default" />,
   ],
-  ['addFolder', <AddFolder key="addFolder" title="폴더 추가" text="추가하기" variant="default" />],
   [
     'addLinkToFolder',
     <AddLinkToFolder key="addLink" title="폴더 이동" text="추가하기" variant="default" />,
-  ],
-  [
-    'deleteFolder',
-    <DeleteFolder key="deleteFolder" title="폴더 삭제" text="삭제하기" variant="deleteFolder" />,
   ],
   [
     'deleteLink',

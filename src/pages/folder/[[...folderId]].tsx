@@ -22,8 +22,6 @@ const FolderPage = () => {
   } = useQuery({
     queryKey: ['folders'],
     queryFn: getFolder,
-    staleTime: 60 * 1000,
-    gcTime: 60 * 1000 * 10,
   })
   const {
     data: linkList,

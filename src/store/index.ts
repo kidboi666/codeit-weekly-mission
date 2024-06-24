@@ -1,7 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { createWrapper } from 'next-redux-wrapper'
 import folderReducer from '@/src/store/reducers/folder'
-import linkReducer from '@/src/store/reducers/link'
 import authReducer from '@/src/store/reducers/auth'
 import modalReducer from '@/src/store/reducers/modal'
 import toastReducer from '@/src/store/reducers/toast'
@@ -9,7 +8,6 @@ import toastReducer from '@/src/store/reducers/toast'
 const store = configureStore({
   reducer: {
     folder: folderReducer,
-    link: linkReducer,
     auth: authReducer,
     modal: modalReducer,
     toast: toastReducer,

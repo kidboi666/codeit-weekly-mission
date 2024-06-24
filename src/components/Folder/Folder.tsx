@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 import { FolderList } from '@/src/types'
 import { setCurrentFolder } from '@/src/store/reducers/folder'
 import * as S from './Folder.styled'
+import AddFolder from '@/src/components/Modal/ModalContents/AddFolder'
 
 interface FolderProps {
   folderList: FolderList[]
@@ -51,7 +52,7 @@ const Folder = ({ folderList }: FolderProps) => {
               selected={currentFolder?.name}
             />
           ))}
-          <div onClick={() => dispatch(openModal({ type: 'addFolder' }))}>
+          <div onClick={() => dispatch(openModal(<AddFolder />))}>
             <Button variant="addFolder" text="폴더 추가 +" />
           </div>
           <Button

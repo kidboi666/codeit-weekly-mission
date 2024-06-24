@@ -46,6 +46,10 @@ const FolderLayout = ({
     }
   }, [])
 
+  if (linkError || folderError) {
+    return '에러'
+  }
+
   return (
     <>
       <S.FolderPageLayout>

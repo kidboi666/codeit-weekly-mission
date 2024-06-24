@@ -38,22 +38,24 @@ export const ModalContainer = styled.div`
   background-color: var(--white-color);
   z-index: 110;
 
-  > h3 {
-    position: relative;
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--gray1-color);
-    margin-bottom: 24px;
-  }
+  & form {
+    h3 {
+      position: relative;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--gray1-color);
+      margin-bottom: 24px;
+    }
 
-  > h4 {
-    margin-bottom: 24px;
-    font-size: 14px;
-    color: var(--gray2-color);
-  }
+    h4 {
+      margin-bottom: 24px;
+      font-size: 14px;
+      color: var(--gray2-color);
+    }
 
-  & input {
-    margin-bottom: 15px;
+    input {
+      margin-bottom: 15px;
+    }
   }
 `
 

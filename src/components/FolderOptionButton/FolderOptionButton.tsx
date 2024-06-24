@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { useAppDispatch, useAppSelector } from '@/src/hooks/useApp'
 import { openModal } from '@/src/store/reducers/modal'
 import { useRouter } from 'next/router'
+import DeleteFolder from '@/src/components/Modal/ModalContents/DeleteFolder'
 import * as S from './FolderOptionButton.styled'
 
 const FolderOptionButton = () => {
@@ -27,7 +28,7 @@ const FolderOptionButton = () => {
             <Image src={penIcon} alt="이름변경버튼" />
             이름 변경
           </S.OptionBox>
-          <S.OptionBox onClick={() => dispatch(openModal({ type: 'deleteFolder' }))}>
+          <S.OptionBox onClick={() => dispatch(openModal(<DeleteFolder />))}>
             <Image src={deleteIcon} alt="삭제버튼" />
             삭제
           </S.OptionBox>

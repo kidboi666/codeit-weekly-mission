@@ -1,16 +1,15 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit'
+import { ReactNode } from 'react'
 
 interface Props {
-  type: any
+  modalElement: ReactNode
   isOpen: boolean
-  props?: Record<string, any>
 }
 
 const initialState: Props = {
-  type: '',
+  modalElement: null,
   isOpen: false,
-  props: {},
 }
 
 const modalSlice = createSlice({
@@ -18,13 +17,11 @@ const modalSlice = createSlice({
   initialState,
   reducers: {
     openModal: (state, action) => {
-      state.type = action.payload.type
-      state.props = action.payload.props || {}
+      state.modalElement = action.payload
       state.isOpen = true
     },
     closeModal: (state) => {
-      state.type = null
-      state.props = {}
+      state.modalElement = null
       state.isOpen = false
     },
   },
