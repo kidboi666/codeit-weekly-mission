@@ -1,6 +1,6 @@
 import { paperInstance } from '@/src/services/axiosInstance'
-import { createAsyncThunk } from '@reduxjs/toolkit'
 import camelcaseKeys from 'camelcase-keys'
+import { FormBodyType } from '@/src/components/common/Modal/ModalContents/PaperForm'
 
 export const getPaper = async () => {
   const { data } = await paperInstance.get(`paper`)
@@ -8,20 +8,12 @@ export const getPaper = async () => {
   return camelcaseKeys(data.data, { deep: true })
 }
 
-export const deletePaper = createAsyncThunk<any, number>('paper/deletePaper', async (paperId) => {
-  await paperInstance.delete(`paper/${paperId}`)
-})
+export const deletePaper = async (paperId: number) => {
+  return paperInstance.delete(`paper/${paperId}`)
+}
 
-export const postPaper = createAsyncThunk<
-  any,
-  { name: string; title: string; content: string; background: string }
->('paper/postPaper', async ({ name, title, content, background }) => {
-  const { data } = await paperInstance.post(`paper`, {
-    name,
-    title,
-    content,
-    background,
-  })
+export const postPaper = async (formbody: FormBodyType) => {
+  const { data } = await paperInstance.post(`paper`, formbody)
 
   return camelcaseKeys(data.data, { deep: true })
-})
+}

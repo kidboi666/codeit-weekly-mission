@@ -1,5 +1,4 @@
 import axios from '@/src/services/axiosInstance'
-import { createAsyncThunk } from '@reduxjs/toolkit'
 import camelcaseKeys from 'camelcase-keys'
 
 export const getFolder = async () => {
@@ -18,15 +17,17 @@ export const getSharedFolder = async (folderId: number) => {
   return camelcaseKeys(data, { deep: true })
 }
 
-export const putFolder = createAsyncThunk<any, { folderName: string; folderId: number }>(
-  'folder/putFolder',
-  async ({ folderName, folderId }) => {
-    const { data } = await axios.put(`folders/${folderId}`, {
-      name: folderName,
-    })
-    return camelcaseKeys(data.data, { deep: true })
-  },
-)
+export const putFolder = async ({
+  folderName,
+  folderId,
+}: {
+  folderName: string
+  folderId: number
+}) => {
+  const { data } = await axios.put(`folders/${folderId}`, { name: folderName })
+
+  return camelcaseKeys(data, { deep: true })
+}
 
 export const deleteFolder = async (folderId: number) => {
   return axios.delete(`folders/${folderId}`)
