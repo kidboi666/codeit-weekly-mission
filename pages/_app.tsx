@@ -7,7 +7,7 @@ import { Modal, Toast } from '@/src/components'
 import Script from 'next/script'
 import { QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import queryCLient from '@/src/store/providers/queryClientProvider'
+import queryClient from '@/src/store/providers/queryClientProvider'
 
 const LinkBrary = ({ Component, ...rest }: AppProps) => {
   const { store, props } = wrapper.useWrappedStore(rest)
@@ -20,7 +20,7 @@ const LinkBrary = ({ Component, ...rest }: AppProps) => {
         crossOrigin="anonymous"
       />
       <Provider store={store}>
-        <QueryClientProvider client={queryCLient}>
+        <QueryClientProvider client={queryClient}>
           <Head>
             <title>Linkbrary</title>
           </Head>

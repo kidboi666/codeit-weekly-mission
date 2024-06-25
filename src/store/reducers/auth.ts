@@ -6,7 +6,7 @@ import {
   loginAccess,
   signUpAccess,
   userInfoAccess,
-} from '@/src/services/auth'
+} from '@/src/services/endPoint/auth'
 import { UserData } from '@/src/types'
 import { API_MSG } from '@/src/constants/strings'
 import { AxiosError } from 'axios'

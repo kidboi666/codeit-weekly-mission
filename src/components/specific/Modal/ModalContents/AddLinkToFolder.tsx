@@ -1,32 +1,25 @@
+import { Dispatch, FormEvent, SetStateAction, useState } from 'react'
 import { useAppSelector } from '@/src/hooks/useApp'
 import { Button } from '@/src/components'
 import { FolderList } from '@/src/types'
-import { FormEvent, useState } from 'react'
-import { postLink } from '@/src/services/link'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
 import useFetchHandler from '@/src/hooks/useFetchHandler'
+import usePostLink from '@/src/services/useFetch/link/usePostLink'
 import * as S from './AddLinkToFolder.styled'
 
 interface AddLinkToFolderProps {
   linkUrl: string
-  setLinkUrl?: (linkUrl: string) => void
-  folderList?: FolderList[]
+  setLinkUrl?: Dispatch<SetStateAction<string>>
+  folderList: FolderList[]
   linkId?: number
 }
 
 const AddLinkToFolder = ({ linkUrl, setLinkUrl, folderList, linkId = 0 }: AddLinkToFolderProps) => {
   const { currentFolder } = useAppSelector((state) => state.folder)
+  const { isPending, mutate } = usePostLink()
+  const [success, failure] = useFetchHandler()
   const [selectedFolder, setSelectedFolder] = useState({
     name: '',
     id: 0,
-  })
-  const [handleSuccess, handleError] = useFetchHandler()
-  const queryClient = useQueryClient()
-  const postLinkMutation = useMutation({
-    mutationFn: (newLink: { url: string; folderId: number }) => postLink(newLink),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['links'] })
-    },
   })
 
   const handleSelectedFolder = (folderItem: FolderList) => {
@@ -38,18 +31,23 @@ const AddLinkToFolder = ({ linkUrl, setLinkUrl, folderList, linkId = 0 }: AddLin
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    try {
-      postLinkMutation.mutate({ url: linkUrl, folderId: selectedFolder.id })
-      handleSuccess('링크가 추가되었습니다.')
-      if (setLinkUrl) setLinkUrl('')
-    } catch (err) {
-      handleError(err)
-    }
+    mutate(
+      { url: linkUrl, folderId: selectedFolder.id },
+      {
+        onSuccess: () => {
+          success('링크가 추가되었습니다.')
+        },
+        onError: (error) => {
+          failure(error)
+        },
+      },
+    )
+    if (setLinkUrl) setLinkUrl('')
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <h3>폴더 이동</h3>
+      <h3>폴더에 복사</h3>
       <S.FolderList>
         {folderList?.map((folder: FolderList) => {
           if (folder.id === currentFolder?.id && linkId) return null
@@ -66,7 +64,7 @@ const AddLinkToFolder = ({ linkUrl, setLinkUrl, folderList, linkId = 0 }: AddLin
           )
         })}
       </S.FolderList>
-      <Button variant="default" text="추가하기" width="100%" type="submit" />
+      <Button variant="default" text="추가하기" width="100%" type="submit" isPending={isPending} />
     </form>
   )
 }

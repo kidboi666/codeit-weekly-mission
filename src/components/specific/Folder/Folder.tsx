@@ -4,8 +4,8 @@ import { FolderOptionButton, Button } from '@/src/components'
 import { useAppDispatch, useAppSelector } from '@/src/hooks/useApp'
 import { openModal } from '@/src/store/reducers/modal'
 import { FolderList } from '@/src/types'
-import { setCurrentFolder } from '@/src/store/reducers/folder'
-import AddFolder from '@/src/components/common/Modal/ModalContents/AddFolder'
+import { initCurrentFolder, setCurrentFolder } from '@/src/store/reducers/folder'
+import AddFolder from '@/src/components/specific/Modal/ModalContents/AddFolder'
 import { useRouter } from 'next/router'
 import * as S from './Folder.styled'
 
@@ -19,7 +19,7 @@ const Folder = ({ folderList }: FolderProps) => {
   const router = useRouter()
 
   const handleClickAllFolder = () => {
-    dispatch(setCurrentFolder({ name: COMBINED_FOLDER_NAME, id: 0 }))
+    dispatch(initCurrentFolder())
     router.push(`/folder`, undefined, { shallow: true })
   }
 

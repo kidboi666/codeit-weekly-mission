@@ -1,5 +1,7 @@
 import React from 'react'
+import { Spinner } from '@/src/components'
 import * as S from './Button.styled'
+import { SpinnerSize } from '@/src/components/common/Spinner/Spinner'
 
 interface ButtonProps {
   variant?: string
@@ -10,6 +12,7 @@ interface ButtonProps {
   disabled?: boolean
   type?: 'submit' | 'button'
   onClick?: (e: React.MouseEvent) => void
+  isPending?: boolean
 }
 
 const Button = ({
@@ -21,6 +24,7 @@ const Button = ({
   disabled,
   type = 'button',
   onClick,
+  isPending,
 }: ButtonProps) => {
   return (
     <S.Button
@@ -28,11 +32,11 @@ const Button = ({
       $width={width}
       $isActive={selected === text}
       type={type}
-      disabled={disabled}
+      disabled={disabled || isPending}
       onClick={onClick}
       className={className}
     >
-      <p>{text}</p>
+      {isPending ? <Spinner size={SpinnerSize.SMALL} /> : text}
     </S.Button>
   )
 }

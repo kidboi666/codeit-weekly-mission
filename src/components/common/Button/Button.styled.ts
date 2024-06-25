@@ -48,7 +48,6 @@ export const Button = styled.button<{
         }
       }
     `}
-
   ${({ $variant }) =>
     $variant === 'addLink' &&
     `
@@ -67,8 +66,7 @@ export const Button = styled.button<{
         transform: translateY(-18px) scale(1.1);
       }
   `}
-
-  ${({ $variant }) =>
+    ${({ $variant }) =>
     ($variant === 'deleteFolder' || $variant === 'deleteLink') &&
     `
       padding: 16px 20px;
@@ -76,8 +74,7 @@ export const Button = styled.button<{
       font-weight: 600;
       color: #f5f5f5;
     `}
-
-  ${({ $variant }) =>
+    ${({ $variant }) =>
     $variant === 'default' &&
     `
       padding: 16px 20px;
@@ -89,8 +86,7 @@ export const Button = styled.button<{
         transform: scale(1.1);
       }
     `}
-
-  ${({ $variant }) =>
+    ${({ $variant }) =>
     $variant === 'underBar' &&
     `
       padding: 0;
@@ -99,8 +95,7 @@ export const Button = styled.button<{
       font-size: 16px;
       text-decoration: underline;
     `}
-    
-  ${({ $variant, $isActive }) =>
+    ${({ $variant, $isActive }) =>
     $variant === 'folderButton' &&
     `
       line-height: 0;
@@ -117,7 +112,6 @@ export const Button = styled.button<{
         color: var(--white-color);
       }
     `}
-
     ${({ $variant, $isActive }) =>
     $variant === 'paperButton' &&
     `
@@ -131,5 +125,5 @@ export const Button = styled.button<{
         background-color: #f8ca59;
         color: var(--white-color);
       }
-    `}
+    `};
 `

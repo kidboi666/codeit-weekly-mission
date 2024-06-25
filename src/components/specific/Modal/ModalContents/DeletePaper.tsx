@@ -1,8 +1,7 @@
 import { Button } from '@/src/components'
-import { deletePaper } from '@/src/services/paper'
-import { useMutation } from '@tanstack/react-query'
 import { FormEvent } from 'react'
 import useFetchHandler from '@/src/hooks/useFetchHandler'
+import useDeletePaper from '@/src/services/useFetch/paper/useDeletePaper'
 
 interface DeletePaperProps {
   paperTitle: string
@@ -10,25 +9,27 @@ interface DeletePaperProps {
 }
 const DeletePaper = ({ paperTitle, paperId }: DeletePaperProps) => {
   const [success, failure] = useFetchHandler()
-  const deletePaperMutation = useMutation({
-    mutationFn: (paperId: number) => deletePaper(paperId),
-  })
+  const { mutate, isPending } = useDeletePaper()
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    try {
-      deletePaperMutation.mutate(paperId)
-      success('페이퍼가 삭제되었습니다.')
-    } catch (err) {
-      failure(err)
-    }
+    mutate(paperId, {
+      onSuccess: () => success('페이퍼가 삭제되었습니다.'),
+      onError: (error) => failure(error),
+    })
   }
 
   return (
     <form onSubmit={handleSubmit}>
       <h3>페이퍼 삭제하기</h3>
       <h4>{paperTitle}</h4>
-      <Button variant="deleteLink" text="삭제하기" width="100%" type="submit" />
+      <Button
+        variant="deleteLink"
+        text="삭제하기"
+        width="100%"
+        type="submit"
+        isPending={isPending}
+      />
     </form>
   )
 }

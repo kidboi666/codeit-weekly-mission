@@ -1,11 +1,12 @@
-import LinkIcon from '@/public/icons/link.svg'
-import React, { useState } from 'react'
+import { FormEvent } from 'react'
 import Image from 'next/image'
+import LinkIcon from '@/public/icons/link.svg'
 import { Button, Input } from '@/src/components'
+import AddLinkToFolder from '@/src/components/specific/Modal/ModalContents/AddLinkToFolder'
+import useInput from '@/src/hooks/useInput'
 import { useAppDispatch } from '@/src/hooks/useApp'
 import { openModal } from '@/src/store/reducers/modal'
 import { openToast } from '@/src/store/reducers/toast'
-import AddLinkToFolder from '@/src/components/common/Modal/ModalContents/AddLinkToFolder'
 import { FolderList } from '@/src/types'
 import * as S from './AddLink.styled'
 
@@ -15,10 +16,10 @@ interface AddLinkProps {
 }
 
 const AddLink = ({ className, folderList }: AddLinkProps) => {
-  const [linkUrl, setLinkUrl] = useState('')
+  const [linkUrl, onChangeLinkUrl, setLinkUrl] = useInput<string>('')
   const dispatch = useAppDispatch()
 
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     if (folderList.length === 0) {
@@ -30,24 +31,20 @@ const AddLink = ({ className, folderList }: AddLinkProps) => {
         ),
       )
     } else {
-      dispatch(openToast({ type: 'nothingValue' }))
+      dispatch(openToast('주소를 입력하세요'))
     }
-  }
-
-  const onChangeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setLinkUrl(e.target.value)
   }
 
   return (
     <S.AddLinkLayout className={className}>
-      <S.FormBox onSubmit={onSubmit}>
+      <S.FormBox onSubmit={handleSubmit}>
         <S.InnerBox>
           <S.IconImgBox>
             <Image src={LinkIcon} alt="" />
           </S.IconImgBox>
           <Input
             value={linkUrl}
-            onChange={onChangeInputValue}
+            onChange={onChangeLinkUrl}
             placeholder="링크를 추가해 보세요"
             variant="addLink"
           />

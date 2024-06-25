@@ -5,22 +5,15 @@ import * as S from './ColorOption.styled'
 
 interface ColorOptionProps {
   background: string
-  formBody: {
-    title: string
-    content: string
-    background: string
-  }
+  formBody: string
   setFormBody: Dispatch<SetStateAction<any>>
 }
 
 const ColorOption = ({ background, formBody, setFormBody }: ColorOptionProps) => {
-  const isActive = formBody.background === background
+  const isActive = formBody === background
 
   const onChangeActive = () => {
-    setFormBody({
-      ...formBody,
-      background,
-    })
+    setFormBody(background)
   }
 
   const changeColor = (color: string) => {

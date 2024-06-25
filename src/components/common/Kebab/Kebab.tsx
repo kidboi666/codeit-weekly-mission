@@ -6,14 +6,16 @@ import { COMBINED_FOLDER_NAME } from '@/src/constants/strings'
 import { DropDown } from '@/src/components'
 import { useAppSelector } from '@/src/hooks/useApp'
 import * as S from './Kebab.styled'
+import { FolderList } from '@/src/types'
 
 interface KebabProps {
   linkId: number
   linkTitle: string
   linkUrl: string
+  folderList: FolderList[]
 }
 
-const Kebab = ({ linkId, linkTitle, linkUrl }: KebabProps) => {
+const Kebab = ({ linkId, linkTitle, linkUrl, folderList }: KebabProps) => {
   const router = useRouter()
   const [isOpen, setOpen] = useState(false)
   const { currentFolder } = useAppSelector((state) => state.folder)
@@ -35,7 +37,7 @@ const Kebab = ({ linkId, linkTitle, linkUrl }: KebabProps) => {
         isOpen={isOpen}
         setOpen={setOpen}
         onClick={onClickKebab}
-        props={{ linkId, linkTitle, linkUrl }}
+        props={{ linkId, linkTitle, linkUrl, folderList }}
       />
     </S.KebabLayout>
   )

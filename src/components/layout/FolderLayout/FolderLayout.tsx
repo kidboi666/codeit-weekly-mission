@@ -1,6 +1,7 @@
 import { ReactNode, useEffect, useRef, useState } from 'react'
 import { Spinner } from '@/src/components'
 import * as S from './FolderLayout.styled'
+import { SpinnerSize } from '@/src/components/common/Spinner/Spinner'
 
 interface FolderLayoutProps {
   AddLink: ReactNode

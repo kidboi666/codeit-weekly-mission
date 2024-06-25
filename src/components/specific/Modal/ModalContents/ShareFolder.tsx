@@ -4,7 +4,7 @@ import copyToClipboard from '@/src/utils/copyToClipboard'
 import facebookIcon from '@/public/icons/facebook_icon.svg'
 import linkIcon from '@/public/icons/link.svg'
 import { KakaoButton } from '@/src/components'
-import * as S from '@/src/components/common/Modal/ModalContents/ShareFolder.styled'
+import * as S from '@/src/components/specific/Modal/ModalContents/ShareFolder.styled'
 import { openToast } from '@/src/store/reducers/toast'
 
 const ShareFolder = () => {

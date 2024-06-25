@@ -1,24 +1,21 @@
 import { useAppDispatch } from '@/src/hooks/useApp'
 import { closeModal } from '@/src/store/reducers/modal'
 import { openToast } from '@/src/store/reducers/toast'
+import axios from 'axios'
 
-type handleFunctionArg = Error | string | unknown
-
+type handleFunctionArg = string | Error
 const useFetchHandler = () => {
   const dispatch = useAppDispatch()
 
   const handleSuccess = (toastMessage: handleFunctionArg) => {
-    dispatch(closeModal())
     dispatch(openToast(toastMessage))
+    dispatch(closeModal())
   }
 
   const handleError = (error: handleFunctionArg) => {
-    dispatch(closeModal())
-    if (error instanceof Error) {
-      // eslint-disable-next-line no-console
-      console.log(error)
-    } else {
-      dispatch(openToast(error))
+    if (axios.isAxiosError(error)) {
+      dispatch(openToast(error?.response?.data?.message))
+      dispatch(closeModal())
     }
   }
 

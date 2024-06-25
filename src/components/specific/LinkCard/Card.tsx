@@ -1,7 +1,7 @@
 import blankLogo from '@/public/icons/blank_logo.svg'
 import calculateTime from '@/src/utils/calculateTime'
 import formatDate from '@/src/utils/formatDate'
-import { Link } from '@/src/types'
+import { FolderList, Link } from '@/src/types'
 import Image from 'next/image'
 import { Star, Kebab } from '@/src/components'
 import { CARD_SECTION_MSG } from '@/src/constants/strings'
@@ -9,9 +9,10 @@ import * as S from './Card.styled'
 
 interface CardProps {
   linkList: Link[] | string
+  folderList?: FolderList[]
 }
 
-const Card = ({ linkList }: CardProps) => {
+const Card = ({ linkList, folderList = [] }: CardProps) => {
   if (linkList === CARD_SECTION_MSG.searchDataNotFound) {
     return <div>{CARD_SECTION_MSG.searchDataNotFound}</div>
   }
@@ -35,7 +36,12 @@ const Card = ({ linkList }: CardProps) => {
             )}
           </S.CardImgContainer>
           <S.CardDescriptionContainer>
-            <Kebab linkId={link.id} linkTitle={link.title} linkUrl={link.url} />
+            <Kebab
+              linkId={link.id}
+              linkTitle={link.title}
+              linkUrl={link.url}
+              folderList={folderList}
+            />
             <S.CreatedDate>{calculateTime(link.createdAt)}</S.CreatedDate>
             <S.Title>{link.title}</S.Title>
             <S.TimeStamp>{formatDate(link.createdAt)}</S.TimeStamp>

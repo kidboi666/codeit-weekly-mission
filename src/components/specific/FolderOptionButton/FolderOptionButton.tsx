@@ -1,16 +1,16 @@
+import { useRouter } from 'next/router'
+import React from 'react'
+import Image from 'next/image'
 import shareIcon from '@/public/icons/share.svg'
 import penIcon from '@/public/icons/pen.svg'
 import deleteIcon from '@/public/icons/delete.svg'
-import React from 'react'
-import Image from 'next/image'
 import { useAppDispatch, useAppSelector } from '@/src/hooks/useApp'
 import { openModal } from '@/src/store/reducers/modal'
-import { useRouter } from 'next/router'
-import DeleteFolder from '@/src/components/common/Modal/ModalContents/DeleteFolder'
+import DeleteFolder from '@/src/components/specific/Modal/ModalContents/DeleteFolder'
+import PaperForm from '@/src/components/specific/Modal/ModalContents/PaperForm'
+import ShareFolder from '@/src/components/specific/Modal/ModalContents/ShareFolder'
+import ChangeName from '@/src/components/specific/Modal/ModalContents/ChangeName'
 import * as S from './FolderOptionButton.styled'
-import PaperForm from '@/src/components/common/Modal/ModalContents/PaperForm'
-import ShareFolder from '@/src/components/common/Modal/ModalContents/ShareFolder'
-import ChangeName from '@/src/components/common/Modal/ModalContents/ChangeName'
 
 const FolderOptionButton = () => {
   const { currentFolder } = useAppSelector((state) => state.folder)

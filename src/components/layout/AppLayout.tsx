@@ -1,6 +1,6 @@
 import { ReactNode, useEffect } from 'react'
 import { Footer, Nav } from '@/src/components'
-import { userInfoAccess } from '@/src/services/auth'
+import { userInfoAccess } from '@/src/services/endPoint/auth'
 import { useAppDispatch, useAppSelector } from '@/src/hooks/useApp'
 
 interface AppLayoutProps {
