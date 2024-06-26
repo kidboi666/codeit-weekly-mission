@@ -1,7 +1,7 @@
 import React from 'react'
 import { Spinner } from '@/src/components'
-import * as S from './Button.styled'
 import { SpinnerSize } from '@/src/components/common/Spinner/Spinner'
+import * as S from './Button.styled'
 
 interface ButtonProps {
   variant?: string

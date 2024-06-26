@@ -37,7 +37,7 @@ const Toast = () => {
   if (!text) return null
 
   return (
-    <S.ToastLayout $isAnimation={isVisible}>
+    <S.ToastLayout $isVisible={isVisible}>
       <S.CheckContainer $backgroundColor={warn}>❕</S.CheckContainer>
       <S.CheckTextBox>{text}</S.CheckTextBox>
       <S.CloseIconButtonBox onClick={closeButtonClickHandler}>✕</S.CloseIconButtonBox>

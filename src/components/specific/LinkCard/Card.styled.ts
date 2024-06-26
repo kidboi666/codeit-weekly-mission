@@ -1,15 +1,7 @@
 import styled from 'styled-components'
+import { slideDown } from '@/src/styles/animation'
 
 export const CardImg = styled.img`
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: all 0.5s;
-`
-
-export const ImgContainer = styled.div`
-  position: relative;
   display: block;
   width: 100%;
   height: 100%;
@@ -31,6 +23,7 @@ export const CardLayout = styled.li`
   box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.08);
   overflow: hidden;
   transition: transform 0.3s;
+  animation: ${slideDown} 0.3s;
 
   &:hover ${CardImg} {
     transform: scale(1.3);

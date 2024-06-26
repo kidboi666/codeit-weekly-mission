@@ -15,9 +15,11 @@ export const Input = styled.input<{
   border-radius: 10px;
   outline: none;
   background-color: var(--white-color);
+  transition: box-shadow 0.2s;
 
   &:focus {
-    border: 1px solid var(--primary-color);
+    box-shadow: 3px 3px 1px #d2d1ff;
+    border: 1px solid ${({ $error }) => ($error ? 'var(--red-color)' : 'var(--primary-color)')};
   }
 
   ${({ $variant }) =>

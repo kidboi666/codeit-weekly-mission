@@ -1,14 +1,22 @@
-import { useAppDispatch, useAppSelector } from '@/src/hooks/useApp'
+import { useAppDispatch } from '@/src/hooks/useApp'
 import { logout } from '@/src/store/reducers/auth'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 import * as S from './AccountInfo.styled'
 
-const AccountInfo = () => {
-  const { imageSource, name, email } = useAppSelector((state) => state.auth.userInfo)
-  const dispatch = useAppDispatch()
+interface AccountInfoProps {
+  imageSource: string
+  name: string
+  email: string
+}
 
-  const onClick = () => {
+const AccountInfo = ({ imageSource, name, email }: AccountInfoProps) => {
+  const dispatch = useAppDispatch()
+  const router = useRouter()
+
+  const handleClickLogout = () => {
     dispatch(logout())
+    router.reload()
   }
 
   return (
@@ -22,7 +30,7 @@ const AccountInfo = () => {
       </S.InfoSection>
       <S.MenuList>
         <li>
-          <div onClick={onClick}>
+          <div onClick={handleClickLogout}>
             <span>⎋</span>
             로그아웃
           </div>

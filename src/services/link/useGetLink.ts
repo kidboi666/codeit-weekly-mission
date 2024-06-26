@@ -15,11 +15,7 @@ const useGetLink = (folderId: number) => {
     return camelcaseKeys(data, { deep: true })
   }
 
-  const {
-    data: linkList,
-    isPending: linkPending,
-    error: linkError,
-  } = useQuery({
+  return useQuery({
     queryKey: ['links', folderId],
     queryFn: () => {
       if (!folderId) {
@@ -27,9 +23,10 @@ const useGetLink = (folderId: number) => {
       }
       return getLinkList(Number(folderId))
     },
+    staleTime: 60 * 1000 * 30,
+    gcTime: 60 * 1000 * 5,
+    refetchOnWindowFocus: false,
   })
-
-  return [linkList, linkPending, linkError]
 }
 
 export default useGetLink

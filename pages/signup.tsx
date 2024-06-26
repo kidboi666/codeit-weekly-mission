@@ -5,14 +5,17 @@ import googleIcon from '@/public/icons/google_icon.svg'
 import facebookIcon from '@/public/icons/facebook_icon.svg'
 import * as S from '@/src/styles/signup.styled'
 import Link from 'next/link'
-import { Input, Button } from '@/src/components'
+import { Button } from '@/src/components'
 import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '@/src/hooks/useApp'
-import { checkEmailAccess, signUpAccess } from '@/src/services/endPoint/auth'
 import { useRouter } from 'next/router'
 import { openToast } from '@/src/store/reducers/toast'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { ALPHANUMERIC_REGX, EMAIL_REGX, INPUT_MSG } from '@/src/constants/strings'
+import useCheckEmail from '@/src/services/auth/useCheckEmail'
+import useFetchHandler from '@/src/hooks/useFetchHandler'
+import useSignUp from '@/src/services/auth/useSignUp'
+import AuthInput from '@/src/components/common/AuthInput/AuthInput'
 
 interface Inputs {
   email: string
@@ -22,9 +25,12 @@ interface Inputs {
 
 const SignUpPage = () => {
   const { isLoggedIn } = useAppSelector((state) => state.auth)
+  const { mutate: checkEmail, isPending: checkEmailPending } = useCheckEmail()
+  const { mutate: signup, isPending: signupPending } = useSignUp()
+  const [success, failure] = useFetchHandler()
   const dispatch = useAppDispatch()
   const router = useRouter()
-  const { handleSubmit, control } = useForm<Inputs>({
+  const { handleSubmit: submit, control } = useForm<Inputs>({
     defaultValues: {
       email: '',
       password: '',
@@ -32,19 +38,28 @@ const SignUpPage = () => {
     },
   })
 
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+  const handleSubmit: SubmitHandler<Inputs> = async (data) => {
     if (data.password !== data.passwordCheck) {
-      return dispatch(openToast({ type: 'diffrentPassword' }))
+      dispatch(openToast('비밀번호가 다릅니다.'))
+    } else if (data.email && data.password) {
+      checkEmail(data.email, {
+        onSuccess: (result) => {
+          const isUsable = result?.data?.isUsableEmail
+          if (isUsable) {
+            signup(
+              { email: data.email, password: data.password },
+              {
+                onSuccess: () => success('환영합니다!'),
+                onError: (error) => failure(error),
+              },
+            )
+          }
+        },
+        onError: () => {
+          failure('이미 존재하는 이메일입니다.')
+        },
+      })
     }
-    if (data.email && data.password) {
-      const res = await dispatch(checkEmailAccess(data.email))
-
-      if (res.meta.requestStatus === 'fulfilled') {
-        return dispatch(signUpAccess(data))
-      }
-      return dispatch(openToast({ type: 'emailAlreadyExists' }))
-    }
-    return dispatch(openToast({ type: 'wrongAccount' }))
   }
 
   useEffect(() => {
@@ -57,7 +72,7 @@ const SignUpPage = () => {
     <S.SignUpLayout>
       <S.SignUpContainer>
         <S.HeaderContainer>
-          <Link href="/public">
+          <Link href="/">
             <S.ImgBox>
               <Image fill src={logo} alt="Linkbrary" />
             </S.ImgBox>
@@ -70,7 +85,7 @@ const SignUpPage = () => {
           </p>
         </S.HeaderContainer>
         <S.SignContainer>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={submit(handleSubmit)}>
             <S.EmailContainer>
               <label htmlFor="email">이메일</label>
               <Controller
@@ -85,7 +100,12 @@ const SignUpPage = () => {
                   },
                 }}
                 render={({ field, fieldState: { error } }) => (
-                  <Input {...field} type="email" placeholder="codeit@codeit.kr" error={error} />
+                  <AuthInput
+                    field={field}
+                    type="email"
+                    placeholder="codeit@codeit.kr"
+                    error={error}
+                  />
                 )}
               />
             </S.EmailContainer>
@@ -104,7 +124,7 @@ const SignUpPage = () => {
                   deps: ['passwordCheck'],
                 }}
                 render={({ field, fieldState: { error } }) => (
-                  <Input {...field} type="password" placeholder="******" error={error} />
+                  <AuthInput field={field} type="password" placeholder="******" error={error} />
                 )}
               />
             </S.PasswordContainer>
@@ -122,11 +142,16 @@ const SignUpPage = () => {
                   },
                 }}
                 render={({ field, fieldState: { error } }) => (
-                  <Input {...field} type="password" placeholder="******" error={error} />
+                  <AuthInput field={field} type="password" placeholder="******" error={error} />
                 )}
               />
             </S.PasswordRepeatContainer>
-            <Button variant="default" type="submit" text="회원가입" />
+            <Button
+              variant="default"
+              type="submit"
+              text="회원가입"
+              isPending={checkEmailPending || signupPending}
+            />
           </form>
         </S.SignContainer>
         <S.SocialContainer>

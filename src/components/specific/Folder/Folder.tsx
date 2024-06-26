@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '@/src/hooks/useApp'
 import { openModal } from '@/src/store/reducers/modal'
 import { FolderList } from '@/src/types'
 import { initCurrentFolder, setCurrentFolder } from '@/src/store/reducers/folder'
-import AddFolder from '@/src/components/specific/Modal/ModalContents/AddFolder'
+import AddFolder from '@/src/components/common/Modal/ModalContents/AddFolder'
 import { useRouter } from 'next/router'
 import * as S from './Folder.styled'
 
@@ -30,7 +30,7 @@ const Folder = ({ folderList }: FolderProps) => {
 
   const handleClickPaper = () => {
     dispatch(setCurrentFolder({ name: '페이퍼📝', id: 1 }))
-    router.push(`/paper`, undefined, { shallow: true })
+    router.push(`/folder/paper`, undefined, { shallow: true })
   }
 
   return (

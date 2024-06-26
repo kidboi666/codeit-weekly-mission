@@ -18,38 +18,30 @@ export const SearchSection = styled.div`
   }
 `
 
-export const SearchResultSection = styled.div`
-  width: 100%;
-  margin-bottom: 40px;
-  font-size: 32px;
-  text-align: left;
-  padding: 0 32.5px;
-
-  > span:last-child {
-    color: var(--gray2-color);
-  }
-`
-
 export const LinkSection = styled.ul`
-  display: grid;
-  min-width: 325px;
-  grid-template-columns: repeat(3, 340px);
-  gap: 25px 20px;
-  margin-bottom: 100px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
 
-  @media (max-width: 1124px) {
-    grid-template-columns: repeat(2, 340px);
-    gap: 25px 24px;
-  }
+  > div {
+    display: grid;
+    min-width: 325px;
+    grid-template-columns: repeat(3, 340px);
+    gap: 25px 20px;
+    margin-bottom: 100px;
 
-  @media (max-width: 767px) {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    margin-bottom: 60px;
+    @media (max-width: 1124px) {
+      grid-template-columns: repeat(2, 340px);
+      gap: 25px 24px;
+    }
 
-    > div {
+    @media (max-width: 767px) {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 60px;
       padding: 0 32.5px;
     }
   }

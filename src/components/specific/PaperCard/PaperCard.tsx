@@ -3,7 +3,7 @@ import { Paper } from '@/src/types'
 import { openModal } from '@/src/store/reducers/modal'
 import calculateTime from '@/src/utils/calculateTime'
 import { useAppDispatch } from '@/src/hooks/useApp'
-import DeletePaper from '@/src/components/specific/Modal/ModalContents/DeletePaper'
+import DeletePaper from '@/src/components/common/Modal/ModalContents/DeletePaper'
 import * as S from './PaperCard.styled'
 
 interface PaperCardProps {

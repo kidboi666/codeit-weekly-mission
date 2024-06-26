@@ -1,4 +1,11 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+
+const sectionStyle = css`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+`
 
 export const FolderPageLayout = styled.main`
   display: flex;
@@ -67,10 +74,7 @@ export const SearchResultSection = styled.div`
 `
 
 export const FolderSection = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 24px;
+  ${sectionStyle}
 
   @media (max-width: 767px) {
     display: block;
@@ -82,11 +86,9 @@ export const FolderSection = styled.div`
     }
   }
 `
+
 export const LinkSection = styled.ul`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 24px;
+  ${sectionStyle}
 
   > div {
     display: grid;
@@ -107,6 +109,32 @@ export const LinkSection = styled.ul`
       gap: 20px;
       margin-bottom: 60px;
       padding: 0 32.5px;
+    }
+  }
+`
+
+export const PaperSection = styled.ul`
+  ${sectionStyle}
+
+  > div {
+    width: 1060px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 20px 20px;
+    flex-wrap: wrap;
+    margin-bottom: 100px;
+
+    @media (max-width: 1124px) {
+      width: 700px;
+    }
+
+    @media (max-width: 767px) {
+      width: 100%;
+      justify-content: flex-start;
+      padding: 0 32.5px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 `

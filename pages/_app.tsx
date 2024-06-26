@@ -5,9 +5,10 @@ import wrapper from '@/src/store'
 import { Provider } from 'react-redux'
 import { Modal, Toast } from '@/src/components'
 import Script from 'next/script'
-import { QueryClientProvider } from '@tanstack/react-query'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import queryClient from '@/src/store/providers/queryClientProvider'
+
+export const queryClient = new QueryClient()
 
 const LinkBrary = ({ Component, ...rest }: AppProps) => {
   const { store, props } = wrapper.useWrappedStore(rest)

@@ -8,16 +8,13 @@ const useGetFolder = () => {
     return camelcaseKeys(data, { deep: true })
   }
 
-  const {
-    data: folderList,
-    isPending: folderPending,
-    error: folderError,
-  } = useQuery({
+  return useQuery({
     queryKey: ['folders'],
     queryFn: getFolder,
+    staleTime: 60 * 1000 * 30,
+    gcTime: 60 * 1000 * 5,
+    refetchOnWindowFocus: false,
   })
-
-  return [folderList, folderPending, folderError]
 }
 
 export default useGetFolder

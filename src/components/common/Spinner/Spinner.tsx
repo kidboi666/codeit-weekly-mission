@@ -18,7 +18,7 @@ const Spinner = ({ size = SpinnerSize.MEDIUM }: { size?: SpinnerSize }) => {
       <S.Spinner>
         <Image
           src={spinner}
-          alt="로딩 중...."
+          alt="로딩 중..."
           width={SPINNER_DIMENSIONS[size]}
           height={SPINNER_DIMENSIONS[size]}
         />

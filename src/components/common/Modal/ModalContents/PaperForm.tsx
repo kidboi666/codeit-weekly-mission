@@ -3,17 +3,17 @@ import { Button, Input } from '@/src/components'
 import useFetchHandler from '@/src/hooks/useFetchHandler'
 import ColorOption from '@/src/components/common/ColorOption/ColorOption'
 import useInput from '@/src/hooks/useInput'
-import usePostPaper from '@/src/services/useFetch/paper/usePostPaper'
+import usePostPaper from '@/src/services/paper/usePostPaper'
 import * as S from './PaperForm.styled'
 
 const PaperForm = () => {
-  const { mutate, isPending } = usePostPaper()
-  const [success, failure] = useFetchHandler()
+  const colorVariation = ['blue', 'green', 'yellow', 'silver']
   const [name, onChangeName] = useInput('')
   const [title, onChangeTitle] = useInput('')
   const [content, onChangeContent] = useInput('')
   const [background, setBackground] = useState('blue')
-  const colorVariation = ['blue', 'green', 'yellow', 'silver']
+  const { mutate, isPending } = usePostPaper()
+  const [success, failure] = useFetchHandler()
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()

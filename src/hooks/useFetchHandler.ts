@@ -4,6 +4,7 @@ import { openToast } from '@/src/store/reducers/toast'
 import axios from 'axios'
 
 type handleFunctionArg = string | Error
+
 const useFetchHandler = () => {
   const dispatch = useAppDispatch()
 
@@ -16,6 +17,8 @@ const useFetchHandler = () => {
     if (axios.isAxiosError(error)) {
       dispatch(openToast(error?.response?.data?.message))
       dispatch(closeModal())
+    } else {
+      dispatch(openToast(error))
     }
   }
 

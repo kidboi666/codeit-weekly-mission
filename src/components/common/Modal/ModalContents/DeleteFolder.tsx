@@ -3,13 +3,13 @@ import { useAppSelector } from '@/src/hooks/useApp'
 import { FormEvent } from 'react'
 import useFetchHandler from '@/src/hooks/useFetchHandler'
 import { useRouter } from 'next/router'
-import useDeleteFolder from '@/src/services/useFetch/folder/useDeleteFolder'
+import useDeleteFolder from '@/src/services/folder/useDeleteFolder'
 
 const DeleteFolder = () => {
+  const router = useRouter()
   const { currentFolder } = useAppSelector((state) => state.folder)
   const [success, failure] = useFetchHandler()
   const { mutate, isPending } = useDeleteFolder()
-  const router = useRouter()
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()

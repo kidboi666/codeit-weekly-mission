@@ -1,5 +1,6 @@
 import styled, { createGlobalStyle } from 'styled-components'
 import CloseButton from '@/src/components/common/CloseButton/CloseButton'
+import { fadeIn, slideDown } from '@/src/styles/animation'
 
 export const ScrollLock = createGlobalStyle<{ $hasScrollbar: boolean }>`
   body {
@@ -23,6 +24,7 @@ export const ModalLayout = styled.div`
   align-items: center;
   background-color: rgba(0, 0, 0, 0.2);
   z-index: 100;
+  animation: ${fadeIn} 0.3s;
 `
 
 export const ModalContainer = styled.div`
@@ -37,6 +39,7 @@ export const ModalContainer = styled.div`
   border: 1px solid var(--gray3-color);
   background-color: var(--white-color);
   z-index: 110;
+  animation: ${slideDown} 0.3s;
 
   & form {
     width: 100%;

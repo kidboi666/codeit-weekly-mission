@@ -1,29 +1,28 @@
+import { Button } from '@/src/components'
 import { FormEvent } from 'react'
 import useFetchHandler from '@/src/hooks/useFetchHandler'
-import { Button } from '@/src/components'
-import useDeleteLink from '@/src/services/useFetch/link/useDeleteLink'
+import useDeletePaper from '@/src/services/paper/useDeletePaper'
 
-interface DeleteLinkProps {
-  linkId: number
-  linkTitle: string
+interface DeletePaperProps {
+  paperTitle: string
+  paperId: number
 }
-
-const DeleteLink = ({ linkId, linkTitle }: DeleteLinkProps) => {
+const DeletePaper = ({ paperTitle, paperId }: DeletePaperProps) => {
   const [success, failure] = useFetchHandler()
-  const { mutate, isPending } = useDeleteLink()
+  const { mutate, isPending } = useDeletePaper()
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    mutate(linkId, {
-      onSuccess: () => success('링크를 삭제하였습니다.'),
+    mutate(paperId, {
+      onSuccess: () => success('페이퍼가 삭제되었습니다.'),
       onError: (error) => failure(error),
     })
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <h3>폴더 공유</h3>
-      <h4>{linkTitle}</h4>
+      <h3>페이퍼 삭제하기</h3>
+      <h4>{paperTitle}</h4>
       <Button
         variant="deleteLink"
         text="삭제하기"
@@ -35,4 +34,4 @@ const DeleteLink = ({ linkId, linkTitle }: DeleteLinkProps) => {
   )
 }
 
-export default DeleteLink
+export default DeletePaper

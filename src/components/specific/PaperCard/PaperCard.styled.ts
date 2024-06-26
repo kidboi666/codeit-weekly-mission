@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import CloseButton from '@/src/components/common/CloseButton/CloseButton'
+import { slideDown } from '@/src/styles/animation'
 
 export const CardLayout = styled.li<{
   $background: string
@@ -13,6 +14,7 @@ export const CardLayout = styled.li<{
   padding: 15px 20px;
   background-color: ${({ $background }) => $background};
   transition: all 0.3s;
+  animation: ${slideDown} 0.3s;
 
   &:hover {
     transform: translateY(-10px);

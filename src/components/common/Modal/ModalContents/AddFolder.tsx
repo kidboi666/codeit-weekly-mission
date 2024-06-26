@@ -2,7 +2,7 @@ import { Button, Input } from '@/src/components'
 import { FormEvent } from 'react'
 import useFetchHandler from '@/src/hooks/useFetchHandler'
 import useInput from '@/src/hooks/useInput'
-import usePostFolder from '@/src/services/useFetch/folder/usePostFolder'
+import usePostFolder from '@/src/services/folder/usePostFolder'
 
 const AddFolder = () => {
   const [folderName, onChangeFolderName] = useInput('')

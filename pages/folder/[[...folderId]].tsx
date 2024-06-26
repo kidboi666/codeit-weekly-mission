@@ -1,26 +1,36 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { Folder, AddLink, Search, AppLayout, Card, FolderLayout } from '@/src/components'
+import { Folder, AddLink, Search, AppLayout, Card, FolderLayout, PaperCard } from '@/src/components'
 import { Link } from '@/src/types'
-import useGetLink from '@/src/services/useFetch/link/useGetLink'
-import useGetFolder from '@/src/services/useFetch/folder/useGetFolder'
-import { useAppDispatch } from '@/src/hooks/useApp'
+import useGetLink from '@/src/services/link/useGetLink'
+import useGetFolder from '@/src/services/folder/useGetFolder'
+import { useAppDispatch, useAppSelector } from '@/src/hooks/useApp'
 import { initCurrentFolder } from '@/src/store/reducers/folder'
+import useGetPaper from '@/src/services/paper/useGetPaper'
 
 const FolderPage = () => {
   const router = useRouter()
+  const dispatch = useAppDispatch()
   const { folderId } = router.query
   const [searchResult, setSearchResult] = useState<Link[] | string>([])
   const [searchKeyword, setSearchKeyword] = useState('')
-  const [folderList, folderPending, folderError] = useGetFolder()
-  const [linkList, linkPending, linkError] = useGetLink(Number(folderId))
-  const dispatch = useAppDispatch()
+  const { isLoggedIn } = useAppSelector((state) => state.auth)
+  const { data: folderList, isPending: folderPending, error: folderError } = useGetFolder()
+  const { data: paperList, isPending: paperPending, error: paperError } = useGetPaper()
+  const { data: linkList, error: linkError, isPending: linkPending } = useGetLink(Number(folderId))
 
   useEffect(() => {
     if (!folderId) {
       dispatch(initCurrentFolder())
     }
   }, [folderId])
+
+  useEffect(() => {
+    const token = localStorage.getItem('accessToken')
+    if (!isLoggedIn && !token) {
+      router.push('/')
+    }
+  }, [isLoggedIn])
 
   return (
     <AppLayout>
@@ -42,6 +52,9 @@ const FolderPage = () => {
             <Card linkList={linkList} folderList={folderList} />
           )
         }
+        Paper={<PaperCard paperList={paperList} />}
+        paperPending={paperPending}
+        paperError={paperError}
         linkPending={linkPending}
         linkError={linkError}
         folderPending={folderPending}

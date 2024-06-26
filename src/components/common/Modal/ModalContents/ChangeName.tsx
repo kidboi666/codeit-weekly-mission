@@ -2,14 +2,14 @@ import { Button, Input } from '@/src/components'
 import { FormEvent } from 'react'
 import { useAppSelector } from '@/src/hooks/useApp'
 import useFetchHandler from '@/src/hooks/useFetchHandler'
-import useChangeFolderName from '@/src/services/useFetch/folder/useChangeFolderName'
+import useChangeFolderName from '@/src/services/folder/useChangeFolderName'
 import useInput from '@/src/hooks/useInput'
 
 const ChangeName = () => {
-  const [success, failure] = useFetchHandler()
-  const { mutate, isPending } = useChangeFolderName()
   const { currentFolder } = useAppSelector((state) => state.folder)
   const [newName, onChangeNewName] = useInput('')
+  const [success, failure] = useFetchHandler()
+  const { mutate, isPending } = useChangeFolderName()
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()

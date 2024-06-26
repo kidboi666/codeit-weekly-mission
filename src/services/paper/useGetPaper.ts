@@ -8,16 +8,13 @@ const useGetPaper = () => {
     return camelcaseKeys(data.data, { deep: true })
   }
 
-  const {
-    data: paperList,
-    isPending: paperPending,
-    error: paperError,
-  } = useQuery({
+  return useQuery({
     queryKey: ['papers'],
     queryFn: getPaper,
+    staleTime: 60 * 1000 * 30,
+    gcTime: 60 * 1000 * 5,
+    refetchOnWindowFocus: false,
   })
-
-  return [paperList, paperPending, paperError]
 }
 
 export default useGetPaper

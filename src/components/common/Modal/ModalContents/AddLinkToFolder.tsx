@@ -3,7 +3,7 @@ import { useAppSelector } from '@/src/hooks/useApp'
 import { Button } from '@/src/components'
 import { FolderList } from '@/src/types'
 import useFetchHandler from '@/src/hooks/useFetchHandler'
-import usePostLink from '@/src/services/useFetch/link/usePostLink'
+import usePostLink from '@/src/services/link/usePostLink'
 import * as S from './AddLinkToFolder.styled'
 
 interface AddLinkToFolderProps {
@@ -14,13 +14,13 @@ interface AddLinkToFolderProps {
 }
 
 const AddLinkToFolder = ({ linkUrl, setLinkUrl, folderList, linkId = 0 }: AddLinkToFolderProps) => {
-  const { currentFolder } = useAppSelector((state) => state.folder)
-  const { isPending, mutate } = usePostLink()
-  const [success, failure] = useFetchHandler()
   const [selectedFolder, setSelectedFolder] = useState({
     name: '',
     id: 0,
   })
+  const { currentFolder } = useAppSelector((state) => state.folder)
+  const { isPending, mutate } = usePostLink()
+  const [success, failure] = useFetchHandler()
 
   const handleSelectedFolder = (folderItem: FolderList) => {
     setSelectedFolder({

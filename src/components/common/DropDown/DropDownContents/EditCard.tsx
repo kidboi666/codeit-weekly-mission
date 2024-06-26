@@ -1,7 +1,7 @@
 import { useAppDispatch } from '@/src/hooks/useApp'
 import { openModal } from '@/src/store/reducers/modal'
-import DeleteLink from '@/src/components/specific/Modal/ModalContents/DeleteLink'
-import AddLinkToFolder from '@/src/components/specific/Modal/ModalContents/AddLinkToFolder'
+import DeleteLink from '@/src/components/common/Modal/ModalContents/DeleteLink'
+import AddLinkToFolder from '@/src/components/common/Modal/ModalContents/AddLinkToFolder'
 import { FolderList } from '@/src/types'
 import * as S from './EditCard.styled'
 

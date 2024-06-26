@@ -1,29 +1,26 @@
 import { ReactNode, useEffect } from 'react'
 import { Footer, Nav } from '@/src/components'
-import { userInfoAccess } from '@/src/services/endPoint/auth'
-import { useAppDispatch, useAppSelector } from '@/src/hooks/useApp'
+import useGetMe from '@/src/services/auth/useGetMe'
+import { useAppDispatch } from '@/src/hooks/useApp'
+import { login } from '@/src/store/reducers/auth'
 
 interface AppLayoutProps {
   children: ReactNode
 }
 
 const AppLayout = ({ children }: AppLayoutProps) => {
+  const { data, isLoading, isSuccess } = useGetMe()
   const dispatch = useAppDispatch()
-  const { isLoggedIn } = useAppSelector((state) => state.auth)
-
-  const loadUserInfo = async () => {
-    await dispatch(userInfoAccess())
-  }
 
   useEffect(() => {
-    if (!isLoggedIn) {
-      loadUserInfo()
+    if (isSuccess) {
+      dispatch(login())
     }
-  }, [isLoggedIn])
+  }, [isSuccess])
 
   return (
     <>
-      <Nav />
+      <Nav me={data?.[0]} isPending={isLoading} />
       {children}
       <Footer />
     </>
