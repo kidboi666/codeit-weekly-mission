@@ -18,7 +18,6 @@ import useGetPaper from '@/src/services/paper/useGetPaper'
 
 const FolderPage = () => {
   const router = useRouter()
-  const [isLoading, setLoading] = useState(true)
   const dispatch = useAppDispatch()
   const { folderId } = router.query
   const [searchResult, setSearchResult] = useState<Link[] | string>([])
