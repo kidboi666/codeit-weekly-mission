@@ -23,9 +23,9 @@ const FolderPage = () => {
   const [searchResult, setSearchResult] = useState<Link[] | string>([])
   const [searchKeyword, setSearchKeyword] = useState('')
   const { isLoggedIn } = useAppSelector((state) => state.auth)
-  const { data: folderList, isPending: folderPending, error: folderError } = useGetFolder()
-  const { data: paperList, isPending: paperPending, error: paperError } = useGetPaper()
-  const { data: linkList, error: linkError, isPending: linkPending } = useGetLink(Number(folderId))
+  const { data: folderList, isPending: folderPending } = useGetFolder()
+  const { data: paperList, isPending: paperPending } = useGetPaper()
+  const { data: linkList, isPending: linkPending } = useGetLink(Number(folderId))
 
   useEffect(() => {
     if (!folderId) {
@@ -61,9 +61,6 @@ const FolderPage = () => {
           )
         }
         Paper={<PaperCard paperList={paperList} isLoading={paperPending} />}
-        paperError={paperError}
-        linkError={linkError}
-        folderError={folderError}
       />
     </AppLayout>
   )
