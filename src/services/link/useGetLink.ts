@@ -24,7 +24,7 @@ const useGetLink = (folderId: number) => {
       return getLinkList(Number(folderId))
     },
     staleTime: 60 * 1000 * 30,
-    gcTime: 60 * 1000 * 5,
+    gcTime: 60 * 1000 * 30,
     refetchOnWindowFocus: false,
   })
 }

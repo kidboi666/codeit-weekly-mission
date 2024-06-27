@@ -12,7 +12,7 @@ const useGetFolder = () => {
     queryKey: ['folders'],
     queryFn: getFolder,
     staleTime: 60 * 1000 * 30,
-    gcTime: 60 * 1000 * 5,
+    gcTime: 60 * 1000 * 30,
     refetchOnWindowFocus: false,
   })
 }

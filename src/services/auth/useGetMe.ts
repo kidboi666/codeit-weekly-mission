@@ -18,6 +18,9 @@ const useGetMe = () => {
     queryKey: ['me'],
     queryFn: getMe,
     enabled: !!accessToken,
+    staleTime: 60 * 1000 * 30,
+    gcTime: 60 * 1000 * 30,
+    refetchOnWindowFocus: false,
   })
 }
 

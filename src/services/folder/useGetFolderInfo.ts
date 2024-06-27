@@ -12,7 +12,7 @@ const useGetFolderInfo = (folderId: number) => {
     queryKey: ['folder', folderId],
     queryFn: () => getFolderInfo(folderId),
     staleTime: 60 * 1000 * 30,
-    gcTime: 60 * 1000 * 5,
+    gcTime: 60 * 1000 * 30,
     refetchOnWindowFocus: false,
   })
 }

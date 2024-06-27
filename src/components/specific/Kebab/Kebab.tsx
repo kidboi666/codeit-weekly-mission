@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import kebobIcon from '@/public/icons/kebab.svg'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
+import kebobIcon from '@/public/icons/kebab.svg'
 import { COMBINED_FOLDER_NAME } from '@/src/constants/strings'
 import { DropDown } from '@/src/components'
 import { useAppSelector } from '@/src/hooks/useApp'
-import * as S from './Kebab.styled'
 import { FolderList } from '@/src/types'
+import * as S from './Kebab.styled'
 
 interface KebabProps {
   linkId: number

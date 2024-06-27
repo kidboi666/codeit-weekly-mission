@@ -51,8 +51,6 @@ export const LoginLayout = styled.div`
 
 export const ImageBox = styled.div`
   position: relative;
-  width: 28px;
-  height: 28px;
   cursor: pointer;
 
   > img {

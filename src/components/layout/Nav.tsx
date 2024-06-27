@@ -47,7 +47,7 @@ const Nav = ({ me, isPending }: NavProps) => {
           <>
             <p>{me?.email}</p>
             <S.ImageBox onClick={() => setOpen((prev) => !prev)}>
-              <Image fill src={me?.imageSource} alt="프로필 이미지" />
+              <Image src={me?.imageSource} alt="프로필 이미지" width={28} height={28} />
             </S.ImageBox>
           </>
         ) : (

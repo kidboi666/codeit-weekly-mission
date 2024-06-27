@@ -12,7 +12,7 @@ import FolderOptionButton from '@/src/components/specific/FolderOptionButton/Fol
 import Footer from '@/src/components/layout/Footer'
 import Input from '@/src/components/common/Input/Input'
 import KakaoButton from '@/src/components/specific/KakaoButton/KakaoButton'
-import Kebab from '@/src/components/common/Kebab/Kebab'
+import Kebab from '@/src/components/specific/Kebab/Kebab'
 import Modal from '@/src/components/common/Modal/Modal'
 import Nav from '@/src/components/layout/Nav'
 import Owner from '@/src/components/specific/Owner/Owner'

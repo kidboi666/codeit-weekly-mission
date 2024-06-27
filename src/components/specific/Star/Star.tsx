@@ -4,6 +4,9 @@ import starFalse from '@/public/icons/star_false.svg'
 import useToggle from '@/src/hooks/useToggle'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
+import usePutFavoriteLink from '@/src/services/link/usePutFavoriteLink'
+import useFetchHandler from '@/src/hooks/useFetchHandler'
+import { Spinner } from '@/src/components'
 import * as S from './Star.styled'
 
 interface StarProps {
@@ -13,24 +16,31 @@ interface StarProps {
 
 const Star = ({ favorite, linkId }: StarProps) => {
   const [value, toggle] = useToggle(favorite)
+  const [success, failure] = useFetchHandler()
+  const { mutate, isPending } = usePutFavoriteLink()
   const currentLocation = useRouter()
 
   if (currentLocation.pathname.includes('/shared')) {
     return null
   }
 
-  const onClickFavorite = async (e: React.MouseEvent) => {
+  const handleClickFavoriteStar = async (e: React.MouseEvent) => {
     e.preventDefault()
-    if (linkId) {
-      return
-    }
-    // await dispatch(putFavoriteLink({ linkId, favorite: !value }))
-    toggle()
+    mutate(
+      { linkId, favorite: !value },
+      {
+        onSuccess: () => {
+          success('즐겨찾기에 등록하였습니다!')
+          toggle()
+        },
+        onError: (error) => failure(error),
+      },
+    )
   }
 
   return (
-    <S.StarBox onClick={onClickFavorite}>
-      <Image src={value ? starTrue : starFalse} alt="즐겨찾기 아이콘" />
+    <S.StarBox onClick={handleClickFavoriteStar}>
+      {isPending ? <Spinner /> : <Image src={value ? starTrue : starFalse} alt="즐겨찾기 아이콘" />}
     </S.StarBox>
   )
 }
