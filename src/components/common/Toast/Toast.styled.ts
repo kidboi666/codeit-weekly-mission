@@ -3,13 +3,12 @@ import { slideDown, slideUp } from '@/src/styles/animation'
 
 export const ToastLayout = styled.div<{ $isVisible: boolean }>`
   display: grid;
-  grid-template-columns: 50px 236px 50px;
+  grid-template-columns: 60px 200px 50px;
   height: 60px;
   position: fixed;
   overflow: hidden;
-  bottom: 4%;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 40px;
+  right: 40px;
   z-index: 110;
   border-radius: 8px;
   box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.2);

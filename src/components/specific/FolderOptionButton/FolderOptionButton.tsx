@@ -24,15 +24,15 @@ const FolderOptionButton = () => {
       {folderId && (
         <S.OptionContainer>
           <S.OptionBox onClick={() => dispatch(openModal(<ShareFolder />))}>
-            <Image src={shareIcon} alt="공유버튼" />
+            <Image src={shareIcon} alt="공유버튼" width={18} height={18} />
             공유
           </S.OptionBox>
           <S.OptionBox onClick={() => dispatch(openModal(<ChangeName />))}>
-            <Image src={penIcon} alt="이름변경버튼" />
+            <Image src={penIcon} alt="이름변경버튼" width={18} height={18} />
             이름 변경
           </S.OptionBox>
           <S.OptionBox onClick={() => dispatch(openModal(<DeleteFolder />))}>
-            <Image src={deleteIcon} alt="삭제버튼" />
+            <Image src={deleteIcon} alt="삭제버튼" width={18} height={18} />
             삭제
           </S.OptionBox>
         </S.OptionContainer>
