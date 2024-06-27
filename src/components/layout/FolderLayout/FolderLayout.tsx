@@ -1,6 +1,5 @@
 import { ReactNode, useEffect, useRef, useState } from 'react'
 import { useAppSelector } from '@/src/hooks/useApp'
-import { Spinner } from '@/src/components'
 import * as S from './FolderLayout.styled'
 
 interface FolderLayoutProps {
@@ -9,11 +8,8 @@ interface FolderLayoutProps {
   Folder: ReactNode
   Card: ReactNode
   Paper: ReactNode
-  paperPending: boolean
   paperError: Error | null
-  linkPending: boolean
   linkError: Error | null
-  folderPending: boolean
   folderError: Error | null
 }
 
@@ -23,11 +19,8 @@ const FolderLayout = ({
   Folder,
   Card,
   Paper,
-  paperPending,
   paperError,
-  linkPending,
   linkError,
-  folderPending,
   folderError,
 }: FolderLayoutProps) => {
   const { currentFolder } = useAppSelector((state) => state.folder)
@@ -63,9 +56,13 @@ const FolderLayout = ({
       <S.FolderPageLayout>
         <S.HeaderSection ref={targetRef}>{AddLink}</S.HeaderSection>
         <S.SearchSection>{Search}</S.SearchSection>
-        <S.FolderSection>{folderPending ? <Spinner /> : <div>{Folder}</div>}</S.FolderSection>
+        <S.FolderSection>
+          <div>{Folder}</div>
+        </S.FolderSection>
         {currentFolder.id === 1 ? (
-          <S.PaperSection>{paperPending ? <Spinner /> : <div>{Paper}</div>}</S.PaperSection>
+          <S.PaperSection>
+            <div>{Paper}</div>
+          </S.PaperSection>
         ) : (
           <S.LinkSection>{Card}</S.LinkSection>
         )}

@@ -7,13 +7,15 @@ import { FolderList } from '@/src/types'
 import { initCurrentFolder, setCurrentFolder } from '@/src/store/reducers/folder'
 import AddFolder from '@/src/components/common/Modal/ModalContents/AddFolder'
 import { useRouter } from 'next/router'
+import SkeletonFolder from '@/src/components/specific/Folder/SkeletonFolder'
 import * as S from './Folder.styled'
 
 interface FolderProps {
   folderList: FolderList[]
+  isLoading: boolean
 }
 
-const Folder = ({ folderList }: FolderProps) => {
+const Folder = ({ folderList, isLoading }: FolderProps) => {
   const dispatch = useAppDispatch()
   const { currentFolder } = useAppSelector((state) => state.folder)
   const router = useRouter()
@@ -37,30 +39,36 @@ const Folder = ({ folderList }: FolderProps) => {
     <S.FolderLayout>
       <S.FolderContainer>
         <S.FolderBox>
-          <Button
-            variant="folderButton"
-            onClick={handleClickAllFolder}
-            text={COMBINED_FOLDER_NAME}
-            selected={currentFolder?.name}
-          />
-          {folderList?.map((folder: FolderList) => (
-            <Button
-              key={folder.id}
-              variant="folderButton"
-              onClick={() => handleClickFolder(folder)}
-              text={folder.name}
-              selected={currentFolder?.name}
-            />
-          ))}
-          <div onClick={() => dispatch(openModal(<AddFolder />))}>
-            <Button variant="addFolder" text="폴더 추가 +" />
-          </div>
-          <Button
-            variant="paperButton"
-            text="페이퍼📝"
-            onClick={handleClickPaper}
-            selected={currentFolder.name}
-          />
+          {isLoading ? (
+            <SkeletonFolder />
+          ) : (
+            <>
+              <Button
+                variant="folderButton"
+                onClick={handleClickAllFolder}
+                text={COMBINED_FOLDER_NAME}
+                selected={currentFolder?.name}
+              />
+              {folderList?.map((folder: FolderList) => (
+                <Button
+                  key={folder.id}
+                  variant="folderButton"
+                  onClick={() => handleClickFolder(folder)}
+                  text={folder.name}
+                  selected={currentFolder?.name}
+                />
+              ))}
+              <div onClick={() => dispatch(openModal(<AddFolder />))}>
+                <Button variant="addFolder" text="폴더 추가 +" />
+              </div>
+              <Button
+                variant="paperButton"
+                text="페이퍼📝"
+                onClick={handleClickPaper}
+                selected={currentFolder.name}
+              />
+            </>
+          )}
         </S.FolderBox>
       </S.FolderContainer>
       <FolderOptionButton />

@@ -1,5 +1,6 @@
 import { Dispatch, MouseEvent, SetStateAction } from 'react'
 import { DROPDOWN_COMPONENTS, DropDownType } from './DropDownType'
+import * as S from './DropDown.styled'
 
 interface DropDownProps {
   variant: DropDownType
@@ -17,9 +18,9 @@ const DropDown = ({ variant, props, isOpen, setOpen, onClick }: DropDownProps) =
   const renderDropDown = findDropDown ? findDropDown({ ...props }) : ''
 
   return (
-    <div onClick={() => setOpen(false)}>
+    <S.DropdownContainer onClick={() => setOpen(false)}>
       <div onClick={onClick}>{renderDropDown}</div>
-    </div>
+    </S.DropdownContainer>
   )
 }
 

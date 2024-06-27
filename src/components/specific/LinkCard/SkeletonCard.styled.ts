@@ -1,26 +1,5 @@
-import styled, { css, keyframes } from 'styled-components'
-
-import { slideDown } from '@/src/styles/animation'
-
-const skeletonAnimation = keyframes`
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(100);
-  }
-`
-
-const afterStyled = css`
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 1200px;
-  height: 100%;
-  background: linear-gradient(90deg, var(--gray4-color), var(--gray5-color), var(--gray4-color));
-  animation: ${skeletonAnimation} 0.5s linear infinite;
-`
+import styled from 'styled-components'
+import { skeletonStyled } from '@/src/styles/animation'
 
 export const CardDescriptionContainer = styled.div`
   position: relative;
@@ -57,7 +36,7 @@ export const CardImgContainer = styled.div`
   align-items: center;
   background-color: var(--gray4-color);
   &::after {
-    ${afterStyled}
+    ${skeletonStyled}
   }
 `
 
@@ -69,7 +48,7 @@ export const CreatedDate = styled.p`
   border-radius: 20px;
   background-color: var(--gray4-color);
   &::after {
-    ${afterStyled}
+    ${skeletonStyled}
   }
 `
 
@@ -81,7 +60,7 @@ export const Title = styled.p`
   border-radius: 20px;
   background-color: var(--gray4-color);
   &::after {
-    ${afterStyled}
+    ${skeletonStyled}
   }
 `
 
@@ -93,6 +72,6 @@ export const TimeStamp = styled.p`
   border-radius: 20px;
   background-color: var(--gray4-color);
   &::after {
-    ${afterStyled}
+    ${skeletonStyled}
   }
 `

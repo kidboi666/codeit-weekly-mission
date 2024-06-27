@@ -11,9 +11,6 @@ const useGetPaper = () => {
   return useQuery({
     queryKey: ['papers'],
     queryFn: getPaper,
-    staleTime: 60 * 1000 * 30,
-    gcTime: 60 * 1000 * 30,
-    refetchOnWindowFocus: false,
   })
 }
 

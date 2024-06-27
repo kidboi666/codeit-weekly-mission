@@ -43,12 +43,11 @@ const SharedPage = () => {
         }
         Card={
           searchKeyword && searchResult.length >= 1 ? (
-            <LinkCard linkList={searchResult} />
+            <LinkCard linkList={searchResult} isLoading={linkPending} />
           ) : (
-            <LinkCard linkList={linkList} />
+            <LinkCard linkList={linkList} isLoading={linkPending} />
           )
         }
-        linkPending={linkPending}
         linkError={linkError}
         folderInfoPending={folderInfoPending}
         folderInfoError={folderInfoError}

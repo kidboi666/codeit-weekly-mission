@@ -18,6 +18,7 @@ import useGetPaper from '@/src/services/paper/useGetPaper'
 
 const FolderPage = () => {
   const router = useRouter()
+  const [isLoading, setLoading] = useState(true)
   const dispatch = useAppDispatch()
   const { folderId } = router.query
   const [searchResult, setSearchResult] = useState<Link[] | string>([])
@@ -52,7 +53,7 @@ const FolderPage = () => {
             setSearchKeyword={setSearchKeyword}
           />
         }
-        Folder={<Folder folderList={folderList} />}
+        Folder={<Folder folderList={folderList} isLoading={folderPending} />}
         Card={
           searchKeyword && searchResult.length >= 1 ? (
             <LinkCard linkList={searchResult} folderList={folderList} isLoading={linkPending} />
@@ -60,12 +61,9 @@ const FolderPage = () => {
             <LinkCard linkList={linkList} folderList={folderList} isLoading={linkPending} />
           )
         }
-        Paper={<PaperCard paperList={paperList} />}
-        paperPending={paperPending}
+        Paper={<PaperCard paperList={paperList} isLoading={paperPending} />}
         paperError={paperError}
-        linkPending={linkPending}
         linkError={linkError}
-        folderPending={folderPending}
         folderError={folderError}
       />
     </AppLayout>

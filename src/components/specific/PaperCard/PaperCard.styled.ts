@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import CloseButton from '@/src/components/common/CloseButton/CloseButton'
 import { slideDown } from '@/src/styles/animation'
 
-export const CardLayout = styled.li<{
+export const PaperLayout = styled.li<{
   $background: string
 }>`
   min-width: 58px;
@@ -23,7 +23,7 @@ export const CardLayout = styled.li<{
   }
 `
 
-export const CardContainer = styled.div`
+export const PaperContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -56,9 +56,4 @@ export const Content = styled.p<{ $showContent: boolean }>`
 export const TimeStamp = styled.p`
   font-size: 14px;
   color: #fff;
-`
-
-export const DropDownBox = styled.div`
-  top: 0;
-  right: 0;
 `

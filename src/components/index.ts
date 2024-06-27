@@ -1,7 +1,6 @@
 import FolderLayout from '@/src/components/layout/FolderLayout/FolderLayout'
 import AddLink from '@/src/components/specific/AddLink/AddLink'
 import SharedLayout from '@/src/components/layout/SharedLayout/SharedLayout'
-import PaperLayout from '@/src/components/layout/PaperLayout/PaperLayout'
 import Button from '@/src/components/common/Button/Button'
 import LinkCard from '@/src/components/specific/LinkCard/LinkCard'
 import CloseButton from '@/src/components/common/CloseButton/CloseButton'
@@ -48,6 +47,5 @@ export {
   FolderLayout,
   SharedLayout,
   OverviewCard,
-  PaperLayout,
   PaperCard,
 }

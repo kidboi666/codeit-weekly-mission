@@ -6,7 +6,6 @@ interface SharedLayoutProps {
   Owner: ReactNode
   Search: ReactNode
   Card: ReactNode
-  linkPending: boolean
   linkError: Error | null
   folderInfoPending: boolean
   folderInfoError: Error | null
@@ -18,7 +17,6 @@ const SharedLayout = ({
   Owner,
   Search,
   Card,
-  linkPending,
   linkError,
   folderInfoPending,
   folderInfoError,
@@ -31,7 +29,7 @@ const SharedLayout = ({
 
   return (
     <S.SharedPageLayout>
-      {linkPending || folderInfoPending || userPending ? (
+      {folderInfoPending || userPending ? (
         <Spinner />
       ) : (
         <>
