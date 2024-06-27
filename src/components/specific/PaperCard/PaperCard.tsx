@@ -12,7 +12,7 @@ interface PaperCardProps {
   isLoading: boolean
 }
 
-const PaperCard = ({ paperList, isLoading = true }: PaperCardProps) => {
+const PaperCard = ({ paperList, isLoading }: PaperCardProps) => {
   const [showContent, setShowContent] = useState(false)
   const dispatch = useAppDispatch()
 
@@ -27,7 +27,7 @@ const PaperCard = ({ paperList, isLoading = true }: PaperCardProps) => {
       <SkeletonPaperCard />
     </>
   ) : (
-    paperList.map((paper) => (
+    paperList?.map((paper) => (
       <S.PaperLayout
         key={paper.id}
         $background={changeColor(paper.background)}

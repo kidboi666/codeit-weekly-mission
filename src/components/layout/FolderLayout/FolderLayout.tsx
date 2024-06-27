@@ -8,21 +8,9 @@ interface FolderLayoutProps {
   Folder: ReactNode
   Card: ReactNode
   Paper: ReactNode
-  paperError: Error | null
-  linkError: Error | null
-  folderError: Error | null
 }
 
-const FolderLayout = ({
-  AddLink,
-  Search,
-  Folder,
-  Card,
-  Paper,
-  paperError,
-  linkError,
-  folderError,
-}: FolderLayoutProps) => {
+const FolderLayout = ({ AddLink, Search, Folder, Card, Paper }: FolderLayoutProps) => {
   const { currentFolder } = useAppSelector((state) => state.folder)
   const [isInterSecting, setInterSecting] = useState(false)
   const targetRef = useRef<HTMLDivElement>()
@@ -46,10 +34,6 @@ const FolderLayout = ({
       }
     }
   }, [])
-
-  if (linkError || folderError || paperError) {
-    return '에러'
-  }
 
   return (
     <>

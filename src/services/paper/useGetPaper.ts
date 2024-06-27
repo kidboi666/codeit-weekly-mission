@@ -5,7 +5,7 @@ import camelcaseKeys from 'camelcase-keys'
 const useGetPaper = () => {
   const getPaper = async () => {
     const { data } = await paperInstance.get(`paper`)
-    return camelcaseKeys(data.data, { deep: true })
+    return camelcaseKeys(data, { deep: true })
   }
 
   return useQuery({
