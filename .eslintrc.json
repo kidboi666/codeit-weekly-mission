@@ -24,6 +24,7 @@
   "plugins": ["@typescript-eslint", "react", "prettier"],
   "ignorePatterns": ["node_modules/"],
   "rules": {
+    "@typescript-eslint/no-shadow": "off",
     "import/prefer-default-export": "off",
     "import/no-extraneous-dependencies": 0, //테스트 또는 개발환경을 구성하는 파일에서는 devDependency 사용을 허용
     "react/react-in-jsx-scope": "off", //코드에 react import안하면 error off
