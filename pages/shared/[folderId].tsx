@@ -1,4 +1,4 @@
-import { Search, Card, AppLayout, Owner, SharedLayout } from '@/src/components'
+import { Search, LinkCard, AppLayout, Owner, SharedLayout } from '@/src/components'
 import { useState } from 'react'
 import { Link } from '@/src/types'
 import { useRouter } from 'next/router'
@@ -43,9 +43,9 @@ const SharedPage = () => {
         }
         Card={
           searchKeyword && searchResult.length >= 1 ? (
-            <Card linkList={searchResult} />
+            <LinkCard linkList={searchResult} />
           ) : (
-            <Card linkList={linkList} />
+            <LinkCard linkList={linkList} />
           )
         }
         linkPending={linkPending}

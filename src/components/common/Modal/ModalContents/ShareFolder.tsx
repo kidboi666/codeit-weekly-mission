@@ -4,8 +4,8 @@ import copyToClipboard from '@/src/utils/copyToClipboard'
 import facebookIcon from '@/public/icons/facebook_icon.svg'
 import linkIcon from '@/public/icons/link.svg'
 import { KakaoButton } from '@/src/components'
-import * as S from '@/src/components/common/Modal/ModalContents/ShareFolder.styled'
 import { openToast } from '@/src/store/reducers/toast'
+import * as S from '@/src/components/common/Modal/ModalContents/ShareFolder.styled'
 
 const ShareFolder = () => {
   const { currentFolder } = useAppSelector((state) => state.folder) || {}

@@ -40,7 +40,7 @@ const SignUpPage = () => {
 
   const handleSubmit: SubmitHandler<Inputs> = async (data) => {
     if (data.password !== data.passwordCheck) {
-      dispatch(openToast('비밀번호가 다릅니다.'))
+      dispatch(openToast({ text: '비밀번호가 다릅니다.', warn: true }))
     } else if (data.email && data.password) {
       checkEmail(data.email, {
         onSuccess: (result) => {

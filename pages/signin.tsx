@@ -40,7 +40,7 @@ const SignInPage = () => {
           onSuccess: () => {
             success('로그인성공')
           },
-          onError: (error: Error) => {
+          onError: (error) => {
             failure(error)
           },
         },

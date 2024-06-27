@@ -17,7 +17,7 @@ export const CardDescriptionContainer = styled.div`
   justify-content: space-between;
 `
 
-export const CardLayout = styled.li`
+export const CardLayout = styled.div`
   position: relative;
   border-radius: 20px;
   box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.08);

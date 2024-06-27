@@ -21,7 +21,7 @@ const FolderOptionButton = () => {
   return (
     <S.FolderOptionButtonLayout>
       <S.SelectedFolder>{currentFolder?.name}</S.SelectedFolder>
-      {folderId && (
+      {folderId && Number(folderId) > 1 && (
         <S.OptionContainer>
           <S.OptionBox onClick={() => dispatch(openModal(<ShareFolder />))}>
             <Image src={shareIcon} alt="공유버튼" width={18} height={18} />
@@ -37,7 +37,7 @@ const FolderOptionButton = () => {
           </S.OptionBox>
         </S.OptionContainer>
       )}
-      {router.pathname === '/paper' && (
+      {currentFolder.id === 1 && (
         <S.OptionContainer>
           <S.OptionBox onClick={() => dispatch(openModal(<PaperForm />))}>✚ 새 글</S.OptionBox>
         </S.OptionContainer>

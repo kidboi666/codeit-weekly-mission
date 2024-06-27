@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 interface Props {
   text: string
-  warn: boolean
+  warn?: boolean
 }
 
 const initialState: Props = {
@@ -16,8 +16,8 @@ const toastSlice = createSlice({
   initialState,
   reducers: {
     openToast: (state, action) => {
-      state.text = action.payload
-      state.warn = true
+      state.text = action.payload.text
+      state.warn = action.payload.warn ?? false
     },
     closeToast: (state) => {
       state.text = ''

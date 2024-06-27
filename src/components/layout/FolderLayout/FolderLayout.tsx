@@ -1,6 +1,6 @@
 import { ReactNode, useEffect, useRef, useState } from 'react'
-import { Spinner } from '@/src/components'
 import { useAppSelector } from '@/src/hooks/useApp'
+import { Spinner } from '@/src/components'
 import * as S from './FolderLayout.styled'
 
 interface FolderLayoutProps {
@@ -67,7 +67,7 @@ const FolderLayout = ({
         {currentFolder.id === 1 ? (
           <S.PaperSection>{paperPending ? <Spinner /> : <div>{Paper}</div>}</S.PaperSection>
         ) : (
-          <S.LinkSection>{linkPending ? <Spinner /> : <div>{Card}</div>}</S.LinkSection>
+          <S.LinkSection>{Card}</S.LinkSection>
         )}
       </S.FolderPageLayout>
       <S.FooterAddLink $animation={isInterSecting}>{AddLink}</S.FooterAddLink>

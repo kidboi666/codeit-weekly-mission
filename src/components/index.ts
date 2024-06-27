@@ -3,7 +3,7 @@ import AddLink from '@/src/components/specific/AddLink/AddLink'
 import SharedLayout from '@/src/components/layout/SharedLayout/SharedLayout'
 import PaperLayout from '@/src/components/layout/PaperLayout/PaperLayout'
 import Button from '@/src/components/common/Button/Button'
-import Card from '@/src/components/specific/LinkCard/Card'
+import LinkCard from '@/src/components/specific/LinkCard/LinkCard'
 import CloseButton from '@/src/components/common/CloseButton/CloseButton'
 import DropDown from '@/src/components/common/DropDown/DropDown'
 import Eye from '@/src/components/common/Eye/Eye'
@@ -28,7 +28,7 @@ export {
   AddLink,
   AppLayout,
   Button,
-  Card,
+  LinkCard,
   CloseButton,
   DropDown,
   Eye,

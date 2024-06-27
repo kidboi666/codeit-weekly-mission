@@ -26,6 +26,9 @@ const Star = ({ favorite, linkId }: StarProps) => {
 
   const handleClickFavoriteStar = async (e: React.MouseEvent) => {
     e.preventDefault()
+
+    if (isPending) return
+
     mutate(
       { linkId, favorite: !value },
       {

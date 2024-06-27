@@ -1,6 +1,14 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { Folder, AddLink, Search, AppLayout, Card, FolderLayout, PaperCard } from '@/src/components'
+import {
+  Folder,
+  AddLink,
+  Search,
+  AppLayout,
+  LinkCard,
+  FolderLayout,
+  PaperCard,
+} from '@/src/components'
 import { Link } from '@/src/types'
 import useGetLink from '@/src/services/link/useGetLink'
 import useGetFolder from '@/src/services/folder/useGetFolder'
@@ -47,9 +55,9 @@ const FolderPage = () => {
         Folder={<Folder folderList={folderList} />}
         Card={
           searchKeyword && searchResult.length >= 1 ? (
-            <Card linkList={searchResult} folderList={folderList} />
+            <LinkCard linkList={searchResult} folderList={folderList} isLoading={linkPending} />
           ) : (
-            <Card linkList={linkList} folderList={folderList} />
+            <LinkCard linkList={linkList} folderList={folderList} isLoading={linkPending} />
           )
         }
         Paper={<PaperCard paperList={paperList} />}

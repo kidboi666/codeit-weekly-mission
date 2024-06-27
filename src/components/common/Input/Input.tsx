@@ -1,5 +1,4 @@
 import { InputHTMLAttributes } from 'react'
-import { FieldError } from 'react-hook-form'
 import * as S from './Input.styled'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {

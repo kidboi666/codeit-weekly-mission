@@ -9,16 +9,16 @@ const useFetchHandler = () => {
   const dispatch = useAppDispatch()
 
   const handleSuccess = (toastMessage: handleFunctionArg) => {
-    dispatch(openToast(toastMessage))
+    dispatch(openToast({ text: toastMessage }))
     dispatch(closeModal())
   }
 
   const handleError = (error: handleFunctionArg) => {
     if (axios.isAxiosError(error)) {
-      dispatch(openToast(error?.response?.data?.message))
+      dispatch(openToast({ text: error?.response?.data?.message, warn: true }))
       dispatch(closeModal())
     } else {
-      dispatch(openToast(error))
+      dispatch(openToast({ text: error, warn: true }))
     }
   }
 

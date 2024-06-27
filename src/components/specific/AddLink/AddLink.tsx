@@ -23,7 +23,7 @@ const AddLink = ({ className, folderList }: AddLinkProps) => {
     e.preventDefault()
 
     if (folderList.length === 0) {
-      dispatch(openToast('폴더를 먼저 만들어야 합니다!'))
+      dispatch(openToast({ text: '폴더를 먼저 만들어야 합니다!', warn: true }))
     } else if (linkUrl) {
       dispatch(
         openModal(
@@ -31,7 +31,7 @@ const AddLink = ({ className, folderList }: AddLinkProps) => {
         ),
       )
     } else {
-      dispatch(openToast('주소를 입력하세요'))
+      dispatch(openToast({ text: '주소를 입력하세요', warn: true }))
     }
   }
 
