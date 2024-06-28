@@ -6,7 +6,7 @@ import * as S from './Button.styled'
 interface ButtonProps {
   variant?: string
   width?: string
-  text?: string
+  text?: string | number
   selected?: string | number
   className?: string
   disabled?: boolean

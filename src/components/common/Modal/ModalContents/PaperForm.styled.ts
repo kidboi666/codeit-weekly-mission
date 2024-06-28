@@ -19,6 +19,7 @@ export const PaperContentBox = styled.textarea<{ onChange: any }>`
 
 export const ColorOptionContainer = styled.div`
   display: flex;
+  justify-content: space-between;
   gap: 15px;
   margin: 20px 0;
 `

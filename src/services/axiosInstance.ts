@@ -1,11 +1,19 @@
 import axios from 'axios'
 
-const axiosInstance = axios.create({
-  baseURL: 'https://bootcamp-api.codeit.kr/api/linkbrary/v1/',
-})
+let domain
+
+if (process.env.NODE_ENV !== 'production') {
+  domain = 'http://localhost:3000/api/'
+} else {
+  domain = 'https://codeit-weekly-mission.vercel.app/api/'
+}
 
 export const paperInstance = axios.create({
-  baseURL: 'https://codeit-weekly-mission.vercel.app/api/',
+  baseURL: domain,
+})
+
+const axiosInstance = axios.create({
+  baseURL: 'https://bootcamp-api.codeit.kr/api/linkbrary/v1/',
 })
 
 const refreshAccessToken = async () => {

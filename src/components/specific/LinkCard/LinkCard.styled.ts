@@ -34,7 +34,7 @@ export const CardLayout = styled.div`
   }
 `
 
-export const CardLinkContainer = styled.a`
+export const CardLinkContainer = styled.div`
   display: grid;
   grid-template-rows: 200px 134px;
   height: 100%;

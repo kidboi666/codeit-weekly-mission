@@ -26,9 +26,9 @@ const ColorOption = ({ background, formBody, setFormBody }: ColorOptionProps) =>
       $isActive={isActive}
       onClick={onChangeActive}
     >
-      <S.IconBox>
-        <Image fill src={checkicon} alt="체크 이미지" />
-      </S.IconBox>
+      <div>
+        <Image src={checkicon} alt="체크 이미지" width={20} height={20} />
+      </div>
     </S.ColorOptionLayout>
   )
 }

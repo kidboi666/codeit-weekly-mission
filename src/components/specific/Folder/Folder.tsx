@@ -1,6 +1,6 @@
 import React from 'react'
 import { COMBINED_FOLDER_NAME } from '@/src/constants/strings'
-import { FolderOptionButton, Button } from '@/src/components'
+import { Button } from '@/src/components'
 import { useAppDispatch, useAppSelector } from '@/src/hooks/useApp'
 import { openModal } from '@/src/store/reducers/modal'
 import { FolderList } from '@/src/types'
@@ -71,7 +71,6 @@ const Folder = ({ folderList, isLoading }: FolderProps) => {
           )}
         </S.FolderBox>
       </S.FolderContainer>
-      <FolderOptionButton />
     </S.FolderLayout>
   )
 }

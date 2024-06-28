@@ -75,6 +75,10 @@ export const FolderSection = styled.div`
   }
 `
 
+export const FolderOptionSection = styled.div`
+  margin-bottom: 20px;
+`
+
 export const LinkSection = styled.ul`
   ${sectionStyle}
 
@@ -107,11 +111,12 @@ export const PaperSection = styled.ul`
   > div {
     width: 1060px;
     display: flex;
+    flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
     gap: 20px 20px;
     flex-wrap: wrap;
-    margin-bottom: 100px;
+    margin-bottom: 40px;
 
     @media (max-width: 1124px) {
       width: 700px;
@@ -125,4 +130,8 @@ export const PaperSection = styled.ul`
       grid-template-columns: repeat(2, 1fr);
     }
   }
+`
+
+export const PaperPageSection = styled.div`
+  margin-bottom: 100px;
 `
