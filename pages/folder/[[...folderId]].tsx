@@ -19,6 +19,7 @@ import useGetPaper from '@/src/services/paper/useGetPaper'
 import useDeleteLink from '@/src/services/link/useDeleteLink'
 import useFetchHandler from '@/src/hooks/useFetchHandler'
 import { DRAG_TARGET } from '@/src/constants/number'
+import PaperPageButton from '@/src/components/specific/PaperPage/PaperPageButton'
 
 const FolderPage = () => {
   const router = useRouter()
@@ -97,11 +98,6 @@ const FolderPage = () => {
             enterDrag={enterDraggedItem}
             dragLeave={dragLeave}
             deleteLoading={deleteLinkPending}
-            isPaperSuccess={paperSuccess}
-            currentPage={paperList?.currentPage}
-            paperPage={paperPage}
-            setPaperPage={setPaperPage}
-            totalPage={paperList?.totalPage}
           />
         }
         Card={
@@ -124,6 +120,15 @@ const FolderPage = () => {
           )
         }
         Paper={<PaperCard paperList={paperList?.data} isLoading={paperPending} />}
+        PaperPage={
+          <PaperPageButton
+            isPaperSuccess={paperSuccess}
+            currentPage={paperList?.currentPage}
+            paperPage={paperPage}
+            setPaperPage={setPaperPage}
+            totalPage={paperList?.totalPage}
+          />
+        }
       />
     </AppLayout>
   )

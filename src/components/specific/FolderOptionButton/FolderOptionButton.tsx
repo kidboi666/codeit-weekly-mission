@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import shareIcon from '@/public/icons/share.svg'
 import penIcon from '@/public/icons/pen.svg'
@@ -11,7 +11,6 @@ import PaperForm from '@/src/components/common/Modal/ModalContents/PaperForm'
 import ShareFolder from '@/src/components/common/Modal/ModalContents/ShareFolder'
 import ChangeName from '@/src/components/common/Modal/ModalContents/ChangeName'
 import { DRAG_TARGET } from '@/src/constants/number'
-import { Button } from '@/src/components'
 import * as S from './FolderOptionButton.styled'
 
 interface FolderOptionButtonProps {
@@ -19,11 +18,6 @@ interface FolderOptionButtonProps {
   enterDrag: (elementId: number) => void
   dragLeave: () => void
   deleteLoading: boolean
-  paperPage: number
-  setPaperPage: Dispatch<SetStateAction<number>>
-  isPaperSuccess: boolean
-  totalPage: number
-  currentPage: number
 }
 
 const FolderOptionButton = ({
@@ -31,26 +25,12 @@ const FolderOptionButton = ({
   enterDrag,
   dragLeave,
   deleteLoading,
-  paperPage,
-  setPaperPage,
-  isPaperSuccess,
-  totalPage,
-  currentPage,
 }: FolderOptionButtonProps) => {
   const { currentFolder } = useAppSelector((state) => state.folder)
   const [isEnter, setEnter] = useState(false)
   const dispatch = useAppDispatch()
   const router = useRouter()
   const { folderId } = router.query
-  const [totalPageArr, setTotalPageArr] = useState<number[]>([])
-
-  useEffect(() => {
-    if (totalPageArr.length !== totalPage) {
-      for (let i = 0; i < totalPage; i += 1) {
-        setTotalPageArr((prev) => [...prev, i + 1])
-      }
-    }
-  }, [totalPage])
 
   return (
     <S.FolderOptionButtonLayout>
@@ -94,40 +74,6 @@ const FolderOptionButton = ({
       )}
       {currentFolder.id === 1 && (
         <S.OptionContainer>
-          <Button
-            variant="folderButton"
-            text="이전"
-            disabled={!paperPage}
-            onClick={() =>
-              setPaperPage((prev: number) => {
-                if (prev <= totalPage && prev !== 1) {
-                  return prev - 1
-                }
-                return prev
-              })
-            }
-          />
-          {totalPageArr.map((v) => (
-            <Button
-              key={v}
-              variant="folderButton"
-              text={v}
-              selected={paperPage}
-              onClick={() => setPaperPage(v)}
-            />
-          ))}
-          <Button
-            variant="folderButton"
-            text="다음"
-            onClick={() =>
-              setPaperPage((prev) => {
-                if (prev < totalPage) {
-                  return prev + 1
-                }
-                return prev
-              })
-            }
-          />
           <S.OptionBox onClick={() => dispatch(openModal(<PaperForm />))}>✚ 새 글</S.OptionBox>
         </S.OptionContainer>
       )}

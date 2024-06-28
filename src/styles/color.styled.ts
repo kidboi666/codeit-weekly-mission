@@ -16,6 +16,7 @@ const GlobalColor = css`
     --green-color: #88c995;
     --silver-color: #ccd5e3;
     --yellow-color: #f8ca59;
+    --orange-color: #fa866e;
   }
 `
 

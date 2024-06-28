@@ -8,7 +8,7 @@ const paperSchema = new mongoose.Schema(
     background: {
       type: String,
       required: true,
-      default: 'yellow',
+      default: 'blue',
     },
   },
   {

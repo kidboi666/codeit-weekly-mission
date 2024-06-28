@@ -116,7 +116,7 @@ export const PaperSection = styled.ul`
     justify-content: flex-start;
     gap: 20px 20px;
     flex-wrap: wrap;
-    margin-bottom: 100px;
+    margin-bottom: 40px;
 
     @media (max-width: 1124px) {
       width: 700px;
@@ -130,4 +130,8 @@ export const PaperSection = styled.ul`
       grid-template-columns: repeat(2, 1fr);
     }
   }
+`
+
+export const PaperPageSection = styled.div`
+  margin-bottom: 100px;
 `

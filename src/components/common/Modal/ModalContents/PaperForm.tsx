@@ -7,7 +7,7 @@ import usePostPaper from '@/src/services/paper/usePostPaper'
 import * as S from './PaperForm.styled'
 
 const PaperForm = () => {
-  const colorVariation = ['blue', 'green', 'yellow', 'silver']
+  const colorVariation = ['blue', 'green', 'yellow', 'silver', 'orange']
   const [name, onChangeName] = useInput('')
   const [title, onChangeTitle] = useInput('')
   const [content, onChangeContent] = useInput('')

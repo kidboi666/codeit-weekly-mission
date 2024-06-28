@@ -4,8 +4,12 @@ export const ColorOptionLayout = styled.div<{
   $isActive: boolean
   $background: string
 }>`
-  width: 100%;
+  width: 30px;
+  height: 30px;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 16px;
   cursor: pointer;
   overflow: hidden;
@@ -46,13 +50,4 @@ export const ColorOptionLayout = styled.div<{
   @media (max-width: 768px) {
     width: 100%;
   }
-`
-
-export const IconBox = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  background-color: var(--gray-500);
-  border-radius: 50%;
 `

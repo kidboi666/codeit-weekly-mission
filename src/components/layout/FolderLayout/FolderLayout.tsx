@@ -9,6 +9,7 @@ interface FolderLayoutProps {
   FolderOption: ReactNode
   Card: ReactNode
   Paper: ReactNode
+  PaperPage: ReactNode
 }
 
 const FolderLayout = ({
@@ -18,6 +19,7 @@ const FolderLayout = ({
   FolderOption,
   Card,
   Paper,
+  PaperPage,
 }: FolderLayoutProps) => {
   const { currentFolder } = useAppSelector((state) => state.folder)
   const [isInterSecting, setInterSecting] = useState(false)
@@ -53,9 +55,14 @@ const FolderLayout = ({
         </S.FolderSection>
         <S.FolderOptionSection>{FolderOption}</S.FolderOptionSection>
         {currentFolder.id === 1 ? (
-          <S.PaperSection>
-            <div>{Paper}</div>
-          </S.PaperSection>
+          <>
+            <S.PaperSection>
+              <div>{Paper}</div>
+            </S.PaperSection>
+            <S.PaperPageSection>
+              <div>{PaperPage}</div>
+            </S.PaperPageSection>
+          </>
         ) : (
           <S.LinkSection>{Card}</S.LinkSection>
         )}

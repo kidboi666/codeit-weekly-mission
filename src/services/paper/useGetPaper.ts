@@ -4,7 +4,7 @@ import camelcaseKeys from 'camelcase-keys'
 import { PAGE_LIMIT } from '@/src/constants/number'
 
 const useGetPaper = (page: number) => {
-  const getPaper = async (page = 1, limit = 5) => {
+  const getPaper = async (page = 1, limit = 1) => {
     const { data } = await paperInstance.get(`paper?page=${page}&limit=${limit}`)
     return camelcaseKeys(data, { deep: true })
   }

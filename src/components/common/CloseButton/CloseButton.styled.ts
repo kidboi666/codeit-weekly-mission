@@ -10,19 +10,20 @@ export const CloseButton = styled.div<{ $variant: string }>`
   height: 24px;
   border-radius: 50%;
   cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
 
-  ${({ $variant }) =>
-    $variant === 'modal' &&
-    `
-    background-color: #e7effb;
-  `}
-
-  ${({ $variant }) =>
-    $variant === 'searchInput' &&
-    `
-    background-color: #ccd5e3;
-  `}
-
+  ${({ $variant }) => {
+    if ($variant === 'searchInput' || $variant === 'modal') {
+      return `
+        background-color: #ccd5e3;
+         
+        &:hover {
+           background-color: #e7effb;
+        }
+     `
+    }
+    return ``
+  }}
 
   ${({ $variant }) =>
     $variant === 'outlined' &&

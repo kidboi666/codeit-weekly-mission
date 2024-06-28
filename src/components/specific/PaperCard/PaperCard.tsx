@@ -1,13 +1,12 @@
 import { useState } from 'react'
 import { Paper } from '@/src/types'
 import { openModal } from '@/src/store/reducers/modal'
-import calculateTime from '@/src/utils/calculateTime'
 import { useAppDispatch } from '@/src/hooks/useApp'
 import DeletePaper from '@/src/components/common/Modal/ModalContents/DeletePaper'
 import SkeletonPaperCard from '@/src/components/specific/PaperCard/SkeletonPaper'
 import { CloseButton } from '@/src/components'
-import * as S from './PaperCard.styled'
 import formatDateTime from '@/src/utils/formatDateTime'
+import * as S from './PaperCard.styled'
 
 interface CardProps {
   paper: Paper
