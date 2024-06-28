@@ -111,6 +111,7 @@ export const PaperSection = styled.ul`
   > div {
     width: 1060px;
     display: flex;
+    flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
     gap: 20px 20px;

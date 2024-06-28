@@ -98,7 +98,14 @@ const FolderOptionButton = ({
             variant="folderButton"
             text="이전"
             disabled={!paperPage}
-            onClick={() => setPaperPage((prev: number) => prev - 1)}
+            onClick={() =>
+              setPaperPage((prev: number) => {
+                if (prev <= totalPage && prev !== 1) {
+                  return prev - 1
+                }
+                return prev
+              })
+            }
           />
           {totalPageArr.map((v) => (
             <Button
@@ -112,7 +119,14 @@ const FolderOptionButton = ({
           <Button
             variant="folderButton"
             text="다음"
-            onClick={() => setPaperPage((prev) => prev + 1)}
+            onClick={() =>
+              setPaperPage((prev) => {
+                if (prev < totalPage) {
+                  return prev + 1
+                }
+                return prev
+              })
+            }
           />
           <S.OptionBox onClick={() => dispatch(openModal(<PaperForm />))}>✚ 새 글</S.OptionBox>
         </S.OptionContainer>
