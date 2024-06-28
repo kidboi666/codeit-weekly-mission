@@ -71,7 +71,6 @@ const Folder = ({ folderList, isLoading }: FolderProps) => {
           )}
         </S.FolderBox>
       </S.FolderContainer>
-      <FolderOptionButton />
     </S.FolderLayout>
   )
 }

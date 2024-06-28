@@ -75,6 +75,10 @@ export const FolderSection = styled.div`
   }
 `
 
+export const FolderOptionSection = styled.div`
+  margin-bottom: 20px;
+`
+
 export const LinkSection = styled.ul`
   ${sectionStyle}
 

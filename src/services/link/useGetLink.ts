@@ -4,14 +4,14 @@ import { useQuery } from '@tanstack/react-query'
 
 const useGetLink = (folderId: number) => {
   const getAllLinkList = async () => {
-    const { data } = await axios.get(`links`, {
-      headers: { 'include-access-token': true },
-    })
+    const { data } = await axios.get(`links`)
     return camelcaseKeys(data, { deep: true })
   }
 
   const getLinkList = async (folderId: number) => {
-    const { data } = await axios.get(`folders/${folderId ? `${folderId}` : ''}/links`)
+    const { data } = await axios.get(`folders/${folderId ? `${folderId}` : ''}/links`, {
+      headers: { 'exclude-access-token': true },
+    })
     return camelcaseKeys(data, { deep: true })
   }
 

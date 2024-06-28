@@ -15,8 +15,19 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       }
 
       case 'GET': {
-        const foundPaper = await Paper.find()
-        res.status(200).send(foundPaper)
+        const page = Number(req.query.page) || 1
+        const limit = Number(req.query.limit) || 10
+        if (page && limit) {
+          const foundPaper = await Paper.find()
+            .skip(page * limit)
+            .limit(limit)
+          res.status(200).send({
+            data: foundPaper,
+            currentPage: page,
+          })
+        } else {
+          res.status(404).send('Not Found')
+        }
         break
       }
 

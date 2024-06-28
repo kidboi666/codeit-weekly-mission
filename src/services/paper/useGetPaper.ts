@@ -1,16 +1,17 @@
 import { useQuery } from '@tanstack/react-query'
 import { paperInstance } from '@/src/services/axiosInstance'
 import camelcaseKeys from 'camelcase-keys'
+import { PAGE_LIMIT } from '@/src/constants/number'
 
-const useGetPaper = () => {
-  const getPaper = async () => {
-    const { data } = await paperInstance.get(`paper`)
-    return camelcaseKeys(data, { deep: true })
+const useGetPaper = (page: number) => {
+  const getPaper = async (page = 1, limit = 5) => {
+    const { data } = await paperInstance.get(`paper?page=${page}&limit=${limit}`)
+    return camelcaseKeys(data.data, { deep: true })
   }
 
   return useQuery({
-    queryKey: ['papers'],
-    queryFn: getPaper,
+    queryKey: ['papers', page],
+    queryFn: () => getPaper(page, PAGE_LIMIT),
   })
 }
 

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css, keyframes } from 'styled-components'
 
 export const FolderOptionButtonLayout = styled.div`
   width: 1060px;
@@ -52,4 +52,63 @@ export const OptionBox = styled.div`
   > img {
     width: 18px;
   }
+`
+
+const dragStyle = keyframes`
+  from {
+    transform: scale(0) translateX(-50%);
+  }
+  to {
+    transform: scale(1) translateX(-50%);
+  }
+`
+
+export const DraggingEventBox = styled.div`
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  width: 600px;
+  height: 600px;
+  bottom: -40%;
+  left: 50%;
+  transform: translateX(-50%);
+  align-items: center;
+  gap: 2px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 130, 0.2);
+  backdrop-filter: blur(8px);
+  z-index: 200;
+  animation: ${dragStyle} 0.3s ease-in-out;
+`
+const scaleAnimation = css`
+  from {
+    width: 300px;
+    height: 300px;
+  }
+  to {
+    width: 600px;
+    height: 600px;
+  }
+`
+export const BiggerButton = styled.button<{ $enterDrag: boolean; $deleteLoading?: boolean }>`
+  border: none;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: var(--white-color);
+  transition: all 0.3s;
+
+  ${({ $enterDrag }) =>
+    $enterDrag &&
+    `
+    background-color: var(--primary-color);
+    width: 300px;
+    height: 300px;
+    
+  `}
+  ${({ $deleteLoading }) =>
+    $deleteLoading &&
+    `
+      animation: ${scaleAnimation} 4s ease-in-out;
+    `}
 `

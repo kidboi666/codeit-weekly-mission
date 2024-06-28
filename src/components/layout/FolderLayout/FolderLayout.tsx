@@ -6,11 +6,19 @@ interface FolderLayoutProps {
   AddLink: ReactNode
   Search: ReactNode
   Folder: ReactNode
+  FolderOption: ReactNode
   Card: ReactNode
   Paper: ReactNode
 }
 
-const FolderLayout = ({ AddLink, Search, Folder, Card, Paper }: FolderLayoutProps) => {
+const FolderLayout = ({
+  AddLink,
+  Search,
+  Folder,
+  FolderOption,
+  Card,
+  Paper,
+}: FolderLayoutProps) => {
   const { currentFolder } = useAppSelector((state) => state.folder)
   const [isInterSecting, setInterSecting] = useState(false)
   const targetRef = useRef<HTMLDivElement>()
@@ -37,12 +45,13 @@ const FolderLayout = ({ AddLink, Search, Folder, Card, Paper }: FolderLayoutProp
 
   return (
     <>
-      <S.FolderPageLayout>
+      <S.FolderPageLayout onDragOver={(e) => e.preventDefault()}>
         <S.HeaderSection ref={targetRef}>{AddLink}</S.HeaderSection>
         <S.SearchSection>{Search}</S.SearchSection>
         <S.FolderSection>
           <div>{Folder}</div>
         </S.FolderSection>
+        <S.FolderOptionSection>{FolderOption}</S.FolderOptionSection>
         {currentFolder.id === 1 ? (
           <S.PaperSection>
             <div>{Paper}</div>
