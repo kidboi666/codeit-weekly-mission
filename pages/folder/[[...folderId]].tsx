@@ -26,14 +26,18 @@ const FolderPage = () => {
   const { folderId } = router.query
   const [searchResult, setSearchResult] = useState<Link[] | string>([])
   const [searchKeyword, setSearchKeyword] = useState('')
-  const [page, setPage] = useState(0)
+  const [paperPage, setPaperPage] = useState(1)
   const [isDragging, setDragging] = useState(false)
   const dragItem = useRef<Link | null>(null)
   const dragOverTarget = useRef(0)
   const { isLoggedIn } = useAppSelector((state) => state.auth)
   const [success, failure] = useFetchHandler()
   const { data: folderList, isPending: folderPending } = useGetFolder()
-  const { data: paperList, isPending: paperPending, isSuccess: paperSuccess } = useGetPaper(page)
+  const {
+    data: paperList,
+    isPending: paperPending,
+    isSuccess: paperSuccess,
+  } = useGetPaper(paperPage)
   const { data: linkList, isPending: linkPending } = useGetLink(Number(folderId))
   const { mutate: deleteLink, isPending: deleteLinkPending } = useDeleteLink()
 
@@ -93,6 +97,11 @@ const FolderPage = () => {
             enterDrag={enterDraggedItem}
             dragLeave={dragLeave}
             deleteLoading={deleteLinkPending}
+            isPaperSuccess={paperSuccess}
+            currentPage={paperList?.currentPage}
+            paperPage={paperPage}
+            setPaperPage={setPaperPage}
+            totalPage={paperList?.totalPage}
           />
         }
         Card={
@@ -114,9 +123,7 @@ const FolderPage = () => {
             />
           )
         }
-        Paper={<PaperCard paperList={paperList} isLoading={paperPending} />}
-        isSuccess={paperSuccess}
-        setPage={setPage}
+        Paper={<PaperCard paperList={paperList?.data} isLoading={paperPending} />}
       />
     </AppLayout>
   )
