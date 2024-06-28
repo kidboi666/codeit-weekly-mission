@@ -21,6 +21,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
           const foundPaper = await Paper.find()
             .skip((page - 1) * limit)
             .limit(limit)
+            .sort({ createdAt: 'desc' })
           const totalPaper = await Paper.countDocuments()
           res.status(200).send({
             data: foundPaper,
