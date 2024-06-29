@@ -34,7 +34,13 @@ const Card = ({ paper, changeColor, dispatch }: CardProps) => {
       }}
     >
       <S.PaperContainer>
-        <S.CloseButtonSection>
+        <S.TopSection>
+          <S.Title $showContent={showContent}>{paper.title}</S.Title>
+          <S.Writer $showContent={showContent} $color={changeColor(paper.background)}>
+            <p>✎ {paper.name}</p>
+          </S.Writer>
+        </S.TopSection>
+        <S.CloseButtonSection $hoverContent={hoverContent} $color={changeColor(paper.background)}>
           <CloseButton
             variant="outlined"
             onClick={() =>
@@ -42,10 +48,6 @@ const Card = ({ paper, changeColor, dispatch }: CardProps) => {
             }
           />
         </S.CloseButtonSection>
-        <S.Writer $color={changeColor(paper.background)}>
-          <p>✐ {paper.name}</p>
-        </S.Writer>
-        <S.Title $showContent={showContent}>{paper.title}</S.Title>
         <S.Content $showContent={showContent}>{paper.content}</S.Content>
       </S.PaperContainer>
       <S.TimeStamp $hoverContent={hoverContent} $color={changeColor(paper.background)}>

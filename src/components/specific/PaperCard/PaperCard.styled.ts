@@ -11,6 +11,7 @@ export const PaperLayout = styled.li<{
   cursor: pointer;
   padding: 15px 20px;
   background-color: ${({ $background }) => $background};
+  user-select: none;
   transition: all 0.3s;
   animation: ${slideDown} 0.3s;
 
@@ -22,33 +23,44 @@ export const PaperLayout = styled.li<{
 
 export const PaperContainer = styled.div`
   position: relative;
-  display: inline-flex;
+  display: block;
   flex-direction: column;
   align-items: flex-start;
   gap: 15px;
   z-index: 10;
 `
 
-export const CloseButtonSection = styled.div`
-  position: absolute;
-  right: 16px;
-  top: 2px;
-  background-color: var(--white-color);
-  border-radius: 15px;
+export const TopSection = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
 `
 
-export const Writer = styled.div<{ $color: string }>`
+export const CloseButtonSection = styled.div<{ $color: string; $hoverContent: boolean }>`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: -30px;
+  bottom: -25px;
+  background-color: ${({ $color }) => $color};
+  border-radius: 15px;
+  width: 25px;
+  height: 25px;
+`
+
+export const Writer = styled.div<{ $color: string; $showContent: boolean }>`
+  display: ${({ $showContent }) => ($showContent ? 'block' : '-webkit-box')};
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   padding: 10px;
-  margin-right: 30px;
   border-radius: 10px;
+  font-size: 12px;
   font-weight: 700;
-  line-height: 12px;
+  line-height: 10px;
   color: ${({ $color }) => $color};
   background-color: var(--white-color);
-
-  > p {
-    display: inline;
-  }
 `
 
 export const Title = styled.p<{ $showContent: boolean }>`
@@ -66,12 +78,12 @@ export const Content = styled.p<{ $showContent: boolean }>`
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  font-size: 14px;
+  font-size: 12px;
   color: #fff;
 `
 export const TimeStamp = styled.p<{ $hoverContent: boolean; $color: string }>`
   position: absolute;
-  right: 5px;
+  right: 15px;
   transform: translateY(-3px);
   font-size: 14px;
   font-weight: 700;

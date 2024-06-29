@@ -76,7 +76,14 @@ export const FolderSection = styled.div`
 `
 
 export const FolderOptionSection = styled.div`
+  ${sectionStyle}
   margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    > div {
+      padding: 0 32.5px;
+    }
+  }
 `
 
 export const LinkSection = styled.ul`
@@ -126,8 +133,6 @@ export const PaperSection = styled.ul`
       width: 100%;
       justify-content: flex-start;
       padding: 0 32.5px;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
     }
   }
 `
