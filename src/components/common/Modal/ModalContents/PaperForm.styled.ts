@@ -11,8 +11,10 @@ export const PaperContentBox = styled.textarea<{ onChange: any }>`
   outline: none;
   background-color: var(--white-color);
   border: 1px solid var(--gray2-color);
+  transition: box-shadow 0.2s;
 
   &:focus {
+    box-shadow: 5px 5px 1px #d2d1ff;
     border: 1px solid var(--primary-color);
   }
 `

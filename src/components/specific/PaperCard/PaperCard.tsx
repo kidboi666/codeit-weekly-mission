@@ -43,7 +43,7 @@ const Card = ({ paper, changeColor, dispatch }: CardProps) => {
           />
         </S.CloseButtonSection>
         <S.Writer $color={changeColor(paper.background)}>
-          <p>✐ {paper.name}</p>
+          <p>✎ {paper.name}</p>
         </S.Writer>
         <S.Title $showContent={showContent}>{paper.title}</S.Title>
         <S.Content $showContent={showContent}>{paper.content}</S.Content>

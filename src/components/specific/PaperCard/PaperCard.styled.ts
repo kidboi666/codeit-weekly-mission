@@ -41,6 +41,7 @@ export const Writer = styled.div<{ $color: string }>`
   padding: 10px;
   margin-right: 30px;
   border-radius: 10px;
+  font-size: 12px;
   font-weight: 700;
   line-height: 12px;
   color: ${({ $color }) => $color};
@@ -66,7 +67,7 @@ export const Content = styled.p<{ $showContent: boolean }>`
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  font-size: 14px;
+  font-size: 12px;
   color: #fff;
 `
 export const TimeStamp = styled.p<{ $hoverContent: boolean; $color: string }>`
