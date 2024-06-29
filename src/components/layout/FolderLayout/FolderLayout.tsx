@@ -37,7 +37,6 @@ const FolderLayout = ({
     if (targetRef.current) {
       observer.observe(targetRef.current)
     }
-
     return () => {
       if (targetRef.current) {
         observer.unobserve(targetRef.current)
@@ -67,7 +66,9 @@ const FolderLayout = ({
           <S.LinkSection>{Card}</S.LinkSection>
         )}
       </S.FolderPageLayout>
-      <S.FooterAddLink $animation={isInterSecting}>{AddLink}</S.FooterAddLink>
+      {currentFolder.id !== 1 && (
+        <S.FooterAddLink $animation={isInterSecting}>{AddLink}</S.FooterAddLink>
+      )}
     </>
   )
 }
