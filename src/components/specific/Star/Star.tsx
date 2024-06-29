@@ -33,7 +33,11 @@ const Star = ({ favorite, linkId }: StarProps) => {
       { linkId, favorite: !value },
       {
         onSuccess: () => {
-          success('즐겨찾기에 등록하였습니다!')
+          if (value) {
+            success('즐겨찾기 삭제완료')
+          } else {
+            success('즐겨찾기 등록완료')
+          }
           toggle()
         },
         onError: (error) => failure(error),
