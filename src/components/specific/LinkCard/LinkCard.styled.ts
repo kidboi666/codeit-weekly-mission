@@ -15,6 +15,7 @@ export const CardDescriptionContainer = styled.div`
   position: relative;
   flex-direction: column;
   justify-content: space-between;
+  transition: background-color 0.3s;
 `
 
 export const CardLayout = styled.div`
@@ -76,9 +77,4 @@ export const Title = styled.p`
 export const TimeStamp = styled.p`
   font-size: 14px;
   color: #666666;
-`
-
-export const DropDownBox = styled.div`
-  top: 0;
-  right: 0;
 `

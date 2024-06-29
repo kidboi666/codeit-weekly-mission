@@ -30,7 +30,7 @@ export const CloseButton = styled.div<{ $variant: string }>`
     `
     transition: transform 0.3s;
     &:hover {
-      transform: rotate(45deg);
+      transform: rotate(90deg);
     }
   `}
 `
