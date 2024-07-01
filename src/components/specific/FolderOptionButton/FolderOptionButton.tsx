@@ -10,7 +10,7 @@ import DeleteFolder from '@/src/components/common/Modal/ModalContents/DeleteFold
 import PaperForm from '@/src/components/common/Modal/ModalContents/PaperForm'
 import ShareFolder from '@/src/components/common/Modal/ModalContents/ShareFolder'
 import ChangeName from '@/src/components/common/Modal/ModalContents/ChangeName'
-import { DRAG_TARGET } from '@/src/constants/number'
+import LinkDragDeleteButton from '@/src/components/specific/LinkDragDeleteButton/LinkDragDeleteButton'
 import * as S from './FolderOptionButton.styled'
 
 interface FolderOptionButtonProps {
@@ -46,25 +46,13 @@ const FolderOptionButton = ({
             이름 변경
           </S.OptionBox>
           {isDragging && (
-            <S.DraggingEventBox>
-              <S.BiggerButton
-                $deleteLoading={deleteLoading}
-                $enterDrag={isEnter}
-                onDragEnter={() => {
-                  setEnter(true)
-                  enterDrag(DRAG_TARGET.링크삭제)
-                }}
-                onDragLeave={(e) => {
-                  if (!e.currentTarget.contains(e.relatedTarget as Node)) {
-                    setEnter(false)
-                    dragLeave()
-                  }
-                }}
-              >
-                <Image src={deleteIcon} alt="삭제버튼" width={58} height={58} />
-                <p>위로 드래그하여 삭제</p>
-              </S.BiggerButton>
-            </S.DraggingEventBox>
+            <LinkDragDeleteButton
+              deleteLoading={deleteLoading}
+              dragLeave={dragLeave}
+              enterDrag={enterDrag}
+              isEnter={isEnter}
+              setEnter={setEnter}
+            />
           )}
           <S.OptionBox onClick={() => dispatch(openModal(<DeleteFolder />))}>
             <Image src={deleteIcon} alt="삭제버튼" width={18} height={18} />

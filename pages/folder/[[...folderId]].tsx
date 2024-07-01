@@ -10,6 +10,7 @@ import {
   PaperCard,
   FolderOptionButton,
 } from '@/src/components'
+import PaperPaginationButton from '@/src/components/specific/PaperPaginationButton/PaperPaginationButton'
 import { Link } from '@/src/types'
 import useGetLink from '@/src/services/link/useGetLink'
 import useGetFolder from '@/src/services/folder/useGetFolder'
@@ -19,7 +20,6 @@ import useGetPaper from '@/src/services/paper/useGetPaper'
 import useDeleteLink from '@/src/services/link/useDeleteLink'
 import useFetchHandler from '@/src/hooks/useFetchHandler'
 import { DRAG_TARGET } from '@/src/constants/number'
-import PaperPageButton from '@/src/components/specific/PaperPage/PaperPageButton'
 
 const FolderPage = () => {
   const router = useRouter()
@@ -27,18 +27,15 @@ const FolderPage = () => {
   const { folderId } = router.query
   const [searchResult, setSearchResult] = useState<Link[] | string>([])
   const [searchKeyword, setSearchKeyword] = useState('')
-  const [paperPage, setPaperPage] = useState(1)
+  const [currentPaperPage, setCurrentPaperPage] = useState(1)
+  const [totalPaperPage, setTotalPaperPage] = useState(0)
   const [isDragging, setDragging] = useState(false)
   const dragItem = useRef<Link | null>(null)
   const dragOverTarget = useRef(0)
   const { isLoggedIn } = useAppSelector((state) => state.auth)
   const [success, failure] = useFetchHandler()
   const { data: folderList, isPending: folderPending } = useGetFolder()
-  const {
-    data: paperList,
-    isPending: paperPending,
-    isSuccess: paperSuccess,
-  } = useGetPaper(paperPage)
+  const { data: paperList, isPending: paperPending } = useGetPaper(currentPaperPage)
   const { data: linkList, isPending: linkPending } = useGetLink(Number(folderId))
   const { mutate: deleteLink, isPending: deleteLinkPending } = useDeleteLink()
 
@@ -78,6 +75,10 @@ const FolderPage = () => {
       router.push('/')
     }
   }, [isLoggedIn])
+
+  useEffect(() => {
+    setTotalPaperPage(paperList?.totalPage)
+  }, [paperList])
 
   return (
     <AppLayout>
@@ -121,12 +122,10 @@ const FolderPage = () => {
         }
         Paper={<PaperCard paperList={paperList?.data} isLoading={paperPending} />}
         PaperPage={
-          <PaperPageButton
-            isPaperSuccess={paperSuccess}
-            currentPage={paperList?.currentPage}
-            paperPage={paperPage}
-            setPaperPage={setPaperPage}
-            totalPage={paperList?.totalPage}
+          <PaperPaginationButton
+            currentPage={currentPaperPage}
+            setCurrentPage={(page) => setCurrentPaperPage(page)}
+            totalPage={totalPaperPage}
           />
         }
       />
