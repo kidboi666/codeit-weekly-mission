@@ -8,7 +8,7 @@ import { CloseButton } from '@/src/components'
 import formatDateTime from '@/src/utils/formatDateTime'
 import * as S from './PaperCard.styled'
 
-interface CardProps {
+interface PaperProps {
   paper: Paper
   changeColor: (color: string) => string
   dispatch: any
@@ -19,7 +19,7 @@ interface PaperCardProps {
   isLoading: boolean
 }
 
-const Card = ({ paper, changeColor, dispatch }: CardProps) => {
+const PaperCardItem = ({ paper, changeColor, dispatch }: PaperProps) => {
   const [showContent, setShowContent] = useState(false)
   const [hoverContent, setHoverContent] = useState(false)
   return (
@@ -72,7 +72,9 @@ const PaperCard = ({ paperList, isLoading }: PaperCardProps) => {
     </>
   ) : (
     paperList?.map((paper) => {
-      return <Card key={paper.id} paper={paper} changeColor={changeColor} dispatch={dispatch} />
+      return (
+        <PaperCardItem key={paper.id} paper={paper} changeColor={changeColor} dispatch={dispatch} />
+      )
     })
   )
 }

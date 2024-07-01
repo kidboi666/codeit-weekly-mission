@@ -25,7 +25,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
           const totalPaper = await Paper.countDocuments()
           res.status(200).send({
             data: foundPaper,
-            currentPage: page,
             totalPage: Math.ceil(totalPaper / limit),
           })
         } else {
