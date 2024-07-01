@@ -69,7 +69,8 @@ const PaperPageButton = ({
       />
       {displayPageNumber?.map((page, idx) => {
         if (!page) return null
-        if (displayPageNumber.length - 1 === idx) return <S.Dot key={page}>...</S.Dot>
+        if (!tensPlacePage && displayPageNumber.length - 1 === idx)
+          return <S.Dot key={page}>...</S.Dot>
         return (
           <Button
             key={page}
