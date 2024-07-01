@@ -67,8 +67,9 @@ const PaperPageButton = ({
           })
         }
       />
-      {displayPageNumber?.map((page) => {
+      {displayPageNumber?.map((page, idx) => {
         if (!page) return null
+        if (displayPageNumber.length - 1 === idx) return <S.Dot key={page}>...</S.Dot>
         return (
           <Button
             key={page}
@@ -83,11 +84,11 @@ const PaperPageButton = ({
         variant="folderButton"
         text="다음"
         onClick={() =>
-          setPaperPage((prev) => {
-            if (prev < totalPage) {
-              return prev + 1
+          setPaperPage((prevPage) => {
+            if (prevPage < totalPage) {
+              return prevPage + 1
             }
-            return prev
+            return prevPage
           })
         }
       />

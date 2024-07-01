@@ -35,9 +35,7 @@ const SharedLayout = ({
         <>
           <S.OwnerSection>{Owner}</S.OwnerSection>
           <S.SearchSection>{Search}</S.SearchSection>
-          <S.LinkSection>
-            <div>{Card}</div>
-          </S.LinkSection>
+          <S.LinkSection>{Card}</S.LinkSection>
         </>
       )}
     </S.SharedPageLayout>
