@@ -10,3 +10,10 @@ export const PageContainer = styled.div`
     align-self: flex-end;
   }
 `
+export const Dot = styled.p`
+  font-size: 30px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  color: var(--primary-color);
+`

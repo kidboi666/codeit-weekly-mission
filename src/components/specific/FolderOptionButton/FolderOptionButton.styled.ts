@@ -69,7 +69,7 @@ export const DraggingEventBox = styled.div`
   justify-content: center;
   width: 600px;
   height: 600px;
-  bottom: -40%;
+  bottom: -15%;
   left: 50%;
   transform: translateX(-50%);
   align-items: center;
